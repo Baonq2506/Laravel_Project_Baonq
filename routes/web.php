@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.home');
+})->name('home');
+
+route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
+
+    route::get('headers/index','HeaderController@index')->name('headers.index');
+    route::get('abouts/index','AboutController@index')->name('abouts.index');
+    route::get('abouts/contact','AboutController@contact')->name('abouts.contact');
+    route::get('portfolio/index','PortfolioController@index')->name('portfolio.index');
+    route::get('blogs/index','BlogController@index')->name('blogs.index');
+    route::get('shops/index','ShopController@index')->name('shops.index');
+
+
 });
