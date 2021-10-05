@@ -6,8 +6,7 @@
     style="color:white"
 @endsection
 @section('header')
-    <section class="module bg-dark-70 contact-page-header" data-background="/images/a19.jpg"
-        style="background-image: url('/images/a2.jpg')">
+    <section class="module bg-dark-70 contact-page-header" data-background="/images/header/a19.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
@@ -33,7 +32,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-8">
-                    <form id="contactForm" role="form" method="post" action="php/contact.php">
+                    <form id="contactForm" role="form" method="post" action="/frontend/php/contact.php">
                         <div class="form-group">
                             <label class="sr-only" for="name">Name</label>
                             <input class="form-control" type="text" id="name" name="name" placeholder="Your Name*"
@@ -61,19 +60,24 @@
                 <div class="col-sm-4">
                     <div class="alt-features-item mt-0">
                         <div class="alt-features-icon"><span class="icon-megaphone"></span></div>
-                        <h3 class="alt-features-title font-alt">Where to meet</h3>Titan Company<br />23 Greate
-                        Street<br />Los Angeles, 12345 LS
+                        <h3 class="alt-features-title font-alt">Where to meet</h3>Dracula Castel<br />25 Greate
+                        City<br />Phúc Hòa, Phúc Thọ, Hà Nội
                     </div>
                     <div class="alt-features-item mt-xs-60">
                         <div class="alt-features-icon"><span class="icon-map"></span></div>
-                        <h3 class="alt-features-title font-alt">Say Hello</h3>Email: somecompany@example.com<br />Phone: +1
-                        234 567 89 10
+                        <h3 class="alt-features-title font-alt">Say Hello</h3>Email: baonq.2506.vnua@gmail.com<br />Phone:
+                        +84 962 023 641
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <section id="map-section">
-        <div id="map"></div>
+        <div id="map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14888.491004826608!2d105.53789723016163!3d21.10767179335658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134588abae6ff45%3A0xd20b05cf045ae987!2zdHQuIFBow7pjIFRo4buNLCBQaMO6YyBUaOG7jSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2sus!4v1633187075236!5m2!1svi!2sus"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
     </section>
+    <br>
 @endsection

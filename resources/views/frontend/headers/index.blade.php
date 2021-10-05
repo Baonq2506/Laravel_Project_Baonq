@@ -12,7 +12,7 @@
     </style>
 @endsection
 @section('header')
-    <section class="home-section bg-dark bg-dark" id="home" data-background="/images/a3.jpg"
+    <section class="home-section bg-dark bg-dark" id="home" data-background="/images/header/a3.jpg"
         style="height: 425.85px; background-image: url(&quot;/images/a3.jpg&quot;);">
         <div class="titan-caption">
             <div class="caption-content">
@@ -121,7 +121,7 @@
             </div>
         </div>
     </section>
-    <section class="module bg-dark-60" data-background="/images/01.jpg">
+    <section class="module bg-dark-60" data-background="/images/portfolio/01.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -164,42 +164,42 @@
         </div>
         <ul class="works-grid works-grid-gut works-grid-3 works-hover-w" id="works-grid">
             <li class="work-item illustration webdesign"><a href="portfolio-single-1.html">
-                    <div class="work-image"><img src="/images/01.jpg" alt="Portfolio Item" /></div>
+                    <div class="work-image"><img src="/images/portfolio/01.jpg" alt="Portfolio Item" /></div>
                     <div class="work-caption font-alt">
                         <h3 class="work-title">Corporate Identity</h3>
                         <div class="work-descr">Illustration</div>
                     </div>
                 </a></li>
             <li class="work-item marketing photography"><a href="portfolio-single-1.html">
-                    <div class="work-image"><img src="/images/2.jpeg" alt="Portfolio Item" /></div>
+                    <div class="work-image"><img src="/images/portfolio/2.jpeg" alt="Portfolio Item" /></div>
                     <div class="work-caption font-alt">
                         <h3 class="work-title">Bag MockUp</h3>
                         <div class="work-descr">Marketing</div>
                     </div>
                 </a></li>
             <li class="work-item illustration photography"><a href="portfolio-single-1.html">
-                    <div class="work-image"><img src="/images/3.jpeg" alt="Portfolio Item" /></div>
+                    <div class="work-image"><img src="/images/portfolio/3.jpeg" alt="Portfolio Item" /></div>
                     <div class="work-caption font-alt">
                         <h3 class="work-title">Disk Cover</h3>
                         <div class="work-descr">Illustration</div>
                     </div>
                 </a></li>
             <li class="work-item marketing photography"><a href="portfolio-single-1.html">
-                    <div class="work-image"><img src="/images/4.jpeg" alt="Portfolio Item" /></div>
+                    <div class="work-image"><img src="/images/portfolio/4.jpeg" alt="Portfolio Item" /></div>
                     <div class="work-caption font-alt">
                         <h3 class="work-title">Business Card</h3>
                         <div class="work-descr">Photography</div>
                     </div>
                 </a></li>
             <li class="work-item illustration webdesign"><a href="portfolio-single-1.html">
-                    <div class="work-image"><img src="/images/5.jpeg" alt="Portfolio Item" /></div>
+                    <div class="work-image"><img src="/images/portfolio/5.jpeg" alt="Portfolio Item" /></div>
                     <div class="work-caption font-alt">
                         <h3 class="work-title">Business Card</h3>
                         <div class="work-descr">Webdesign</div>
                     </div>
                 </a></li>
             <li class="work-item marketing webdesign"><a href="portfolio-single-1.html">
-                    <div class="work-image"><img src="/images/6.jpeg" alt="Portfolio Item" /></div>
+                    <div class="work-image"><img src="/images/portfolio/6.jpeg" alt="Portfolio Item" /></div>
                     <div class="work-caption font-alt">
                         <h3 class="work-title">Business Cards in paper clip</h3>
                         <div class="work-descr">Marketing</div>

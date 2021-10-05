@@ -43,8 +43,8 @@
 	$email = $_POST['email'];
 	$message = $_POST['message'];
 	$from = $email;
-	$to = 'info@example.com';  // please change this email id
-	$subject = 'Contact Form : Titan - The best downloaded template ever';
+	$to = 'quocbao25062000@gmail.com';  // please change this email id
+	$subject = 'Contact Form : Dracula - Feedback';
 
 	$body = "From: $name\n E-Mail: $email\n Message:\n $message";
 
@@ -60,7 +60,7 @@
 		$result .= '</div>';
 
 		echo $result;
-		die();
+		//die();
 	}
 
 	$result = '';

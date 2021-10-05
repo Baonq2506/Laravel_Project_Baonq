@@ -5,7 +5,7 @@
 
 @section('header')
 
-    <section class="module bg-dark-5 shop-page-header" data-background="/images/a17.jpg">
+    <section class="module bg-dark-5 shop-page-header" data-background="/images/header/a17.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">

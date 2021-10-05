@@ -3,7 +3,7 @@
     Portfolio
 @endsection
 @section('header')
-    <section class="module bg-dark-60 portfolio-page-header" data-background="/images/a5new.jpg"
+    <section class="module bg-dark-60 portfolio-page-header" data-background="/images//header/a5new.jpg"
         style="background-image: url(&quot;/images/a5new.jpg&quot;);">
         <div class="container">
             <div class="row">

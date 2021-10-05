@@ -8,7 +8,7 @@
         <div class="hero-slider">
             <ul class="slides">
                 <li class="bg-dark-30 bg-dark shop-page-header flex-active-slide"
-                    style="background-image: url(&quot;/images/anhnen.jpg&quot;); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;"
+                    style="background-image: url(&quot;/images/header/anhnen.jpg&quot;); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;"
                     data-thumb-alt="">
                     <div class="titan-caption">
                         <div class="caption-content" style="opacity: 1;">
@@ -20,7 +20,7 @@
                     </div>
                 </li>
                 <li class="bg-dark-30 bg-dark shop-page-header"
-                    style="background-image: url(&quot;/images/a4.jpg&quot;); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1;"
+                    style="background-image: url(&quot;/images/header/a4.jpg&quot;); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1;"
                     data-thumb-alt="">
                     <div class="titan-caption">
                         <div class="caption-content" style="opacity: 1;">
