@@ -30,7 +30,7 @@
                         <h5 class="widget-title font-alt">Popular Posts</h5>
                         <ul class="widget-posts">
                             <li class="clearfix">
-                                <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-1.jpg"
+                                <div class="widget-posts-image"><a href="#"><img src="/frontend/assets/images/rp-1.jpg"
                                             alt="Post Thumbnail" /></a></div>
                                 <div class="widget-posts-body">
                                     <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
@@ -38,7 +38,7 @@
                                 </div>
                             </li>
                             <li class="clearfix">
-                                <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-2.jpg"
+                                <div class="widget-posts-image"><a href="#"><img src="/frontend/assets/images/rp-2.jpg"
                                             alt="Post Thumbnail" /></a></div>
                                 <div class="widget-posts-body">
                                     <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
@@ -46,7 +46,7 @@
                                 </div>
                             </li>
                             <li class="clearfix">
-                                <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-3.jpg"
+                                <div class="widget-posts-image"><a href="#"><img src="/frontend/assets/images/rp-3.jpg"
                                             alt="Post Thumbnail" /></a></div>
                                 <div class="widget-posts-body">
                                     <div class="widget-posts-title"><a href="#">Eco bag Mockup</a></div>
@@ -54,7 +54,7 @@
                                 </div>
                             </li>
                             <li class="clearfix">
-                                <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-4.jpg"
+                                <div class="widget-posts-image"><a href="#"><img src="/frontend/assets/images/rp-4.jpg"
                                             alt="Post Thumbnail" /></a></div>
                                 <div class="widget-posts-body">
                                     <div class="widget-posts-title"><a href="#">Bottle Mockup</a></div>
@@ -90,7 +90,8 @@
                 </div>
                 <div class="col-sm-8 col-sm-offset-1">
                     <div class="post">
-                        <div class="post-thumbnail"><img src="assets/images/post-4.jpg" alt="Blog Featured Image" /></div>
+                        <div class="post-thumbnail"><img src="/frontend/assets/images/post-4.jpg"
+                                alt="Blog Featured Image" /></div>
                         <div class="post-header font-alt">
                             <h1 class="post-title">Our trip to the Alps</h1>
                             <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>| 23 November | 3 Comments | <a

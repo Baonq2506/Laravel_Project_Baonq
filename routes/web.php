@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('frontend.home');
 })->name('home');
 
+Route::get('/login', function () {
+    return view('frontend.auth.login');
+})->name('frontend.auth.login');
+
+Route::get('/signup', function () {
+    return view('frontend.auth.register');
+})->name('frontend.auth.register');
+
 route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
 
     route::prefix('about')->name('about.')->group(function () {
@@ -26,6 +34,7 @@ route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware(
 
     route::prefix('blog')->name('blog.')->group(function () {
         Route::get('index','BlogController@index')->name('index');
+        Route::get('singerBlog','BlogController@show')->name('singerBlog');
 
     });
 

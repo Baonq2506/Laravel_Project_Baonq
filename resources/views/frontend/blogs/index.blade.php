@@ -118,7 +118,8 @@
                                 spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in
                                 this spot, which was created for the bliss of souls like mine.</p>
                         </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+                        <div class="post-more"><a class="more-link"
+                                href="{{ route('frontend.blog.singerBlog') }}">Read more</a></div>
                     </div>
                     <div class="post">
                         <div class="post-quote">
@@ -146,7 +147,8 @@
                                 spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in
                                 this spot, which was created for the bliss of souls like mine.</p>
                         </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+                        <div class="post-more"><a class="more-link"
+                                href="{{ route('frontend.blog.singerBlog') }}">Read more</a></div>
                     </div>
                     <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a
                             class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a

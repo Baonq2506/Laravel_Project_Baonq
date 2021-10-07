@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dracula | @yield('title')</title>
+    <LINK REL="SHORTCUT ICON" HREF="/images/logoicon.ico">
     @include('frontend.includes.style_base')
     @stack('stack_css')
     @yield('css')
