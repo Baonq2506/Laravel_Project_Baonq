@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('title')
-    Home
+
 @endsection
 
 @section('header')
@@ -8,11 +8,11 @@
         <div class="hero-slider">
             <ul class="slides">
                 <li class="bg-dark-30 bg-dark shop-page-header flex-active-slide"
-                    style="background-image: url(&quot;/images/header/anhnen.jpg&quot;); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;"
+                    style="background-image: url(&quot;/images/LOL/Header/bilgewater_06.jpg&quot;); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;"
                     data-thumb-alt="">
                     <div class="titan-caption">
                         <div class="caption-content" style="opacity: 1;">
-                            <div class="font-alt mb-30 titan-title-size-1">Welcome to castle Dracula</div>
+                            <div class="font-alt mb-30 titan-title-size-1">Welcome to theatre of Dreams</div>
                             <div class="font-alt mb-30 titan-title-size-4"> Blood Season 2021</div>
                             <div class="font-alt mb-40 titan-title-size-1">Your online fashion destination</div><a
                                 class="section-scroll btn btn-border-w btn-round" href="#latest">Learn More</a>
@@ -20,11 +20,11 @@
                     </div>
                 </li>
                 <li class="bg-dark-30 bg-dark shop-page-header"
-                    style="background-image: url(&quot;/images/header/a4.jpg&quot;); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1;"
+                    style="background-image: url(&quot;/images/LOL/Header/freljord-cavernshowling.jpg&quot;); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1;"
                     data-thumb-alt="">
                     <div class="titan-caption">
                         <div class="caption-content" style="opacity: 1;">
-                            <div class="font-alt mb-30 titan-title-size-1">Welcome to castle Dracula</div>
+                            <div class="font-alt mb-30 titan-title-size-1">Welcome to theatre of Dreams</div>
                             <div class="font-alt mb-40 titan-title-size-4">Exclusive products</div><a
                                 class="section-scroll btn btn-border-w btn-round" href="#latest">Learn More</a>
                         </div>

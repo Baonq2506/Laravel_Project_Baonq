@@ -13,18 +13,23 @@
                 <li class="dropdown"><a href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="dropdown"><a href="{{ route('frontend.header.index') }}">Header</a>
-                <li class="dropdown"><a href="{{ route('frontend.blog.index') }}">Blog</a>
-                </li>
                 </li>
                 <li class="dropdown"><a href="{{ route('frontend.shop.index') }}">Shop</a>
                 </li>
-                <li class="dropdown"><a href="{{ route('frontend.about.index') }}">About</a>
+                <li class="dropdown"><a href="{{ route('frontend.blog.index') }}">Blog</a>
                 </li>
-                <li class="dropdown"><a href="{{ route('frontend.portfolio.index') }}">Portfolio</a>
+                <li class="dropdown"><a href="{{ route('frontend.about.index') }}">About</a>
                 </li>
                 <li class="dropdown"><a href="{{ route('frontend.about.contact') }}">Contact</a>
                 </li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li class="dropdown"><a href="{{ route('auth.register') }}">Register </a>
+                </li>
+                <li><a> | </a></li>
+                <li class="dropdown"><a href="{{ route('auth.login') }}">Login</a>
+            </ul>
         </div>
+
     </div>
 </nav>

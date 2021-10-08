@@ -6,7 +6,7 @@
     style="color:white"
 @endsection
 @section('header')
-    <section class="module bg-dark-70 contact-page-header" data-background="/images/header/a19.jpg">
+    <section class="module bg-dark-60 contact-page-header" data-background="/images/LOL/Header/the-draklorn.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">

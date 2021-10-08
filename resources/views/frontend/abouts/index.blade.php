@@ -3,7 +3,7 @@
     About
 @endsection
 @section('header')
-    <section class="module bg-dark-60 about-page-header" data-background="/images/header/a7.jpg">
+    <section class="module bg-dark-60 about-page-header" data-background="/images/LOL/Header/eyes-in-the-abyss.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">

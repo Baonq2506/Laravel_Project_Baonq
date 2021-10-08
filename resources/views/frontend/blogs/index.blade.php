@@ -4,7 +4,7 @@
 @endsection
 
 @section('header')
-    <section class="module bg-dark-60 blog-page-header" data-background="/images/header/a1.jpg"
+    <section class="module bg-dark-60 blog-page-header" data-background="/images/LOL/Header/shadow-isles-crator.jpg"
         style="background-image: url(&quot;/images/a10.jpg&quot;);">
         <div class="container">
             <div class="row">

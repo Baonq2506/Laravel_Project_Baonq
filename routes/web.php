@@ -17,14 +17,12 @@ Route::get('/', function () {
     return view('frontend.home');
 })->name('home');
 
-Route::get('/login', function () {
-    return view('frontend.auth.login');
-})->name('frontend.auth.login');
 
-Route::get('/signup', function () {
-    return view('frontend.auth.register');
-})->name('frontend.auth.register');
+route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
+    Route::get('login','LoginController@create')->name('login');
 
+    Route::get('register','RegisterController@create')->name('register');
+});
 route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
 
     route::prefix('about')->name('about.')->group(function () {
@@ -47,10 +45,4 @@ route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware(
         Route::get('index','ShopController@index')->name('index');
 
     });
-
-    route::prefix('portfolio')->name('portfolio.')->group(function () {
-        Route::get('index','PortfolioController@index')->name('index');
-
-    });
-
 });
