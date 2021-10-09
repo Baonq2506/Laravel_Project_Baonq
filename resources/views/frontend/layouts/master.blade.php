@@ -38,6 +38,10 @@
         </div>
         @include('frontend.includes.messenger')
         <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous"
+                src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=1210347269440000&autoLogAppEvents=1"
+                nonce="oOrDO4rn"></script>
     </main>
 
 </body>
