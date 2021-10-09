@@ -36,10 +36,10 @@
             @yield('main')
             @include('frontend.includes.footer')
         </div>
-
+        @include('frontend.includes.messenger')
         <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
     </main>
-    @yield('messenger')
+
 </body>
 @include('frontend.includes.script_base')
 @yield('scripts')
