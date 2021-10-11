@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dracula @yield('title')</title>
-    <LINK REL="SHORTCUT ICON" HREF="/images/trexicon.ico">
+    <LINK REL="SHORTCUT ICON" HREF="/images/rex.ico>
     @include('frontend.includes.style_base')
     @stack('stack_css')
     @yield('css')
@@ -28,7 +28,7 @@
 
 </style>
 
-<body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+<body data-spy=" scroll" data-target=".onpage-navigation" data-offset="60">
     <main>
         @include('frontend.includes.sidebar')
         @yield('header')
@@ -38,15 +38,12 @@
         </div>
         @include('frontend.includes.messenger')
         <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous"
-                src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=1210347269440000&autoLogAppEvents=1"
-                nonce="oOrDO4rn"></script>
+        @include('frontend.includes.commentFb')
     </main>
 
-</body>
-@include('frontend.includes.script_base')
-@yield('scripts')
-@stack('stack_js')
+    </body>
+    @include('frontend.includes.script_base')
+    @yield('scripts')
+    @stack('stack_js')
 
 </html>

@@ -15,6 +15,7 @@
     <!-- css -->
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ asset('css/register.css') }}" rel='stylesheet' type='text/css' media="all" />
+    <LINK REL="SHORTCUT ICON" HREF="/images/rex.ico">
     <!-- /css -->
 </head>
 <style>

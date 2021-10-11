@@ -11,11 +11,14 @@ class ShopController extends Controller
         return view('frontend.shops.index');
     }
 
-    public function singerProduct($product_id){
+    public function detailProduct(){
         return view('frontend.shops.singerProduct');
     }
 
     public function cart($product_id){
         return view('frontend.shops.cart');
+    }
+    public function checkoutCart(){
+        return view('frontend.shops.checkout');
     }
 }

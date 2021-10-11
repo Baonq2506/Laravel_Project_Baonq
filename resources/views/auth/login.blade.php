@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <LINK REL="SHORTCUT ICON" HREF="/images/rex.ico">
 
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel=" stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
 
@@ -47,7 +47,7 @@
                             <div class="form-group d-md-flex">
                                 <div class="w-50">
                                     <label class="checkbox-wrap checkbox-primary" style="color:white;">Remember Me
-                                        <input type="checkbox" checked>
+                                        <input type="checkbox" checked name="rememberMe">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -62,9 +62,9 @@
                             <a style="text-decoration: none" href="#" class="px-2 py-2 mr-md-1 rounded"><span
                                     class="ion-logo-facebook mr-2"></span>
                                 Facebook</a>
-                            <a style="text-decoration: none" href="#" class="px-2 py-2 ml-md-1 rounded"><span
-                                    class="ion-logo-twitter mr-2"></span>
-                                Twitter</a>
+                            <a style="text-decoration: none" href="{{ route('auth.login.provider', 'google') }}"
+                                class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span>
+                                {{ __('Google') }}</a>
                         </div>
                     </div>
                 </div>

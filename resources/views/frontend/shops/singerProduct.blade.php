@@ -1,21 +1,22 @@
 @extends('frontend.layouts.master')
 @section('title')
-    Singer Product
+    Detail Product
 @endsection
 
 @section('main')
     <section class="module">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 mb-sm-40"><a class="gallery" href="assets/images/shop/product-7.jpg"><img
-                            src="assets/images/shop/product-7.jpg" alt="Single Product Image" /></a>
+                <div class="col-sm-6 mb-sm-40"><a class="gallery"
+                        href="/frontend/assets/images/shop/product-7.jpg"><img
+                            src="/frontend/assets/images/shop/product-7.jpg" alt="Single Product Image" /></a>
                     <ul class="product-gallery">
-                        <li><a class="gallery" href="assets/images/shop/product-8.jpg"></a><img
-                                src="assets/images/shop/product-8.jpg" alt="Single Product" /></li>
-                        <li><a class="gallery" href="assets/images/shop/product-9.jpg"></a><img
-                                src="assets/images/shop/product-9.jpg" alt="Single Product" /></li>
-                        <li><a class="gallery" href="assets/images/shop/product-10.jpg"></a><img
-                                src="assets/images/shop/product-10.jpg" alt="Single Product" /></li>
+                        <li><a class="gallery" href="/frontend/assets/images/shop/product-8.jpg"></a><img
+                                src="/frontend/assets/images/shop/product-8.jpg" alt="Single Product" /></li>
+                        <li><a class="gallery" href="/frontend/assets/images/shop/product-9.jpg"></a><img
+                                src="/frontend/assets/images/shop/product-9.jpg" alt="Single Product" /></li>
+                        <li><a class="gallery" href="/frontend/assets/images/shop/product-10.jpg"></a><img
+                                src="/frontend/assets/images/shop/product-10.jpg" alt="Single Product" /></li>
                     </ul>
                 </div>
                 <div class="col-sm-6">
@@ -204,7 +205,8 @@
             <div class="row multi-columns-row">
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="shop-item">
-                        <div class="shop-item-image"><img src="assets/images/shop/product-11.jpg" alt="Accessories Pack" />
+                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-11.jpg"
+                                alt="Accessories Pack" />
                             <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add
                                         To Cart</span></a></div>
                         </div>
@@ -213,7 +215,7 @@
                 </div>
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="shop-item">
-                        <div class="shop-item-image"><img src="assets/images/shop/product-12.jpg"
+                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-12.jpg"
                                 alt="Men’s Casual Pack" />
                             <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add
                                         To Cart</span></a></div>
@@ -223,7 +225,8 @@
                 </div>
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="shop-item">
-                        <div class="shop-item-image"><img src="assets/images/shop/product-13.jpg" alt="Men’s Garb" />
+                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-13.jpg"
+                                alt="Men’s Garb" />
                             <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add
                                         To Cart</span></a></div>
                         </div>
@@ -232,7 +235,8 @@
                 </div>
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="shop-item">
-                        <div class="shop-item-image"><img src="assets/images/shop/product-14.jpg" alt="Cold Garb" />
+                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-14.jpg"
+                                alt="Cold Garb" />
                             <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add
                                         To Cart</span></a></div>
                         </div>
@@ -256,7 +260,7 @@
                 <div class="owl-carousel text-center" data-items="5" data-pagination="false" data-navigation="false">
                     <div class="owl-item">
                         <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="assets/images/shop/product-1.jpg"
+                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-1.jpg"
                                         alt="Leather belt" /></a>
                                 <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£12.00
                             </div>
@@ -264,7 +268,7 @@
                     </div>
                     <div class="owl-item">
                         <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="assets/images/shop/product-3.jpg"
+                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-3.jpg"
                                         alt="Derby shoes" /></a>
                                 <h4 class="shop-item-title font-alt"><a href="#">Derby shoes</a></h4>£54.00
                             </div>
@@ -272,7 +276,7 @@
                     </div>
                     <div class="owl-item">
                         <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="assets/images/shop/product-2.jpg"
+                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-2.jpg"
                                         alt="Leather belt" /></a>
                                 <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£19.00
                             </div>
@@ -280,7 +284,7 @@
                     </div>
                     <div class="owl-item">
                         <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="assets/images/shop/product-4.jpg"
+                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-4.jpg"
                                         alt="Leather belt" /></a>
                                 <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£14.00
                             </div>
@@ -288,7 +292,7 @@
                     </div>
                     <div class="owl-item">
                         <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="assets/images/shop/product-5.jpg"
+                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-5.jpg"
                                         alt="Chelsea boots" /></a>
                                 <h4 class="shop-item-title font-alt"><a href="#">Chelsea boots</a></h4>£44.00
                             </div>
@@ -296,7 +300,7 @@
                     </div>
                     <div class="owl-item">
                         <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="assets/images/shop/product-6.jpg"
+                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-6.jpg"
                                         alt="Leather belt" /></a>
                                 <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£19.00
                             </div>

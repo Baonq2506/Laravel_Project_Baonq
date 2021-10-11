@@ -18,10 +18,12 @@ Route::get('/', function () {
 })->name('home');
 
 
+
 route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
     Route::get('login','LoginController@create')->name('login');
-
     Route::get('register','RegisterController@create')->name('register');
+    Route::get('{provider}', 'SocialAuthController@redirectToProvider')->name('login.provider');
+    Route::get('{provide}/callback', 'SocialAuthController@handleProviderCallback');
 });
 route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
 
@@ -43,6 +45,7 @@ route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware(
 
     route::prefix('shop')->name('shop.')->group(function () {
         Route::get('index','ShopController@index')->name('index');
-
+        Route::get('detail','ShopController@detailProduct')->name('detail');
+        Route::get('checkout','ShopController@checkoutCart')->name('checkout');
     });
 });

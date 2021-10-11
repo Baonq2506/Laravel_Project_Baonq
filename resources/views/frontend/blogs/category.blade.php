@@ -1,17 +1,32 @@
 @extends('frontend.layouts.master')
 @section('title')
-    Blogs
+    Blog
+@endsection
+
+@section('header')
+    <section class="module bg-dark-60 blog-page-header" data-background="/images/LOL/Header/shadow-isles-crator.jpg"
+        style="background-image: url(&quot;/images/a10.jpg&quot;);">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h2 class="module-title font-alt">Blog</h2>
+                    <div class="module-subtitle font-serif">One ought, every day at least, to hear a little song, read a good
+                        poem, see a fine picture, and, if it were possible, to speak a few reasonable words.</div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
 
 @section('main')
-    <section class="module-small">
+    <section class="module">
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 col-md-3 sidebar">
                     <div class="widget">
                         <form role="form">
                             <div class="search-box">
-                                <input class="form-control" type="text" placeholder="Search..." />
+                                <input class="form-control" type="text" placeholder="Search...">
                                 <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
                             </div>
                         </form>
@@ -31,7 +46,7 @@
                         <ul class="widget-posts">
                             <li class="clearfix">
                                 <div class="widget-posts-image"><a href="#"><img src="/frontend/assets/images/rp-1.jpg"
-                                            alt="Post Thumbnail" /></a></div>
+                                            alt="Post Thumbnail"></a></div>
                                 <div class="widget-posts-body">
                                     <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
                                     <div class="widget-posts-meta">23 january</div>
@@ -39,7 +54,7 @@
                             </li>
                             <li class="clearfix">
                                 <div class="widget-posts-image"><a href="#"><img src="/frontend/assets/images/rp-2.jpg"
-                                            alt="Post Thumbnail" /></a></div>
+                                            alt="Post Thumbnail"></a></div>
                                 <div class="widget-posts-body">
                                     <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
                                     <div class="widget-posts-meta">15 February</div>
@@ -47,7 +62,7 @@
                             </li>
                             <li class="clearfix">
                                 <div class="widget-posts-image"><a href="#"><img src="/frontend/assets/images/rp-3.jpg"
-                                            alt="Post Thumbnail" /></a></div>
+                                            alt="Post Thumbnail"></a></div>
                                 <div class="widget-posts-body">
                                     <div class="widget-posts-title"><a href="#">Eco bag Mockup</a></div>
                                     <div class="widget-posts-meta">21 February</div>
@@ -55,7 +70,7 @@
                             </li>
                             <li class="clearfix">
                                 <div class="widget-posts-image"><a href="#"><img src="/frontend/assets/images/rp-4.jpg"
-                                            alt="Post Thumbnail" /></a></div>
+                                            alt="Post Thumbnail"></a></div>
                                 <div class="widget-posts-body">
                                     <div class="widget-posts-title"><a href="#">Bottle Mockup</a></div>
                                     <div class="widget-posts-meta">2 March</div>
@@ -90,58 +105,54 @@
                 </div>
                 <div class="col-sm-8 col-sm-offset-1">
                     <div class="post">
-                        <div class="post-thumbnail"><img src="/frontend/assets/images/post-4.jpg"
-                                alt="Blog Featured Image" /></div>
+                        <div class="post-thumbnail"><a href="#"><img src="/frontend/assets/images/post-1.jpg"
+                                    alt="Blog-post Thumbnail"></a></div>
                         <div class="post-header font-alt">
-                            <h1 class="post-title">Our trip to the Alps</h1>
+                            <h2 class="post-title"><a href="#">Our trip to the Alps</a></h2>
                             <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>| 23 November | 3 Comments | <a
                                     href="#">Photography, </a><a href="#">Web Design</a>
                             </div>
                         </div>
                         <div class="post-entry">
-                            <p>The European languages are members of the same family. Their separate existence is a myth.
-                                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                                in their grammar, their pronunciation and their most common words.</p>
-                            <p>Everyone realizes why a new common language would be desirable: one could refuse to pay
-                                expensive translators. To achieve this, it would be necessary to have uniform grammar,
-                                pronunciation and more common words.</p>
-                            <blockquote>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
+                                spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in
+                                this spot, which was created for the bliss of souls like mine.</p>
+                        </div>
+                        <div class="post-more"><a class="more-link"
+                                href="{{ route('frontend.blog.singerBlog') }}">Read more</a></div>
+                    </div>
+                    <div class="post">
+                        <div class="post-quote">
+                            <blockquote class="font-serif">
+                                <p>" The languages only differ in their grammar, their pronunciation and their most common
+                                    words. Everyone realizes why a new common language would be desirable: one could refuse
+                                    to pay expensive translators. "</p>
+                                <p class="font-inc font-uppercase">- Thomas Anderson</p>
                             </blockquote>
-                            <p>If several languages coalesce, the grammar of the resulting language is more simple and
-                                regular than that of the individual languages. The new common language will be more simple
-                                and regular than the existing European languages. It will be as simple as Occidental; in
-                                fact, it will be Occidental.</p>
-                            <ul>
-                                <li>The European languages are members of the same family.</li>
-                                <li>Their separate existence is a myth.</li>
-                                <li>For science, music, sport, etc, Europe uses the same vocabulary.</li>
-                            </ul>
-                            <p>The European languages are members of the same family. Their separate existence is a myth.
-                                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                                in their grammar, their pronunciation and their most common words.</p>
                         </div>
                     </div>
-
-                    {{-- <div class="comment-form">
-                        <h4 class="comment-form-title font-alt">Add your comment</h4>
-                        <form method="post">
-                            <div class="form-group">
-                                <label class="sr-only" for="name">Name</label>
-                                <input class="form-control" id="name" type="text" name="name" placeholder="Name" />
+                    <div class="post">
+                        <div class="post-video embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="//www.youtube.com/embed/Jkk0VHiCnKY" frameborder="0"
+                                allowfullscreen="allowfullscreen"></iframe>
+                        </div>
+                        <div class="post-header font-alt">
+                            <h2 class="post-title"><a href="#">Post with video</a></h2>
+                            <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>| 23 November | 3 Comments | <a
+                                    href="#">Marketing, </a><a href="#">Web Design</a>
                             </div>
-                            <div class="form-group">
-                                <label class="sr-only" for="email">Name</label>
-                                <input class="form-control" id="email" type="text" name="email" placeholder="E-mail" />
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" id="comment" name="comment" rows="4"
-                                    placeholder="Comment"></textarea>
-                            </div>
-                            <button class="btn btn-round btn-d" type="submit">Post comment</button>
-                        </form>
-                    </div> --}}
+                        </div>
+                        <div class="post-entry">
+                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
+                                spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in
+                                this spot, which was created for the bliss of souls like mine.</p>
+                        </div>
+                        <div class="post-more"><a class="more-link"
+                                href="{{ route('frontend.blog.singerBlog') }}">Read more</a></div>
+                    </div>
+                    <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a
+                            class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a
+                            href="#"><i class="fa fa-angle-right"></i></a></div>
                 </div>
             </div>
         </div>

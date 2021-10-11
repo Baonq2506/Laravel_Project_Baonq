@@ -1,0 +1,184 @@
+
+
+* {
+    font-family:  "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+.c {
+    color: red;
+}
+
+.product_content {
+    height: 130px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product_content_top {
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.price_box {
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.footer_widgets {
+    font-size: 1rem;
+    background-image: linear-gradient(to right bottom, #251b1b, #bb5454);
+}
+
+.single_shipping ion-icon {
+    font-size: 64px;
+}
+
+.welcome_text p {
+    white-space: nowrap;
+    width: 250px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.welcome_text p:hover {
+    overflow: visible;
+}
+
+.header_top {
+    margin-bottom: 5px;
+    border-bottom: 1px solid white;
+    background-image: linear-gradient(to right, black, purple);
+}
+
+header {
+    margin-bottom: 5px;
+}
+
+.services_content {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.blogdes {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.featured_banner_inner .col-lg-4 {
+    padding-left: 15px;
+    padding-right: 54px;
+}
+
+.featured_banner_thumb img {
+    max-width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.services_thumb img {
+    max-width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product_thumb img {
+    max-width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.team_thumb img {
+
+    height: 500px;
+    object-fit: cover;
+}
+
+.cart_img img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+}
+
+.button_cart span {
+    display: inline-block;
+}
+
+.services_section_inner .services_content:hover {
+    overflow: visible;
+    text-overflow: none;
+}
+
+/* <![CDATA[ */
+.buttons_added {
+    opacity: 1;
+    display: inline-block;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.is-form {
+    overflow: hidden;
+    position: relative;
+    background-color: #f9f9f9;
+    height: 2.2rem;
+    width: 1.9rem;
+    padding: 0;
+    text-shadow: 1px 1px 1px #fff;
+    border: 1px solid #ddd;
+}
+
+.is-form:focus,
+.input-text:focus {
+    outline: none;
+}
+
+.is-form.minus {
+    border-radius: 4px 0 0 4px;
+}
+
+.is-form.plus {
+    border-radius: 0 4px 4px 0;
+}
+
+.input-qty {
+    background-color: #fff;
+    height: 2.2rem;
+    text-align: center;
+    font-size: 1rem;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+    padding: 0;
+}
+
+.input-qty::-webkit-outer-spin-button,
+.input-qty::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
