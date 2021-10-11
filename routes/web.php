@@ -27,8 +27,8 @@ route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(f
     Route::get('register','RegisterController@create')->name('register');
     Route::get('{provider}', 'SocialAuthController@redirectToProvider')->name('login.GG');
     Route::get('home/{provide}','SocialAuthController@handleProviderCallback');
-    Route::get('{provider}', 'SocialAuthController@redirect')->name('login.FB');
-    Route::get('home/{provider}', 'SocialAuthController@callback');
+    Route::get('{providers}', 'SocialAuthController@redirect')->name('login.FB');
+    Route::get('home/{providers}', 'SocialAuthController@callback');
 });
 route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
 
