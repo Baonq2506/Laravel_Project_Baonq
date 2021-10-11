@@ -14,4 +14,36 @@ class loginController extends Controller
     public function create(){
         return view('auth.login');
     }
+
+    public function authentication(Request $request)
+    {
+        $auth = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        if($request->get('remember')){
+            $remember=true;
+        }else{
+            $remember=false;
+        }
+        if (Auth::attempt($auth,$remember)) {
+            $request->session()->regenerate();
+            return redirect()->intended('home');
+        }
+        return back()->withErrors(
+            [
+                'email' => "EMail or Password Failed",
+            ]);
+    }
+    public function logout(Request $request)
+    {
+
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('auth.login');
+    }
 }

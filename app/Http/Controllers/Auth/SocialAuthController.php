@@ -3,23 +3,26 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-use App\Models\User;
+use Illuminate\Support\Facades\URL;
+use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
     public function redirectToProvider($provider)
     {
-        if(!Session::has('pre_url')){
+        if (!Session::has('pre_url')) {
             Session::put('pre_url', URL::previous());
-        }else{
-            if(URL::previous() != URL::to('login')) Session::put('pre_url', URL::previous());
+        } else {
+            if (URL::previous() != URL::to('auth/login')) {
+                Session::put('pre_url', URL::previous());
+            }
+
         }
+
         return Socialite::driver($provider)->redirect();
     }
 
@@ -29,10 +32,9 @@ class SocialAuthController extends Controller
 
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
-        return Redirect::to(Session::get('pre_url'));
+        // dd($authUser);
+        return Redirect()->route('home');
     }
-
-
     public function findOrCreateUser($user, $provider)
     {
         $authUser = User::where('provider_id', $user->id)->first();
@@ -40,10 +42,10 @@ class SocialAuthController extends Controller
             return $authUser;
         }
         return User::create([
-            'name'     => $user->name,
-            'email'    => $user->email,
+            'name' => $user->name,
+            'email' => $user->email,
             'provider_name' => $provider,
-            'provider_id' => $user->id
+            'provider_id' => $user->id,
         ]);
     }
 }

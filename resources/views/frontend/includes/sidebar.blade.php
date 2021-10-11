@@ -24,10 +24,21 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav">
-                <li class="dropdown"><a href="{{ route('auth.register') }}">Register </a>
-                </li>
-                <li><a> | </a></li>
-                <li class="dropdown"><a href="{{ route('auth.login') }}">Login</a>
+                @if (Illuminate\Support\Facades\Auth::check())
+                    <li class="dropdown">
+                        <a href="#" class="signname">
+                            {{ Illuminate\Support\Facades\Auth::user()->name }}
+                        </a>
+                    </li>
+                    <li><a> | </a></li>
+                    <li class="dropdown"><a href="{{ route('auth.logout') }}">Logout</a>
+                    @else
+                    <li class="dropdown"><a href="{{ route('auth.register') }}">Register </a>
+                    </li>
+                    <li><a> | </a></li>
+                    <li class="dropdown"><a href="{{ route('auth.login') }}">Login</a>
+                @endif
+
             </ul>
         </div>
 

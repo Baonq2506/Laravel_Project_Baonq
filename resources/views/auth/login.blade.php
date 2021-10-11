@@ -59,12 +59,14 @@
                         </form>
                         <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
                         <div class="social d-flex text-center">
-                            <a style="text-decoration: none" href="#" class="px-2 py-2 mr-md-1 rounded"><span
-                                    class="ion-logo-facebook mr-2"></span>
+                            <a style="text-decoration: none" href="{{ route('auth.login.FB', 'facebook') }}"
+                                class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span>
                                 Facebook</a>
-                            <a style="text-decoration: none" href="{{ route('auth.login.provider', 'google') }}"
-                                class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span>
-                                {{ __('Google') }}</a>
+
+                            <a style="text-decoration: none" href="{{ route('auth.login.GG', 'google') }}"
+                                class="px-2 py-2 ml-md-1 rounded">
+                                <span class="ion-logo-twitter mr-2"></span>
+                                Google</a>
                         </div>
                     </div>
                 </div>

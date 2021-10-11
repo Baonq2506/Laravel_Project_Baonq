@@ -17,13 +17,17 @@ Route::get('/', function () {
     return view('frontend.home');
 })->name('home');
 
+    Route::get('/auth/{provider}', 'Auth/SocialFBController@redirect')->name('auth.login.FB');
+    Route::get('/auth/home/{provider}', 'Auth/SocialFBController@callback');
+
 
 
 route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
     Route::get('login','LoginController@create')->name('login');
+    Route::get('logout','LoginController@logout')->name('logout');
     Route::get('register','RegisterController@create')->name('register');
-    Route::get('{provider}', 'SocialAuthController@redirectToProvider')->name('login.provider');
-    Route::get('{provide}/callback', 'SocialAuthController@handleProviderCallback');
+    Route::get('{provider}', 'SocialAuthController@redirectToProvider')->name('login.GG');
+    Route::get('home/{provide}','SocialAuthController@handleProviderCallback');
 });
 route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
 
