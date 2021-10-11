@@ -13,8 +13,8 @@
     <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
     <!-- /fonts -->
     <!-- css -->
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
-    <link href="{{ asset('css/register.css') }}" rel='stylesheet' type='text/css' media="all" />
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/register.css" rel='stylesheet' />
     <LINK REL="SHORTCUT ICON" HREF="/images/rex.ico">
     <!-- /css -->
 </head>
