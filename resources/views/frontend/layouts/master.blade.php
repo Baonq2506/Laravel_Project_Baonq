@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dracula @yield('title')</title>
-    <LINK REL="SHORTCUT ICON" HREF="/images/rex.ico>
+    <LINK REL="SHORTCUT ICON" HREF="/images/rex.ico">
     @include('frontend.includes.style_base')
     @stack('stack_css')
     @yield('css')
@@ -41,9 +41,9 @@
         @include('frontend.includes.commentFb')
     </main>
 
-    </body>
-    @include('frontend.includes.script_base')
-    @yield('scripts')
-    @stack('stack_js')
+</body>
+@include('frontend.includes.script_base')
+@yield('scripts')
+@stack('stack_js')
 
 </html>
