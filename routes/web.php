@@ -17,8 +17,7 @@ Route::get('/', function () {
     return view('frontend.home');
 })->name('home');
 
-    Route::get('/auth/{provider}', 'Auth/SocialFBController@redirect')->name('auth.login.FB');
-    Route::get('/auth/home/{provider}', 'Auth/SocialFBController@callback');
+
 
 
 
@@ -28,6 +27,8 @@ route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(f
     Route::get('register','RegisterController@create')->name('register');
     Route::get('{provider}', 'SocialAuthController@redirectToProvider')->name('login.GG');
     Route::get('home/{provide}','SocialAuthController@handleProviderCallback');
+    Route::get('{fb}', 'SocialAuthController@redirect')->name('login.FB');
+    Route::get('home/{fb}', 'SocialAuthController@callback');
 });
 route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
 
