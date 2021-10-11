@@ -31,15 +31,23 @@ return [
     ],
 
     'google' => [
-        'client_id'     => env('GOOGLE_CLIENT_ID'),
-        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect'      => env('GOOGLE_REDIRECT'),
+        'client_id'     => '823171311445-h2eqi9giv708iqn5s6lbflnbpprakf4b.apps.googleusercontent.com',
+        'client_secret' =>'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',
+        'redirect'      => 'https://project-baonq.herokuapp.com/auth/home/google',
     ],
 
     'facebook' => [
-        'client_id' => env('FACEBOOK_APP_ID'),
-        'client_secret' => env('FACEBOOK_APP_SECRET'),
-        'redirect' => env('FACEBOOK_APP_CALLBACK_URL'),
+        'client_id' => '562504408369572',
+        'client_secret' =>'a19d3fb1e72889580ee0e2cd8f976c33',
+        'redirect' => 'https://project-baonq.herokuapp.com/auth/home/facebook',
     ],
+    //     GOOGLE_CLIENT_ID=823171311445-h2eqi9giv708iqn5s6lbflnbpprakf4b.apps.googleusercontent.com
+    // GOOGLE_CLIENT_SECRET=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
+    // GOOGLE_REDIRECT=https://project-baonq.herokuapp.com/auth/home/google
+
+// FACEBOOK_APP_ID =562504408369572
+// FACEBOOK_APP_SECRET =a19d3fb1e72889580ee0e2cd8f976c33
+// FACEBOOK_APP_CALLBACK_URL = https://project-baonq.herokuapp.com/auth/home/facebook
+
 
 ];
