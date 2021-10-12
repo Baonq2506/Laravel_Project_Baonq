@@ -22,7 +22,11 @@ class SocialAuthController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse($e->getMessage());
+        }
 
+        try {
             $finduser = User::where('google_id', $user->id)->first();
             dd($finduser);
             if($finduser){
