@@ -24,7 +24,7 @@ class SocialAuthController extends Controller
 
             $user = Socialite::driver('google')->user();
 
-            $finduser = User::where('social_id', $user->id)->first();
+            $finduser = User::where('google', $user->id)->first();
 
             if($finduser){
 
