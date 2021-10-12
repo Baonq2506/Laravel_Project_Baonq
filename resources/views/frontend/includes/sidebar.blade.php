@@ -27,6 +27,7 @@
                 @if (Illuminate\Support\Facades\Auth::check())
                     <li class="dropdown">
                         <a href="#" class="signname">
+                            {{ auth::user()->name }}
                             {{ Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                     </li>
