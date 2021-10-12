@@ -31,8 +31,10 @@ class AddColumnUserTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('provider_name');
-            $table->dropColumn('facebook_id');
-            $table->dropColumn('google_id');
+            if (Schema::hasColumn('users', ['facebook_id', 'google_id'])) {
+                $table->dropColumn('facebook_id');
+                $table->dropColumn('google_id');
+            }
             $table->dropColumn('avatar');
             $table->dropSoftDeletes();
         });

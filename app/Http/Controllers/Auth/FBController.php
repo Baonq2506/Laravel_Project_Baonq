@@ -32,7 +32,8 @@ class FBController extends Controller
                 $createUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'provider_id' => $user->id,
+                    'provider_name'=>'facebook',
+                    'facebook_id' => $user->id,
                 ]);
 
                 Auth::login($createUser);
