@@ -42,10 +42,11 @@
             </p>
         </div>
         <div class="content-agile2">
-            <form action="#" method="post">
+            <form action="{{ route('auth.register') }}" method="post">
+                @csrf
                 <div class="form-control w3layouts">
-                    <input type="text" id="firstname" name="firstname" placeholder="First Name"
-                        title="Please enter your First Name" required="">
+                    <input type="text" id="firstname" name="name" placeholder=" Name" title="Please enter your  Name"
+                        required="">
                 </div>
 
                 <div class="form-control w3layouts">
@@ -59,8 +60,8 @@
                 </div>
 
                 <div class="form-control agileinfo">
-                    <input type="password" class="lock" name="confirm-password" placeholder="Confirm Password"
-                        id="password2" required="">
+                    <input type="password" class="lock" name="password_confirmation"
+                        placeholder="Confirm Password" id="password2" required="">
                 </div>
                 <input type="submit" class="register" value="Register">
             </form>

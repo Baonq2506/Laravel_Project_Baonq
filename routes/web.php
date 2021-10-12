@@ -24,10 +24,13 @@ route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(f
 
 
 
-route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
-    Route::get('login','LoginController@create')->name('login');
+route::prefix('auth')->name('auth.')->namespace('Auth')->middleware(['guest'])->group(function () {
+    Route::get('/login','LoginController@create')->name('login');
+    Route::post('/login','LoginController@authentication')->name('login');
     Route::get('logout','LoginController@logout')->name('logout');
+
     Route::get('register','RegisterController@create')->name('register');
+    Route::post('register','RegisterController@store')->name('register');
 
     Route::get('google', 'SocialAuthController@redirectToGoogle')->name('login.GG');
     Route::get('google/callback','SocialAuthController@handleCallback');

@@ -29,14 +29,14 @@
                         <h3 class="mb-4 text-center">Have an account?<span><a style="color:white;text-decoration: none"
                                     href="{{ route('auth.register') }}"> Sign
                                     up</a></span></h3>
-                        <form action="#">
+                        <form action="{{ route('auth.login') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username" required>
+                                <input type="text" class="form-control" placeholder="Useremail" name='email' required>
                             </div>
                             <div class="form-group">
                                 <input id="password-field" type="password" class="form-control" placeholder="Password"
-                                    required>
+                                    required name='password'>
                                 <span toggle="#password-field"
                                     class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
@@ -47,7 +47,7 @@
                             <div class="form-group d-md-flex">
                                 <div class="w-50">
                                     <label class="checkbox-wrap checkbox-primary" style="color:white;">Remember Me
-                                        <input type="checkbox" checked name="rememberMe">
+                                        <input type="checkbox" checked name="remember">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>

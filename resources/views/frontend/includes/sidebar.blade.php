@@ -24,11 +24,10 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav">
-                @if (Illuminate\Support\Facades\Auth::check())
+                @if (Auth::check())
                     <li class="dropdown">
                         <a href="#" class="signname">
-
-                            {{ Illuminate\Support\Facades\Auth::user()->name }}
+                            {{ auth()->user()->name }}
                         </a>
                     </li>
                     <li><a> | </a></li>
@@ -39,7 +38,6 @@
                     <li><a> | </a></li>
                     <li class="dropdown"><a href="{{ route('auth.login') }}">Login</a>
                 @endif
-
             </ul>
         </div>
 

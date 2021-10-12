@@ -26,9 +26,10 @@ class loginController extends Controller
         }else{
             $remember=false;
         }
+
         if (Auth::attempt($auth,$remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('home');
+            return redirect()->intended('frontend/home');
         }
         return back()->withErrors(
             [
