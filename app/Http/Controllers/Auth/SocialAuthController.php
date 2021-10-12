@@ -34,7 +34,7 @@ class SocialAuthController extends Controller
                     'provider_name' => 'google',
                 ]
             );
-            dd($user);
+
             Auth::login($user);
             return redirect()->route('frontend.home');
         }
