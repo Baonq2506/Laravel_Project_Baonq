@@ -23,7 +23,7 @@ class SocialAuthController extends Controller
         $googleUser = Socialite::driver('google')->user();
 
         $user = User::where('google_id', $googleUser->id)->first();
-        if (!empty($user)) {
+        if ($user) {
             Auth::login($user);
             return redirect()->route('home');
         } else {
@@ -36,6 +36,7 @@ class SocialAuthController extends Controller
                 ]
             );
             Auth::login($user);
+            dd($user);
         return redirect()->route('home');
         }
 
