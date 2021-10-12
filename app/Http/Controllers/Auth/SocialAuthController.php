@@ -38,11 +38,10 @@ class SocialAuthController extends Controller
                     'email' => $user->email,
                     'google_id'=> $user->id,
                     'provider_name'=> 'google',
-                    'password' => encrypt('my-google')
+                    'password' => bcrypt('my-google')
                 ]);
 
                 Auth::login($newUser);
-
                 return redirect('/');
             }
 
