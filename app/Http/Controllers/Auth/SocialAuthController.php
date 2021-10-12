@@ -20,13 +20,11 @@ class SocialAuthController extends Controller
 
     public function handleCallback()
     {
-
         try {
-
             $user = Socialite::driver('google')->user();
 
             $finduser = User::where('google_id', $user->id)->first();
-
+            dd($finduser);
             if($finduser){
 
                 Auth::login($finduser);
