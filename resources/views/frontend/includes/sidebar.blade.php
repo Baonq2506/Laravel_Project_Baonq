@@ -31,14 +31,7 @@
                         </a>
                     </li>
                     <li><a> | </a></li>
-                    <li class="dropdown">
-                        <form method="post" action="{{ route('auth.logout') }}">
-                            @csrf
-                            <a href="#" class="nav-link" onclick="this.closest('form').submit();return false;">
-                                Logout
-                            </a>
-                        </form>
-                    </li>
+                    <li class="dropdown"><a href="{{ route('auth.logout.store') }}">Logout</a></li>
                 @else
                     <li class="dropdown"><a href="{{ route('auth.register') }}">Register </a>
                     </li>

@@ -24,10 +24,10 @@ route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(f
 
 
 
-route::prefix('auth')->name('auth.')->namespace('Auth')->middleware(['guest'])->group(function () {
+route::prefix('auth')->name('auth.')->namespace('Auth')->group(function () {
     Route::get('/login','LoginController@create')->name('login');
     Route::post('/login','LoginController@authentication')->name('login');
-    Route::post('logout','LoginController@logout')->name('logout');
+    Route::get('logout','LoginController@logout')->name('logout.store');
 
     Route::get('register','RegisterController@create')->name('register');
     Route::post('register','RegisterController@store')->name('register');

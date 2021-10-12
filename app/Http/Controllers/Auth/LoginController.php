@@ -36,6 +36,7 @@ class loginController extends Controller
                 'email' => "EMail or Password Failed",
             ]);
     }
+
     public function logout(Request $request)
     {
 
