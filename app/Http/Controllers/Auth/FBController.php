@@ -17,11 +17,11 @@ class FBController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function facebookSignin($provider)
+    public function facebookSignin()
     {
         try {
 
-            $user = Socialite::driver($provider)->user();
+            $user = Socialite::driver('facebook')->user();
             $facebookId = User::where('provider_id', $user->id)->first();
 
             if($facebookId){

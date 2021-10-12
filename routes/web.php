@@ -19,8 +19,8 @@ Route::get('/', function () {
 
 route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
 
-    Route::get('{provider}', 'FBController@redirectToFacebook')->name('login.fb');
-    Route::get('{provider}/callback', 'FBController@facebookSignin');
+    Route::get('facebook', 'FBController@redirectToFacebook')->name('login.fb');
+    Route::get('facebook/callback', 'FBController@facebookSignin');
 
 });
 
