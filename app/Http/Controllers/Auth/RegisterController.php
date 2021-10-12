@@ -28,6 +28,6 @@ class RegisterController extends Controller
 
         ]);
 
-        return redirect('auth.login');
+        return redirect('auth/login');
     }
 }
