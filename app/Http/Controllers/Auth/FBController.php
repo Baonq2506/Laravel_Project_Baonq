@@ -20,7 +20,6 @@ class FBController extends Controller
 
     public function facebookSignin()
     {
-        try {
 
             $user = Socialite::driver('facebook')->user();
             $facebookId = User::where('provider_id', $user->id)->first();
@@ -35,17 +34,8 @@ class FBController extends Controller
                     'provider_name'=>'facebook',
                     'facebook_id' => $user->id,
                 ]);
-
-                Auth::login($createUser);
-                return redirect()->route('home');
             }
-
-        } catch (\Exception $exception) {
-            return response()->json([
-                'status' => __('Facebook sign in failed'),
-                'error' => $exception,
-                'message' => $exception->getMessage()
-            ]);
-        }
+            Auth::login($createUser);
+            return redirect()->route('home');
     }
 }
