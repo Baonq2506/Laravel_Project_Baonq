@@ -9,43 +9,53 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Laravel\Socialite\Facades\Socialite;
-
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Request;
 class SocialAuthController extends Controller
 {
-    public function redirectToProvider($provider)
+    public function getGoogleSignInUrl()
     {
-        if (!Session::has('pre_url')) {
-            Session::put('pre_url', URL::previous());
-        } else {
-            if (URL::previous() != URL::to('auth/login')) {
-                Session::put('pre_url', URL::previous());
+        try {
+            $url = Socialite::driver('google')->redirect()->getTargetUrl();
+            return response()->json([
+                'url' => $url,
+            ]);
+        } catch (\Exception $exception) {
+            return $exception;
+        }
+    }
+
+    public function loginCallback(Request $request)
+    {
+        try {
+            $state = $request->input('state');
+
+            parse_str($state, $result);
+            $googleUser = Socialite::driver('google')->user();
+
+            $user = User::where('email', $googleUser->email)->first();
+            if ($user) {
+                throw new \Exception(__('google sign in email existed'));
             }
+            $user = User::create(
+                [
+                    'email' => $googleUser->email,
+                    'name' => $googleUser->name,
+                    'google_id'=> $googleUser->id,
+                    'provider_name'=>'google',
+                ]
+            );
+            return response()->json([
+                'status' => __('google sign in successful'),
+                'data' => $user,
+            ]);
 
+        } catch (\Exception $exception) {
+            return response()->json([
+                'status' => __('google sign in failed'),
+                'error' => $exception,
+                'message' => $exception->getMessage()
+            ]);
         }
-
-        return Socialite::driver($provider)->redirect();
-    }
-
-    public function handleProviderCallback($provider)
-    {
-        $user = Socialite::driver($provider)->user();
-
-        $authUser = $this->findOrCreateUser($user, $provider);
-        Auth::login($authUser, true);
-        // dd($authUser);
-        return Redirect()->route('home');
-    }
-    public function findOrCreateUser($user, $provider)
-    {
-        $authUser = User::where('provider_id', $user->id)->first();
-        if ($authUser) {
-            return $authUser;
-        }
-        return User::create([
-            'name' => $user->name,
-            'email' => $user->email,
-            'provider_name' => $provider,
-            'provider_id' => $user->id,
-        ]);
     }
 }

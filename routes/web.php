@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
 
-    Route::get('facebook', 'FBController@redirectToFacebook')->name('login.fb');
+    Route::post('facebook', 'FBController@redirectToFacebook')->name('login.fb');
     Route::get('facebook/callback', 'FBController@facebookSignin');
 
 });
@@ -31,8 +31,8 @@ route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(f
     Route::get('logout','LoginController@logout')->name('logout');
     Route::get('register','RegisterController@create')->name('register');
 
-    Route::get('{provider}', 'SocialAuthController@redirectToProvider')->name('login.GG');
-    Route::get('{provider}/callback','SocialAuthController@handleProviderCallback');
+    Route::post('google', 'SocialAuthController@getGoogleSignInUrl')->name('login.GG');
+    Route::get('google/callback','SocialAuthController@loginCallback');
 
 
 });

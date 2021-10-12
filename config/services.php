@@ -31,9 +31,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),
-        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_REDIRECT'),
+        'client_id' => '823171311445-0tdqlvfuv2kn2q7g18tj6a9s50qioggb.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'https://project-baonq.herokuapp.com/auth/google/callback',
     ],
 
     'facebook' => [
