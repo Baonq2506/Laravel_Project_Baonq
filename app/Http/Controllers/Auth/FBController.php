@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log;
+
 
 
 class FBController extends Controller
@@ -22,7 +21,7 @@ class FBController extends Controller
     {
 
             $user = Socialite::driver('facebook')->user();
-            $facebookId = User::where('provider_id', $user->id)->first();
+            $facebookId = User::where('facebook_id', $user->id)->first();
 
             if($facebookId){
                 Auth::login($facebookId);
@@ -34,8 +33,9 @@ class FBController extends Controller
                     'provider_name'=>'facebook',
                     'facebook_id' => $user->id,
                 ]);
-            }
-            Auth::login($createUser);
+                Auth::login($createUser);
             return redirect()->route('home');
+            }
+
     }
 }
