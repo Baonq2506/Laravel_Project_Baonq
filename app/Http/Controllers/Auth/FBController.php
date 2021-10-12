@@ -14,7 +14,7 @@ class FBController extends Controller
 {
     public function redirectToFacebook()
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('facebook')->stateless()->redirect();
     }
 
     public function facebookSignin()
@@ -25,7 +25,7 @@ class FBController extends Controller
 
             if($facebookId){
                 Auth::login($facebookId);
-                return redirect()->route('home');
+                return redirect()->route('frontend.home');
             }else{
                 $createUser = User::create([
                     'name' => $user->name,
@@ -35,7 +35,7 @@ class FBController extends Controller
                 ]);
                 Auth::login($createUser);
                 dd($createUser);
-            return redirect()->route('home');
+                return redirect()->route('frontend.home');
             }
 
     }

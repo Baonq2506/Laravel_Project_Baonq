@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('frontend.home');
-})->name('home');
+})->name('frontend.home');
 
 route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
 

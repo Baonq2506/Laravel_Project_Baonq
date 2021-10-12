@@ -7,14 +7,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Response;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
     public function getGoogleSignInUrl()
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')->stateless()->redirect();
     }
 
     public function loginCallback(Request $request)
@@ -25,7 +24,7 @@ class SocialAuthController extends Controller
         $user = User::where('google_id', $googleUser->id)->first();
         if ($user) {
             Auth::login($user);
-            return redirect()->route('home');
+            return redirect()->route('frontend.home');
         } else {
             $user = User::create(
                 [
@@ -35,9 +34,9 @@ class SocialAuthController extends Controller
                     'provider_name' => 'google',
                 ]
             );
-            Auth::login($user);
             dd($user);
-        return redirect()->route('home');
+            Auth::login($user);
+            return redirect()->route('frontend.home');
         }
 
     }
