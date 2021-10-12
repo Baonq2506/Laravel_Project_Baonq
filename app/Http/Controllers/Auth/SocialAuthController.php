@@ -31,7 +31,7 @@ class SocialAuthController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect('/');
+                return redirect('/frontend/home');
 
             }else{
                 $newUser = User::create([
@@ -42,11 +42,11 @@ class SocialAuthController extends Controller
                     'password' => bcrypt('my-google')
                 ]);
                 Auth::login($newUser);
-                return redirect('/');
+                return redirect('/frontend/home');
             }
 
         } catch (\Exception $ex) {
-            Log::error('CategoryController@store Error: '. $ex -> getMessage());
+            Log::error('SociaController Error: '. $ex -> getMessage());
         }
 
     }
