@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Log;
 
 class SocialAuthController extends Controller
 {
@@ -40,13 +41,12 @@ class SocialAuthController extends Controller
                     'provider_name'=> 'google',
                     'password' => bcrypt('my-google')
                 ]);
-
                 Auth::login($newUser);
                 return redirect('/');
             }
 
-        } catch (\Exception $e) {
-            dd($e->getMessage());
+        } catch (\Exception $ex) {
+            Log::error('CategoryController@store Error: '. $ex -> getMessage());
         }
 
     }

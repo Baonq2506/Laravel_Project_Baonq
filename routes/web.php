@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.home');
-})->name('frontend.home');
+
 
 route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
 
@@ -37,6 +35,10 @@ route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(f
 
 });
 route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
+
+    Route::get('home', function () {
+        return view('frontend.home');
+    })->name('home');
 
     route::prefix('about')->name('about.')->group(function () {
         Route::get('index','AboutController@index')->name('index');
