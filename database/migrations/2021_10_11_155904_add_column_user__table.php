@@ -16,7 +16,8 @@ class AddColumnUserTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->softDeletes();
             $table->string('provider_name')->nullable()->after('id');
-            $table->string('provider_id')->nullable()->after('provider_name');
+            $table->string('facebook_id')->nullable()->after('provider_name');
+            $table->string('google_id')->nullable()->after('provider_name');
             $table->string('avatar')->nullable()->after('email');
         });
     }
@@ -30,7 +31,8 @@ class AddColumnUserTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('provider_name');
-            $table->dropColumn('provider_id');
+            $table->dropColumn('facebook_id');
+            $table->dropColumn('google_id');
             $table->dropColumn('avatar');
             $table->dropSoftDeletes();
         });

@@ -10,6 +10,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
+
 class FBController extends Controller
 {
     public function redirectToFacebook()
@@ -39,7 +40,11 @@ class FBController extends Controller
             }
 
         } catch (\Exception $exception) {
-            dd($exception->getMessage());
+            return response()->json([
+                'status' => __('Facebook sign in failed'),
+                'error' => $exception,
+                'message' => $exception->getMessage()
+            ]);
         }
     }
 }
