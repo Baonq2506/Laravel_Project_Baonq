@@ -34,6 +34,7 @@ class FBController extends Controller
                     'facebook_id' => $user->id,
                 ]);
                 Auth::login($createUser);
+                dd($createUser);
             return redirect()->route('home');
             }
 
