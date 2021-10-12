@@ -17,20 +17,24 @@ Route::get('/', function () {
     return view('frontend.home');
 })->name('home');
 
+route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
 
-// Route::get('auth/facebook', [FbController::class, 'redirectToFacebook']);
+    Route::get('{provider}', 'FBController@redirectToFacebook')->name('login.fb');
+    Route::get('{provider}/callback', 'FBController@facebookSignin');
 
-// Route::get('auth/facebook/callback', [FbController::class, 'facebookSignin']);
+});
+
 
 
 route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
     Route::get('login','LoginController@create')->name('login');
     Route::get('logout','LoginController@logout')->name('logout');
     Route::get('register','RegisterController@create')->name('register');
+
     Route::get('{provider}', 'SocialAuthController@redirectToProvider')->name('login.GG');
-    Route::get('home/{provider}','SocialAuthController@handleProviderCallback');
-    Route::get('{providers}', 'SocialAuthController@redirect')->name('login.FB');
-    Route::get('callback/{providers}', 'SocialAuthController@callback');
+    Route::get('{provider}/callback','SocialAuthController@handleProviderCallback');
+
+
 });
 route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
 

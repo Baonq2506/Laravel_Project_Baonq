@@ -39,7 +39,7 @@ return [
     'facebook' => [
         'client_id' => '554004305891991',
         'client_secret' => '8f0383d0c53883e64116569b44f21a70',
-        'redirect' => 'http://127.0.0.1:8000/auth/callback/facebook',
+        'redirect' => 'https://project-baonq.herokuapp.com/auth/facebook/callback',
     ],
 
 

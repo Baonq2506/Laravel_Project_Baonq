@@ -60,7 +60,7 @@
                         <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
                         <div class="social d-flex text-center">
                             <a style="text-decoration: none"
-                                href="{{ route('auth.login.FB', ['providers' => 'facebook']) }}"
+                                href="{{ route('auth.login.fb', ['provider' => 'facebook']) }}"
                                 class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span>
                                 Facebook</a>
 
@@ -77,10 +77,10 @@
 
     </section>
 
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/popper.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
 
 </body>
 

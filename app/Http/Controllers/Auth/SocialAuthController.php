@@ -48,48 +48,4 @@ class SocialAuthController extends Controller
             'provider_id' => $user->id,
         ]);
     }
-
-    public function redirect($providers)
-    {
-        return Socialite::driver($providers)->redirect();
-    }
-    public function callback($providers)
-    {
-        try {
-
-            $user = Socialite::driver('facebook')->user();
-            $facebookId = User::where('provider_id', $user->id)->first();
-
-            if($facebookId){
-                Auth::login($facebookId);
-                return redirect()->route('home');
-            }else{
-                $createUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'provider_id' => $user->id,
-                ]);
-
-                Auth::login($createUser);
-                return redirect()->route('home');
-            }
-
-        } catch (Exception $exception) {
-            dd($exception->getMessage());
-        }
-    }
-    }
-    // public function createUser($getInfo, $providers)
-    // {
-    //     $user = User::where('provider_id', $getInfo->id)->first();
-    //     if (!$user) {
-    //         $user = User::create([
-    //             'name' => $getInfo->name,
-    //             'email' => $getInfo->email,
-    //             'provider_name' => $providers,
-    //             'provider_id' => $getInfo->id,
-    //         ]);
-    //     }
-    //     return $user;
-    // }
 }
