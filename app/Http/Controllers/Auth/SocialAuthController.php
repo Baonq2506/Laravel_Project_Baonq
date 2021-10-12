@@ -28,7 +28,6 @@ class SocialAuthController extends Controller
 
         try {
             $finduser = User::where('google_id', $user->id)->first();
-            dd($finduser);
             if($finduser){
 
                 Auth::login($finduser);
@@ -43,9 +42,10 @@ class SocialAuthController extends Controller
                     'provider_name'=> 'google',
                     'password' => bcrypt('my-google')
                 ]);
-                Auth::login($newUser);
-                return redirect('/frontend/home');
+
             }
+            Auth::login($newUser);
+            return redirect('/frontend/home');
 
         } catch (\Exception $ex) {
             Log::error('SociaController Error: '. $ex -> getMessage());
