@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('frontend.home');
 })->name('frontend.home');
 
@@ -31,8 +31,8 @@ route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(f
     Route::get('logout','LoginController@logout')->name('logout');
     Route::get('register','RegisterController@create')->name('register');
 
-    Route::get('google', 'SocialAuthController@getGoogleSignInUrl')->name('login.GG');
-    Route::get('google/callback','SocialAuthController@loginCallback');
+    Route::get('google', 'SocialAuthController@redirectToGoogle')->name('login.GG');
+    Route::get('google/callback','SocialAuthController@handleCallback');
 
 
 });

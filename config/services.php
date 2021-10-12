@@ -31,8 +31,8 @@ return [
     ],
 
     'google' => [
-        'client_id' => '823171311445-0tdqlvfuv2kn2q7g18tj6a9s50qioggb.apps.googleusercontent.com',
-        'client_secret' => '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',
+        'client_id' => '1074488865876-shcuupl3v8mde6ugrkgfe2j1sgiu8qvs.apps.googleusercontent.com',
+        'client_secret' => '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',
         'redirect' => 'https://project-baonq.herokuapp.com/auth/google/callback',
     ],
 
