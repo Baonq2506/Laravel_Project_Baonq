@@ -45,7 +45,7 @@ class FBController extends Controller
                     'provider_name'=>'facebook',
                     'password' => bcrypt('my-facebook')
                 ]);
-                dd($finduser);
+                dd($newUser);
                 Auth::login($newUser);
                 return redirect('/frontend/home');
             }
