@@ -29,6 +29,7 @@ class FBController extends Controller
         }
 
         try {
+            dd(1);
             $finduser = User::where('facebook_id', $user->id)->first();
             dd($finduser);
             if($finduser){
