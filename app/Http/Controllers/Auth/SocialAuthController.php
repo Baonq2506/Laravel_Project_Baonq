@@ -49,7 +49,7 @@ class SocialAuthController extends Controller
             return redirect('/frontend/home');
 
         } catch (\Exception $ex) {
-            Log::error('SociaController Error: '. $ex -> getMessage());
+            Log::error('SocialAuthController Error: '. $ex -> getMessage());
         }
 
     }

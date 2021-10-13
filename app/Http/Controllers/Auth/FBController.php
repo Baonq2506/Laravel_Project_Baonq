@@ -47,8 +47,8 @@ class FBController extends Controller
                 ]);
 
             }
-            Auth::login($newUser);
-            return redirect('/frontend/home');
+            Auth::login($newUser,true);
+            return redirect()->route('frontend/home');
         } catch (\Exception $ex) {
             Log::error('FBController Error: '. $ex -> getMessage());
         }
