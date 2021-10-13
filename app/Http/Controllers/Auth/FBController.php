@@ -18,7 +18,7 @@ class FBController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function facebookSignin()
+    public function handleCallback()
     {
 
         try {
