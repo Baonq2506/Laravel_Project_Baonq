@@ -28,6 +28,7 @@ class SocialAuthController extends Controller
 
         try {
             $finduser = User::where('google_id', $user->id)->first();
+
             if($finduser){
 
                 Auth::login($finduser);

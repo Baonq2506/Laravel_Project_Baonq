@@ -20,11 +20,14 @@ class FBController extends Controller
 
     public function handleCallback()
     {
-        dd(1);
+
         try {
-
             $user = Socialite::driver('facebook')->user();
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse($e->getMessage());
+        }
 
+        try {
             $finduser = User::where('facebook_id', $user->id)->first();
 
             if($finduser){
