@@ -15,3 +15,7 @@
 <script src="/frontend/assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
 <script src="/frontend/assets/js/plugins.js"></script>
 <script src="/frontend/assets/js/main.js"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=1056846975077786&autoLogAppEvents=1"
+nonce="hoH6tAbO"></script>

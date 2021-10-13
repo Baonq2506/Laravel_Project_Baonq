@@ -125,7 +125,7 @@
                     </div>
 
                     <div class="fb-comments" data-href="https://project-baonq.herokuapp.com" data-width="100%"
-                        data-numposts="0"></div>
+                        data-numposts="1"></div>
                 </div>
             </div>
         </div>
