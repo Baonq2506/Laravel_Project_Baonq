@@ -22,32 +22,33 @@ class FBController extends Controller
     {
 
         try {
+
             $user = Socialite::driver('facebook')->user();
-        } catch (\Exception $e) {
-            return $this->sendFailedResponse($e->getMessage());
-        }
 
-        try {
-            $facebookId = User::where('facebook_id', $user->id)->first();
+            $finduser = User::where('facebook_id', $user->id)->first();
 
-            if($facebookId){
-                Auth::login($facebookId);
+            if($finduser){
+
+                Auth::login($finduser);
                 return redirect('/frontend/home');
+
             }else{
-                $createUser = User::create([
+                $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
+                    'facebook_id'=> $user->id,
                     'provider_name'=>'facebook',
-                    'facebook_id' => $user->id,
+                    'password' => bcrypt('my-facebook')
                 ]);
 
+                Auth::login($newUser);
+
+                return redirect('/frontend/home');
             }
-            Auth::login($createUser);
-            return redirect('/frontend/home');
+
         } catch (\Exception $ex) {
             Log::error('FBController Error: '. $ex -> getMessage());
         }
-
 
     }
 }
