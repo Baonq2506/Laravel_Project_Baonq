@@ -31,7 +31,7 @@ class FBController extends Controller
         try {
 
             $finduser = User::where('facebook_id', $user->id)->first();
-            dd($finduser);
+
             if($finduser){
 
                 Auth::login($finduser);
@@ -45,7 +45,7 @@ class FBController extends Controller
                     'provider_name'=>'facebook',
                     'password' => bcrypt('my-facebook')
                 ]);
-
+                dd($finduser);
                 Auth::login($newUser);
                 return redirect('/frontend/home');
             }
