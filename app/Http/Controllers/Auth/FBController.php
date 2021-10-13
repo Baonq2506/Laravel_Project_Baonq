@@ -42,7 +42,6 @@ class FBController extends Controller
                 ]);
 
                 Auth::login($newUser);
-
                 return redirect('/frontend/home');
             }
 
