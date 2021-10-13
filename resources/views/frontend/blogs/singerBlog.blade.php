@@ -124,24 +124,8 @@
                         </div>
                     </div>
 
-                    {{-- <div class="comment-form">
-                        <h4 class="comment-form-title font-alt">Add your comment</h4>
-                        <form method="post">
-                            <div class="form-group">
-                                <label class="sr-only" for="name">Name</label>
-                                <input class="form-control" id="name" type="text" name="name" placeholder="Name" />
-                            </div>
-                            <div class="form-group">
-                                <label class="sr-only" for="email">Name</label>
-                                <input class="form-control" id="email" type="text" name="email" placeholder="E-mail" />
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" id="comment" name="comment" rows="4"
-                                    placeholder="Comment"></textarea>
-                            </div>
-                            <button class="btn btn-round btn-d" type="submit">Post comment</button>
-                        </form>
-                    </div> --}}
+                    <div class="fb-comments" data-href="https://project-baonq.herokuapp.com" data-width="100%"
+                        data-numposts="0"></div>
                 </div>
             </div>
         </div>

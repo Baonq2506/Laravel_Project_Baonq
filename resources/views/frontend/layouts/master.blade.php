@@ -29,6 +29,10 @@
 </style>
 
 <body data-spy=" scroll" data-target=".onpage-navigation" data-offset="60">
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=1056846975077786&autoLogAppEvents=1"
+        nonce="hoH6tAbO"></script>
     <main>
         @include('frontend.includes.sidebar')
         @yield('header')
