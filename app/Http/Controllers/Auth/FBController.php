@@ -45,11 +45,10 @@ class FBController extends Controller
                     'provider_name'=>'facebook',
                     'password' => bcrypt('my-facebook')
                 ]);
-                dd($newUser);
-                Auth::login($newUser);
-                return redirect('/frontend/home');
-            }
 
+            }
+            Auth::login($newUser);
+            return redirect('/frontend/home');
         } catch (\Exception $ex) {
             Log::error('FBController Error: '. $ex -> getMessage());
         }

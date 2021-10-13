@@ -19,5 +19,3 @@
 <script async defer crossorigin="anonymous"
 src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=1056846975077786&autoLogAppEvents=1"
 nonce="hoH6tAbO"></script>
-<script async defer crossorigin="anonymous"
-src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v12.0&appId=1056846975077786&" nonce="fdEFxjt4"></script>
