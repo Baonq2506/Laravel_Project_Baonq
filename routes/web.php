@@ -13,52 +13,46 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-route::prefix('auth')->name('auth.')->namespace('Auth')->middleware([])->group(function () {
-
-    Route::get('facebook', 'FBController@redirectToFacebook')->name('login.fb');
-    Route::get('facebook/callback', 'FBController@facebookSignin');
-
-});
-
-
-
 route::prefix('auth')->name('auth.')->namespace('Auth')->group(function () {
+    //Login
     Route::get('/login','LoginController@create')->name('login');
     Route::post('/login','LoginController@authentication')->name('login');
     Route::get('logout','LoginController@logout')->name('logout.store');
-
+    //Register
     Route::get('register','RegisterController@create')->name('register');
     Route::post('register','RegisterController@store')->name('register');
-
+    //Login with google
     Route::get('google', 'SocialAuthController@redirectToGoogle')->name('login.GG');
     Route::get('google/callback','SocialAuthController@handleCallback');
+    //Login with facebook
+    Route::get('facebook', 'FBController@redirectToFacebook')->name('login.fb');
+    Route::get('facebook/callback', 'FBController@handleCallback');
+
 
 
 });
 route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
-
+    //Home page
     Route::get('home', function () {
         return view('frontend.home');
     })->name('home');
-
+    //About page
     route::prefix('about')->name('about.')->group(function () {
         Route::get('index','AboutController@index')->name('index');
         route::get('contact','AboutController@contact')->name('contact');
     });
-
+    //Blog page
     route::prefix('blog')->name('blog.')->group(function () {
         Route::get('index','BlogController@index')->name('index');
         Route::get('singerBlog','BlogController@show')->name('singerBlog');
 
     });
-
+    //Header page
     route::prefix('header')->name('header.')->group(function () {
         Route::get('index','HeaderController@index')->name('index');
 
     });
-
+    //Shop page
     route::prefix('shop')->name('shop.')->group(function () {
         Route::get('index','ShopController@index')->name('index');
         Route::get('detail','ShopController@detailProduct')->name('detail');
