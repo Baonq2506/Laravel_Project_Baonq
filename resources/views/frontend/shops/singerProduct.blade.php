@@ -46,6 +46,8 @@
                             </div>
                         </div>
                     </div>
+                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width=""
+                        data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>
                     <div class="row mb-20">
                         <div class="col-sm-4 mb-sm-20">
                             <input class="form-control input-lg" type="number" name="" value="1" max="40" min="1"

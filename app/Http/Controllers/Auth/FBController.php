@@ -23,7 +23,7 @@ class FBController extends Controller
 
         try {
             $user = Socialite::driver('facebook')->user();
-            dd($user);
+
         } catch (\Exception $e) {
             return $this->sendFailedResponse($e->getMessage());
         }
