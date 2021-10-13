@@ -23,13 +23,14 @@ class FBController extends Controller
 
         try {
             $user = Socialite::driver('facebook')->user();
+            dd($user);
         } catch (\Exception $e) {
             return $this->sendFailedResponse($e->getMessage());
         }
 
         try {
             $finduser = User::where('facebook_id', $user->id)->first();
-
+            dd($finduser);
             if($finduser){
 
                 Auth::login($finduser);
