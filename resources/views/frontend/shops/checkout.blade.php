@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/new_style.css') }}">
+
     <link rel="stylesheet" href="{{ asset('css/style_checkout.css') }}">
 @endsection
 
@@ -60,10 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="checkout-form-list create-acc">
-                                        <input id="cbox" type="checkbox">
-                                        <label for="cbox">Create an account?</label>
-                                    </div>
+
                                     <div id="cbox-info" class="checkout-form-list create-account">
                                         <p>Create an account by entering the information below. If you are a returning
                                             customer please login at the top of the page.</p>
@@ -73,12 +70,7 @@
                                 </div>
                             </div>
                             <div class="different-address">
-                                <div class="ship-different-title">
-                                    <h3>
-                                        <label>Ship to a different address?</label>
-                                        <input id="ship-box" type="checkbox">
-                                    </h3>
-                                </div>
+
                                 <div id="ship-box-info" class="row">
                                     <div class="col-md-12">
                                         <div class="myniceselect country-select clearfix">
@@ -189,18 +181,16 @@
                                 <tfoot>
                                     <tr class="cart-subtotal">
                                         <th>Cart Subtotal</th>
-                                        <td><span class="amount"> VNĐ</span></td>
+                                        <td><span> VNĐ</span></td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>Order Total</th>
-                                        <td><strong><span class="amount">
+                                        <td><strong><span>
                                                     VNĐ</span></strong></td>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
-                        <a
-                            href="https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=1806000&vnp_Command=pay&vnp_CreateDate=20210801153333&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%3A5&vnp_OrderType=other&vnp_ReturnUrl=https%3A%2F%2Fdomainmerchant.vn%2FReturnUrl&vnp_TmnCode=DEMOV210&vnp_TxnRef=5&vnp_Version=2.1.0&vnp_SecureHash=3e0d61a0c0534b2e36680b3f7277743e8784cc4e1d68fa7d276e79c23be7d6318d338b477910a27992f5057bb1582bd44bd82ae8009ffaf6d141219218625c42">PayPal</a>
                         {{-- <div class="payment-method">
                             <div class="payment-accordion">
                                 <div id="accordion">
@@ -226,12 +216,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="card">
-                                        <div class="card-header" id="#payment-3">
+                                    <div class="card">
+                                        <div class="card-header" id="#payment-1">
                                             <h5 class="panel-title">
-                                                <a href="#" class="collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseThree" aria-expanded="false">
-                                                    PayPal
+                                                <a href="#" class="" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="true">
+                                                    Direct Paypal Transfer.
                                                 </a>
                                             </h5>
                                         </div>
@@ -245,13 +235,14 @@
                                                     our account.</p>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
-                                <div class="order-button-payment">
-                                    <input value="Place order" type="submit">
-                                </div>
+
                             </div>
                         </div> --}}
+                        <div class="order-button-payment">
+                            <input value="Place order" type="submit">
+                        </div>
                     </div>
                 </div>
             </div>

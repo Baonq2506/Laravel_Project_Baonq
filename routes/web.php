@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Auth
 route::prefix('auth')->name('auth.')->namespace('Auth')->group(function () {
     //Login
     Route::get('/login','LoginController@create')->name('login');
@@ -31,31 +32,70 @@ route::prefix('auth')->name('auth.')->namespace('Auth')->group(function () {
 
 
 });
-route::prefix('frontend')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
+
+//Backend
+route::prefix('backend')->name('backend.')->namespace('Backend')->group(function () {
+    //Account Users
+    Route::resource('account', 'AccountController')->parameters([
+            'account'=>'account_id',
+            ]);
+    //Roles_permissions
+    Route::resource('role', 'RoleController');
+    //Dashboard
+    route::get('/home',function(){
+        return view('backend.dashboard');
+    })->name('home');
+    //Personnel
+    Route::resource('personnel', 'PersonnelController');
+    Route::get('delete','PersonnelController@personnelSoftDelete')->name('personnelSoftDelete');
+    //User
+    Route::resource('user', 'UserController')->parameters([
+        'user'=>'user_id',
+        ]);
+    Route::get('UserDelete','UserController@userSoftDelete')->name('user.softDelete');
+    //Category
+    Route::resource('category', 'CategoryController')->parameters([
+        'category'=>'category_id',
+        ]);
+    Route::get('softDelete','CategoryController@softDelete')->name('category.softDelete');
+    //Post
+    Route::resource('post', 'PostController')->parameters([
+        'post'=>'post_id',
+        ]);
+    //Product
+    Route::resource('product', 'ProductController')->parameters([
+        'product'=>'product_id',
+        ]);
+
+});
+//Frontend
+route::prefix('/')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
     //Home page
     Route::get('home', function () {
         return view('frontend.home');
     })->name('home');
     //About page
     route::prefix('about')->name('about.')->group(function () {
-        Route::get('index','AboutController@index')->name('index');
+        Route::get('/','AboutController@index')->name('index');
         route::get('contact','AboutController@contact')->name('contact');
     });
     //Blog page
     route::prefix('blog')->name('blog.')->group(function () {
-        Route::get('index','BlogController@index')->name('index');
-        Route::get('singerBlog','BlogController@show')->name('singerBlog');
+        Route::get('/','BlogController@index')->name('index');
+        Route::get('{slug_cate}/{slug}/{blog_id}','BlogController@show')->name('singerBlog');
+        Route::get('{slug}','BlogController@showCategory')->name('showCategory');
 
     });
     //Header page
     route::prefix('header')->name('header.')->group(function () {
-        Route::get('index','HeaderController@index')->name('index');
+        Route::get('/','HeaderController@index')->name('index');
 
     });
     //Shop page
     route::prefix('shop')->name('shop.')->group(function () {
-        Route::get('index','ShopController@index')->name('index');
+        Route::get('/','ShopController@index')->name('index');
         Route::get('detail','ShopController@detailProduct')->name('detail');
         Route::get('checkout','ShopController@checkoutCart')->name('checkout');
+        Route::get('cart','ShopController@cart')->name('cart');
     });
 });

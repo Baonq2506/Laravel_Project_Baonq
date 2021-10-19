@@ -2,22 +2,92 @@
 @section('title')
     Detail Product
 @endsection
+@section('style')
+    <style>
+        .tab-pane img {
+            width: 100%;
+            height: 370px;
+        }
 
+        .ex-product .active img {
+            width: 100%;
+            height: 50px;
+        }
+
+        .row .fix-a a:first-child :hover {
+            color: red;
+        }
+
+        .row .fix-a a {
+            border: 1px solid black;
+            border-radius: 50%;
+            color: black;
+            display: inline-block;
+            font-size: 13px;
+            height: 50px;
+            line-height: 60px;
+            text-align: center;
+            width: 50px;
+        }
+
+    </style>
+@endsection
 @section('main')
     <section class="module">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 mb-sm-40"><a class="gallery"
-                        href="/frontend/assets/images/shop/product-7.jpg"><img
-                            src="/frontend/assets/images/shop/product-7.jpg" alt="Single Product Image" /></a>
-                    <ul class="product-gallery">
-                        <li><a class="gallery" href="/frontend/assets/images/shop/product-8.jpg"></a><img
-                                src="/frontend/assets/images/shop/product-8.jpg" alt="Single Product" /></li>
-                        <li><a class="gallery" href="/frontend/assets/images/shop/product-9.jpg"></a><img
-                                src="/frontend/assets/images/shop/product-9.jpg" alt="Single Product" /></li>
-                        <li><a class="gallery" href="/frontend/assets/images/shop/product-10.jpg"></a><img
-                                src="/frontend/assets/images/shop/product-10.jpg" alt="Single Product" /></li>
-                    </ul>
+                <div class="col-sm-6 mb-sm-40">
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active">
+                            <img src="/images/LOL/SieuPham/9HiuxjR.jpg" alt="" />
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <img src="/images/LOL/SieuPham/579dad36b1811-1068x601.png" alt="" />
+                        </div>
+                        <div id="menu2" class="tab-pane fade">
+                            <img src="/images/LOL/SieuPham/Hinh-anh-Zed-dep-sieu-net-1.jpg" alt="" />
+                        </div>
+                        <div id="menu3" class="tab-pane fade">
+                            <img src="/images/LOL/SieuPham/hinhnenlienminhhuyenthoai4k75e7ec3be848bd_5e2a45e30cae51ff12f0abf668801669.jpg"
+                                alt="" />
+                        </div>
+                    </div>
+                    <div class="owl-carousel text-center" data-items="5" data-pagination="false" data-navigation="false">
+                        <div class="owl-item">
+                            <div class="col-sm-12">
+                                <div class="ex-product">
+                                    <a class="active" data-toggle="pill" href="#home"> <img height="80px"
+                                            src="/images/LOL/SieuPham/9HiuxjR.jpg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item">
+                            <div class="col-sm-12">
+                                <div class="ex-product">
+                                    <a class="active" data-toggle="pill" href="#menu1"><img height="80px"
+                                            src="/images/LOL/SieuPham/579dad36b1811-1068x601.png" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item">
+                            <div class="col-sm-12">
+                                <div class="ex-product">
+                                    <a class="active" data-toggle="pill" href="#menu2"> <img height="80px"
+                                            src="/images/LOL/SieuPham/Hinh-anh-Zed-dep-sieu-net-1.jpg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item">
+                            <div class="col-sm-12">
+                                <div class="ex-product">
+                                    <a class="active" data-toggle="pill" href="#menu3"> <img height="80px"
+                                            src="/images/LOL/SieuPham/hinhnenlienminhhuyenthoai4k75e7ec3be848bd_5e2a45e30cae51ff12f0abf668801669.jpg"
+                                            alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="col-sm-6">
                     <div class="row">
@@ -47,11 +117,24 @@
                         </div>
                     </div>
                     <div class="row mb-20">
-                        <div class="col-sm-4 mb-sm-20">
+                        <div class="col-sm-2 mb-sm-20">
                             <input class="form-control input-lg" type="number" name="" value="1" max="40" min="1"
                                 required="required" />
                         </div>
-                        <div class="col-sm-8"><a class="btn btn-lg btn-block btn-round btn-b" href="#">Add To Cart</a>
+                        <div class="col-sm-6"><a style="border-radius: 20px"
+                                class="btn btn-lg btn-block btn-round btn-b" href="#">Add To
+                                Cart</a>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row fix-a">
+                                <div class="col-sm-6">
+                                    <a href=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="{{ route('frontend.shop.index') }}">
+                                        <i class=" fa fa-reply fa-2x" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-20">
@@ -61,6 +144,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mb-20">
+                        <div class="col-sm-12">
+                            <h5>Share on</h5>
+                            <a style="margin-right: 15px" href="#"><i style="color:rgb(37, 104, 190)"
+                                    class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                            <a style="margin-right: 15px" href="#"><i style="color:rgb(28,160,242)"
+                                    class=" fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+                            <a style="margin-right: 15px" href="#"><i style="color:red" class=" fa fa-google-plus fa-2x"
+                                    aria-hidden="true"></i></a>
+                            <a style="margin-right: 15px" href="#"><i style="color:rgb(37, 104, 190)"
+                                    class=" fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+                            <a style="margin-right: 15px" href="#"><i style="color:orange" class=" fa fa-rss fa-2x "
+                                    aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="row mt-70">

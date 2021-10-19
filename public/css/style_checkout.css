@@ -40,7 +40,7 @@
           box-sizing: border-box;
 }
 
-html,
+/* html,
 body {
   height: 100%;
   font-family: sans-serif;
@@ -55,7 +55,7 @@ body {
   font-family: "Roboto", sans-serif;
   color: #282828;
   letter-spacing: 0.02em;
-}
+} */
 
 h1,
 h2,

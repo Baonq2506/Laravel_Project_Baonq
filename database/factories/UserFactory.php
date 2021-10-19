@@ -15,6 +15,12 @@ class UserFactory extends Factory
      */
     protected $model = User::class;
 
+    protected $roleArr=[
+        1=>'admin',
+        2=>'admod',
+        3=>'writer',
+        4=>'user',
+    ];
     /**
      * Define the model's default state.
      *
@@ -24,10 +30,11 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'role'=> $this->roleArr[rand(1,4)],
+            'status'=>rand(1,2),
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'password' => bcrypt('123456789'), // password
+            'avatar'=>$this->faker->imageUrl($width = 640, $height = 480),
         ];
     }
 

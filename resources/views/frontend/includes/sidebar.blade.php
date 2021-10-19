@@ -25,16 +25,20 @@
             </ul>
             <ul class="nav navbar-nav">
                 @if (Auth::check())
-                    <li class="dropdown">
-                        <a href="#" class="signname">
-                            {{ auth()->user()->name }}
+                    <li class="dropdown" style="width: 120px;">
+                        <a href="" data-toggle="tooltip" data-placement="bottom" title="{{ auth()->user()->name }}">
+                            <p style="
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        "> <span class="icon-profile-male"></span> &ensp; {{ auth()->user()->name }}
+                            </p>
                         </a>
                     </li>
                     <li><a> | </a></li>
                     <li class="dropdown"><a href="{{ route('auth.logout.store') }}">Logout</a></li>
                 @else
-                    <li class="dropdown"><a href="{{ route('auth.register') }}">Register </a>
-                    </li>
+                    <li class="dropdown"><a href="{{ route('auth.register') }}">Register</a></li>
                     <li><a> | </a></li>
                     <li class="dropdown"><a href="{{ route('auth.login') }}">Login</a></li>
                 @endif

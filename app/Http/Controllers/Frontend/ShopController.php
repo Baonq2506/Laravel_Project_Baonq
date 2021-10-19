@@ -15,7 +15,7 @@ class ShopController extends Controller
         return view('frontend.shops.singerProduct');
     }
 
-    public function cart($product_id){
+    public function cart(){
         return view('frontend.shops.cart');
     }
     public function checkoutCart(){
