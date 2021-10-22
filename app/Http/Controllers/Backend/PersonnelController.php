@@ -17,8 +17,9 @@ class PersonnelController extends Controller
         return view('backend.personnel.index');
     }
 
-    public function personnelSoftDelete(){
-        return view('backend.personnel.softDelete');
+    public function perSoftDelete()
+    {
+       return view('backend.personnel.perSoftDelete');
     }
     /**
      * Show the form for creating a new resource.

@@ -6,6 +6,24 @@
     <div class="contacts-area mg-b-15">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 breadcome-heading">
+                        <form role="search" class="sr-input-func">
+                            <input type="text" style="colr:black" placeholder="Search..." class="search-int form-control">
+                            <a href="#"><i style="color:red" class="fa fa-search"></i></a>
+                        </form>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                        @include('backend.comporment.btn',[
+                        'name'=>'Create Personnel',
+                        'color'=>'success',
+                        'icon'=>'plus',
+                        'link'=>'backend.personnel.create',
+                        ])
+
+                    </div>
+                </div><br> <br>
                 <div style="margin-bottom: 15px;" class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="hpanel hblue contact-panel contact-panel-cs responsive-mg-b-30">
                         <div class="panel-body custom-panel-jw">

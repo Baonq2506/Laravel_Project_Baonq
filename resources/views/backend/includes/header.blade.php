@@ -23,19 +23,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                                <div class="header-top-menu tabl-d-n">
-                                    <ul class="nav navbar-nav mai-top-nav">
-                                        <li>
-                                            <div style="margin-top:13px;color:white;" class="breadcome-heading">
-                                                <form role="search" class="sr-input-func">
-                                                    <input style="color:white" type="text" placeholder="Search..."
-                                                        class="search-int form-control">
-                                                    <a style="color:white" href="#"><i class="fa fa-search"></i></a>
-                                                </form>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                 <div class="header-right-info">
@@ -117,6 +105,12 @@
                                                     <h1>Notifications</h1>
                                                 </div>
                                                 <ul class="notification-menu">
+                                                    {{-- @foreach (Auth::user(3)->notifications as $notification)
+                                                        <a class="dropdown-item" href="#">
+                                                            <span>{{ $notification->data['title'] }}</span><br>
+                                                            <small>{{ $notification->data['title'] }}</small>
+                                                        </a>
+                                                    @endforeach --}}
                                                     <li>
                                                         <a href="#">
                                                             <div class="notification-icon">
@@ -126,48 +120,6 @@
                                                             <div class="notification-content">
                                                                 <span class="notification-date">16 Sept</span>
                                                                 <h2>Advanda Cro</h2>
-                                                                <p>Please done this project as soon possible.
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <div class="notification-icon">
-                                                                <i class="fa fa-cloud edu-cloud-computing-down"
-                                                                    aria-hidden="true"></i>
-                                                            </div>
-                                                            <div class="notification-content">
-                                                                <span class="notification-date">16 Sept</span>
-                                                                <h2>Sulaiman din</h2>
-                                                                <p>Please done this project as soon possible.
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <div class="notification-icon">
-                                                                <i class="fa fa-eraser edu-shield"
-                                                                    aria-hidden="true"></i>
-                                                            </div>
-                                                            <div class="notification-content">
-                                                                <span class="notification-date">16 Sept</span>
-                                                                <h2>Victor Jara</h2>
-                                                                <p>Please done this project as soon possible.
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <div class="notification-icon">
-                                                                <i class="fa fa-line-chart edu-analytics-arrow"
-                                                                    aria-hidden="true"></i>
-                                                            </div>
-                                                            <div class="notification-content">
-                                                                <span class="notification-date">16 Sept</span>
-                                                                <h2>Victor Jara</h2>
                                                                 <p>Please done this project as soon possible.
                                                                 </p>
                                                             </div>
@@ -183,7 +135,7 @@
                                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                                                 class="nav-link dropdown-toggle">
                                                 <img src="img/product/pro4.jpg" alt="" />
-                                                <span class="admin-name">Prof.Anderson</span>&ensp;
+                                                <span class="admin-name">BaoNguyen</span>&ensp;
 
                                             </a>
                                             <a href="{{ route('auth.logout.store') }}"> <i class="fa fa-sign-out"

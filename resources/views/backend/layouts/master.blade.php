@@ -16,6 +16,17 @@
     @yield('css')
     @stack('stack_css')
 </head>
+<style>
+    .active {
+        font-weight: bold;
+
+    }
+
+    .active-icon {
+        color: red;
+    }
+
+</style>
 
 <body>
     <!-- Start Header menu area -->
@@ -33,6 +44,7 @@
         <br>
         @include('backend.includes.footer')
     </div>
+
 
     @include('backend.includes.script_base')
     @stack('stack_js')

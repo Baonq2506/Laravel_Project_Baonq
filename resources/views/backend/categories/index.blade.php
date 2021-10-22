@@ -4,15 +4,20 @@
 @endsection
 
 @section('main')
+
     <div class="product-status mg-b-15">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="product-status-wrap drp-lst">
                         <h4>Categories List</h4>
-                        <div class="add-product">
-                            <a href="{{ route('backend.category.create') }}">Create Category</a>
-                        </div>
+                        @include('backend.comporment.btn',[
+                        'name'=>'Create Category',
+                        'color'=>'success',
+                        'icon'=>'plus',
+                        'link'=>'backend.category.create',
+                        ])
+                        <br> <br>
                         <div class="asset-inner">
                             <table>
                                 <tbody>

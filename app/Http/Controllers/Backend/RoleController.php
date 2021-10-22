@@ -18,7 +18,7 @@ class RoleController extends Controller
     }
 
     public function indexPermissions(){
-
+        return view('backend.roles.indexPer');
 
     }
 
@@ -29,7 +29,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.roles.create');
     }
 
     /**

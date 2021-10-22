@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('backend.posts.index');
+        return view('backend.posts.indexTag');
     }
 
     /**
@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('backend.posts.create');
+        return view('backend.posts.createTags');
     }
 
     /**
@@ -46,7 +46,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('backend.posts.detail');
+        //
     }
 
     /**
@@ -57,7 +57,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.posts.edit');
+        //
     }
 
     /**
@@ -82,6 +82,4 @@ class PostController extends Controller
     {
         //
     }
-
-
 }

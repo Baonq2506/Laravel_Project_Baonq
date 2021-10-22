@@ -18,8 +18,10 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="review-content-section">
-                                            <form id="add-department" action="#" class="add-department"
-                                                novalidate="novalidate">
+                                            <form id="add-department" action="{{ route('backend.category.store') }}"
+                                                method="post" class="add-department" novalidate="novalidate">
+                                                @csrf
+                                                @method('POST')
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                         <div class="form-group">

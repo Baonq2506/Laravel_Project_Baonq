@@ -6,6 +6,23 @@
     <div class="courses-area">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 breadcome-heading">
+                        <form role="search" class="sr-input-func">
+                            <input type="text" style="colr:black" placeholder="Search..." class="search-int form-control">
+                            <a href="#"><i style="color:red" class="fa fa-search"></i></a>
+                        </form>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        @include('backend.comporment.btn',[
+                        'name'=>'Create post',
+                        'color'=>'success',
+                        'icon'=>'plus',
+                        'link'=>'backend.post.create',
+                        ])
+
+                    </div>
+                </div><br> <br>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="courses-inner res-mg-b-30">
                         <div class="courses-title">

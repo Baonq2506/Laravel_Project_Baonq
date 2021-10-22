@@ -11,16 +11,19 @@ use Illuminate\Notifications\Notification;
 class NotificationUser extends Notification
 {
     use Queueable;
-    protected $data;
+
+
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($user,$content)
     {
-        $this->data = $data;
+        $this->user=$user;
+        $this->content=$content;
+
     }
 
     /**
@@ -31,7 +34,7 @@ class NotificationUser extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        return ['database'];
     }
 
     /**
@@ -57,7 +60,12 @@ class NotificationUser extends Notification
      */
     public function toArray($notifiable)
     {
-        return $this->data;
+        return [
+            'send_id'=>$this->user->id,
+            'name'=>$this->user->name,
+            'email'=>$this->user->email,
+            'content'=>$this->content,
+        ];
     }
 
 

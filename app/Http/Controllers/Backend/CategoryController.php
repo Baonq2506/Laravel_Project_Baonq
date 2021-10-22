@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Models\Category;
+use App\Models\User;
+use App\Notifications\NotificationUser;
+
 
 class CategoryController extends Controller
 {
@@ -14,6 +19,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
+
+
         return view('backend.categories.index');
     }
 
@@ -35,7 +43,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->all();
+        $category= new Category();
+        $category->name= $data['name'];
+        $category->slug=Str::slug($data['name']);
+        $category->created_at=now();
+        $category->updated_at=now();
+        $category->save();
+        // $content='A new create Category';
+        // $user=User::find(3);
+        // $user->notify(new NotificationUser($user,$content));
+        return redirect('backend/category');
+
     }
 
     /**

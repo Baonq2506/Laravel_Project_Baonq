@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Notifications\NotificationUser;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserController extends Controller
 {
@@ -17,6 +18,10 @@ class UserController extends Controller
     public function index()
     {
 
+        // $user=User::whereHas('roles',function(Builder $query){
+        //     $query->where('id',1);
+        // })->get('id');
+        // dd($user);
         return view('backend.users.index');
     }
 

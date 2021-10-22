@@ -39,34 +39,45 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->group(function
     Route::resource('account', 'AccountController')->parameters([
             'account'=>'account_id',
             ]);
+
     //Roles_permissions
     Route::resource('role', 'RoleController');
+    route::get('permissions','RoleController@indexPermissions')->name('role.indexPermissions');
+
     //Dashboard
     route::get('/home',function(){
         return view('backend.dashboard');
     })->name('home');
+
     //Personnel
     Route::resource('personnel', 'PersonnelController');
-    Route::get('delete','PersonnelController@personnelSoftDelete')->name('personnelSoftDelete');
+    Route::get('personnel/softDelete','PersonnelController@perSoftDelete')->name('personnel.perSoftDelete');
+
     //User
     Route::resource('user', 'UserController')->parameters([
         'user'=>'user_id',
         ]);
     Route::get('UserDelete','UserController@userSoftDelete')->name('user.softDelete');
+
     //Category
     Route::resource('category', 'CategoryController')->parameters([
         'category'=>'category_id',
         ]);
     Route::get('softDelete','CategoryController@softDelete')->name('category.softDelete');
+
     //Post
     Route::resource('post', 'PostController')->parameters([
         'post'=>'post_id',
         ]);
+
     //Product
     Route::resource('product', 'ProductController')->parameters([
         'product'=>'product_id',
         ]);
-
+    //Tag
+    Route::resource('tag', 'TagController')->parameters([
+        'tag'=>'tag_id',
+        ]);
 });
 //Frontend
 route::prefix('/')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
