@@ -50,14 +50,18 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->group(function
     })->name('home');
 
     //Personnel
-    Route::resource('personnel', 'PersonnelController');
+    Route::resource('personnel', 'PersonnelController')->parameters([
+        'personnel'=>'personnel_id',
+        ]);;
     Route::get('personnel/softDelete','PersonnelController@perSoftDelete')->name('personnel.perSoftDelete');
+    route::get('personnel/signWithUser/{personnel_id}','PersonnelController@signWithUser')->name('personnel.signWithUser');
 
     //User
     Route::resource('user', 'UserController')->parameters([
         'user'=>'user_id',
         ]);
     Route::get('UserDelete','UserController@userSoftDelete')->name('user.softDelete');
+    route::get('user/signWithUser/{user_id}','UserController@signWithUser')->name('user.signWithID');
 
     //Category
     Route::resource('category', 'CategoryController')->parameters([

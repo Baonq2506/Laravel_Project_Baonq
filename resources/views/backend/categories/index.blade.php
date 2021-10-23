@@ -22,48 +22,54 @@
                             <table>
                                 <tbody>
                                     <tr>
-                                        <th>No</th>
+                                        <th>ID</th>
                                         <th>Name of Cate.</th>
                                         <th>Slug</th>
                                         <th>Time Created</th>
                                         <th>Time Updated</th>
-                                        <th>Setting</th>
+                                        <th>Action</th>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Computer</td>
-                                        <td>
-                                            <button class="pd-setting">Active</button>
-                                        </td>
-                                        <td>John Alva</td>
-                                        <td>admin@gmail.com</td>
+                                    @foreach ($categories as $category)
+                                        <tr>
+                                            <td>{{ $category->id }}</td>
+                                            <td>{{ $category->name }}</td>
+                                            <td>
+                                                {{ $category->slug }}
+                                            </td>
+                                            <td>{{ $category->created_at->format('d/m/Y h:i:s') }}</td>
+                                            <td>{{ $category->updated_at->format('d/m/Y h:i:s') }}</td>
 
-                                        <td>
-                                            <a href="">
-                                                <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                    data-original-title="Edit" href=""><i class="fa fa-pencil-square-o"
-                                                        aria-hidden="true"></i></button>
-                                            </a>
-                                            <a href="">
-                                                <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                    data-original-title="Trash"><i class="fa fa-trash-o"
-                                                        aria-hidden="true"></i></button>
-                                            </a>
-                                        </td>
+                                            <td>
+                                                <form
+                                                    action="{{ route('backend.category.edit', [
+    'category_id' => $category->id,
+]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('get')
+                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
+                                                        data-original-title="Edit"> <i class="fa fa-pencil-square-o"
+                                                            aria-hidden="true"></i></button>
+                                                </form>
+                                                <br>
+                                                <form
+                                                    action="{{ route('backend.category.destroy', ['category_id' => $category->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
+                                                        data-original-title="Trash"><i class="fa fa-trash-o"
+                                                            aria-hidden="true"></i></button>
+                                                </form>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
-                        <div class="custom-pagination">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                </ul>
-                            </nav>
-                        </div>
+
                     </div>
                 </div>
             </div>

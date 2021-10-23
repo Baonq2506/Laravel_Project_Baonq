@@ -14,13 +14,6 @@ class UserFactory extends Factory
      * @var string
      */
     protected $model = User::class;
-
-    protected $roleArr=[
-        1=>'admin',
-        2=>'admod',
-        3=>'writer',
-        4=>'user',
-    ];
     /**
      * Define the model's default state.
      *
@@ -30,7 +23,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'role'=> $this->roleArr[rand(1,4)],
+
             'status'=>rand(1,2),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => bcrypt('123456789'), // password

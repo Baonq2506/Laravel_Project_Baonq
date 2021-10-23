@@ -17,50 +17,56 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                     <div class="address-hr">
-                                        <p><b>Name</b><br> Fly Zend</p>
+                                        <p><b>Name</b><br> {{ $user->name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                     <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                        <p><b>Designation</b><br> Head of Dept.</p>
+                                        <p><b>ID</b><br> {{ $user->id }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6">
                                     <div class="address-hr">
-                                        <p><b>Email ID</b><br> fly@gmail.com</p>
+                                        <p><b>Email</b><br> {{ $user->email }}</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <br>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6">
                                     <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                        <p><b>Phone</b><br> +01962067309</p>
+                                        <p><b>Phone</b><br> {{ $user->userInfo->phone }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="address-hr">
-                                        <p><b>Address</b><br> E104, catn-2, Chandlodia Ahmedabad Gujarat, UK.</p>
+                                        <p><b>Address</b><br>
+                                            {{ $user->userInfo->address }},{{ $user->userInfo->country }},{{ $user->userInfo->city }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <div class="address-hr">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a style="color:blue" href="{{ $user->userLink->fb_url }}"><i
+                                                class="fa fa-facebook"></i></a>
 
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <div class="address-hr">
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a style="color:rgb(45, 120, 218)" href="{{ $user->userLink->switter_url }}"><i
+                                                class="fa fa-twitter"></i></a>
 
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <div class="address-hr">
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a style="color:red" href="{{ $user->userLink->gg_url }}"><i
+                                                class="fa fa-google-plus"></i></a>
 
                                     </div>
                                 </div>
@@ -82,32 +88,32 @@
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Full Name</b><br> Fly Zend</p>
+                                                        <p><b>Full Name</b><br> {{ $user->name }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Mobile</b><br> 01962067309</p>
+                                                        <p><b>Mobile</b><br> {{ $user->userInfo->phone }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-3 col-sm-3 col-xs-6">
+                                                    <div class="address-hr biography">
+                                                        <p><b>Email</b><br> {{ $user->email }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Email</b><br> fly@gmail.com</p>
+                                                        <p><b>ID</b><br> {{ $user->id }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Location</b><br> UK</p>
+                                                        <p><b>Gender</b><br> {{ $user->gender_text }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Gender</b><br> UK</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                    <div class="address-hr biography">
-                                                        <p><b>Date of Birth</b><br> 25-06-2000</p>
+                                                        <p><b>Date of Birth</b><br> {{ $user->userInfo->date }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,27 +121,8 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="content-profile">
-                                                        <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                                                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                                            justo. Nullam dictum felis eu pede mollis pretium. Integer
-                                                            tincidunt.Cras
-                                                            dapibus. Vivamus elementum semper nisi. Aenean vulputate
-                                                            eleifend tellus. Aenean leo ligula, porttitor eu, consequat
-                                                            vitae, eleifend ac, enim.</p>
-                                                        <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                                                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                                            justo. Nullam dictum felis eu pede mollis pretium. Integer
-                                                            tincidunt.Cras
-                                                            dapibus. Vivamus elementum semper nisi. Aenean vulputate
-                                                            eleifend tellus. Aenean leo ligula, porttitor eu, consequat
-                                                            vitae, eleifend ac, enim.</p>
-                                                        <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                                                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                                            justo. Nullam dictum felis eu pede mollis pretium. Integer
-                                                            tincidunt.Cras
-                                                            dapibus. Vivamus elementum semper nisi. Aenean vulputate
-                                                            eleifend tellus. Aenean leo ligula, porttitor eu, consequat
-                                                            vitae, eleifend ac, enim.</p>
+
+
                                                     </div>
                                                 </div>
                                             </div>

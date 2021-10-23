@@ -46,80 +46,70 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td>1</td>
-                                            <td>Web Development</td>
-                                            <td>admin@uttara.com</td>
-                                            <td>+8801962067309</td>
+                                        @foreach ($users as $user)
+                                            <tr>
+                                                <td></td>
+                                                <td>{{ $user->id }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->userInfo->phone }}</td>
+                                                <td>
+                                                    @if ($user->userInfo->date != '')
+                                                        {{ $user->userInfo->date }}
+                                                    @endif
+                                                </td>
 
-                                            <td>Jul 14, 2017</td>
-                                            <td class="panel-footer contact-footer professor-stds-int professor-stds">
+                                                <td class="">
 
-                                                <a class="contact-stat" href="">
-                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                        data-original-title="Edit" href=""><i class="fa fa-pencil-square-o"
-                                                            aria-hidden="true"></i></button>
-                                                </a>
-                                                <a href="">
-                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                        data-original-title="Trash"><i class="fa fa-trash-o"
-                                                            aria-hidden="true"></i></button>
-                                                </a>
-                                                <a href="">
-                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                        data-original-title="Detail"><i class="fa fa-search"
-                                                            aria-hidden="true"></i></button>
-                                                </a>
-                                                <a href="">
-                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                        data-original-title="Sign in"><i class="fa fa-sign-in"
-                                                            aria-hidden="true"></i></button>
-                                                </a>
-                                                <a href="">
-                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                        data-original-title="Restore"><i class="fa fa-reddit-alien"
-                                                            aria-hidden="true"></i></button>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>2</td>
-                                            <td>Web1 Development</td>
-                                            <td>admin@uttara1.com</td>
-                                            <td>+8801962067309</td>
+                                                    <a class="contact-stat"
+                                                        href="{{ route('backend.user.edit', [
+    'user_id' => $user->id,
+]) }}">
+                                                        <button data-toggle="tooltip" title="" class="pd-setting-ed"
+                                                            data-original-title="Edit" href=""><i
+                                                                class="fa fa-pencil-square-o"
+                                                                aria-hidden="true"></i></button>
+                                                    </a>
 
-                                            <td>Jul 14, 2017</td>
-                                            <td class="panel-footer contact-footer professor-stds-int professor-stds">
+                                                    <form style="float:left" method="post"
+                                                        action="{{ route('backend.user.destroy', [
+    'user_id' => $user->id,
+]) }}">
+                                                        @csrf
+                                                        @method('delete')
 
-                                                <a class="contact-stat" href="">
-                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                        data-original-title="Edit" href=""><i class="fa fa-pencil-square-o"
-                                                            aria-hidden="true"></i></button>
-                                                </a>
-                                                <a href="">
-                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                        data-original-title="Trash"><i class="fa fa-trash-o"
-                                                            aria-hidden="true"></i></button>
-                                                </a>
-                                                <a href="">
-                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                        data-original-title="Detail"><i class="fa fa-search"
-                                                            aria-hidden="true"></i></button>
-                                                </a>
-                                                <a href="">
-                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                        data-original-title="Sign in"><i class="fa fa-sign-in"
-                                                            aria-hidden="true"></i></button>
-                                                </a>
-                                                <a href="">
-                                                    <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                        data-original-title="Restore"><i class="fa fa-reddit-alien"
-                                                            aria-hidden="true"></i></button>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                                        <button data-toggle="tooltip" title="" class="pd-setting-ed"
+                                                            data-original-title="Trash"><i class="fa fa-trash-o"
+                                                                aria-hidden="true"></i></button>
+
+                                                    </form>
+
+                                                    <a
+                                                        href="{{ route('backend.user.show', [
+    'user_id' => $user->id,
+]) }}">
+                                                        <button data-toggle="tooltip" title="" class="pd-setting-ed"
+                                                            data-original-title="Detail"><i class="fa fa-search"
+                                                                aria-hidden="true"></i></button>
+                                                    </a>
+                                                    <a
+                                                        href="{{ route('backend.user.signWithID', [
+    'user_id' => $user->id,
+]) }}">
+                                                        <button data-toggle="tooltip" title="" class="pd-setting-ed"
+                                                            data-original-title="Sign in"><i class="fa fa-sign-in"
+                                                                aria-hidden="true"></i></button>
+                                                    </a>
+                                                    <a href="">
+                                                        <button data-toggle="tooltip" title="" class="pd-setting-ed"
+                                                            data-original-title="Restore"><i class="fa fa-reddit-alien"
+                                                                aria-hidden="true"></i></button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -133,7 +123,7 @@
 
 @push('stack_js')
     <!-- data table JS
-                                                                                                                                                                                                                              ============================================ -->
+                                                                                                                                                                                                                                                                                                                          ============================================ -->
     <script src="/backend/js/data-table/bootstrap-table.js"></script>
     <script src="/backend/js/data-table/tableExport.js"></script>
     <script src="/backend/js/data-table/data-table-active.js"></script>
@@ -143,7 +133,7 @@
     <script src="/backend/js/data-table/colResizable-1.5.source.js"></script>
     <script src="/backend/js/data-table/bootstrap-table-export.js"></script>
     <!--  editable JS
-                                                                                                                                                                                                                                        ============================================ -->
+                                                                                                                                                                                                                                                                                                                                    ============================================ -->
     <script src="/backend/js/editable/jquery.mockjax.js"></script>
     <script src="/backend/js/editable/mock-active.js"></script>
     <script src="/backend/js/editable/select2.js"></script>
@@ -152,7 +142,7 @@
     <script src="/backend/js/editable/bootstrap-editable.js"></script>
     <script src="/backend/js/editable/xediable-active.js"></script>
     <!-- Chart JS
-                                                                                                                                                                                                                      ============================================ -->
+                                                                                                                                                                                                                                                                                                                  ============================================ -->
     <script src="/backend/js/chart/jquery.peity.min.js"></script>
     <script src="/backend/js/peity/peity-active.js"></script>
 @endpush

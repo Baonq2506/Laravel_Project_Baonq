@@ -53,29 +53,6 @@ class RolePermissionsTableSeeder extends Seeder
             ],
         ]);
 
-        $create_post_permission = Permission::where('slug','create-post')->first();
-        $update_post_permission = Permission::where('slug', 'update-post')->first();
-        $delete_post_permission = Permission::where('slug', 'delete-post')->first();
 
-        $admin_role = Role::where('slug','admin')->first();
-        $admin_role->permissions()->attach($create_post_permission);
-        $admin_role->permissions()->attach($update_post_permission);
-        $admin_role->permissions()->attach($delete_post_permission);
-
-        $admod_role = Role::where('slug','admod')->first();
-        $admod_role->permissions()->attach($create_post_permission);
-        $admod_role->permissions()->attach($update_post_permission);
-
-
-        $writer_role = Role::where('slug', 'writer')->first();
-        $writer_role->permissions()->attach($update_post_permission);
-
-        $admin_user = User::where('role', 'admin')->first();
-        $admod_user = User::where('role', 'admod')->first();
-        $writer_user = User::where('role', 'writer')->first();
-
-        $admin_user->roles()->attach($admin_role);
-        $admod_user->roles()->attach($admod_role);
-        $writer_user->roles()->attach($writer_role);
     }
 }

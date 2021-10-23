@@ -19,8 +19,8 @@ class AddColumnUserTable extends Migration
             $table->string('facebook_id')->nullable()->after('provider_name');
             $table->string('google_id')->nullable()->after('provider_name');
             $table->string('avatar')->nullable()->after('email');
-            $table->string('role');
-            $table->integer('status');
+
+            $table->integer('status')->nullable();
         });
     }
 

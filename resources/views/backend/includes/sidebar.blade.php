@@ -43,10 +43,7 @@
                                     <li><a title="Add Library" href="{{ route('backend.category.create') }}"><span
                                                 class="mini-sub-pro  @if (request()->routeIs('backend.category.create')) active @endif">Create
                                                 Categories</span></a></li>
-                                    <li><a title="Delete Library"
-                                            href="{{ route('backend.category.softDelete') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.category.softDelete')) active @endif">All Delete
-                                                Categories</span></a></li>
+
                                 </ul>
                             </li>
                             {{-- Personnel --}}

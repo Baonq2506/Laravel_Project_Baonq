@@ -17,50 +17,55 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                     <div class="address-hr">
-                                        <p><b>Name</b><br> Fly Zend</p>
+                                        <p><b>Name</b><br> {{ $personnel->name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                     <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                        <p><b>Designation</b><br> Head of Dept.</p>
+                                        <p><b>Date</b><br> {{ $personnel->userInfo->date }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                     <div class="address-hr">
-                                        <p><b>Email ID</b><br> fly@gmail.com</p>
+                                        <p><b>Email ID</b><br> {{ $personnel->email }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                     <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                        <p><b>Phone</b><br> +01962067309</p>
+                                        <p><b>Phone</b><br> {{ $personnel->userInfo->phone }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="address-hr">
-                                        <p><b>Address</b><br> E104, catn-2, Chandlodia Ahmedabad Gujarat, UK.</p>
+                                        <p><b>Address</b><br>
+                                            {{ $personnel->userInfo->address }},{{ $personnel->userInfo->country }},{{ $personnel->userInfo->city }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <div class="address-hr">
-                                        <a href="#"><i style="color:blue" class="fa fa-facebook"></i></a>
+                                        <a href="{{ $personnel->userLink->fb_url }}"><i style="color:blue"
+                                                class="fa fa-facebook"></i></a>
 
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <div class="address-hr">
-                                        <a href="#"><i style="color:rgb(28, 160, 242)" class="fa fa-twitter"></i></a>
+                                        <a href="{{ $personnel->userLink->switter_url }}"><i
+                                                style="color:rgb(28, 160, 242)" class="fa fa-twitter"></i></a>
 
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <div class="address-hr">
-                                        <a href="#"><i style="color:red" class="fa fa-google-plus"></i></a>
+                                        <a href="{{ $personnel->userLink->gg_url }}"><i style="color:red"
+                                                class="fa fa-google-plus"></i></a>
 
                                     </div>
                                 </div>
@@ -82,32 +87,34 @@
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Full Name</b><br> Fly Zend</p>
+                                                        <p><b>Full Name</b><br> {{ $personnel->name }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Mobile</b><br> 01962067309</p>
+                                                        <p><b>Mobile</b><br> {{ $personnel->userInfo->phone }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Email</b><br> fly@gmail.com</p>
+                                                        <p><b>Email</b><br> {{ $personnel->email }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Location</b><br> UK</p>
+                                                        <p><b>Location</b><br>
+                                                            {{ $personnel->userInfo->country }},{{ $personnel->userInfo->city }}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Gender</b><br> UK</p>
+                                                        <p><b>Gender</b><br> {{ $personnel->userInfo->gender }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                     <div class="address-hr biography">
-                                                        <p><b>Date of Birth</b><br> 25-06-2000</p>
+                                                        <p><b>Date of Birth</b><br> {{ $personnel->userInfo->date }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,31 +122,10 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="content-profile">
-                                                        <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                                                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                                            justo. Nullam dictum felis eu pede mollis pretium. Integer
-                                                            tincidunt.Cras
-                                                            dapibus. Vivamus elementum semper nisi. Aenean vulputate
-                                                            eleifend tellus. Aenean leo ligula, porttitor eu, consequat
-                                                            vitae, eleifend ac, enim.</p>
-                                                        <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                                                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                                            justo. Nullam dictum felis eu pede mollis pretium. Integer
-                                                            tincidunt.Cras
-                                                            dapibus. Vivamus elementum semper nisi. Aenean vulputate
-                                                            eleifend tellus. Aenean leo ligula, porttitor eu, consequat
-                                                            vitae, eleifend ac, enim.</p>
-                                                        <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                                                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                                            justo. Nullam dictum felis eu pede mollis pretium. Integer
-                                                            tincidunt.Cras
-                                                            dapibus. Vivamus elementum semper nisi. Aenean vulputate
-                                                            eleifend tellus. Aenean leo ligula, porttitor eu, consequat
-                                                            vitae, eleifend ac, enim.</p>
+                                                        <p>{{ $personnel->userInfo->description }}</p>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>

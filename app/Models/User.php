@@ -24,7 +24,6 @@ class User extends Authenticatable
         'facebook_id',
         'google_id',
         'password',
-        'role',
         'status',
     ];
 
@@ -50,17 +49,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+
     protected $statusArr = [
         1 => 'Active',
         2 => 'No-Active',
+    ];
+    protected $colorArr=[
+        1=>'green',
+        2=>'red',
     ];
     protected $statusColor = [
         1 => 'success',
         2 => 'danger',
     ];
+
+    protected $genderArr = [
+        1=>'Male',
+        2=>'Female',
+        3=>'Other',
+    ];
+    public function getGenderTextAttribute(){
+
+        return $this->genderArr[$this->userInfo->gender];
+    }
     public function getStatusTextAttribute()
     {
-        return '<span class="badge badge-' . $this->statusColor[rand(1, 2)] . '">' . $this->statusArr[rand(1, 2)] . '</span>';
+        return '<span style="background:'.$this->colorArr[$this->status].'" class="badge badge-' . $this->statusColor[$this->status] .'">' . $this->statusArr[$this->status] . '<span>';
 
     }
 
@@ -69,8 +84,8 @@ class User extends Authenticatable
         return $this->hasOne(UserInfo::class);
     }
 
-    Public function userSocialNetwork(){
-        return $this->hasOne(UserLink::class,'user_sn_links','user_id');
+    Public function userLink(){
+        return $this->hasOne(UserLink::class,'user_id');
     }
 
     public function post()

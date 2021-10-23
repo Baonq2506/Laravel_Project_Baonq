@@ -19,10 +19,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
-
-
-        return view('backend.categories.index');
+        $categories= Category::all();
+        return view('backend.categories.index',[
+            'categories' =>$categories,
+        ]);
     }
 
     /**
@@ -32,6 +32,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+
         return view('backend.categories.create');
     }
 
@@ -46,7 +47,6 @@ class CategoryController extends Controller
         $data=$request->all();
         $category= new Category();
         $category->name= $data['name'];
-        $category->slug=Str::slug($data['name']);
         $category->created_at=now();
         $category->updated_at=now();
         $category->save();
@@ -76,7 +76,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category=Category::find($id);
+        return view('backend.categories.edit',[
+            'category'=>$category,
+        ]);
     }
 
     /**
@@ -88,7 +91,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $data = $request->all();
+        $categories=Category::find($id);
+
+        $categories->name = $data['name'];
+
+        $categories->updated_at=now();
+        $categories->save();
+        return redirect('backend/category');
     }
 
     /**
@@ -99,10 +110,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
 
-    public function softDelete(){
-        return view('backend.categories.softDelete');
+        Category::destroy($id);
+        return redirect('backend/category');
     }
 }

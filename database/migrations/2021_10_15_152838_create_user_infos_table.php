@@ -20,6 +20,9 @@ class CreateUserInfosTable extends Migration
             $table->string('gender')->nullable();
             $table->string('date')->nullable();
             $table->string('description')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->timestamps();
 
         });
     }

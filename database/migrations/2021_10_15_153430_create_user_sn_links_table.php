@@ -19,6 +19,7 @@ class CreateUserSnLinksTable extends Migration
             $table->string('gg_url')->nullable();
             $table->string('linked_url')->nullable();
             $table->string('switter_url')->nullable();
+            $table->timestamps();
         });
     }
 
