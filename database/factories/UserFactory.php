@@ -23,7 +23,6 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-
             'status'=>rand(1,2),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => bcrypt('123456789'), // password

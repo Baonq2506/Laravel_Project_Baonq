@@ -30,7 +30,12 @@ class UserController extends Controller
     }
 
     public function userSoftDelete(){
-        return view('backend.users.softDelete');
+
+        $users = User::onlyTrashed()->get();
+
+        return view('backend.users.softDelete',[
+            'users'=>$users,
+        ]);
     }
     /**
      * Show the form for creating a new resource.
@@ -143,11 +148,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->roles()->detach($id);
-        UserInfo::where('user_id',$id)->delete();
-        UserLink::where('user_id',$id)->delete();
+        UserInfo::where('user_id',$id)->destroy();
+        UserLink::where('user_id',$id)->destroy();
         User::destroy($id);
 
 
+        return redirect('backend/user');
+    }
+
+    public function restore($id){
+       User::withTrashed()->where('id', $id)->restore();
         return redirect('backend/user');
     }
 

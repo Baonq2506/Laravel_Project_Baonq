@@ -76,7 +76,7 @@
 
 @push('stack_js')
     <!-- data table JS
-                                                                                                                                                                                              ============================================ -->
+                                                                                                                                                                                                      ============================================ -->
     <script src="/backend/js/data-table/bootstrap-table.js"></script>
     <script src="/backend/js/data-table/tableExport.js"></script>
     <script src="/backend/js/data-table/data-table-active.js"></script>
@@ -86,7 +86,7 @@
     <script src="/backend/js/data-table/colResizable-1.5.source.js"></script>
     <script src="/backend/js/data-table/bootstrap-table-export.js"></script>
     <!--  editable JS
-                                                                                                                                                                                                        ============================================ -->
+                                                                                                                                                                                                                ============================================ -->
     <script src="/backend/js/editable/jquery.mockjax.js"></script>
     <script src="/backend/js/editable/mock-active.js"></script>
     <script src="/backend/js/editable/select2.js"></script>
@@ -95,7 +95,7 @@
     <script src="/backend/js/editable/bootstrap-editable.js"></script>
     <script src="/backend/js/editable/xediable-active.js"></script>
     <!-- Chart JS
-                                                                                                                                                                                      ============================================ -->
+                                                                                                                                                                                              ============================================ -->
     <script src="/backend/js/chart/jquery.peity.min.js"></script>
     <script src="/backend/js/peity/peity-active.js"></script>
 @endpush

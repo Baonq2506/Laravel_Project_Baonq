@@ -23,6 +23,12 @@ class RolePermissionsTableSeeder extends Seeder
         DB::table('users_permissions')->truncate();
         DB::table('users_roles')->truncate();
 
+        for($i=1;$i<=20;$i++){
+        DB::table('users_roles')->insert([
+            'user_id' => $i,
+            'role_id'=>rand(1,4),
+        ]);
+    }
         DB::table('permissions')->insert([
             [
                 'name' => 'Create Post',

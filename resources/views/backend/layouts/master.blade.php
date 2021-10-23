@@ -32,9 +32,6 @@
     <!-- Start Header menu area -->
 
     @include('backend.includes.sidebar')
-
-
-
     <!-- End Header menu area -->
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">

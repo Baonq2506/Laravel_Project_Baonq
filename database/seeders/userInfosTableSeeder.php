@@ -21,17 +21,18 @@ class userInfosTableSeeder extends Seeder
 
         $faker = Faker::create();
         DB::table('user_infos')->truncate();
-        $gender=[
-            1=>'Female',
-            2=>'Male',
-        ];
-
-        for( $i=1;$i<=10;$i++){
+        for( $i=1;$i<=20;$i++){
             DB::table('user_infos')->insert([
                 'user_id' => $i,
                 'address'=> $faker->address,
-                'gender' => $gender[rand(1,2)],
+                'gender' => rand(1,3),
                 'phone'=> $faker->phoneNumber,
+                'city' => $faker->city,
+                'country' => $faker->country,
+                'date' => now(),
+                'description' =>$faker->sentence(16),
+                'created_at'=>now(),
+                'updated_at'=>now(),
 
             ]);
         }
