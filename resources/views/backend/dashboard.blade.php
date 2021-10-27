@@ -1,278 +1,345 @@
 @extends('backend.layouts.master')
+
 @section('title')
     Dashboard
 @endsection
-@section('scrollbar')
-    <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-1 mCSB_scrollTools_vertical"
-        style="display: block;">
-        <div class="mCSB_draggerContainer">
-            <div id="mCSB_1_dragger_vertical" class="mCSB_dragger"
-                style="position: absolute; min-height: 30px; display: block; height: 332px; max-height: 570px; top: 0px;">
-                <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
-            </div>
-            <div class="mCSB_draggerRail"></div>
-        </div>
+@section('content-header')
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
     </div>
 @endsection
+
 @section('main')
-    <div class="analytics-sparkle-area">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="analytics-sparkle-line reso-mg-b-30">
-                        <div class="analytics-content">
-                            <h5>Computer Technologies</h5>
-                            <h2>$<span class="counter">5000</span> <span class="tuition-fees">Tuition
-                                    Fees</span></h2>
-                            <span class="text-success">20%</span>
-                            <div class="progress m-b-0">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"
-                                    aria-valuemin="0" aria-valuemax="100" style="width:20%;">
-                                    <span class="sr-only">20% Complete</span>
-                                </div>
-                            </div>
-                        </div>
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">CPU Traffic</span>
+                        <span class="info-box-number">
+                            10
+                            <small>%</small>
+                        </span>
                     </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="analytics-sparkle-line reso-mg-b-30">
-                        <div class="analytics-content">
-                            <h5>Accounting Technologies</h5>
-                            <h2>$<span class="counter">3000</span> <span class="tuition-fees">Tuition
-                                    Fees</span></h2>
-                            <span class="text-danger">30%</span>
-                            <div class="progress m-b-0">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50"
-                                    aria-valuemin="0" aria-valuemax="100" style="width:30%;"> <span
-                                        class="sr-only">230% Complete</span> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="analytics-sparkle-line reso-mg-b-30 table-mg-t-pro dk-res-t-pro-30">
-                        <div class="analytics-content">
-                            <h5>Electrical Engineering</h5>
-                            <h2>$<span class="counter">2000</span> <span class="tuition-fees">Tuition
-                                    Fees</span></h2>
-                            <span class="text-info">60%</span>
-                            <div class="progress m-b-0">
-                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-                                    aria-valuemin="0" aria-valuemax="100" style="width:60%;"> <span
-                                        class="sr-only">20% Complete</span> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
-                        <div class="analytics-content">
-                            <h5>Chemical Engineering</h5>
-                            <h2>$<span class="counter">3500</span> <span class="tuition-fees">Tuition
-                                    Fees</span></h2>
-                            <span class="text-inverse">80%</span>
-                            <div class="progress m-b-0">
-                                <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50"
-                                    aria-valuemin="0" aria-valuemax="100" style="width:80%;">
-                                    <span class="sr-only">230% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- /.info-box -->
             </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Likes</span>
+                        <span class="info-box-number">41,410</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Sales</span>
+                        <span class="info-box-number">760</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">New Members</span>
+                        <span class="info-box-number">2,000</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
         </div>
-    </div>
-    <div class="product-sales-area mg-tb-30">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="product-sales-chart">
-                        <div class="portlet-title">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="caption pro-sl-hd">
-                                        <span class="caption-subject"><b>University Earnings</b></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="actions graph-rp graph-rp-dl">
-                                        <p>All Earnings are in million $</p>
-                                    </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Monthly Recap Report</h5>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fas fa-wrench"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                    <a href="#" class="dropdown-item">Action</a>
+                                    <a href="#" class="dropdown-item">Another action</a>
+                                    <a href="#" class="dropdown-item">Something else here</a>
+                                    <a class="dropdown-divider"></a>
+                                    <a href="#" class="dropdown-item">Separated link</a>
                                 </div>
                             </div>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
                         </div>
-                        <ul class="list-inline cus-product-sl-rp">
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p class="text-center">
+                                    <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                                </p>
+
+                                <div class="chart">
+                                    <!-- Sales Chart Canvas -->
+                                    <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                                </div>
+                                <!-- /.chart-responsive -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-4">
+                                <p class="text-center">
+                                    <strong>Goal Completion</strong>
+                                </p>
+
+                                <div class="progress-group">
+                                    Add Products to Cart
+                                    <span class="float-right"><b>160</b>/200</span>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <!-- /.progress-group -->
+
+                                <div class="progress-group">
+                                    Complete Purchase
+                                    <span class="float-right"><b>310</b>/400</span>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-danger" style="width: 75%"></div>
+                                    </div>
+                                </div>
+
+                                <!-- /.progress-group -->
+                                <div class="progress-group">
+                                    <span class="progress-text">Visit Premium Page</span>
+                                    <span class="float-right"><b>480</b>/800</span>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-success" style="width: 60%"></div>
+                                    </div>
+                                </div>
+
+                                <!-- /.progress-group -->
+                                <div class="progress-group">
+                                    Send Inquiries
+                                    <span class="float-right"><b>250</b>/500</span>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                                <!-- /.progress-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- ./card-body -->
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-sm-3 col-6">
+                                <div class="description-block border-right">
+                                    <span class="description-percentage text-success"><i class="fas fa-caret-up"></i>
+                                        17%</span>
+                                    <h5 class="description-header">$35,210.43</h5>
+                                    <span class="description-text">TOTAL REVENUE</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 col-6">
+                                <div class="description-block border-right">
+                                    <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i>
+                                        0%</span>
+                                    <h5 class="description-header">$10,390.90</h5>
+                                    <span class="description-text">TOTAL COST</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 col-6">
+                                <div class="description-block border-right">
+                                    <span class="description-percentage text-success"><i class="fas fa-caret-up"></i>
+                                        20%</span>
+                                    <h5 class="description-header">$24,813.53</h5>
+                                    <span class="description-text">TOTAL PROFIT</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 col-6">
+                                <div class="description-block">
+                                    <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i>
+                                        18%</span>
+                                    <h5 class="description-header">1200</h5>
+                                    <span class="description-text">GOAL COMPLETIONS</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <!-- Main row -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- USERS LIST -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Latest Members</h3>
+
+                        <div class="card-tools">
+                            <span class="badge badge-danger">8 New Members</span>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <ul class="users-list clearfix">
                             <li>
-                                <h5><i class="fa fa-circle" style="color: #006DF0;"></i>CSE</h5>
+                                <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                                <a class="users-list-name" href="#">Alexander Pierce</a>
+                                <span class="users-list-date">Today</span>
                             </li>
                             <li>
-                                <h5><i class="fa fa-circle" style="color: #933EC5;"></i>Accounting</h5>
+                                <img src="dist/img/user8-128x128.jpg" alt="User Image">
+                                <a class="users-list-name" href="#">Norman</a>
+                                <span class="users-list-date">Yesterday</span>
                             </li>
                             <li>
-                                <h5><i class="fa fa-circle" style="color: #65b12d;"></i>Electrical</h5>
+                                <img src="dist/img/user7-128x128.jpg" alt="User Image">
+                                <a class="users-list-name" href="#">Jane</a>
+                                <span class="users-list-date">12 Jan</span>
+                            </li>
+                            <li>
+                                <img src="dist/img/user6-128x128.jpg" alt="User Image">
+                                <a class="users-list-name" href="#">John</a>
+                                <span class="users-list-date">12 Jan</span>
+                            </li>
+                            <li>
+                                <img src="dist/img/user2-160x160.jpg" alt="User Image">
+                                <a class="users-list-name" href="#">Alexander</a>
+                                <span class="users-list-date">13 Jan</span>
+                            </li>
+                            <li>
+                                <img src="dist/img/user5-128x128.jpg" alt="User Image">
+                                <a class="users-list-name" href="#">Sarah</a>
+                                <span class="users-list-date">14 Jan</span>
+                            </li>
+                            <li>
+                                <img src="dist/img/user4-128x128.jpg" alt="User Image">
+                                <a class="users-list-name" href="#">Nora</a>
+                                <span class="users-list-date">15 Jan</span>
+                            </li>
+                            <li>
+                                <img src="dist/img/user3-128x128.jpg" alt="User Image">
+                                <a class="users-list-name" href="#">Nadia</a>
+                                <span class="users-list-date">15 Jan</span>
                             </li>
                         </ul>
-                        <div id="extra-area-chart" style="height: 356px;">
-                            <svg height="356" version="1.1" width="1081" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative;">
-                                <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with RaphaÃ«l 2.1.2
-                                </desc>
-                                <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><text x="32.53125"
-                                    y="317.5" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none"
-                                    fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
-                                </text>
-                                <path fill="none" stroke="#e0e0e0" d="M45.03125,317.5H1056" stroke-width="0.5"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.53125"
-                                    y="244.375" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none"
-                                    fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">75</tspan>
-                                </text>
-                                <path fill="none" stroke="#e0e0e0" d="M45.03125,244.375H1056" stroke-width="0.5"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.53125"
-                                    y="171.25" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none"
-                                    fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">150</tspan>
-                                </text>
-                                <path fill="none" stroke="#e0e0e0" d="M45.03125,171.25H1056" stroke-width="0.5"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.53125"
-                                    y="98.125" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none"
-                                    fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">225</tspan>
-                                </text>
-                                <path fill="none" stroke="#e0e0e0" d="M45.03125,98.125H1056" stroke-width="0.5"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.53125" y="25"
-                                    text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">300</tspan>
-                                </text>
-                                <path fill="none" stroke="#e0e0e0" d="M45.03125,25H1056" stroke-width="0.5"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="1056" y="330"
-                                    text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none"
-                                    fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal" transform="matrix(1,0,0,1,0,6.75)">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2016</tspan>
-                                </text><text x="887.5821114787768" y="330" text-anchor="middle" font-family="sans-serif"
-                                    font-size="12px" stroke="none" fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal" transform="matrix(1,0,0,1,0,6.75)">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2015</tspan>
-                                </text><text x="719.1642229575536" y="330" text-anchor="middle" font-family="sans-serif"
-                                    font-size="12px" stroke="none" fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal" transform="matrix(1,0,0,1,0,6.75)">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2014</tspan>
-                                </text><text x="550.7463344363305" y="330" text-anchor="middle" font-family="sans-serif"
-                                    font-size="12px" stroke="none" fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal" transform="matrix(1,0,0,1,0,6.75)">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2013</tspan>
-                                </text><text x="381.86702704244635" y="330" text-anchor="middle" font-family="sans-serif"
-                                    font-size="12px" stroke="none" fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal" transform="matrix(1,0,0,1,0,6.75)">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2012</tspan>
-                                </text><text x="213.44913852122318" y="330" text-anchor="middle" font-family="sans-serif"
-                                    font-size="12px" stroke="none" fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal" transform="matrix(1,0,0,1,0,6.75)">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2011</tspan>
-                                </text><text x="45.03125" y="330" text-anchor="middle" font-family="sans-serif"
-                                    font-size="12px" stroke="none" fill="#888888"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;"
-                                    font-weight="normal" transform="matrix(1,0,0,1,0,6.75)">
-                                    <tspan dy="4.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2010</tspan>
-                                </text>
-                                <path fill="#2c86f3" stroke="none"
-                                    d="M45.03125,268.75C87.1357221303058,249.25,171.34466639091738,194.40625,213.44913852122318,190.75C255.55361065152897,187.09375,339.76255491214056,232.19750341997263,381.86702704244635,239.5C424.0868538909174,246.82250341997263,508.52650758785944,261.4541723666211,550.7463344363305,249.25C592.8508065666363,237.07917236662107,677.0597508272479,146.265625,719.1642229575536,142C761.2686950878594,137.734375,845.477639348471,223.65625,887.5821114787768,215.125C929.6865836090826,206.59375,1013.8955278696942,109.09375,1056,73.75L1056,317.5L45.03125,317.5Z"
-                                    fill-opacity="0"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0;"></path>
-                                <path fill="none" stroke="#006df0"
-                                    d="M45.03125,268.75C87.1357221303058,249.25,171.34466639091738,194.40625,213.44913852122318,190.75C255.55361065152897,187.09375,339.76255491214056,232.19750341997263,381.86702704244635,239.5C424.0868538909174,246.82250341997263,508.52650758785944,261.4541723666211,550.7463344363305,249.25C592.8508065666363,237.07917236662107,677.0597508272479,146.265625,719.1642229575536,142C761.2686950878594,137.734375,845.477639348471,223.65625,887.5821114787768,215.125C929.6865836090826,206.59375,1013.8955278696942,109.09375,1056,73.75"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
-                                <circle cx="45.03125" cy="268.75" r="3" fill="#006df0" stroke="#006df0" stroke-width="1"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="213.44913852122318" cy="190.75" r="3" fill="#006df0" stroke="#006df0"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="381.86702704244635" cy="239.5" r="3" fill="#006df0" stroke="#006df0"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="550.7463344363305" cy="249.25" r="3" fill="#006df0" stroke="#006df0"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="719.1642229575536" cy="142" r="3" fill="#006df0" stroke="#006df0"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="887.5821114787768" cy="215.125" r="3" fill="#006df0" stroke="#006df0"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="1056" cy="73.75" r="3" fill="#006df0" stroke="#006df0" stroke-width="1"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <path fill="#a76bcb" stroke="none"
-                                    d="M45.03125,239.5C87.1357221303058,234.625,171.34466639091738,217.5625,213.44913852122318,220C255.55361065152897,222.4375,339.76255491214056,271.1708276333789,381.86702704244635,259C424.0868538909174,246.79582763337893,508.52650758785944,133.48375512995895,550.7463344363305,122.5C592.8508065666363,111.54625512995896,677.0597508272479,159.0625,719.1642229575536,171.25C761.2686950878594,183.4375,845.477639348471,220,887.5821114787768,220C929.6865836090826,220,1013.8955278696942,183.4375,1056,171.25L1056,317.5L45.03125,317.5Z"
-                                    fill-opacity="0"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0;"></path>
-                                <path fill="none" stroke="#933ec5"
-                                    d="M45.03125,239.5C87.1357221303058,234.625,171.34466639091738,217.5625,213.44913852122318,220C255.55361065152897,222.4375,339.76255491214056,271.1708276333789,381.86702704244635,259C424.0868538909174,246.79582763337893,508.52650758785944,133.48375512995895,550.7463344363305,122.5C592.8508065666363,111.54625512995896,677.0597508272479,159.0625,719.1642229575536,171.25C761.2686950878594,183.4375,845.477639348471,220,887.5821114787768,220C929.6865836090826,220,1013.8955278696942,183.4375,1056,171.25"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
-                                <circle cx="45.03125" cy="239.5" r="3" fill="#933ec5" stroke="#933ec5" stroke-width="1"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="213.44913852122318" cy="220" r="3" fill="#933ec5" stroke="#933ec5"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="381.86702704244635" cy="259" r="3" fill="#933ec5" stroke="#933ec5"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="550.7463344363305" cy="122.5" r="3" fill="#933ec5" stroke="#933ec5"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="719.1642229575536" cy="171.25" r="3" fill="#933ec5" stroke="#933ec5"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="887.5821114787768" cy="220" r="3" fill="#933ec5" stroke="#933ec5"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="1056" cy="171.25" r="3" fill="#933ec5" stroke="#933ec5" stroke-width="1"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <path fill="#7bc644" stroke="none"
-                                    d="M45.03125,298C87.1357221303058,283.375,171.34466639091738,245.59375,213.44913852122318,239.5C255.55361065152897,233.40625,339.76255491214056,256.55249658002737,381.86702704244635,249.25C424.0868538909174,241.92749658002737,508.52650758785944,189.54292065663475,550.7463344363305,181C592.8508065666363,172.48042065663475,677.0597508272479,173.6875,719.1642229575536,181C761.2686950878594,188.3125,845.477639348471,246.8125,887.5821114787768,239.5C929.6865836090826,232.1875,1013.8955278696942,151.75,1056,122.5L1056,317.5L45.03125,317.5Z"
-                                    fill-opacity="0"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0;"></path>
-                                <path fill="none" stroke="#65b12d"
-                                    d="M45.03125,298C87.1357221303058,283.375,171.34466639091738,245.59375,213.44913852122318,239.5C255.55361065152897,233.40625,339.76255491214056,256.55249658002737,381.86702704244635,249.25C424.0868538909174,241.92749658002737,508.52650758785944,189.54292065663475,550.7463344363305,181C592.8508065666363,172.48042065663475,677.0597508272479,173.6875,719.1642229575536,181C761.2686950878594,188.3125,845.477639348471,246.8125,887.5821114787768,239.5C929.6865836090826,232.1875,1013.8955278696942,151.75,1056,122.5"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
-                                <circle cx="45.03125" cy="298" r="3" fill="#65b12d" stroke="#65b12d" stroke-width="1"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="213.44913852122318" cy="239.5" r="3" fill="#65b12d" stroke="#65b12d"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="381.86702704244635" cy="249.25" r="3" fill="#65b12d" stroke="#65b12d"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="550.7463344363305" cy="181" r="3" fill="#65b12d" stroke="#65b12d"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="719.1642229575536" cy="181" r="3" fill="#65b12d" stroke="#65b12d"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="887.5821114787768" cy="239.5" r="3" fill="#65b12d" stroke="#65b12d"
-                                    stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                                <circle cx="1056" cy="122.5" r="3" fill="#65b12d" stroke="#65b12d" stroke-width="1"
-                                    style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
-                            </svg>
-
-                            <div class="morris-hover morris-default-style"
-                                style="left: 323.367px; top: 138px; display: none;">
-                                <div class="morris-hover-row-label">2012</div>
-                                <div class="morris-hover-point" style="color: #006DF0">
-                                    CSE:
-                                    80
+                        <!-- /.users-list -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer text-center">
+                        <a href="javascript:">View All Users</a>
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                <!--/.card -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-success">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-6 col-xl-4">
+                                <div class="card mb-2 bg-gradient-dark">
+                                    <img class="card-img-top" src="/backend/dist/img/photo1.png" alt="Dist Photo 1">
+                                    <div class="card-img-overlay d-flex flex-column justify-content-end">
+                                        <h5 class="card-title text-primary text-white">Card Title</h5>
+                                        <p class="card-text text-white pb-2 pt-1">Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit sed do eiusmod tempor.</p>
+                                        <a href="#" class="text-white">Last update 2 mins ago</a>
+                                    </div>
                                 </div>
-                                <div class="morris-hover-point" style="color: #933EC5">
-                                    Accounting:
-                                    60
+                            </div>
+                            <div class="col-md-12 col-lg-6 col-xl-4">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="/backend/dist/img/photo2.png" alt="Dist Photo 2">
+                                    <div class="card-img-overlay d-flex flex-column justify-content-center">
+                                        <h5 class="card-title text-white mt-5 pt-2">Card Title</h5>
+                                        <p class="card-text pb-2 pt-1 text-white">
+                                            Lorem ipsum dolor sit amet, <br>
+                                            consectetur adipisicing elit <br>
+                                            sed do eiusmod tempor.
+                                        </p>
+                                        <a href="#" class="text-white">Last update 15 hours ago</a>
+                                    </div>
                                 </div>
-                                <div class="morris-hover-point" style="color: #65b12d">
-                                    Electrical:
-                                    70
+                            </div>
+                            <div class="col-md-12 col-lg-6 col-xl-4">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="/backend/dist/img/photo3.jpg" alt="Dist Photo 3">
+                                    <div class="card-img-overlay">
+                                        <h5 class="card-title text-primary">Card Title</h5>
+                                        <p class="card-text pb-1 pt-1 text-white">
+                                            Lorem ipsum dolor <br>
+                                            sit amet, consectetur <br>
+                                            adipisicing elit sed <br>
+                                            do eiusmod tempor. </p>
+                                        <a href="#" class="text-primary">Last update 3 days ago</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -280,173 +347,244 @@
                 </div>
             </div>
         </div>
-    </div>
+        <!-- /.row -->
+        {{-- Calender --}}
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sticky-top mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Draggable Events</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- the events -->
+                            <div id="external-events">
+                                <div class="external-event bg-success">Lunch</div>
+                                <div class="external-event bg-warning">Go home</div>
+                                <div class="external-event bg-info">Do homework</div>
+                                <div class="external-event bg-primary">Work on UI design</div>
+                                <div class="external-event bg-danger">Sleep tight</div>
+                                <div class="checkbox">
+                                    <label for="drop-remove">
+                                        <input type="checkbox" id="drop-remove">
+                                        remove after drop
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Create Event</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                                <ul class="fc-color-picker" id="color-chooser">
+                                    <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
+                                    <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
+                                    <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
+                                    <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
+                                    <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- /btn-group -->
+                            <div class="input-group">
+                                <input id="new-event" type="text" class="form-control" placeholder="Event Title">
 
-    <div class="library-book-area mg-t-30">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="sparkline10-list">
-                        <div class="sparkline10-hd">
-                            <div class="main-sparkline10-hd">
-                                <h1>Gender</h1>
+                                <div class="input-group-append">
+                                    <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
+                                </div>
+                                <!-- /btn-group -->
                             </div>
-                        </div>
-                        <div class="sparkline10-graph">
-                            <div id="pie1"></div>
+                            <!-- /input-group -->
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="sparkline9-list">
-                        <div class="sparkline9-hd">
-                            <div class="main-sparkline9-hd">
-                                <h1>Map</h1>
-                            </div>
-                        </div>
-                        <div class="sparkline9-graph">
-                            <div class="data-map-single">
-                                <div id="selected_map"></div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- <div class="charts-single-pro responsive-mg-b-30">
-                        <div class="alert-title">
-                            <h2>Pie Chart</h2>
-                        </div>
-                        <div id="pie-chart">
-                            <canvas id="piechart"></canvas>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="card card-primary">
+                    <div class="card-body p-0">
+                        <!-- THE CALENDAR -->
+                        <div id="calendar"></div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
         </div>
     </div>
-
-
 @endsection
-@push('stack_js')
-    <!-- Data Maps JS -->
-    <script src="/backend/js/data-map/d3.min.js"></script>
-    <script src="/backend/js/data-map/topojson.js"></script>
-    <script src="/backend/js/data-map/datamaps.all.min.js"></script>
-    <script src="/backend/js/data-map/data-maps-active.js"></script>
-    <!-- c3 JS -->
-    <script src="/backend/js/c3-charts/d3.min.js"></script>
-    <script src="/backend/js/c3-charts/c3.min.js"></script>
-
-    <!-- Charts JS -->
-    <script src="/backend/js/charts/Chart.js"></script>
-
-
-@endpush
-@push('stack_css')
-    <!-- Chart CSS -->
-    <link rel="stylesheet" href="/backend/css/c3/c3.min.css">
-@endpush
-@section('js')
+@section('scripts')
     <script>
-        (function($) {
-            "use strict";
-            var ctx = document.getElementById("piechart");
-            var piechart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
-                    datasets: [{
-                        label: 'pie Chart',
-                        backgroundColor: [
-                            '#303030',
-                            '#933EC5',
-                            '#65b12d',
-                            '#D80027',
-                            '#006DF0'
-                        ],
-                        data: [10, 50, 30, 40, 60]
-                    }]
-                },
-                options: {
-                    responsive: true
+        $(function() {
+
+            /* initialize the external events
+             -----------------------------------------------------------------*/
+            function ini_events(ele) {
+                ele.each(function() {
+
+                    // create an Event Object (https://fullcalendar.io/docs/event-object)
+                    // it doesn't need to have a start or end
+                    var eventObject = {
+                        title: $.trim($(this).text()) // use the element's text as the event title
+                    }
+
+                    // store the Event Object in the DOM element so we can get to it later
+                    $(this).data('eventObject', eventObject)
+
+                    // make the event draggable using jQuery UI
+                    $(this).draggable({
+                        zIndex: 1070,
+                        revert: true, // will cause the event to go back to its
+                        revertDuration: 0 //  original position after the drag
+                    })
+
+                })
+            }
+
+            ini_events($('#external-events div.external-event'))
+
+            /* initialize the calendar
+             -----------------------------------------------------------------*/
+            //Date for the calendar events (dummy data)
+            var date = new Date()
+            var d = date.getDate(),
+                m = date.getMonth(),
+                y = date.getFullYear()
+
+            var Calendar = FullCalendar.Calendar;
+            var Draggable = FullCalendar.Draggable;
+
+            var containerEl = document.getElementById('external-events');
+            var checkbox = document.getElementById('drop-remove');
+            var calendarEl = document.getElementById('calendar');
+
+            // initialize the external events
+            // -----------------------------------------------------------------
+
+            new Draggable(containerEl, {
+                itemSelector: '.external-event',
+                eventData: function(eventEl) {
+                    return {
+                        title: eventEl.innerText,
+                        backgroundColor: window.getComputedStyle(eventEl, null).getPropertyValue(
+                            'background-color'),
+                        borderColor: window.getComputedStyle(eventEl, null).getPropertyValue(
+                            'background-color'),
+                        textColor: window.getComputedStyle(eventEl, null).getPropertyValue('color'),
+                    };
                 }
             });
 
-            c3.generate({
-                bindto: '#pie1',
-                data: {
-                    columns: [
-                        ['Male', 30],
-                        ['Female', 120]
-                    ],
-                    colors: {
-                        Male: '#006DF0',
-                        Female: '#933EC5'
-                    },
-                    type: 'pie',
-                    groups: [
-                        ['Male', 'Female']
-                    ]
-                }
-            });
-
-        })(jQuery);
-    </script>
-    <script>
-        (function($) {
-            "use strict";
-            c3.generate({
-                bindto: '#pie1',
-                data: {
-                    columns: [
-                        ['Male', 30],
-                        ['Female', 120]
-                    ],
-                    colors: {
-                        Male: '#006DF0',
-                        Female: '#933EC5'
-                    },
-                    type: 'pie',
-                    groups: [
-                        ['Male', 'Female']
-                    ]
-                }
-            });
-
-        })(jQuery);
-    </script>
-
-    <script>
-        (function($) {
-            "use strict";
-
-            var selected_map = new Datamap({
-                element: document.getElementById("selected_map"),
-                responsive: true,
-                fills: {
-                    defaultFill: "#DBDAD6",
-                    active: "red"
+            var calendar = new Calendar(calendarEl, {
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                geographyConfig: {
-                    highlightFillColor: '#006DF0',
-                    highlightBorderWidth: 0,
-                },
-                data: {
-                    USA: {
-                        fillKey: "active"
+                themeSystem: 'bootstrap',
+                //Random default events
+                events: [{
+                        title: 'All Day Event',
+                        start: new Date(y, m, 1),
+                        backgroundColor: '#f56954', //red
+                        borderColor: '#f56954', //red
+                        allDay: true
                     },
-                    RUS: {
-                        fillKey: "active"
+                    {
+                        title: 'Long Event',
+                        start: new Date(y, m, d - 5),
+                        end: new Date(y, m, d - 2),
+                        backgroundColor: '#f39c12', //yellow
+                        borderColor: '#f39c12' //yellow
                     },
-                    DEU: {
-                        fillKey: "active"
+                    {
+                        title: 'Meeting',
+                        start: new Date(y, m, d, 10, 30),
+                        allDay: false,
+                        backgroundColor: '#0073b7', //Blue
+                        borderColor: '#0073b7' //Blue
                     },
-                    BRA: {
-                        fillKey: "active"
+                    {
+                        title: 'Lunch',
+                        start: new Date(y, m, d, 12, 0),
+                        end: new Date(y, m, d, 14, 0),
+                        allDay: false,
+                        backgroundColor: '#00c0ef', //Info (aqua)
+                        borderColor: '#00c0ef' //Info (aqua)
                     },
-                    VN: {
-                        fillKey: "active"
+                    {
+                        title: 'Birthday Party',
+                        start: new Date(y, m, d + 1, 19, 0),
+                        end: new Date(y, m, d + 1, 22, 30),
+                        allDay: false,
+                        backgroundColor: '#00a65a', //Success (green)
+                        borderColor: '#00a65a' //Success (green)
+                    },
+                    {
+                        title: 'Click for Google',
+                        start: new Date(y, m, 28),
+                        end: new Date(y, m, 29),
+                        url: 'https://www.google.com/',
+                        backgroundColor: '#3c8dbc', //Primary (light-blue)
+                        borderColor: '#3c8dbc' //Primary (light-blue)
+                    }
+                ],
+                editable: true,
+                droppable: true, // this allows things to be dropped onto the calendar !!!
+                drop: function(info) {
+                    // is the "remove after drop" checkbox checked?
+                    if (checkbox.checked) {
+                        // if so, remove the element from the "Draggable Events" list
+                        info.draggedEl.parentNode.removeChild(info.draggedEl);
                     }
                 }
             });
-        })(jQuery);
+
+            calendar.render();
+            // $('#calendar').fullCalendar()
+
+            /* ADDING EVENTS */
+            var currColor = '#3c8dbc' //Red by default
+            // Color chooser button
+            $('#color-chooser > li > a').click(function(e) {
+                e.preventDefault()
+                // Save color
+                currColor = $(this).css('color')
+                // Add color effect to button
+                $('#add-new-event').css({
+                    'background-color': currColor,
+                    'border-color': currColor
+                })
+            })
+            $('#add-new-event').click(function(e) {
+                e.preventDefault()
+                // Get value and make sure it is not null
+                var val = $('#new-event').val()
+                if (val.length == 0) {
+                    return
+                }
+
+                // Create events
+                var event = $('<div />')
+                event.css({
+                    'background-color': currColor,
+                    'border-color': currColor,
+                    'color': '#fff'
+                }).addClass('external-event')
+                event.text(val)
+                $('#external-events').prepend(event)
+
+                // Add draggable funtionality
+                ini_events(event)
+
+                // Remove event from text input
+                $('#new-event').val('')
+            })
+        })
     </script>
 @endsection

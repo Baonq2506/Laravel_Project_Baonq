@@ -41,8 +41,10 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->group(function
             ]);
 
     //Roles_permissions
-    Route::resource('role', 'RoleController');
-    route::get('permissions','RoleController@indexPermissions')->name('role.indexPermissions');
+    Route::resource('role', 'RoleController')->parameters([
+        'role'=>'role_id',
+        ]);
+    route::get('permissions','RoleController@indexPermissions')->name('role.rolePer');
 
     //Dashboard
     route::get('/home',function(){
@@ -52,15 +54,19 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->group(function
     //Personnel
     Route::resource('personnel', 'PersonnelController')->parameters([
         'personnel'=>'personnel_id',
-        ]);;
-    Route::get('personnel/softDelete','PersonnelController@perSoftDelete')->name('personnel.perSoftDelete');
+        ]);
+
+    Route::get('historyEmployee','PersonnelController@perSoftDelete')->name('personnel.perSoftDelete');
+
     route::get('personnel/signWithUser/{personnel_id}','PersonnelController@signWithUser')->name('personnel.signWithUser');
 
     //User
     Route::resource('user', 'UserController')->parameters([
         'user'=>'user_id',
         ]);
+
     Route::get('UserDelete','UserController@userSoftDelete')->name('user.softDelete');
+
     route::get('user/signWithUser/{user_id}','UserController@signWithUser')->name('user.signWithID');
 
     //Category
@@ -73,6 +79,7 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->group(function
     Route::resource('post', 'PostController')->parameters([
         'post'=>'post_id',
         ]);
+    route::get('history','PostController@historyDelete')->name('post.historyDelete');
 
     //Product
     Route::resource('product', 'ProductController')->parameters([

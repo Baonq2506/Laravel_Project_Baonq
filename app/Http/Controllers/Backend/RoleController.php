@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -14,14 +16,21 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('backend.roles.index');
+        $roles=Role::all();
+        return view('backend.roles.index',[
+            'roles' =>$roles
+        ]);
     }
 
     public function indexPermissions(){
-        return view('backend.roles.indexPer');
+        $permission=new Permission();
+        $perArr=$permission->permissionsArr();
+
+        return view('backend.roles.indexPer',[
+            'permissions'=>$perArr,
+        ]);
 
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +38,12 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('backend.roles.create');
+        $roles=Role::all();
+        $permissions=Permission::all();
+        return view('backend.roles.create',[
+            'roles' =>$roles,
+            'permissions'=>$permissions,
+        ]);
     }
 
     /**
@@ -62,7 +76,14 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role=Role::find($id);
+        $permission=new Permission();
+        $perArr=$permission->permissionsArr();
+
+        return view('backend.roles.edit',[
+            'role'=>$role,
+            'permissions' =>$perArr,
+        ]);
     }
 
     /**
@@ -85,6 +106,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Role::find($id)->permissions()->detach();
+        Role::where('id',$id)->delete();
+        return redirect('backend/role');
     }
 }

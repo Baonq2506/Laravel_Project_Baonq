@@ -2,77 +2,54 @@
 @section('title')
     Edit Category
 @endsection
-
-@section('main')
-    <div class="single-pro-review-area mt-t-30 mg-b-15">
+@section('content-header')
+    <div class="content-header">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="product-payment-inner-st">
-                        <ul id="myTabedu1" class="tab-review-design">
-                            <li class="active"><a href="#description">Edit Category</a></li>
-
-                        </ul>
-                        <div id="myTabContent" class="tab-content custom-product-edit">
-                            <div class="product-tab-list tab-pane fade active in" id="description">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <form method='POST'
-                                                action="{{ route('backend.category.update', [
-    'category_id' => $category->id,
-]) }}">
-                                                @csrf
-                                                @method('put')
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="devit-card-custom">
-                                                            <div class="form-group">
-                                                                <label for="">Name</label>
-                                                                <input name="name" type="text" class="form-control"
-                                                                    placeholder="Name" value="{{ $category->name }}">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="">Slug</label>
-                                                                <input type="text" class="form-control" placeholder="Head"
-                                                                    value="{{ $category->slug }}">
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="devit-card-custom">
-                                                            <div class="form-group">
-                                                                <label for="">Time Update</label>
-                                                                <input type="number" class="form-control" disabled
-                                                                    value="{{ $category->updated_at->format('d/m/Y h:i:s') }}">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="">Time Created</label>
-                                                                <input type="text" name="created_at" class="form-control"
-                                                                    disabled placeholder=""
-                                                                    value="{{ $category->created_at->format('d/m/Y h:i:s') }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="payment-adress">
-                                                            <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">Update</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Edit Category</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('backend.home') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Edit Category</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+@endsection
+@section('main')
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <form action="{{ route('backend.category.update', ['category_id' => $category->id]) }}" method="post">
+                        @method('PUT')
+                        @csrf
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputName1">Name</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                    id="exampleInputName1" placeholder="Name" name='name' value="{{ $category->name }}">
                             </div>
+
+                            @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-                    </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <a type="submit" href="{{ route('backend.category.index') }}"
+                                class="btn btn-danger">Cancel</a> &emsp;
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+
     </div>
 @endsection

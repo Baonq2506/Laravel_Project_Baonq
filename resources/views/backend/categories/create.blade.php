@@ -2,113 +2,54 @@
 @section('title')
     Create Category
 @endsection
-
-@section('main')
-    <div class="single-pro-review-area mt-t-30 mg-b-15">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="product-payment-inner-st">
-                        <ul id="myTabedu1" class="tab-review-design">
-                            <li class="active"><a href="#description">Create Category</a></li>
-
-                        </ul>
-                        <div id="myTabContent" class="tab-content custom-product-edit">
-                            <div class="product-tab-list tab-pane fade active in" id="description">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <form id="add-department" action="{{ route('backend.category.store') }}"
-                                                method="post" class="add-department" novalidate="novalidate">
-                                                @csrf
-                                                @method('POST')
-                                                <div class="row">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                        <div class="form-group">
-                                                            <input name="name" type="text" class="form-control"
-                                                                placeholder="Name">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="payment-adress">
-                                                            <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">Create</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- <div class="product-tab-list tab-pane fade" id="reviews">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="devit-card-custom">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" placeholder="Email">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="number" class="form-control" placeholder="Phone">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="password" class="form-control"
-                                                                placeholder="Password">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="password" class="form-control"
-                                                                placeholder="Confirm Password">
-                                                        </div>
-                                                        <a href="#!"
-                                                            class="btn btn-primary waves-effect waves-light">Submit</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-tab-list tab-pane fade" id="INFORMATION">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="devit-card-custom">
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control"
-                                                                placeholder="Facebook URL">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control"
-                                                                placeholder="Twitter URL">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control"
-                                                                placeholder="Google Plus">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control"
-                                                                placeholder="Linkedin URL">
-                                                        </div>
-                                                        <button type="submit"
-                                                            class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
-                        </div>
-                    </div>
-                </div>
+@section('content-header')
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Create Category</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{ route('backend.home') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Create Category</li>
+                </ol>
             </div>
         </div>
     </div>
+@endsection
+
+@section('main')
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <form action="{{ route('backend.category.store') }}" method="post">
+                        @csrf
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputName1">Name</label>
+                                <input type="text" class="form-control" id="exampleInputName1" placeholder="Enter Name"
+                                    name='name' class="@error('name') is-invalid @enderror">
+                                @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <a type="submit" href="{{ route('backend.category.index') }}" class="btn btn-danger">Cancel</a>
+                            <button type="submit" class="btn btn-primary float-right">Create</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 @endsection

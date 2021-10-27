@@ -1,52 +1,55 @@
 @extends('backend.layouts.master')
 @section('title')
-    Create Post
+    Create Tag
 @endsection
-
-@section('main')
-    <div class="single-pro-review-area mt-t-30 mg-b-15">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="product-payment-inner-st">
-                        <ul id="myTabedu1" class="tab-review-design">
-                            <li class="active"><a href="#description">Create Tag</a></li>
-
-                        </ul>
-                        <div id="myTabContent" class="tab-content custom-product-edit">
-                            <div class="product-tab-list tab-pane fade active in" id="description">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <div id="dropzone1" class="pro-ad addcoursepro">
-                                                <form action="#">
-                                                    <div class="row">
-                                                        @csrf
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <input name="name" type="text" class="form-control"
-                                                                    placeholder="Name Tag">
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <div class="col-lg-12">
-                                                                    <div class="payment-adress">
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary waves-effect waves-light">Create</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+@section('content-header')
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Create Tag</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{ route('backend.home') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Create Tag</li>
+                </ol>
             </div>
         </div>
     </div>
+@endsection
+
+@section('main')
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <form action="{{ route('backend.tag.store') }}" method="post">
+                        @csrf
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputName1">Name</label>
+                                <input type="text" class="form-control" id="exampleInputName1" placeholder="Enter Name"
+                                    name='name' class="@error('name') is-invalid @enderror">
+                                @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <a type="submit" href="{{ route('backend.tag.index') }}" class="btn btn-danger">Cancel</a>
+                            <button type="submit" class="btn btn-primary float-right">Create</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 @endsection

@@ -1,178 +1,271 @@
-<div class="left-sidebar-pro">
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <a href="index.html"><img width="60px" class="main-logo" src="/images/logo.ico" alt=""></a>
-            <strong><a href="index.html"><img style="margin-top: -20px" src="/images/logo.ico" alt=""></a></strong>
+<div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
-        <br>
-        <div class="left-custom-menu-adp-wrap  mCustomScrollbar _mCS_1 mCS-autoHide"
-            style="position: relative; overflow: visible;">
-            <div id="mCSB_1" class="mCustomScrollBox mCS-light-1 mCSB_vertical mCSB_outside" style="max-height: none;"
-                tabindex="0">
-                <div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;"
-                    dir="ltr">
-                    <nav class="sidebar-nav left-sidebar-menu-pro">
-                        <ul class="metismenu" id="menu1">
-                            {{-- Dashboard --}}
-                            <li class="">
-                                <a href="{{ route('backend.home') }}" aria-expanded="false">
-                                    <i
-                                        class="fa fa-home fa-lg @if (request()->routeIs('backend.home'))
-                                        active-icon @endif"></i>
-                                    <span
-                                        class="mini-click-non @if (request()->routeIs('backend.home'))
-                                        active @endif">
-                                        &ensp;Dashboard</span>
-                                </a>
+        <div class="info">
+            <a href="#" class="d-block">
+                Nguyen Quoc Bao
+                {{-- {{ Illuminate\Support\Facades\Auth::user()->name }} --}}
+                <span class="badge badge-primary">Admin</span>
+            </a>
 
-                            </li>
-                            {{-- Category --}}
-                            <li>
-                                <a class="has-arrow" href="all-courses.html" aria-expanded="false"><i
-                                        class="fa fa-list-alt fa-lg  @if (request()->routeIs('backend.category.*'))
-                                    active-icon @endif"
-                                        aria-hidden="true"></i>&ensp;<span
-                                        class="mini-click-non @if (request()->routeIs('backend.category.*')) active @endif ">Category</span></a>
 
-                                <ul class="submenu-angle collapse @if (request()->routeIs('backend.category.*'))
-                                    show @endif"
-                                    aria-expanded="false">
-                                    <li><a title="All Library" href="{{ route('backend.category.index') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.category.index')) active @endif">All Categories</span></a>
-                                    </li>
-                                    <li><a title="Add Library" href="{{ route('backend.category.create') }}"><span
-                                                class="mini-sub-pro  @if (request()->routeIs('backend.category.create')) active @endif">Create
-                                                Categories</span></a></li>
 
-                                </ul>
-                            </li>
-                            {{-- Personnel --}}
-                            <li>
-                                <a class="has-arrow" href="#" aria-expanded="false"><i
-                                        class="fa fa-user-secret fa-lg  @if (request()->routeIs('backend.personnel.*'))
-                                        active-icon @endif"
-                                        aria-hidden="true"></i>&ensp; <span
-                                        class="mini-click-non @if (request()->routeIs('backend.personnel.*'))
-                                            active @endif">Personnel</span></a>
-                                <ul class="submenu-angle collapse  @if (request()->routeIs('backend.personnel.*'))
-                                    show @endif"
-                                    aria-expanded="false">
-                                    <li><a title="All Professors" href="{{ route('backend.personnel.index') }}"><span
-                                                class="mini-sub-pro  @if (request()->routeIs('backend.personnel.index')) active @endif">All Personnel</span></a>
-                                    </li>
-                                    <li><a title="Add Professor" href="{{ route('backend.personnel.create') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.personnel.create')) active @endif">Create
-                                                Personnel</span></a></li>
+        </div>
+    </div>
 
-                                </ul>
-                            </li>
-                            {{-- User --}}
-                            <li>
-                                <a class="has-arrow" href="all-students.html" aria-expanded="false"><i
-                                        class="fa fa-user-o fa-lg @if (request()->routeIs('backend.user.*'))
-                                        active-icon @endif"
-                                        aria-hidden="true"></i>&ensp; <span
-                                        class="mini-click-non @if (request()->routeIs('backend.user.*'))
-                                        active @endif">User</span></a>
-                                <ul class="submenu-angle collapse @if (request()->routeIs('backend.user.*'))
-                                    show @endif"
-                                    aria-expanded="false">
-                                    <li><a title="All Students" href="{{ route('backend.user.index') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.user.index'))
-                                                active @endif">All
-                                                Users</span></a></li>
-                                    <li><a title="Add Students" href="{{ route('backend.user.create') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.user.create'))
-                                                active @endif">Create
-                                                Users</span></a></li>
-                                    <li><a title="Edit Students" href="{{ route('backend.user.softDelete') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.user.softDelete'))
-                                                active @endif">All
-                                                Delete
-                                                Users</span></a></li>
-                                </ul>
-                            </li>
-                            {{-- Post-Tag --}}
-                            <li>
-                                <a class="has-arrow" href="all-courses.html" aria-expanded="false"><i
-                                        class="fa fa-newspaper-o fa-lg @if (request()->routeIs('backend.post.*') || request()->routeIs('backend.tag.*'))
-                                        active-icon @endif"
-                                        aria-hidden="true"></i>&ensp;<span
-                                        class="mini-click-non @if (request()->routeIs('backend.post.*') || request()->routeIs('backend.tag.*'))
-                                        active @endif">Post</span></a>
-                                <ul class="submenu-angle collapse @if (request()->routeIs('backend.post.*') || request()->routeIs('backend.tag.*'))
-                                   show @endif"
-                                    aria-expanded="false">
-                                    <li><a title="All Courses" href="{{ route('backend.post.index') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.post.index'))
-                                                active @endif">All
-                                                Posts</span></a></li>
-                                    <li><a title="Add Courses" href="{{ route('backend.post.create') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.post.create'))
-                                                active @endif">Create
-                                                Posts</span></a></li>
-                                    <li><a title="Courses Profile" href="{{ route('backend.tag.index') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.tag.index'))
-                                                active @endif">All
-                                                Tags</span></a></li>
-                                    <li><a title="Courses Profile" href="{{ route('backend.tag.create') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.tag.create'))
-                                                active @endif">Create
-                                                Tags</span></a></li>
-                                </ul>
-                            </li>
-                            {{-- Product --}}
-                            <li>
-                                <a class="has-arrow" href="all-courses.html" aria-expanded="false"><i
-                                        class="fa fa-shopping-basket fa-lg @if (request()->routeIs('backend.product.*'))
-                                        active-icon @endif"
-                                        aria-hidden="true"></i>&ensp;<span
-                                        class="mini-click-non @if (request()->routeIs('backend.product.*'))
-                                        active @endif">Product</span></a>
-                                <ul class="submenu-angle collapse @if (request()->routeIs('backend.product.*'))
-                                    show @endif"
-                                    aria-expanded="false">
-                                    <li><a title="All Library" href="{{ route('backend.product.index') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.product.index'))
-                                                active @endif">All
-                                                Products</span></a></li>
-                                    <li><a title="Add Library" href="{{ route('backend.product.create') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.product.create'))
-                                                active @endif">Create
-                                                Product</span></a></li>
-                                </ul>
-                            </li>
-                            {{-- Roles --}}
-                            <li>
-                                <a class="has-arrow" href="all-professors.html" aria-expanded="false"><i
-                                        class="fa fa-rocket fa-lg @if (request()->routeIs('backend.role.*'))
-                                        active-icon @endif"
-                                        aria-hidden="true"></i>&ensp; <span
-                                        class="mini-click-non @if (request()->routeIs('backend.role.*'))
-                                        active @endif">Roles</span></a>
-                                <ul class="submenu-angle collapse @if (request()->routeIs('backend.role.*'))
-                                    show @endif"
-                                    aria-expanded="false">
-                                    <li><a title="All Professors" href="{{ route('backend.role.index') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.role.index'))
-                                                active @endif">All
-                                                Roles</span></a></li>
-                                    <li><a title="Add Professor" href="{{ route('backend.role.create') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.role.create'))
-                                                active @endif">Create
-                                                Role</span></a></li>
-                                    <li><a title=" Professor"
-                                            href="{{ route('backend.role.indexPermissions') }}"><span
-                                                class="mini-sub-pro @if (request()->routeIs('backend.role.indexPermissions'))
-                                                active @endif">All
-                                                Permissions</span></a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+    <!-- SidebarSearch Form -->
+    <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+                <button class="btn btn-sidebar">
+                    <i class="fas fa-search fa-fw"></i>
+                </button>
             </div>
         </div>
+    </div>
 
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar nav-flat flex-column" data-widget="treeview" role="menu"
+            data-accordion="false">
+            <!-- Home -->
+            <li class="nav-header" style="font-weight:bold;color:rgb(22, 190, 241)">
+                <h5>Home</h5>
+            </li>
+            <li class="nav-item  @if (request()->routeIs('backend.home'))
+                menu-open @endif ">
+                <a href="{{ route('backend.home') }}"
+                    class="nav-link @if (request()->is('backend.home')) active
+                        @endif">
+                    <i style=" @if (request()->routeIs('backend.home')) color:red  @endif" class="fa fa-home" aria-hidden="true"></i>
+                    <p>
+                        Dashboard
+                    </p>
+                </a>
+            </li>
+            <li style="font-weight:bold;color:rgb(22, 190, 241)" class="nav-header">
+                <h5>
+                    Blog</h5>
+            </li>
+            {{-- Category --}}
+            <li class="nav-item @if (request()->routeIs('backend.category.*'))
+                menu-open @endif ">
+                <a href="#"
+                    class="nav-link @if (request()->routeIs('backend.category.*'))
+                active @endif ">
+                    <i class="fa fa-gavel" aria-hidden="true"></i>
+                    <p>
+                        Category
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('backend.category.create') }}" class="nav-link  @if (request()->routeIs('backend.category.create')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.category.create')) color:red  @endif" class="fa fa-plus" aria-hidden="true"></i>
+                            <p>Create Category</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.category.index') }}" class="nav-link  @if (request()->routeIs('backend.category.index')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.category.index')) color:red  @endif" class="fa fa-list" aria-hidden="true"></i>
+                            <p>List Categories</p>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a href="{{ route('backend.category.softDelete') }}"
+                            class="nav-link  @if (request()->routeIs('backend.category.softDelete')) active @endif">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                            <p>Categories Delete</p>
+                        </a>
+                    </li> --}}
+                </ul>
+            </li>
+            {{-- Post --}}
+            <li class="nav-item @if (request()->routeIs('backend.post.*'))
+                menu-open @endif ">
+                <a href="#2" class="nav-link @if (request()->routeIs('backend.post.*'))
+                active @endif">
+                    <i class="fa fa-list-alt" aria-hidden="true"></i>
+                    <p>
+                        Post
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('backend.post.create') }}" class="nav-link @if (request()->routeIs('backend.post.create')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.post.create')) color:red  @endif" class="fa fa-plus-circle" aria-hidden="true"></i>
+                            <p> &ensp;Create Post</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.post.index') }}" class="nav-link  @if (request()->routeIs('backend.post.index')) active  @endif">
+                            <i style=" @if (request()->routeIs('backend.post.index')) color:red  @endif" class="fa fa-th-list" aria-hidden="true"></i>
+                            <p> &ensp;Post list</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.post.historyDelete') }}"
+                            class="nav-link  @if (request()->routeIs('backend.post.historyDelete')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.post.historyDelete')) color:red  @endif" class="fa fa-trash" aria-hidden="true"></i>
+                            <p> &ensp;Delete History</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {{-- Tag --}}
+            <li class="nav-item @if (request()->routeIs('backend.tag.*'))
+                menu-open @endif ">
+                <a href="#2" class="nav-link @if (request()->routeIs('backend.tag.*'))
+                active @endif">
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                    <p>
+                        Tag
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('backend.tag.index') }}" class="nav-link  @if (request()->routeIs('backend.tag.index')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.tag.index')) color:red  @endif" class="fa fa-th-list" aria-hidden="true"></i>
+                            <p>&ensp;Tag list</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.tag.create') }}" class="nav-link  @if (request()->routeIs('backend.tag.create')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.tag.create')) color:red  @endif" class="fa fa-plus-circle" aria-hidden="true"></i>
+                            <p>&ensp;Create Tag</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li style="font-weight:bold;color:rgb(22, 190, 241)" class="nav-header">
+                <h5>Employee & Users</h5>
+            </li>
+            {{-- User --}}
+            <li class="nav-item @if (request()->routeIs('backend.user.*'))
+                menu-open @endif ">
+                <a href="#" class="nav-link @if (request()->routeIs('backend.user.*'))
+                active @endif ">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <p>
+                        Users
+                        <i class="fas fa-angle-left right"></i>
+
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('backend.user.create') }}" class="nav-link  @if (request()->routeIs('backend.user.create')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.user.create')) color:red  @endif" class="fa fa-user-plus" aria-hidden="true"></i>
+                            <p>Create User</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.user.index') }}" class="nav-link  @if (request()->routeIs('backend.user.index')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.user.index')) color:red  @endif" class="fa fa-th-list" aria-hidden="true"></i>
+                            <p>List users</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.user.softDelete') }}" class="nav-link  @if (request()->routeIs('backend.user.softDelete')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.user.softDelete')) color:red  @endif" class="fa fa-user-times" aria-hidden="true"></i>
+                            <p>List Die Users</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {{-- Employee --}}
+            <li class="nav-item @if (request()->routeIs('backend.personnel.*'))
+                menu-open @endif ">
+                <a href="#"
+                    class="nav-link @if (request()->routeIs('backend.personnel.*'))
+                    active @endif ">
+                    <i class="fa fa-user-secret" aria-hidden="true"></i>
+                    <p>
+                        Employee
+                        <i class="fas fa-angle-left right"></i>
+
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('backend.personnel.create') }}"
+                            class="nav-link  @if (request()->routeIs('backend.personnel.create')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.personnel.create')) color:red  @endif" class="fa fa-user-plus" aria-hidden="true"></i>
+                            <p>Create Employee</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.personnel.index') }}" class="nav-link  @if (request()->routeIs('backend.personnel.index')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.personnel.index')) color:red  @endif" class="fa fa-th-list" aria-hidden="true"></i>
+                            <p>List Employee</p>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a href="{{ route('backend.personnel.perSoftDelete') }}"
+                            class="nav-link  @if (request()->routeIs('backend.personnel.perSoftDelete')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.personnel.perSoftDelete')) color:red  @endif" class="fa fa-user-times" aria-hidden="true"></i>
+                            <p>List Die Employee</p>
+                        </a>
+                    </li> --}}
+
+                </ul>
+            </li>
+            <li style="font-weight:bold;color:rgb(22, 190, 241)" class="nav-header">
+                <h5>Decentralization</h5>
+            </li>
+            {{-- Role --}}
+            <li class="nav-item @if (request()->routeIs('backend.role.*'))
+                menu-open @endif ">
+                <a href="#" class="nav-link @if (request()->routeIs('backend.role.*'))
+                active @endif ">
+                    <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                    <p>
+                        Role & Permission
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('backend.role.create') }}" class="nav-link  @if (request()->routeIs('backend.role.create')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.role.create')) color:red  @endif" class="fa fa-plus" aria-hidden="true"></i>
+                            <p>Create Role</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.role.index') }}" class="nav-link  @if (request()->routeIs('backend.role.index')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.role.index')) color:red  @endif" class="fa fa-list" aria-hidden="true"></i>
+                            <p>List role</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.role.rolePer') }}" class="nav-link  @if (request()->routeIs('backend.role.rolePer')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.role.rolePer')) color:red  @endif" class="fa fa-list-alt" aria-hidden="true"></i>
+                            <p>List Decentralization</p>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a href="" class="nav-link  @if (request()->routeIs('backend.role.indexPermissions')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.role.indexPermissions')) color:red  @endif" class="fa fa-th-list" aria-hidden="true"></i>
+                            <p>List Permissions</p>
+                        </a>
+                    </li> --}}
+                    {{-- <li class="nav-item">
+                        <a href="" class="nav-link  @if (request()->routeIs('backend.permission.userPermissions')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.permission.userPermissions')) color:red  @endif" class="fa fa-address-book" aria-hidden="true"></i>
+                            <p>List Employee Rights</p>
+                        </a>
+                    </li> --}}
+                </ul>
+            </li>
+        </ul>
+        <hr>
     </nav>
+    <!-- /.sidebar-menu -->
 </div>

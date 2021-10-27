@@ -21,10 +21,12 @@ class Post extends Model
     protected $statusArr = [
         1 => 'Public',
         2 => 'Private',
+        3 => 'Approval',
     ];
     protected $statusColor=[
         1=>'success',
         2=>'danger',
+        3=>'info',
     ];
 
     protected $tagColor=[
@@ -33,6 +35,18 @@ class Post extends Model
         3=>'info',
         4=>'dark',
     ];
+    public function statusColor($status){
+        return $this->statusColor[$status];
+    }
+
+    public function statusText($status){
+        return $this->statusArr[$status];
+    }
+    public function statusArr()
+    {
+        return $this->statusArr;
+    }
+
     public function getStatusTextAttribute()
     {
         return '<span class="badge badge-' . $this->statusColor[$this->status] .'">' . $this->statusArr[$this->status] . '<span>';

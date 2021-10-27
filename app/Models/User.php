@@ -75,6 +75,15 @@ class User extends Authenticatable
 
         return $this->genderArr[$this->userInfo->gender];
     }
+    public function getRoleTextAttribute(){
+
+        return $this->roles[0]->name;
+    }
+
+    public function getDateFormatAttribute(){
+
+        return date('d/m/Y', strtotime($this->userInfo->date));
+    }
     public function getStatusTextAttribute()
     {
         return '<span style="background:'.$this->colorArr[$this->status].'" class="badge badge-' . $this->statusColor[$this->status] .'">' . $this->statusArr[$this->status] . '<span>';
@@ -92,7 +101,7 @@ class User extends Authenticatable
 
     public function post()
     {
-        return $this->hasMany(Post::class, 'id');
+        return $this->hasMany(Post::class, 'user_created_id');
     }
 
     public function roles()

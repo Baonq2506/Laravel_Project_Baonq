@@ -1,65 +1,117 @@
 @extends('backend.layouts.master')
 @section('title')
-    Post
+    List Post
+@endsection
+@push('stack_css')
+    <link rel="stylesheet" href="/css/style.css">
+@endpush
+@section('css')
+    <style>
+        .ribbon-wrapper {
+            margin-right: 9px;
+        }
+
+    </style>
+@endsection
+@section('content-header')
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-7">
+                <h1 class="m-0">Blog List</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-5">
+                <div class="card-tools">
+                    <form action="" method="post">
+                        @csrf
+                        <div class="input-group input-group-sm" style="width: 430px;">
+                            <input type="text" name="title_search" class="form-control float-right" placeholder="Title"
+                                data-toggle="tooltip" data-placement="bottom" title="Category">
+                            <select data-toggle="tooltip" data-placement="top" title="Category" class="form-control "
+                                name="category_search" id="">
+                                <option value="0" selected>All</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            <select data-toggle="tooltip" data-placement="bottom" title="Status" class="form-control "
+                                name="status_search" id="">
+                                <option value="0" selected>All</option>
+                                <option value="1">Public</option>
+                                <option value="2">Private</option>
+                                <option value="3">Approved</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div>
 @endsection
 @section('main')
-    <div class="courses-area">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 breadcome-heading">
-                        <form role="search" class="sr-input-func">
-                            <input type="text" style="colr:black" placeholder="Search..." class="search-int form-control">
-                            <a href="#"><i style="color:red" class="fa fa-search"></i></a>
-                        </form>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        @include('backend.comporment.btn',[
-                        'name'=>'Create post',
-                        'color'=>'success',
-                        'icon'=>'plus',
-                        'link'=>'backend.post.create',
-                        ])
+    <div class="container-fluid">
+        <div class="row">
 
+            @foreach ($posts as $post)
+                <div class="col-md-12 col-lg-6 col-xl-4">
+                    <div class=" ribbon-wrapper">
+                        <div class="ribbon bg-{{ $post->statusColor($post->status) }}">
+                            {{ $post->statusText($post->status) }}
+                        </div>
                     </div>
-                </div><br> <br>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="courses-inner res-mg-b-30">
-                        <div class="courses-title">
-                            <a href="#"><img src="img/courses/1.jpg" alt=""></a>
-                            <h2>Apps Development</h2>
-                        </div>
-                        <div class="courses-alaltic">
-                            <span style="background:green" class="cr-ic-r badge badge-success">Public</span>
-                            </span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span>
-                                50</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-eye"
-                                        aria-hidden="true"></i></span>
-                                500</span>
-                        </div>
-                        <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Writer:</b> Jane Doe</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Created:</b> 6 Months</p>
+                    <div class="card mb-2 bg-gradient-dark">
+                        <img class="card-img-top" src="/backend/dist/img/photo1.png" alt="Dist Photo 1">
+                        <div class="card-img-overlay d-flex flex-column ">
+                            <div>
+                                <h5 class="card-title text-white text-white text-bold">{{ $post->title }}</h5>
+                            </div>
+                            <br>
+                            <div>
+                                <p class="card-text"
+                                    style="display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;word-break: break-word;">
+                                    {{ $post->content }}
+                                </p>
+                            </div>
+                            <br>
+                            <a href="{{ route('backend.post.show', [
+    'post_id' => $post->id,
+]) }}">Read
+                                More...</a>
+                            <a data-toggle="tooltip" data-placement="bottom" title="{{ $post->userUpdated->name }}"
+                                href="#" class="text-white">Last update :
+                                {{ $post->updated_at->toFormattedDateString() }}</a>
 
-                            <p><span><i class="fa fa-clock"></i></span> <b>Updated:</b> 100+</p>
-                        </div>
-                        <div class="product-buttons">
-                            <a href="{{ route('backend.post.show', ['post_id' => 1]) }}"><button type="button"
-                                    class="button-default cart-btn">Read More</button></a>
-                            &ensp;&ensp;&ensp;
-                            <a href=""><button style="color:red" data-toggle="tooltip" title="" class="pd-setting-ed"
-                                    data-original-title="Trash"><i class="fa fa-trash-o"
-                                        aria-hidden="true"></i></button></a>&ensp;&ensp;
-                            <a href="{{ route('backend.post.edit', ['post_id' => 1]) }}"><button style="color:purple"
-                                    data-toggle="tooltip" title="" class="pd-setting-ed" data-original-title="Edit"
-                                    href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                            <div class="row" style="text-align:center">
+                                <div class="col-lg-6">
+                                    <a href="" data-toggle="tooltip" data-placement="bottom" title="Trash"><i
+                                            style="color:red" class="fas fa-trash-alt"></i></a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <a href="{{ route('backend.post.edit', [
+    'post_id' => $post->id,
+]) }}"
+                                        data-toggle="tooltip" data-placement="bottom" title="Edit"><i style="color:green"
+                                            class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
+                    <br>
+
                 </div>
 
-            </div>
+            @endforeach
         </div>
     </div>
+    <br>
+    <div style="margin-left:47%;">
+        {{ $posts->links('backend.comporment.paginate') }}
+    </div>
+    <br>
 @endsection

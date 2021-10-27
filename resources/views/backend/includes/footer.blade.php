@@ -1,12 +1,7 @@
-<div class="footer-copyright-area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="footer-copy-right">
-                    <p>Copyright © 2021. All rights reserved. Template by <a
-                            href="https://colorlib.com/wp/templates/">BaoNguyen</a></p>
-                </div>
-            </div>
-        </div>
+<footer class="main-footer">
+    <strong>Copyright &copy; 2021 by<a href="https://adminlte.io"> Nguyen Quoc Bao</a>.</strong>
+
+    <div class="float-right d-none d-sm-inline-block">
+        <b></b> Baonq.2506.vnua@gmail.com
     </div>
-</div>
+</footer>

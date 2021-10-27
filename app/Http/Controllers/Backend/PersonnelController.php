@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
@@ -20,6 +21,7 @@ class PersonnelController extends Controller
      */
     public function index()
     {
+
         $usersPersonnel=User::whereHas('roles',function(Builder $query){
             $query->where('id','!=',4);
         })->get();
@@ -29,10 +31,10 @@ class PersonnelController extends Controller
         ]);
     }
 
-    public function perSoftDelete()
-    {
-       return view('backend.personnel.perSoftDelete');
-    }
+    // public function historyEm()
+    // {
+    //    return view('backend.personnel.perSoftDelete');
+    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -41,8 +43,11 @@ class PersonnelController extends Controller
     public function create()
     {
         $roles=Role::all();
+        $permissions= new Permission();
+        $perArr=$permissions->permissionsArr();
         return view('backend.personnel.create',[
             'roles' => $roles,
+            'perArr' => $perArr,
         ]);
     }
 
@@ -55,6 +60,7 @@ class PersonnelController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        dd($data);
         $user= new User();
         $user->name=$data['name'];
         $user->email=$data['email'];
@@ -77,8 +83,10 @@ class PersonnelController extends Controller
     public function show($id)
     {
         $personnel= User::find($id);
+        $perposts=$personnel->post()->simplePaginate(2);
         return view('backend.personnel.profile',[
             'personnel'=>$personnel,
+            'perposts'=>$perposts,
         ]);
     }
 
@@ -92,10 +100,12 @@ class PersonnelController extends Controller
     {
         $person=User::find($id);
         $roles=Role::all();
-
+        $permissions=new Permission();
+        $perArr=$permissions->permissionsArr();
         return view('backend.personnel.edit',[
             'person'=>$person,
             'roles'=>$roles,
+            'perArr' => $perArr,
         ]);
     }
 
@@ -109,6 +119,7 @@ class PersonnelController extends Controller
     public function update(Request $request, $id)
     {
         $data=$request->all();
+        dd($data);
         $user=User::find($id);
         $user->name=$data['name'];
         $user->email=$data['email'];
