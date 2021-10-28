@@ -57,6 +57,19 @@
                 border-color .15s ease-in-out, box-shadow .15s ease-in-out;
         }
 
+        img {
+            object-fit: cover;
+        }
+
+        .img-fluid {
+            height: 150px !important;
+        }
+
+        .img-style {
+            width: 38px !important;
+            height: 38px !important;
+        }
+
     </style>
 
 @endsection

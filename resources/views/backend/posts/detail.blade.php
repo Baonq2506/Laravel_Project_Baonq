@@ -12,7 +12,10 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="latest-blog-single blog-single-full-view">
                                     <div class="blog-image">
-                                        <a href="#"><img width="100%" src="{{ $post->image_url }}" alt="">
+                                        <a href="#">
+                                            @if (!empty($post->image_url))
+                                                <img class="card-img-top" src="{{ $post->image_url_full }}" width="100%">
+                                            @endif
                                         </a>
                                         <hr>
                                         <div class="blog-date">

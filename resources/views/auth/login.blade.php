@@ -2,16 +2,16 @@
 <html lang="en">
 
 <head>
-    <title>Dracula | Log in</title>
+    <title>Belgorod | Log in</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-    <LINK REL="SHORTCUT ICON" HREF="/images/rex.ico">
+    <LINK REL="SHORTCUT ICON" HREF="/images/logo.ico">
 
     <link rel=" stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/frontend/css/style.css">
 
 </head>
 
@@ -32,14 +32,29 @@
                         <form action="{{ route('auth.login') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Useremail" name='email' required>
+                                <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                    placeholder="Email" name='email'>
                             </div>
+                            @error('email')
+                                <div style="margin-top: -10px;
+                                                    margin-bottom: 5px;">
+                                    <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                </div>
+                            @enderror
+
                             <div class="form-group">
-                                <input id="password-field" type="password" class="form-control" placeholder="Password"
-                                    required name='password'>
+                                <input id="password-field" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" placeholder="Password"
+                                    name='password'>
                                 <span toggle="#password-field"
                                     class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
+                            @error('password')
+                                <div style="margin-top: -10px;
+                                    margin-bottom: 5px;">
+                                    <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                </div>
+                            @enderror
                             <div class="form-group">
                                 <button type="submit" class="form-control btn btn-info">Sign
                                     In</button>
@@ -77,7 +92,7 @@
 
 </html>
 
-<script src="/js/jquery.min.js"></script>
-<script src="/js/popper.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
+<script src="/frontend/js/jquery.min.js"></script>
+<script src="/frontend/js/popper.js"></script>
+<script src="/frontend/js/bootstrap.min.js"></script>
+<script src="/frontend/js/main.js"></script>

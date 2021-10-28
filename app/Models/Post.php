@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -46,7 +47,20 @@ class Post extends Model
     {
         return $this->statusArr;
     }
+    public function getImageUrlFullAttribute(){
 
+        if(!empty($this->image_url)){
+            if(Storage::disk($this->disk)->exists($this->image_url)){
+               return Storage::disk($this->disk)->url($this->image_url);
+            }else{
+               return Storage::disk('public')->url('default.jpg');
+            }
+        }
+        else{
+            return Storage::disk('public')->url('default.jpg');
+        }
+
+       }
     public function getStatusTextAttribute()
     {
         return '<span class="badge badge-' . $this->statusColor[$this->status] .'">' . $this->statusArr[$this->status] . '<span>';

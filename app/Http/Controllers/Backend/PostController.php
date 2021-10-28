@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -17,6 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
+        // $files = Storage::files('avatars/users');
+        // dd($files);
         $posts=Post::simplePaginate(9);
         $categories=Category::all();
         return view('backend.posts.index',[
@@ -53,7 +56,7 @@ class PostController extends Controller
         $post = new Post();
         if ($request->hasFile('image_url')) {
             $disk = 'public';
-            $path = $request->file('image_url')->store('blogs', $disk);
+            $path = $request->file('image_url')->store('Blogs', $disk);
             $post->disk = $disk;
             $post->image_url = $path;
         }

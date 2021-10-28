@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dark Legend @yield('title')</title>
+    <title>Belgorod @yield('title')</title>
     <LINK REL="SHORTCUT ICON" HREF="/images/logo.ico">
     @include('frontend.includes.style_base')
     @stack('stack_css')
@@ -17,7 +17,7 @@
     @media (min-width: 768px) {
         .navbar-nav {
             margin: 0;
-            margin-left: 15%;
+            margin-left: 11%;
         }
 
         .navbar-right {

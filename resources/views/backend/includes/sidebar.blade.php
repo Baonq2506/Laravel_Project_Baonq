@@ -2,13 +2,13 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ Auth::user()->image_url_full }}" class="img-circle elevation-2 img-style" alt="User Image">
         </div>
         <div class="info">
             <a href="#" class="d-block">
-                Nguyen Quoc Bao
-                {{-- {{ Illuminate\Support\Facades\Auth::user()->name }} --}}
-                <span class="badge badge-primary">Admin</span>
+
+                {{ Auth::user()->name }}
+                <span class="badge badge-primary"> {{ Auth::user()->roles[0]->name }}</span>
             </a>
 
 

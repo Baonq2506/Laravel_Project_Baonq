@@ -57,6 +57,12 @@ class UserController extends Controller
     {
         $data = $request->all();
         $user= new User();
+        if ($request->hasFile('avatar')) {
+            $disk = 'avatars';
+            $path = $request->file('avatar')->store('users', $disk);
+            $user->disk = $disk;
+            $user->avatar = $path;
+        }
         $user->name=$data['name'];
         $user->email=$data['email'];
         $user->status='2';
@@ -108,8 +114,12 @@ class UserController extends Controller
         $data=$request->all();
 
         $user=User::find($id);
-
-
+        if ($request->hasFile('avatar')) {
+            $disk = 'avatars';
+            $path = $request->file('avatar')->store('users', $disk);
+            $user->disk = $disk;
+            $user->avatar = $path;
+        }
         $user->name=$data['name'];
         $user->email=$data['email'];
         if(!$data['password']){

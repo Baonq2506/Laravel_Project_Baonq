@@ -25,7 +25,8 @@
                     @foreach ($personnel as $person)
                         <tr>
                             <td>{{ $person->id }}</td>
-                            <td><img src="{{ $person->avatar }}" width="50px" alt=""></td>
+                            <td><img src="{{ $person->image_url_full }}"
+                                    style="width:70px;height:70px;border:1px solid white;border-radius:50%" alt=""></td>
 
                             <td>{{ $person->name }}</td>
                             <td>{{ $person->gender_text }}</td>

@@ -18,6 +18,7 @@
         </div>
     </div><!-- /.container-fluid -->
 @endsection
+
 @section('main')
     <div class="row">
         <div class="col-md-3">
@@ -26,8 +27,8 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle" src="/backend/dist/img/user4-128x128.jpg"
-                            alt="User profile picture">
+                        <img style="width:150px !important;" class="profile-user-img img-fluid img-circle"
+                            src="{{ $personnel->image_url_full }}" alt="User profile picture">
                     </div>
 
                     <h3 class="profile-username text-center">{{ $personnel->name }}</h3>
@@ -91,12 +92,12 @@
                 </div><!-- /.card-header -->
                 <div class="card-body">
                     <div class="tab-content">
-                        <div class="active tab-pane" id="activity">
+                        <div class="active" id="activity">
                             <!-- Post -->
                             @foreach ($perposts as $perpost)
                                 <div class="post col-lg-12">
                                     <div class="user-block">
-                                        <img class="img-circle img-bordered-sm" src="{{ $personnel->avatar }}"
+                                        <img class="img-circle img-bordered-sm" src="{{ $personnel->image_url_full }}"
                                             alt="user image">
                                         <span class="username">
                                             <a href="#">{{ $personnel->name }}</a>
@@ -111,13 +112,13 @@
     'post_id' => $perpost->id,
 ]) }}">{{ $perpost->title }}</a></strong>
                                     <p class="card-text"
-                                        style="display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;word-break: break-word;">
+                                        style="display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;word-break: break-word;">
                                         {!! $perpost->content !!}
                                     </p>
                                     <a href="{{ route('backend.post.show', [
     'post_id' => $perpost->id,
 ]) }}">Read
-                                        more >></a>
+                                        more...</a>
                                     <p>
                                         <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i>
                                             Share</a>

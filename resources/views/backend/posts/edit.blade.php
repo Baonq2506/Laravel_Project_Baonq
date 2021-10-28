@@ -68,7 +68,9 @@
                                                 }
                                             @endphp
                                         @endforeach
-                                        <option {{ $selected }} value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                        <option @if (!empty($selected))
+                                            {{ $selected }}
+                                            @endif value="{{ $tag->id }}">{{ $tag->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -113,7 +115,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputEstimatedBudget">Images</label> <br>
-                                <img width="100%" height="255px" src="{{ $post->image_url }}" alt="">
+                                <img width="100%" height="255px" src="{{ $post->image_url_full }}" alt="">
                             </div>
                             <div class="form-group">
                                 <label for="inputSpentBudget">Status</label>

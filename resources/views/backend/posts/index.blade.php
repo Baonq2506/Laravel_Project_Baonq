@@ -64,7 +64,10 @@
                         </div>
                     </div>
                     <div class="card mb-2 bg-gradient-dark">
-                        <img class="card-img-top" src="/backend/dist/img/photo1.png" alt="Dist Photo 1">
+                        @if (!empty($post->image_url))
+                            {{-- {{ $post->image_url_full }} --}}
+                            <img class="card-img-top" src="{{ $post->image_url_full }}" width="100%" height="240px">
+                        @endif
                         <div class="card-img-overlay d-flex flex-column ">
                             <div>
                                 <h5 class="card-title text-white text-white text-bold">{{ $post->title }}</h5>
@@ -94,7 +97,7 @@
                                     <a href="{{ route('backend.post.edit', [
     'post_id' => $post->id,
 ]) }}"
-                                        data-toggle="tooltip" data-placement="bottom" title="Edit"><i style="color:green"
+                                        data-toggle="tooltip" data-placement="bottom" title="Edit"><i style="color:cyan"
                                             class="fas fa-edit"></i></a>
                                 </div>
                             </div>

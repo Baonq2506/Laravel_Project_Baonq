@@ -41,48 +41,60 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $user->id }}</td>
+                                    <td>
+                                        <img style="margin-top: -10px;width:50px;height:50px;border:1px solid white;border-radius:50%"
+                                            src="{{ $user->image_url_full }}" alt="">
+                                    </td>
+                                    <td> {{ $user->name }}</td>
+                                    <td>{{ $user->gender_text }}</td>
+                                    <td>{{ $user->date_format }}</td>
+                                    <td>{{ $user->userInfo->city }}</td>
+                                    <td>{{ $user->userInfo->phone }}</td>
+                                    <td>
 
-                            <tr>
-                                <td>183</td>
-                                <td>
-                                    <img style="margin-top: -10px;width:50px;height:50px;border:1px solid white;border-radius:50%"
-                                        src="/images/logo.ico" alt="">
-                                </td>
+                                        <a class="btn btn-info"
+                                            href="{{ route('backend.user.show', [
+    'user_id' => $user->id,
+]) }}"
+                                            data-toggle="tooltip" data-placement="top" title="Show">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </a> &emsp;
+                                        <a class="btn btn-success"
+                                            href="{{ route('backend.user.edit', [
+    'user_id' => $user->id,
+]) }}"
+                                            data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                        </a>
+                                        <form style="float: left"
+                                            action="{{ route('backend.user.destroy', [
+    'user_id' => $user->id,
+]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger" data-toggle="tooltip" data-placement="top"
+                                                title="Trash">
+                                                <i class="fas fa-trash"></i>
+                                            </button> &emsp;
+                                        </form>
+                                        <form style="float: left" method="POST"
+                                            action="{{ route('backend.user.signWithID', [
+    'user_id' => $user->id,
+]) }}">
+                                            @csrf
+                                            <button data-toggle="tooltip" data-placement="top" title="Login"
+                                                class="btn btn-outline-danger">
+                                                <i class="fas fa-user"></i>
+                                            </button> &emsp;
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                                </td>
-                                <td> John Doe</td>
-                                <td>11-7-2014</td>
-                                <td></td>
-                                <td></td>
-
-                                <td> doner.</td>
-                                <td>
-
-                                    <a class="btn btn-info" href="#" data-toggle="tooltip" data-placement="top"
-                                        title="Show">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </a> &emsp;
-                                    <a class="btn btn-success" href="#" data-toggle="tooltip" data-placement="top"
-                                        title="Edit">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </a>
-                                    <form style="float: left" action="#" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-danger" data-toggle="tooltip" data-placement="top"
-                                            title="Trash">
-                                            <i class="fas fa-trash"></i>
-                                        </button> &emsp;
-                                    </form>
-                                    <form style="float: left" method="POST" action="#">
-                                        @csrf
-                                        <button data-toggle="tooltip" data-placement="top" title="Login"
-                                            class="btn btn-outline-danger">
-                                            <i class="fas fa-user"></i>
-                                        </button> &emsp;
-                                    </form>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

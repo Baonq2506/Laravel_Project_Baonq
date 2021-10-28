@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -71,6 +72,20 @@ class User extends Authenticatable
         2=>'Female',
         3=>'Other',
     ];
+    public function getImageUrlFullAttribute(){
+
+        if(!empty($this->avatar)){
+            if(Storage::disk($this->disk)->exists($this->avatar)){
+               return Storage::disk($this->disk)->url($this->avatar);
+            }else{
+               return Storage::disk('public')->url('default.jpg');
+            }
+        }
+        else{
+            return Storage::disk('public')->url('default.jpg');
+        }
+
+       }
     public function getGenderTextAttribute(){
 
         return $this->genderArr[$this->userInfo->gender];

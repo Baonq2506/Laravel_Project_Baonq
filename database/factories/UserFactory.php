@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -21,12 +22,19 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $files = Storage::files('avatars/users');
+        $paths[] = '';
+        foreach ($files as $key => $file) {
+            $file = str_replace("avatars/", "", $file);
+            $paths[$key] = $file;
+        }
         return [
             'name' => $this->faker->name(),
             'status'=>rand(1,2),
+            'disk' =>'avatars',
+            'avatar' => $paths[rand(1,23)],
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => bcrypt('123456789'), // password
-            'avatar'=>$this->faker->imageUrl($width = 640, $height = 480),
+            'password' => bcrypt('123456789'),
         ];
     }
 

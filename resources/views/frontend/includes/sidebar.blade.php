@@ -25,6 +25,20 @@
             </ul>
             <ul class="nav navbar-nav">
                 @if (Auth::check())
+                    @if (Auth::user()->roles[0]->slug == 'admin' || Auth::user()->roles[0]->slug == 'admod' || Auth::user()->roles[0]->slug == 'writer')
+                        <li>
+                            <a data-toggle="tooltip" data-placement="bottom" title="Go Dashboard"
+                                href="{{ route('backend.user.signWithID', [
+    'user_id' => Auth::user()->id,
+]) }}">
+                                <span style="color:white" class="icon-layers"></span>
+                            </a>
+                        </li>
+                        <li><a> | </a></li>'
+
+                    @endif
+
+
                     <li class="dropdown" style="width: 120px;">
                         <a href="" data-toggle="tooltip" data-placement="bottom" title="{{ auth()->user()->name }}">
                             <p style="

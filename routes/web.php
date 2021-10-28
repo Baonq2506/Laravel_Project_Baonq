@@ -34,7 +34,7 @@ route::prefix('auth')->name('auth.')->namespace('Auth')->group(function () {
 });
 
 //Backend
-route::prefix('backend')->name('backend.')->namespace('Backend')->group(function () {
+route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['auth','role:admin,admod,writer'])->group(function () {
     //Account Users
     Route::resource('account', 'AccountController')->parameters([
             'account'=>'account_id',
@@ -47,9 +47,7 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->group(function
     route::get('permissions','RoleController@indexPermissions')->name('role.rolePer');
 
     //Dashboard
-    route::get('/home',function(){
-        return view('backend.dashboard');
-    })->name('home');
+    route::get('/home','DashboardController@index')->name('home');
 
     //Personnel
     Route::resource('personnel', 'PersonnelController')->parameters([
@@ -91,7 +89,7 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->group(function
         ]);
 });
 //Frontend
-route::prefix('/')->name('frontend.')->namespace('Frontend')->middleware([])->group(function () {
+route::prefix('/')->name('frontend.')->namespace('Frontend')->middleware(['auth','role:user,admin'])->group(function () {
     //Home page
     Route::get('home', function () {
         return view('frontend.home');

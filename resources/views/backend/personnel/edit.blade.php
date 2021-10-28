@@ -288,7 +288,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="">Avatar</label> <br>
-                                    &emsp;<img style="border-radius:50%" src="{{ $person->avatar }}" width="300"
+                                    &emsp;<img style="border-radius:50%" src="{{ $person->image_url_full }}" width="300"
                                         height="300" alt="">
                                 </div>
                                 <div class="col-lg-6">

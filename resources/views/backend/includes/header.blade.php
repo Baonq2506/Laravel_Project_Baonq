@@ -136,7 +136,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#" role="button">
+            <a class="nav-link" href="{{ route('auth.logout.store') }}" role="button">
                 <i class="fa fa-power-off" aria-hidden="true"></i>
             </a>
 
