@@ -19,22 +19,8 @@ class userInfosTableSeeder extends Seeder
 
     public function run()
     {
-       $userInfo= new UserInfo();
-        DB::table('user_infos')->truncate();
-        for( $i=1;$i<=20;$i++){
-            DB::table('user_infos')->insert([
-                'user_id' => $i,
-                'address'=> $userInfo->faker->address,
-                'gender' => rand(1,3),
-                'phone'=> $userInfo->faker->phoneNumber,
-                'city' => $userInfo->faker->city,
-                'country' => $userInfo->faker->country,
-                'date' => now(),
-                'description' =>$userInfo->faker->sentence(16),
-                'created_at'=>now(),
-                'updated_at'=>now(),
 
-            ]);
-        }
+        DB::table('user_infos')->truncate();
+        UserInfo::factory()->count(20)->create();
     }
 }
