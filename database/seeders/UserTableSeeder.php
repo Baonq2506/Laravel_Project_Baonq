@@ -15,18 +15,20 @@ class UserTableSeeder extends Seeder
      *
      * @return void
      */
+    protected  $paths= array();
     public function run()
     {
         DB::table('users')->truncate();
         // User::factory()->count(20)->create();
         $faker = Faker::create();
         $files = Storage::files('avatars/users');
-        $paths[] = '';
+
         foreach ($files as $key => $file) {
             $file = str_replace("avatars/", "", $file);
             $paths[$key] = $file;
         }
-        for ($i = 0; $i <= 20; $i++) {
+        // dd($paths[1]);
+        for ($i = 1; $i <= 20; $i++) {
             User::create([
                 'name' => $faker->name(),
                 'status' => rand(1, 2),
