@@ -17,7 +17,7 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         DB::table('categories')->truncate();
-        $categories=['Điện Thoại','Máy Tính','Phần Cứng','Phần Mềm'];
+        $categories=['Shurima','Freljord','Noxus','Targon'];
         foreach($categories as $category){
             DB::table('categories')->insert([
                 'name' => $category,
