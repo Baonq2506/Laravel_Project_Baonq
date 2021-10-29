@@ -25,7 +25,7 @@ class BlogController extends Controller
         $count=Post::all()->countBy('category_id');
         $categories= Category::all();
         $tags=Tag::all();
-        $postnews=Post::orderby('id', 'DESC')->oldest()->take(4)->get();
+        $postnews=Post::orderBy('id', 'DESC')->oldest()->take(4)->get();
 
         return view('frontend.blogs.singerBlog',[
             'post'=>$post,
