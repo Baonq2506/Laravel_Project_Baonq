@@ -119,8 +119,7 @@ class PersonnelController extends Controller
     public function update(Request $request, $id)
     {
         $data=$request->all();
-        dd($data);
-        $user=User::find($id);
+               $user=User::find($id);
         $user->name=$data['name'];
         $user->email=$data['email'];
         $user->updated_at=now();
