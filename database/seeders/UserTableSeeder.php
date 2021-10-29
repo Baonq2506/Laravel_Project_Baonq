@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Seeders;
+
+use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -25,8 +27,7 @@ class UserTableSeeder extends Seeder
             $paths[$key] = $file;
         }
         for ($i = 0; $i <= 20; $i++) {
-            DB::table('users')->insert([
-                'id'=>$i,
+            User::create([
                 'name' => $faker->name(),
                 'status' => rand(1, 2),
                 'disk' => 'avatars',
