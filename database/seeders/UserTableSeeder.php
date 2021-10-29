@@ -24,8 +24,9 @@ class UserTableSeeder extends Seeder
             $file = str_replace("avatars/", "", $file);
             $paths[$key] = $file;
         }
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 0; $i <= 20; $i++) {
             DB::table('users')->insert([
+                'id'=>$i,
                 'name' => $faker->name(),
                 'status' => rand(1, 2),
                 'disk' => 'avatars',
