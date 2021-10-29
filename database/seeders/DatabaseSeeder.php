@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TagsTableSeeder::class);
         $this->call(userSocialNetworkTableSeeder::class);
         $this->call(RolePermissionsTableSeeder::class);
-        $this->call(userInfosTableSeeder::class);
+        // $this->call(userInfosTableSeeder::class);
     }
 }
