@@ -20,23 +20,23 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->truncate();
         // User::factory()->count(20)->create();
-        $faker = Faker::create();
-        $files = Storage::files('avatars/users');
-        $paths= array();
-        foreach ($files as $key => $file) {
-            $file = str_replace("avatars/", "", $file);
-            $paths[$key] = $file;
-        }
-        // dd($paths[1]);
-        for ($i = 1; $i <= 20; $i++) {
-            User::create([
-                'name' => $faker->name(),
-                'status' => rand(1, 2),
-                'disk' => 'avatars',
-                'avatar' => $paths[$i],
-                'email' => $faker->unique()->safeEmail(),
-                'password' => bcrypt('123456789'),
-            ]);
-        }
+        // $faker = Faker::create();
+        // $files = Storage::files('avatars/users');
+        // $paths= array();
+        // foreach ($files as $key => $file) {
+        //     $file = str_replace("avatars/", "", $file);
+        //     $paths[$key] = $file;
+        // }
+            $user = new User();
+            $user->name = "Nguyen Quoc Bao";
+            $user->status = rand(1, 2);
+            $user->disk = 'avatars';
+            $user->avatar = 'users/anh-gai-dep-han-quoc-cute.jpg';
+            $user->email = 'baonq@gmail.com';
+            $user->password = bcrypt('123456789');
+            $user->save();
+            $user->roles()->attach(1);
+
+
     }
 }

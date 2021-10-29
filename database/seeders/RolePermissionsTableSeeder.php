@@ -53,6 +53,10 @@ class RolePermissionsTableSeeder extends Seeder
                 'name' => 'Writer',
                 'slug' => 'writer'
             ],
+            [
+                'name' =>'User',
+                'slug' => 'user'
+            ]
         ]);
 
 
