@@ -1,8 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\User;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -18,19 +17,22 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->truncate();
         // User::factory()->count(20)->create();
+        $faker = Faker::create();
         $files = Storage::files('avatars/users');
         $paths[] = '';
         foreach ($files as $key => $file) {
             $file = str_replace("avatars/", "", $file);
             $paths[$key] = $file;
         }
-        DB::table('users')->insert([
-            'name' => $this->faker->name(),
-            'status'=>rand(1,2),
-            'disk' =>'avatars',
-            'avatar' => $paths[rand(1,23)],
-            'email' => $this->faker->unique()->safeEmail(),
-            'password' => bcrypt('123456789'),
-        ]);
+        for ($i = 1; $i <= 20; $i++) {
+            DB::table('users')->insert([
+                'name' => $faker->name(),
+                'status' => rand(1, 2),
+                'disk' => 'avatars',
+                'avatar' => $paths[$i],
+                'email' => $faker->unique()->safeEmail(),
+                'password' => bcrypt('123456789'),
+            ]);
+        }
     }
 }
