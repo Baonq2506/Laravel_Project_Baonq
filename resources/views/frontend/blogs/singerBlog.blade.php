@@ -6,7 +6,7 @@
     <section class="module bg-dark-60 blog-page-header">
         <video
             style="margin-top: -250px;
-                                                                                                                                                                                                                                                                        margin-bottom: -255px;"
+                                                                                                                                                                                                                                                                                                                                margin-bottom: -255px;"
             preload='auto' autoplay loop width="100%" height="auto">
             <source src="/images/live.mp4">
         </video>
@@ -40,19 +40,24 @@
                         </ul>
                     </div>
                     <div class="widget">
-                        <h5 class="widget-title font-alt">Popular Posts</h5>
+                        <h5 class="widget-title font-alt">New Posts</h5>
                         <ul class="widget-posts">
                             @foreach ($postnew as $pnew)
                                 <li class="clearfix">
-                                    <div class="widget-posts-image"><a href="#"><img src="{{ $pnew->image_url }}"
-                                                alt="Post Thumbnail" /></a></div>
+                                    <div class="widget-posts-image"><a href="#"><img
+                                                style="height:40px !important;width:100%"
+                                                src="{{ $pnew->image_url_full }}" alt="Post Thumbnail" /></a></div>
                                     <div class="widget-posts-body">
                                         <div class="widget-posts-title"><a
                                                 href="{{ route('frontend.blog.singerBlog', [
     'slug' => $pnew->slug,
     'blog_id' => $pnew->id,
     'slug_cate' => $pnew->category->slug,
-]) }}">{{ $pnew->title }}</a>
+]) }}">
+                                                <span
+                                                    style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;word-break: break-word;">
+                                                    {{ $pnew->title }}</span>
+                                            </a>
                                         </div>
                                         <div class="widget-posts-meta">{{ $pnew->created_at->toFormattedDateString() }}
                                         </div>
@@ -78,8 +83,8 @@
                 </div>
                 <div class="col-sm-8 col-sm-offset-1">
                     <div class="post">
-                        <div class="post-thumbnail"><img src="/frontend/assets/images/post-4.jpg"
-                                alt="Blog Featured Image" /></div>
+                        <div class="post-thumbnail"><img src="{{ $post->image_url_full }}" alt="Blog Featured Image" />
+                        </div>
                         <div class="post-header font-alt">
                             <h1 class="post-title">{{ $post->title }}</h1>
                             <div class="post-meta">By&nbsp;<a

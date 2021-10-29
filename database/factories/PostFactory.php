@@ -32,7 +32,6 @@ class PostFactory extends Factory
         }
         return [
             'title' => $fake,
-            'image_url' => $this->faker->imageUrl($width = 640, $height = 480),
             'slug' => Str::slug($fake),
             'disk' => 'public',
             'image_url' =>$paths[rand(1,33)],

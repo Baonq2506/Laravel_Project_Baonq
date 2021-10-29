@@ -59,8 +59,8 @@
                 @foreach ($posts as $post)
                     <div class="col-sm-4 col-md-4 col-lg-4">
                         <div class="post">
-                            <div class="post-thumbnail"><a href="#"><img style="border:1px solid black;border-radius:10px"
-                                        src="/images/LOL/SieuPham/579dad36b1811-1068x601.png"
+                            <div  class="post-thumbnail"><a href="#"><img  style="border:1px solid black;border-radius:10px;height: 200px;width: 100%;"
+                                        src="{{$post->image_url_full}}"
                                         alt="Blog-post Thumbnail" /></a></div>
                             <div class="post-header font-alt">
                                 <h3 class="post-title"><a
@@ -71,10 +71,10 @@
 ]) }}">{{ $post->title }}</a>
                                 </h3>
                                 <div class="post-meta">By&ensp;<a href="#">{{ $post->userCreated->name }}</a>
-                                    &nbsp;| 23 November</div>
+                                    &nbsp;| {{$post->created_at->format('d-m-Y')}}</div>
                             </div>
                             <div class="post-entry">
-                                <p>{{ $post->content }}</p>
+                                <p style="display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;word-break: break-word;">{{ $post->content }}</p>
                             </div>
                             <div style="width:100px;font-size:14px;font-weight:bold;text-align:left" class="post-more">
                                 <a class="more-link"

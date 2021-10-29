@@ -5,8 +5,6 @@ namespace Database\Seeders;
 use App\Models\UserLink;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
-
 class userSocialNetworkTableSeeder extends Seeder
 {
     /**
@@ -16,7 +14,7 @@ class userSocialNetworkTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
+
         DB::table('user_sn_links')->truncate();
         for ($i = 1; $i <= 10; $i++) {
             DB::table('user_sn_links')->insert([
