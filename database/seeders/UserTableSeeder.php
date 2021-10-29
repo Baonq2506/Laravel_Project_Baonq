@@ -15,14 +15,14 @@ class UserTableSeeder extends Seeder
      *
      * @return void
      */
-    protected  $paths= array();
+    protected
     public function run()
     {
         DB::table('users')->truncate();
         // User::factory()->count(20)->create();
         $faker = Faker::create();
         $files = Storage::files('avatars/users');
-
+        $paths= array();
         foreach ($files as $key => $file) {
             $file = str_replace("avatars/", "", $file);
             $paths[$key] = $file;
