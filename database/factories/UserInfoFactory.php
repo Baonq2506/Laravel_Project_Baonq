@@ -21,9 +21,9 @@ class UserInfoFactory extends Factory
      */
     public function definition()
     {
-            $i=1;
+
             return [
-                'user_id'=> $i++,
+                'user_id' => rand(1,20),
                 'address'=> $this->faker->address,
                 'gender' => rand(1,3),
                 'phone'=> $this->faker->phoneNumber,
