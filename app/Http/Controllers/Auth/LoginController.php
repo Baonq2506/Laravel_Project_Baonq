@@ -46,7 +46,7 @@ class loginController extends Controller
         $validated = $validator->validated();
         if (Auth::attempt($validated,$remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('home');
+            return redirect()->route('frontend.home');
         }
         return back();
 
