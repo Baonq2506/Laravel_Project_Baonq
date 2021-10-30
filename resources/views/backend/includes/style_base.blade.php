@@ -65,11 +65,6 @@
             height: 150px !important;
         }
 
-        .img-style {
-            width: 38px !important;
-            height: 38px !important;
-        }
-
     </style>
 
 @endsection

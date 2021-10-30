@@ -10,7 +10,13 @@
     @stack('stack_css')
     @yield('css')
 </head>
+<style>
+    .img-style {
+        width: 38px !important;
+        height: 38px !important;
+    }
 
+</style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">

@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
 use App\Models\UserInfo;
 use App\Models\UserLink;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PersonnelController extends Controller
@@ -22,12 +22,12 @@ class PersonnelController extends Controller
     public function index()
     {
 
-        $usersPersonnel=User::whereHas('roles',function(Builder $query){
-            $query->where('id','!=',4);
+        $usersPersonnel = User::whereHas('roles', function (Builder $query) {
+            $query->where('id', '!=', 4);
         })->get();
 
-        return view('backend.personnel.index',[
-            'personnel'=>$usersPersonnel,
+        return view('backend.personnel.index', [
+            'personnel' => $usersPersonnel,
         ]);
     }
 
@@ -42,10 +42,10 @@ class PersonnelController extends Controller
      */
     public function create()
     {
-        $roles=Role::all();
-        $permissions= new Permission();
-        $perArr=$permissions->permissionsArr();
-        return view('backend.personnel.create',[
+        $roles = Role::all();
+        $permissions = new Permission();
+        $perArr = $permissions->permissionsArr();
+        return view('backend.personnel.create', [
             'roles' => $roles,
             'perArr' => $perArr,
         ]);
@@ -61,10 +61,10 @@ class PersonnelController extends Controller
     {
         $data = $request->all();
         dd($data);
-        $user= new User();
-        $user->name=$data['name'];
-        $user->email=$data['email'];
-        $user->status='1';
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->status = '1';
         $user->save();
         $user->roles()->attach($data['role']);
         $user->userInfo()->create($data);
@@ -82,11 +82,11 @@ class PersonnelController extends Controller
      */
     public function show($id)
     {
-        $personnel= User::find($id);
-        $perposts=$personnel->post()->simplePaginate(2);
-        return view('backend.personnel.profile',[
-            'personnel'=>$personnel,
-            'perposts'=>$perposts,
+        $personnel = User::find($id);
+        $perposts = $personnel->post()->simplePaginate(2);
+        return view('backend.personnel.profile', [
+            'personnel' => $personnel,
+            'perposts' => $perposts,
         ]);
     }
 
@@ -98,13 +98,13 @@ class PersonnelController extends Controller
      */
     public function edit($id)
     {
-        $person=User::find($id);
-        $roles=Role::all();
-        $permissions=new Permission();
-        $perArr=$permissions->permissionsArr();
-        return view('backend.personnel.edit',[
-            'person'=>$person,
-            'roles'=>$roles,
+        $person = User::find($id);
+        $roles = Role::all();
+        $permissions = new Permission();
+        $perArr = $permissions->permissionsArr();
+        return view('backend.personnel.edit', [
+            'person' => $person,
+            'roles' => $roles,
             'perArr' => $perArr,
         ]);
     }
@@ -118,29 +118,28 @@ class PersonnelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data=$request->all();
-               $user=User::find($id);
-        $user->name=$data['name'];
-        $user->email=$data['email'];
-        $user->updated_at=now();
+        $data = $request->all();
+        $user = User::find($id);
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->updated_at = now();
 
-
-        UserInfo::where('user_id',$id)->update([
-            'address'=>$data['address'],
-            'city'=>$data['city'],
-            'country'=>$data['country'],
-            'date'=>$data['date'],
-            'phone'=>$data['phone'],
-            'gender'=>$data['gender'],
-            'description'=>$data['description'],
-            'updated_at'=>now(),
+        UserInfo::where('user_id', $id)->update([
+            'address' => $data['address'],
+            'city' => $data['city'],
+            'country' => $data['country'],
+            'date' => $data['date'],
+            'phone' => $data['phone'],
+            'gender' => $data['gender'],
+            'description' => $data['description'],
+            'updated_at' => now(),
         ]);
 
-        UserLink::where('user_id',$id)->update([
-            'fb_url'=>$data['fb_url'],
-            'gg_url'=>$data['gg_url'],
-            'switter_url'=>$data['switter_url'],
-            'linked_url'=>$data['linked_url'],
+        UserLink::where('user_id', $id)->update([
+            'fb_url' => $data['fb_url'],
+            'gg_url' => $data['gg_url'],
+            'switter_url' => $data['switter_url'],
+            'linked_url' => $data['linked_url'],
         ]);
         $user->save();
         $user->roles()->sync($data['role']);
@@ -156,16 +155,15 @@ class PersonnelController extends Controller
     public function destroy($id)
     {
         User::find($id)->roles()->detach($id);
-        UserInfo::where('user_id',$id)->delete();
-        UserLink::where('user_id',$id)->delete();
+        UserInfo::where('user_id', $id)->delete();
+        UserLink::where('user_id', $id)->delete();
         User::destroy($id);
-
 
         return redirect('backend/personnel');
     }
 
-
-    public function signWithUser($id){
+    public function signWithUser($id)
+    {
         Auth::loginUsingId($id, $remember = true);
         return redirect('backend/home');
     }
