@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -14,7 +17,10 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('backend.posts.indexTag');
+        $tags=Tag::simplePaginate(5);
+        return view('backend.posts.indexTag',[
+            'tags' => $tags,
+        ]);
     }
 
     /**
@@ -78,8 +84,14 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        $posts=Post::all();
+        foreach ($posts as $post){
+            $post->tag()->detach($id);
+        }
+        Tag::where('id', $id)->delete();
+        return redirect()->route('backend.tag.index');
     }
 }

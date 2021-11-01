@@ -6,8 +6,15 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+
                 <div class="card-header">
-                    <h3 class="card-title">Users Table</h3>
+                    {{-- <h3 class="card-title">Users Table</h3> --}}
+                    @include('backend.comporment.btn',[
+                    'color'=>'primary',
+                    'link'=>'backend.user.create',
+                    'icon'=>'plus',
+                    'name'=>'Create User'
+                    ])
                     <div class="card-tools">
                         <form action="" method="post">
                             @csrf
@@ -98,6 +105,8 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div style="margin-left: 45%">{{ $users->links('backend.comporment.paginate') }}</div>
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->

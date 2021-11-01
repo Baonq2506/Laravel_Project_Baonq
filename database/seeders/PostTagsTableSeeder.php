@@ -15,10 +15,10 @@ class PostTagsTableSeeder extends Seeder
     public function run()
     {
         DB::table('post_tags')->truncate();
-        for( $i=1;$i<=10;$i++){
+        for( $i=1;$i<=32;$i++){
             DB::table('post_tags')->insert([
-                'post_id'=> rand(1,10),
-                'tag_id' =>rand(1,10),
+                'post_id'=> $i,
+                'tag_id' =>rand(1,7),
             ]);
         }
     }

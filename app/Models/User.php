@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -52,15 +51,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-
     protected $statusArr = [
         1 => 'Active',
         2 => 'No-Active',
     ];
-    protected $colorArr=[
-        1=>'green',
-        2=>'red',
+    protected $colorArr = [
+        1 => 'green',
+        2 => 'red',
     ];
     protected $statusColor = [
         1 => 'success',
@@ -68,40 +65,50 @@ class User extends Authenticatable
     ];
 
     protected $genderArr = [
-        1=>'Male',
-        2=>'Female',
-        3=>'Other',
+        1 => 'Male',
+        2 => 'Female',
+        3 => 'Other',
     ];
-    public function getImageUrlFullAttribute(){
+    public function getImageUrlFullAttribute()
+    {
 
-        if(!empty($this->avatar)){
-            if(Storage::disk($this->disk)->exists($this->avatar)){
-               return Storage::disk($this->disk)->url($this->avatar);
-            }else{
-               return Storage::disk('public')->url('default.jpg');
+        if (!empty($this->avatar)) {
+            if (Storage::disk($this->disk)->exists($this->avatar)) {
+                return Storage::disk($this->disk)->url($this->avatar);
+            } else {
+                return Storage::disk('public')->url('default.jpg');
             }
-        }
-        else{
+        } else {
             return Storage::disk('public')->url('default.jpg');
         }
 
-       }
-    public function getGenderTextAttribute(){
+    }
+    public function getGenderTextAttribute()
+    {
 
         return $this->genderArr[$this->userInfo->gender];
     }
-    public function getRoleTextAttribute(){
+    public function getRoleTextAttribute()
+    {
 
         return $this->roles[0]->name;
     }
+    public function phoneNumber()
+    {
+        $ac = substr($this->userInfo->phone, 0, 3);
+        $prefix = substr($this->userInfo->phone, 3, 3);
+        $suffix = substr($this->userInfo->phone, 6);
+        return "{$ac}-{$prefix}-{$suffix}";
 
-    public function getDateFormatAttribute(){
+    }
+    public function getDateFormatAttribute()
+    {
 
         return date('d/m/Y', strtotime($this->userInfo->date));
     }
     public function getStatusTextAttribute()
     {
-        return '<span style="background:'.$this->colorArr[$this->status].'" class="badge badge-' . $this->statusColor[$this->status] .'">' . $this->statusArr[$this->status] . '<span>';
+        return '<span style="background:' . $this->colorArr[$this->status] . '" class="badge badge-' . $this->statusColor[$this->status] . '">' . $this->statusArr[$this->status] . '<span>';
 
     }
 
@@ -110,8 +117,9 @@ class User extends Authenticatable
         return $this->hasOne(UserInfo::class);
     }
 
-    Public function userLink(){
-        return $this->hasOne(UserLink::class,'user_id');
+    public function userLink()
+    {
+        return $this->hasOne(UserLink::class, 'user_id');
     }
 
     public function post()
@@ -127,10 +135,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Permission::class, 'users_permissions');
     }
-    protected function hasPermission($permission) {
+    protected function hasPermission($permission)
+    {
 
         return (bool) $this->permissions->where('slug', $permission->slug)->count();
-      }
+    }
 
     public function hasPermissionTo($permission)
     {

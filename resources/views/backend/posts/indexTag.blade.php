@@ -35,22 +35,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>183</td>
-                                <td>John Doe</td>
-                                <td>11-7-2014</td>
-                                <td><span class="tag tag-success">Approved</span></td>
-                                <td> doner.</td>
-                                <td>
-                                    <a class="btn btn-success" href="#" data-toggle="tooltip" data-placement="top"
-                                        title="Delete">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @foreach ($tags as $tag)
+                                <tr>
+                                    <td>{{ $tag->id }}</td>
+                                    <td>{!! $tag->tag_text !!}</td>
+                                    <td>{{ $tag->slug }}</td>
+                                    <td>{{ $tag->created_at->toFormattedDateString() }}</td>
+                                    <td> {{ $tag->updated_at->toFormattedDateString() }}</td>
+                                    <td>
+                                        <form action="{{ route('backend.tag.destroy', [
+    'tag_id' => $tag->id,
+]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger" data-toggle="tooltip" data-placement="top"
+                                                title="Trash">
+                                                <i class="fas fa-trash"></i>
+                                            </button> &emsp;
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
+                <div style="margin-left: 45%">{{ $tags->links('backend.comporment.paginate') }}</div>
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->

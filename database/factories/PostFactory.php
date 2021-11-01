@@ -35,14 +35,14 @@ class PostFactory extends Factory
             'title' => $fake,
             'slug' => Str::slug($fake),
             'disk' => 'public',
-            'image_url' =>'Blogs/bilgewater_06.jpg',
+            'image_url' =>$paths[rand(1,30)],
             'content' => $this->faker->text($maxNbChars = 1000),
             'user_created_id' => rand(1, 10),
             'user_updated_id' => rand(1, 10),
             'category_id' => rand(1, 4),
-            'status' => rand(1, 2),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'status' => rand(1, 3),
+            'created_at' =>  $this->faker->datetime()->format('Y-m-d H:i:s'),
+            'updated_at' => $this->faker->datetime()->format('Y-m-d H:i:s'),
         ];
     }
 }

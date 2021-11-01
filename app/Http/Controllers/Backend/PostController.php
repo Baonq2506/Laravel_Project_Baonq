@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Tag;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str;
 class PostController extends Controller
 {
     /**
@@ -16,15 +16,27 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $files = Storage::files('avatars/users');
-        // dd($files);
-        $posts=Post::simplePaginate(9);
-        $categories=Category::all();
-        return view('backend.posts.index',[
-            'posts'=>$posts,
-            'categories'=>$categories
+        $posts = Post::simplePaginate(9);
+        $categories = Category::all();
+        $status = $request->get('status_search');
+        $category = $request->get('category_search');
+        $name = $request->get('title_search');
+
+        if (!empty($name)) {
+            $posts = Post::where('title', 'like', "%" . $name . "%")->paginate(6);
+        }
+        if ($category != null) {
+            $posts = Post::where('category_id', $category)->paginate(6);
+        }
+        if ($status != null) {
+            $posts = Post::where('status', $status)->paginate(6);
+        }
+
+        return view('backend.posts.index', [
+            'posts' => $posts,
+            'categories' => $categories,
         ]);
     }
 
@@ -35,11 +47,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories=Category::all();
-        $tags=Tag::all();
-        return view('backend.posts.create',[
-            'categories'=>$categories,
-            'tags'=>$tags,
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('backend.posts.create', [
+            'categories' => $categories,
+            'tags' => $tags,
         ]);
     }
 
@@ -52,7 +64,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
+
         $post = new Post();
         if ($request->hasFile('image_url')) {
             $disk = 'public';
@@ -82,9 +94,13 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post=Post::find($id);
-        return view('backend.posts.detail',[
-            'post'=>$post,
+        $post = Post::find($id);
+        if (empty($post)) {
+            $post = Post::onlyTrashed()->where('id', $id)->get();
+            $post = $post[0];
+        }
+        return view('backend.posts.detail', [
+            'post' => $post,
         ]);
     }
 
@@ -96,12 +112,16 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post=Post::find($id);
+        $post = Post::find($id);
 
-        $tags=Tag::all();
-        return view('backend.posts.edit',[
-            'post'=>$post,
-            'tags'=>$tags,
+        if (empty($post)) {
+            $post = Post::onlyTrashed()->where('id', $id)->get();
+            $post = $post[0];
+        }
+        $tags = Tag::all();
+        return view('backend.posts.edit', [
+            'post' => $post,
+            'tags' => $tags,
         ]);
     }
 
@@ -114,8 +134,27 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data=$request->all();
-        dd($data);
+        $data = $request->all();
+
+        if (empty($post)) {
+            $post = Post::onlyTrashed()->where('id', $id)->get();
+            $post = $post[0];
+        }
+        if ($request->hasFile('image_url')) {
+            $disk = 'public';
+            $path = $request->file('image_url')->store('Blogs', $disk);
+            $post->disk = $disk;
+            $post->image_url = $path;
+        }
+        $post->title = $data['title'];
+        $post->content = $data['content'];
+        $post->user_updated_id = $data['id_updated'];
+        $post->status = $data['status'];
+        $post->updated_at = date("Y-m-d H:i:s");
+        $post->save();
+        $tags=$post->boolTagsInput($data['tags']);
+        $post->tag()->sync($tags);
+        return redirect()->route('backend.post.index');
     }
 
     /**
@@ -124,14 +163,40 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+
+        Post::destroy($id);
+        return redirect()->route('backend.post.index');
     }
 
-    public function historyDelete(){
-        return view('backend.posts.softDelete');
+    public function historyDelete()
+    {
+        $posts = Post::onlyTrashed()->get();
+        return view('backend.posts.softDelete', [
+            'posts' => $posts,
+        ]);
     }
 
+    public function restore($id)
+    {
+        Post::withTrashed()->where('id', $id)->restore();
+        return redirect('backend/post');
+    }
+
+    public function forceDelete($id)
+    {
+        Post::where('id', $id)->delete();
+        return redirect()->route('backend.post.softDelete');
+    }
+
+    public function approvedAction($post_id, $id)
+    {
+        $post = Post::find($post_id);
+        $post->status = $id;
+        $post->save();
+
+        return redirect()->route('backend.post.index');
+    }
 
 }

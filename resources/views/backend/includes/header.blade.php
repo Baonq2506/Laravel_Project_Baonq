@@ -5,16 +5,8 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('backend.home') }}" class="nav-link">Home</a>
+            <a href="{{ route('frontend.home') }}" class="nav-link">External Interface</a>
         </li>
-        {{-- <li class="nav-item d-none d-sm-inline-block">
-            <form method="post" action="{{ route('auth.logout') }}">
-                @csrf
-                <a href="#" class="nav-link" onclick="this.closest('form').submit();return false;">
-                    Logout
-                </a>
-            </form>
-        </li> --}}
     </ul>
 
     <!-- Right navbar links -->

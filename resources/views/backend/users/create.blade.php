@@ -51,7 +51,7 @@
                                                                 aria-hidden="true"></i></span>
                                                     </div>
                                                     <input type="text" name='name' class="form-control"
-                                                        id="exampleInputName1" placeholder="" name="title">
+                                                        id="exampleInputName1" placeholder="" n>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                                                 aria-hidden="true"></i></span>
                                                     </div>
                                                     <input type="email" name="email" class="form-control"
-                                                        id="exampleInputName1" placeholder="" name="title">
+                                                        id="exampleInputName1" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
                                                                 aria-hidden="true"></i></span>
                                                     </div>
                                                     <input type="text" name="address" class="form-control"
-                                                        id="exampleInputName1" placeholder="" name="title">
+                                                        id="exampleInputName1" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
@@ -129,25 +129,17 @@
                                             <div class="form-group">
                                                 <label for="exampleInputName1">Country</label>
                                                 <input type="text" class="form-control" id="exampleInputName1"
-                                                    name="country" placeholder="" name="title">
+                                                    name="country" placeholder="">
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label for="exampleInputName1">City</label>
                                                 <input type="text" name="city" class="form-control" id="exampleInputName1"
-                                                    placeholder="" name="title">
+                                                    placeholder="">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputName1">Description</label>
-                                        @include('backend.comporment.summernote',[
-                                        'name'=>'description',
-                                        'description' =>''
-                                        ])
-                                    </div>
-
                                 </div>
                                 <div class="col-lg-4">
 
@@ -161,8 +153,7 @@
                                                                 aria-hidden="true"></i></span>
                                                     </div>
                                                     <input type="password" name="password" id="password"
-                                                        class="form-control" id="exampleInputName1" placeholder=""
-                                                        name="title">
+                                                        class="form-control" id="exampleInputName1" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
@@ -193,27 +184,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label for="exampleInputName1">Linked</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i
-                                                                class="fab fa-linkedin"></i></span>
-                                                    </div>
-                                                    <input type="text" name="linked_url" class="form-control"
-                                                        id="exampleInputName1" placeholder="" name="title">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <img style="margin-top: 7%;
-                                                                                                                                                                margin-left: 30%;"
-                                                src="/images/logo.ico" alt="">
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
@@ -241,7 +211,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <a type="submit" href="{{ route('backend.post.index') }}"
+                                <a type="submit" href="{{ route('backend.user.index') }}"
                                     class="btn btn-danger">Cancel</a>
                                 <button type="submit" class="btn btn-primary float-right">Create</button>
 

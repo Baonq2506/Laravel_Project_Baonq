@@ -15,7 +15,20 @@ class Tag extends Model
         'created_at',
         'updated_at',
     ];
+    protected $tagColor=[
+        1=>'success',
+        2=>'danger',
+        3=>'info',
+        4=>'dark',
+        5=>'primary',
+        6=>'secondary',
+        7=>'warning',
+    ];
 
+    public function getTagTextAttribute()
+    {
+        return '<span class="badge badge-' .$this->tagColor[$this->id] .'">' . $this->name . '<span>';
+    }
     public function post(){
         return $this->belongsToMany(Post::class,'post_tags','post_id','tag_id');
     }

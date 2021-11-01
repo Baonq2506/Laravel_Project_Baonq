@@ -55,15 +55,18 @@
                         <ul class="widget-posts">
                             @foreach ($postnew as $pnew)
                                 <li class="clearfix">
-                                    <div class="widget-posts-image"><a href="#"><img src="{{ $pnew->image_url }}"
-                                                alt="Post Thumbnail" /></a></div>
+                                    <div class="widget-posts-image"><a href="#"><img
+                                                style="height:40px !important;width:100%"
+                                                src="{{ $pnew->image_url_full }}" alt="Post Thumbnail" /></a></div>
                                     <div class="widget-posts-body">
                                         <div class="widget-posts-title"><a
                                                 href="{{ route('frontend.blog.singerBlog', [
     'slug' => $pnew->slug,
     'blog_id' => $pnew->id,
     'slug_cate' => $cate->slug,
-]) }}">{{ $pnew->title }}</a>
+]) }}">
+                                                <span class="p-style">{{ $pnew->title }}</span>
+                                            </a>
                                         </div>
                                         <div class="widget-posts-meta">{{ $pnew->created_at->toFormattedDateString() }}
                                         </div>
@@ -91,7 +94,7 @@
                 <div class="col-sm-8 col-sm-offset-1">
                     @foreach ($posts as $post)
                         <div class="post">
-                            <div class="post-thumbnail"><a href="#"><img src="/frontend/assets/images/post-1.jpg"
+                            <div class="post-thumbnail"><a href="#"><img src="{{ $post->image_url_full }}"
                                         alt="Blog-post Thumbnail"></a></div>
                             <div class="post-header font-alt">
                                 <h2 class="post-title"><a

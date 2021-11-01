@@ -191,10 +191,17 @@ src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=10568
 {{-- --Tag Input-- --}}
 <script src="/backend/taginput/bootstrap-tagsinput.min.js"></script>
 <script src="/backend/taginput/bootstrap-tagsinput-angular.min.js"></script>
+
 <script>
     $('#test').tagsinput({
         maxTags: 1,
         trimValue: true,
+        allowDuplicates: false,
+    });
+    $('#test2').tagsinput({
+        maxTags: 3,
+        trimValue: true,
+        freeInput: true,
         allowDuplicates: false,
     });
     $('#test1').tagsinput({
@@ -203,3 +210,5 @@ src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=10568
         allowDuplicates: false,
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

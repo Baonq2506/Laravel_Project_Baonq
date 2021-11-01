@@ -37,26 +37,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>183</td>
-                                <td>John Doe</td>
-                                <td>11-7-2014</td>
-                                <td></td>
-                                <td></td>
-                                <td><span class="tag tag-success">Approved</span></td>
-                                <td> doner.</td>
-                                <td>
-                                    <a class="btn btn-success" href="#" data-toggle="tooltip" data-placement="top"
-                                        title="Restore">
-                                        <i class="fa fa-registered" aria-hidden="true"></i>
-                                    </a>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $user->id }}</td>
+                                    <td><img style="margin-top: -10px;width:50px;height:50px;border:1px solid white;border-radius:50%"
+                                            src="{{ $user->image_url_full }}" alt=""></td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->gender_text }}</td>
+                                    <td>{{ $user->date_format }}</td>
+                                    <td>{{ $user->userInfo->city }}</td>
 
-                                    <a class="btn btn-primary" href="#" data-toggle="tooltip" data-placement="top"
-                                        title="Show">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                    <td> {{ $user->phoneNumber() }}</td>
+                                    <td>
+                                        <a class="btn btn-success"
+                                            href="{{ route('backend.user.restore', [
+    'user_id' => $user->id,
+]) }}"
+                                            data-toggle="tooltip" data-placement="top" title="Restore">
+                                            <i class="fa fa-registered" aria-hidden="true"></i>
+                                        </a>
+
+                                        <form style="float: left"
+                                            action="{{ route('backend.user.forceDelete', [
+    'user_id' => $user->id,
+]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger" data-toggle="tooltip" data-placement="top"
+                                                title="Trash">
+                                                <i class="fas fa-trash"></i>
+                                            </button> &emsp;
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

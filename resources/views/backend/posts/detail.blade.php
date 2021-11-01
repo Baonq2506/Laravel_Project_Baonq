@@ -14,7 +14,8 @@
                                     <div class="blog-image">
                                         <a href="#">
                                             @if (!empty($post->image_url))
-                                                <img class="card-img-top" src="{{ $post->image_url_full }}" width="100%">
+                                                <img class="card-img-top" src="{{ $post->image_url_full }}"
+                                                    height="600px" width="100%">
                                             @endif
                                         </a>
                                         <hr>
@@ -40,6 +41,14 @@
 
                                         <h1>{{ $post->title }}</h1>
                                         <p>{{ $post->content }}</p>
+                                    </div>
+                                    <div>
+                                        <strong>Tags:</strong>
+
+                                        @foreach ($post->tag as $post_tag)
+                                            <strong> {!! $post_tag->tag_text !!}</strong>
+                                        @endforeach
+
                                     </div>
                                 </div>
                             </div>

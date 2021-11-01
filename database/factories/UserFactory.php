@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'status'=>rand(1,2),
             'disk' =>'avatars',
-            'avatar' => $paths[rand(1,23)],
+            'avatar'=>$paths[rand(0,23)],
             'email' => $this->faker->unique()->safeEmail(),
             'password' => bcrypt('123456789'),
         ];

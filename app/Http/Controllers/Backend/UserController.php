@@ -23,7 +23,7 @@ class UserController extends Controller
 
         $users=User::whereHas('roles',function(Builder $query){
             $query->where('id',4);
-        })->get();
+        })->orderBy('id','DESC')->paginate(2);
         return view('backend.users.index',[
             'users'=>$users,
         ]);
@@ -157,18 +157,19 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->roles()->detach($id);
-        UserInfo::where('user_id',$id)->destroy();
-        UserLink::where('user_id',$id)->destroy();
         User::destroy($id);
-
-
         return redirect('backend/user');
     }
 
     public function restore($id){
        User::withTrashed()->where('id', $id)->restore();
         return redirect('backend/user');
+    }
+
+    public function forceDelete($id)
+    {
+        User::where('id', $id)->delete();
+        return redirect()->route('backend.user.softDelete');
     }
 
     public function signWithUser($id){

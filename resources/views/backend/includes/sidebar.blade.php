@@ -17,15 +17,12 @@
     </div>
 
     <!-- SidebarSearch Form -->
-    <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-                <button class="btn btn-sidebar">
-                    <i class="fas fa-search fa-fw"></i>
-                </button>
-            </div>
-        </div>
+    <div class="form-inline" style="display: flex;
+
+    justify-content: center;">
+        <a href="{{ url('/log-viewer') }} " ata-toggle="tooltip" data-placement="top" title="View Logs">
+            <i style="color:white" class="fab fa-drupal fa-2x"></i>
+        </a>
     </div>
 
     <!-- Sidebar Menu -->

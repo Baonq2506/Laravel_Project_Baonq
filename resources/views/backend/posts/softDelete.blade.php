@@ -35,24 +35,46 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>183</td>
-                                <td>John Doe</td>
-                                <td>11-7-2014</td>
-                                <td><span class="tag tag-success">Approved</span></td>
-                                <td> doner.</td>
-                                <td>
-                                    <a class="btn btn-success" href="#" data-toggle="tooltip" data-placement="top"
-                                        title="Restore">
-                                        <i class="fa fa-registered" aria-hidden="true"></i>
-                                    </a>
+                            @foreach ($posts as $post)
+                                <tr>
+                                    <td>{{ $post->id }}</td>
+                                    <td>{{ $post->title }}</td>
+                                    <td>{{ $post->category->name }}</td>
+                                    <td>{!! $post->status_text !!}</td>
+                                    <td> {{ $post->deleted_at->toFormattedDateString() }}</td>
+                                    <td>
+                                        <a class="btn btn-success"
+                                            href="{{ route('backend.post.restore', [
+    'post_id' => $post->id,
+]) }}"
+                                            data-toggle="tooltip" data-placement="top" title="Restore">
+                                            <i class="fa fa-registered" aria-hidden="true"></i>
+                                        </a>
 
-                                    <a class="btn btn-primary" href="#" data-toggle="tooltip" data-placement="top"
-                                        title="Show">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                        <a class="btn btn-primary"
+                                            href="{{ route('backend.post.show', [
+    'post_id' => $post->id,
+]) }}"
+                                            data-toggle="tooltip" data-placement="top" title="Show">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </a>
+                                        <a class="btn btn-dark"
+                                            href="{{ route('backend.post.edit', [
+    'post_id' => $post->id,
+]) }}"
+                                            data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                        </a>
+                                        <a class="btn btn-danger"
+                                            href="{{ route('backend.post.forceDelete', [
+    'post_id' => $post->id,
+]) }}"
+                                            data-toggle="tooltip" data-placement="top" title="trash">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

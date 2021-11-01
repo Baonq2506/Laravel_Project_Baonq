@@ -2,6 +2,12 @@
 @section('title')
     Edit Post
 @endsection
+@section('css')
+    <style>
+
+
+    </style>
+@endsection
 @section('content-header')
     <div class="content-header">
         <div class="container-fluid">
@@ -54,39 +60,30 @@
                                 ])
 
                             </div>
-                            <div class="form-group">
-                                <label>Tag</label>
-                                <select class="select2" name="tags[]" multiple="multiple"
-                                    data-placeholder="Select a Tag" style="width: 100%;">
-                                    @foreach ($tags as $tag)
-                                        @foreach ($post->tag as $pt)
-                                            @php
-                                                $selected = '';
-                                                if ($pt->id == $tag->id) {
-                                                    $selected = 'selected';
-                                                    break;
-                                                }
-                                            @endphp
-                                        @endforeach
-                                        <option @if (!empty($selected))
-                                            {{ $selected }}
-                                            @endif value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                    @endforeach
-                                </select>
+
+                            <div class="col-lg-12">
+                                <div class="form-group" style="width: 100%;">
+                                    <label>Tag</label> <br>
+                                    <input name="tags[]" id="test2" class="form-control" data-role="tagsinput"
+                                        value="    @foreach ($post->tag as $tag)
+                                    {{ $tag->name . ',' }}
+                                    @endforeach">
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="inputProjectLeader">User Create</label>
-                                        <input type="text" id="inputProjectLeader" class="form-control"
+                                        <input type="text" disabled id="inputProjectLeader" class="form-control"
                                             value="{{ $post->userCreated->name }}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="inputClientCompany">User Update</label>
-                                        <input type="text" id="inputClientCompany" class="form-control"
+                                        <input type="text" disabled id="inputClientCompany" class="form-control"
                                             value="{{ $post->userUpdated->name }}">
+                                        <input type="hidden" name="id_updated" value={{ auth()->user()->id }}>
                                     </div>
                                 </div>
                             </div>
@@ -157,12 +154,22 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a class="btn btn-danger"
-                        href="{{ route('backend.post.destroy', [
+                    {{-- <form style="float: left"
+                        action="{{ route('backend.post.forceDelete', [
     'post_id' => $post->id,
-]) }}">Delete</a>
-                    <a href="{{ route('backend.post.edit', ['post_id' => $post->id]) }}"
-                        class="btn btn-secondary">Cancel</a>
+]) }}"
+                        method="post">
+                        @csrf
+                        @method('delete')
+                        <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Trash">
+                            <i class="fas fa-trash"></i>
+                        </button> &emsp;
+                    </form> --}}
+                    <a href="                                      @if (!empty($post->deleted_at))
+                        {{ route('backend.post.historyDelete') }}
+                    @else
+                        {{ route('backend.post.index') }}
+                        @endif" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-success float-right">Update</button>
                 </div>
             </div>

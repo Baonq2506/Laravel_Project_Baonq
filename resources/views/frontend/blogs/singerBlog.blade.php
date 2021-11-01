@@ -4,10 +4,7 @@
 @endsection
 @section('header')
     <section class="module bg-dark-60 blog-page-header">
-        <video
-            style="margin-top: -250px;
-                                                                                                                                                                                                                                                                                                                                margin-bottom: -255px;"
-            preload='auto' autoplay loop width="100%" height="auto">
+        <video style="margin-top: -250px;margin-bottom: -255px;" preload='auto' autoplay loop width="100%" height="auto">
             <source src="/images/live.mp4">
         </video>
     </section>
@@ -54,8 +51,7 @@
     'blog_id' => $pnew->id,
     'slug_cate' => $pnew->category->slug,
 ]) }}">
-                                                <span
-                                                    style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;word-break: break-word;">
+                                                <span class="p-style">
                                                     {{ $pnew->title }}</span>
                                             </a>
                                         </div>

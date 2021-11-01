@@ -3,138 +3,112 @@
     Profile
 @endsection
 
-@section('main')
-    <br>
-    <div class="single-pro-review-area mt-t-30 mg-b-15">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="profile-info-inner">
-                        <div class="profile-img">
-                            <img src="/images/LOL/HacTinh/160614_gamelandvn_hactinh10.jpg" alt="">
-                        </div>
-                        <div class="profile-details-hr">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                                    <div class="address-hr">
-                                        <p><b>Name</b><br> {{ $user->name }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                                    <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                        <p><b>ID</b><br> {{ $user->id }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6">
-                                    <div class="address-hr">
-                                        <p><b>Email</b><br> {{ $user->email }}</p>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6">
-                                    <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                        <p><b>Phone</b><br> {{ $user->userInfo->phone }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="address-hr">
-                                        <p><b>Address</b><br>
-                                            {{ $user->userInfo->address }},{{ $user->userInfo->country }},{{ $user->userInfo->city }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <div class="address-hr">
-                                        <a style="color:blue" href="{{ $user->userLink->fb_url }}"><i
-                                                class="fa fa-facebook"></i></a>
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <div class="address-hr">
-                                        <a style="color:rgb(45, 120, 218)" href="{{ $user->userLink->switter_url }}"><i
-                                                class="fa fa-twitter"></i></a>
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <div class="address-hr">
-                                        <a style="color:red" href="{{ $user->userLink->gg_url }}"><i
-                                                class="fa fa-google-plus"></i></a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                    <div class="product-payment-inner-st res-mg-t-30 analysis-progrebar-ctn">
-                        <ul id="myTabedu1" class="tab-review-design">
-                            <li class="active"><a href="#reviews"> Biography</a></li>
-                        </ul>
-                        <div id="myTabContent" class="tab-content custom-product-edit">
-
-                            <div class="product-tab-list tab-pane fade active in" id="reviews">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                    <div class="address-hr biography">
-                                                        <p><b>Full Name</b><br> {{ $user->name }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                    <div class="address-hr biography">
-                                                        <p><b>Mobile</b><br> {{ $user->userInfo->phone }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-3 col-sm-3 col-xs-6">
-                                                    <div class="address-hr biography">
-                                                        <p><b>Email</b><br> {{ $user->email }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                    <div class="address-hr biography">
-                                                        <p><b>ID</b><br> {{ $user->id }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                    <div class="address-hr biography">
-                                                        <p><b>Gender</b><br> {{ $user->gender_text }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                    <div class="address-hr biography">
-                                                        <p><b>Date of Birth</b><br> {{ $user->userInfo->date }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="content-profile">
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+@section('content-header')
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Profile</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">User Profile</li>
+                </ol>
             </div>
         </div>
+    </div><!-- /.container-fluid -->
+@endsection
+
+@section('main')
+    <div class="row">
+        <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                    <div class="text-center">
+                        <img style="width:150px !important;" class="profile-user-img img-fluid img-circle"
+                            src="{{ $user->image_url_full }}" alt="User profile picture">
+                    </div>
+
+                    <h3 class="profile-username text-center">{{ $user->name }}</h3>
+
+                    <br>
+
+                    <div class="row" style="text-align: center">
+                        <div class="col-lg-12"> <a href="#"></a>
+                            <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+        </div>
+        <div class="col-lg-9">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">About User</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <strong><i class="fas fa-calendar-day"></i> Date</strong>
+                            <p class="text-muted">{{ $user->date_format }}</p>
+                        </div>
+                        <div class="col-lg-6"> <strong><i class="fas fa-transgender-alt"></i>
+                                <p class="text-muted">{{ $user->gender_text }}</p>
+                            </strong>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                            <p class="text-muted">{{ $user->userInfo->address }}, {{ $user->userInfo->city }}</p>
+                        </div>
+                        <div class="col-lg-6"> <strong><i class="fas fa-phone mr-1"></i></i> Phone</strong>
+                            <p class="text-muted">
+                                {{ $user->phoneNumber() }}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <strong><i class="fas fa-user-times"></i> Time Create</strong>
+
+                            <p class="text-muted">{{ $user->userInfo->created_at->toFormattedDateString() }}</p>
+                        </div>
+                        <div class="col-lg-6"> <strong><i class="fas fa-user-times"></i></i> Last Update</strong>
+                            <p class="text-muted">
+                                {{ $user->userInfo->updated_at->toFormattedDateString() }}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <!-- /.col -->
+
     </div>
+
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        function myFunction(e) {
+            var x = document.getElementById("C" + e.id);
+            if (x.style.display === 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }
+    </script>
 @endsection

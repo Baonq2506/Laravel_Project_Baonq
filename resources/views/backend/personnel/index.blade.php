@@ -5,7 +5,12 @@
 @section('main')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Employee Table</h3>
+            @include('backend.comporment.btn',[
+            'color'=>'primary',
+            'link'=>'backend.personnel.create',
+            'icon'=>'plus',
+            'name'=>'Create Employee'
+            ])
         </div>
         <!-- /.card-header -->
         <div class="card-body">
