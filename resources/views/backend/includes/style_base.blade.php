@@ -59,3 +59,4 @@
 <link rel="stylesheet" href="/backend/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 {{-- Tag Input Css --}}
 <link rel="stylesheet" href="/backend/taginput/bootstrap-tagsinput.css">
+@toastr_css

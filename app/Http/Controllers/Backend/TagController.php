@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateTagRequest;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
@@ -39,9 +40,19 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTagRequest $request)
     {
-        //
+        $data = $request->all();
+        $tag=new Tag();
+        $tag->name = $data['name'];
+        $tag->created_at=now();
+        $tag->save();
+        if ($tag->save()) {
+            toastr()->success('You create a tag  successfully!');
+        } else {
+            toastr()->error('You create a tag failed!');
+        }
+        return redirect()->route('backend.tag.index');
     }
 
     /**
@@ -91,7 +102,12 @@ class TagController extends Controller
         foreach ($posts as $post){
             $post->tag()->detach($id);
         }
-        Tag::where('id', $id)->delete();
+        $kt=Tag::where('id', $id)->delete();
+        if ($kt == 1) {
+            toastr()->success('You delete a  tag successfully!');
+        } else {
+            toastr()->error('You delete a tag failed!');
+        }
         return redirect()->route('backend.tag.index');
     }
 }

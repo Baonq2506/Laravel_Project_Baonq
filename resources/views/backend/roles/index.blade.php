@@ -14,7 +14,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Decentralization</th>
+                        <th style="width:700px">Decentralization</th>
                         <th>Action</th>
                     </tr>
                 </thead>

@@ -47,29 +47,17 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-md-12">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 <!-- general form elements -->
                 <div class="card card-primary">
-                    <form
-                        action="{{ route('backend.role.update', [
+                    <form action="{{ route('backend.role.update', [
     'role_id' => $role->id,
-]) }}"
-                        method="post" enctype="multipart/form-data">
+]) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
-
+                        @method('put')
                         <div class="card-body">
                             <div class="row">
-
-
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="exampleInputName1">Name</label>
@@ -82,6 +70,11 @@
                                                 placeholder="" value="{{ $role->name }}">
                                         </div>
                                     </div>
+                                    @error('name')
+                                        <div style="margin-top: -10px; margin-bottom: 5px;">
+                                            <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
 
 
@@ -99,11 +92,19 @@
                                                         }
                                                     @endphp
                                                 @endforeach
-                                                <option {{ $selected }} value="{{ $key }}">{{ $permiss }}
+                                                <option @if (!empty($selected))
+                                                    {{ $selected }}
+                                                    @endif value="{{ $key }}">
+                                                    {{ $permiss }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
+                                    @error('permissions')
+                                        <div style="margin-top: -10px; margin-bottom: 5px;">
+                                            <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                        </div>
+                                    @enderror
                                     <!-- /.form-group -->
                                 </div>
                             </div>

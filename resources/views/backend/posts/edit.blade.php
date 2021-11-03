@@ -49,27 +49,42 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputName">Title</label>
-                                <input type="text" name="title" id="inputName" class="form-control"
-                                    value="{{ $post->title }}">
+                                <input type="text" name="title" id="inputName"
+                                    class="form-control @error('title') is-invalid @enderror" value="{{ $post->title }}">
                             </div>
+                            @error('title')
+                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                    <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                </div>
+                            @enderror
                             <div class="form-group">
                                 <label for="inputDescription">Content</label>
                                 @include('backend.comporment.summernote',[
                                 'name'=>'content',
                                 'description'=>$post->content,
+                                'class'=> "@error('content') is-invalid @enderror"
                                 ])
 
                             </div>
-
+                            @error('content')
+                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                    <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                </div>
+                            @enderror
                             <div class="col-lg-12">
                                 <div class="form-group" style="width: 100%;">
                                     <label>Tag</label> <br>
-                                    <input name="tags[]" id="test2" class="form-control" data-role="tagsinput"
-                                        value="    @foreach ($post->tag as $tag)
+                                    <input name="tags[]" id="test2" class="form-control @error('tags') is-invalid @enderror"
+                                        data-role="tagsinput" value="         @foreach ($post->tag as $tag)
                                     {{ $tag->name . ',' }}
                                     @endforeach">
                                 </div>
                             </div>
+                            @error('tags')
+                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                    <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                </div>
+                            @enderror
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -108,7 +123,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputEstimatedBudget">Slug</label> <br>
-                                <input class="form-control" type="text" name="slug" value="{{ $post->slug }}">
+                                <input class="form-control " type="text" name="slug" value="{{ $post->slug }}">
                             </div>
                             <div class="form-group">
                                 <label for="inputEstimatedBudget">Images</label> <br>
@@ -135,13 +150,20 @@
                                     <label for="exampleInputFile">File input</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="image">
+                                            <input type="file"
+                                                class="custom-file-input @error('image_url') is-invalid @enderror"
+                                                name="image_url">
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                         </div>
                                         <div class="input-group-append">
                                             <span class="input-group-text">Upload</span>
                                         </div>
                                     </div>
+                                    @error('image_url')
+                                        <div style="margin-top: -10px; margin-bottom: 5px;">
+                                            <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
 
                             </div>
@@ -154,18 +176,8 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    {{-- <form style="float: left"
-                        action="{{ route('backend.post.forceDelete', [
-    'post_id' => $post->id,
-]) }}"
-                        method="post">
-                        @csrf
-                        @method('delete')
-                        <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Trash">
-                            <i class="fas fa-trash"></i>
-                        </button> &emsp;
-                    </form> --}}
-                    <a href="                                      @if (!empty($post->deleted_at))
+
+                    <a href="    @if (!empty($post->deleted_at))
                         {{ route('backend.post.historyDelete') }}
                     @else
                         {{ route('backend.post.index') }}

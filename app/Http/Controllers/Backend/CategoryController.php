@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
-use App\Models\User;
-use App\Notifications\NotificationUser;
-
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -19,9 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories= Category::all();
-        return view('backend.categories.index',[
-            'categories' =>$categories,
+        $categories = Category::all();
+        return view('backend.categories.index', [
+            'categories' => $categories,
         ]);
     }
 
@@ -42,14 +40,19 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        $data=$request->all();
-        $category= new Category();
-        $category->name= $data['name'];
-        $category->created_at=now();
-        $category->updated_at=now();
+        $data = $request->all();
+        $category = new Category();
+        $category->name = $data['name'];
+        $category->created_at = now();
+        $category->updated_at = now();
         $category->save();
+        if ($category->save()) {
+            toastr()->success('You created a new category successfully!');
+        } else {
+            toastr()->error('You created a new category failed!');
+        }
         // $content='A new create Category';
         // $user=User::find(3);
         // $user->notify(new NotificationUser($user,$content));
@@ -76,9 +79,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category=Category::find($id);
-        return view('backend.categories.edit',[
-            'category'=>$category,
+        $category = Category::find($id);
+        return view('backend.categories.edit', [
+            'category' => $category,
         ]);
     }
 
@@ -89,16 +92,19 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
 
         $data = $request->all();
-        $categories=Category::find($id);
-
+        $categories = Category::find($id);
         $categories->name = $data['name'];
-
-        $categories->updated_at=now();
+        $categories->updated_at = now();
         $categories->save();
+        if ($categories->save()) {
+            toastr()->success('You update a  category successfully!');
+        } else {
+            toastr()->error('You update a  category failed!');
+        }
         return redirect('backend/category');
     }
 
@@ -112,6 +118,11 @@ class CategoryController extends Controller
     {
 
         Category::destroy($id);
+        if( Category::destroy($id) == 0){
+            toastr()->success('You delete a  category successfully!');
+        } else {
+            toastr()->error('You delete a category failed!');
+        }
         return redirect('backend/category');
     }
 }

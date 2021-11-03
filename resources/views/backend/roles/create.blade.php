@@ -17,45 +17,12 @@
         </div>
     </div>
 @endsection
-<style>
-    .label-info {
-        background-color: #17a2b8;
 
-    }
-
-    .bootstrap-tagsinput {
-        width: 100%;
-    }
-
-    .label {
-        display: inline-block;
-        padding: .25em .4em;
-        font-size: 75%;
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: .25rem;
-        transition: color .15s ease-in-out, background-color .15s ease-in-out,
-            border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    }
-
-</style>
 @section('main')
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-md-12">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 <!-- general form elements -->
                 <div class="card card-primary">
@@ -74,24 +41,37 @@
                                                 <span class="input-group-text"><i class="fa fa-user"
                                                         aria-hidden="true"></i></span>
                                             </div>
-                                            <input type="text" name='name' class="form-control" id="exampleInputName1"
-                                                placeholder="">
+                                            <input type="text" name='name'
+                                                class="form-control @error('name') is-invalid @enderror"
+                                                id="exampleInputName1" placeholder="">
                                         </div>
                                     </div>
+                                    @error('name')
+                                        <div style="margin-top: -10px; margin-bottom: 5px;">
+                                            <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
+
 
 
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label>Permission</label>
+                                        <label>Permission*</label>
                                         <select name="permissions[]" class="duallistbox" multiple="multiple">
-                                            @foreach ($permissions as $permission)
-                                                <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                                            @foreach ($permissions as $key => $per)
+                                                <option value="{{ $key }}">{{ $per }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+                                    @error('permissions')
+                                        <div style="margin-top: -10px; margin-bottom: 5px;">
+                                            <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                        </div>
+                                    @enderror
                                     <!-- /.form-group -->
                                 </div>
+
                             </div>
 
                             <div class="card-footer">

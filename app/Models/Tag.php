@@ -27,6 +27,9 @@ class Tag extends Model
 
     public function getTagTextAttribute()
     {
+        if($this->id > 7){
+            return '<span class="badge badge-light",style="color:black">' . $this->name . '<span>';
+        }
         return '<span class="badge badge-' .$this->tagColor[$this->id] .'">' . $this->name . '<span>';
     }
     public function post(){

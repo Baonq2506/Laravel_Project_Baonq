@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Models\Ban;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Notifications\NotificationUser;
@@ -10,6 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\UserInfo;
 use App\Models\UserLink;
 use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -23,7 +27,7 @@ class UserController extends Controller
 
         $users=User::whereHas('roles',function(Builder $query){
             $query->where('id',4);
-        })->orderBy('id','DESC')->paginate(2);
+        })->orderBy('id','DESC')->paginate(5);
         return view('backend.users.index',[
             'users'=>$users,
         ]);
@@ -53,7 +57,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         $data = $request->all();
         $user= new User();
@@ -70,7 +74,11 @@ class UserController extends Controller
         $user->roles()->attach(4);
         $user->userInfo()->create($data);
         $user->userLink()->create($data);
-
+        if ($user->save()) {
+            toastr()->success('You created a new  user successfully!');
+        } else {
+            toastr()->error('You created a new user failed!');
+        }
         return redirect('backend/user');
     }
 
@@ -109,7 +117,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $data=$request->all();
 
@@ -143,6 +151,11 @@ class UserController extends Controller
         ]);
 
         $user->save();
+        if ($user->save()) {
+            toastr()->success('You update a  user successfully!');
+        } else {
+            toastr()->error('You update a user failed!');
+        }
         $user->roles()->sync(4);
 
 
@@ -158,6 +171,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
+        if (User::destroy($id)==0) {
+            toastr()->success('You Delete a  user successfully!');
+        } else {
+            toastr()->error('You Delete a user failed!');
+        }
         return redirect('backend/user');
     }
 
@@ -175,5 +193,44 @@ class UserController extends Controller
     public function signWithUser($id){
         Auth::loginUsingId($id, $remember = true);
         return redirect('backend/home');
+    }
+
+    public function userBanned(Request $request,$id){
+        $data = $request->all();
+        dd($id);
+        $user=User::find($id);
+        $user->ban([
+            'expired_at' => $data['time_expires'],
+            'comment' => $data['comments'],
+        ]);
+        toastr()->success('Ban successfull !');
+
+        return redirect()->route('backend.user.index');
+    }
+
+    public function indexBan(){
+
+        $users = User::onlyBanned()->paginate(5);
+        $userBans= Ban::all();
+        return view('backend.users.banned',[
+            'users' =>$users,
+            'userBans' =>$userBans,
+        ]);
+    }
+
+    public function userUnban($id){
+
+        $users = User::withBanned()->get();
+
+        foreach ($users as $user){
+
+            if($user->id == $id)
+            {
+                $user->unban();
+                toastr()->success('Unban successfull !');
+            }
+        }
+
+        return redirect()->route('backend.user.index');
     }
 }

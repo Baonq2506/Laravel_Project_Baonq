@@ -172,7 +172,13 @@
                     <li class="nav-item">
                         <a href="{{ route('backend.user.softDelete') }}" class="nav-link  @if (request()->routeIs('backend.user.softDelete')) active @endif">
                             <i style=" @if (request()->routeIs('backend.user.softDelete')) color:red  @endif" class="fa fa-user-times" aria-hidden="true"></i>
-                            <p>List Die Users</p>
+                            <p>List History Users</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.user.indexBan') }}" class="nav-link  @if (request()->routeIs('backend.user.indexBan')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.user.indexBan')) color:red  @endif" class="fa fa-user-times" aria-hidden="true"></i>
+                            <p>List Users Ban</p>
                         </a>
                     </li>
                 </ul>

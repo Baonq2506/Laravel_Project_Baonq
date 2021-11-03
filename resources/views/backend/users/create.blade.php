@@ -23,15 +23,6 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-md-12">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 <!-- general form elements -->
                 <div class="card card-primary">
@@ -50,10 +41,17 @@
                                                         <span class="input-group-text"><i class="fa fa-user"
                                                                 aria-hidden="true"></i></span>
                                                     </div>
-                                                    <input type="text" name='name' class="form-control"
-                                                        id="exampleInputName1" placeholder="" n>
+                                                    <input type="text" name='name'
+                                                        class="form-control @error('password') is-invalid @enderror"
+                                                        id="exampleInputName1" placeholder="" value="{{ old('name') }}">
                                                 </div>
                                             </div>
+                                            @error('name')
+                                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                                    <small style="margin-top:-5px;color:red">&emsp;*
+                                                        {{ $message }}</small>
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
@@ -63,10 +61,17 @@
                                                         <span class="input-group-text"><i class="fa fa-envelope-square"
                                                                 aria-hidden="true"></i></span>
                                                     </div>
-                                                    <input type="email" name="email" class="form-control"
-                                                        id="exampleInputName1" placeholder="">
+                                                    <input type="email" name="email"
+                                                        class="form-control @error('email') is-invalid @enderror"
+                                                        value="{{ old('email') }}" id="exampleInputName1" placeholder="">
                                                 </div>
                                             </div>
+                                            @error('email')
+                                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                                    <small style="margin-top:-5px;color:red">&emsp;*
+                                                        {{ $message }}</small>
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row">
@@ -77,12 +82,20 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                                     </div>
-                                                    <input type="text" name="phone" class="form-control"
+                                                    <input type="text" name="phone"
+                                                        class="form-control @error('phone') is-invalid @enderror"
+                                                        value="{{ old('phone') }}"
                                                         data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']"
                                                         data-mask>
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
+                                            @error('phone')
+                                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                                    <small style="margin-top:-5px;color:red">&emsp;*
+                                                        {{ $message }}</small>
+                                                </div>
+                                            @enderror
                                         </div>
 
                                         <div class="col-lg-4">
@@ -90,7 +103,8 @@
                                                 <label>Date</label>
                                                 <div class="input-group date" id="reservationdate"
                                                     data-target-input="nearest">
-                                                    <input type="text" name="date" class="form-control datetimepicker-input"
+                                                    <input type="text" name="date" value="{{ old('date') }}"
+                                                        class="form-control datetimepicker-input @error('date') is-invalid @enderror"
                                                         data-target="#reservationdate" />
                                                     <div class="input-group-append" data-target="#reservationdate"
                                                         data-toggle="datetimepicker">
@@ -98,6 +112,12 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @error('date')
+                                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                                    <small style="margin-top:-5px;color:red">&emsp;*
+                                                        {{ $message }}</small>
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="form-group">
@@ -120,10 +140,18 @@
                                                         <span class="input-group-text"><i class="fa fa-home"
                                                                 aria-hidden="true"></i></span>
                                                     </div>
-                                                    <input type="text" name="address" class="form-control"
-                                                        id="exampleInputName1" placeholder="">
+                                                    <input type="text" name="address"
+                                                        class="form-control @error('address') is-invalid @enderror"
+                                                        id="exampleInputName1" placeholder=""
+                                                        value="{{ old('address') }}">
                                                 </div>
                                             </div>
+                                            @error('address')
+                                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                                    <small style="margin-top:-5px;color:red">&emsp;*
+                                                        {{ $message }}</small>
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="form-group">
@@ -153,9 +181,16 @@
                                                                 aria-hidden="true"></i></span>
                                                     </div>
                                                     <input type="password" name="password" id="password"
-                                                        class="form-control" id="exampleInputName1" placeholder="">
+                                                        class="form-control @error('password') is-invalid @enderror"
+                                                        id="exampleInputName1" placeholder="">
                                                 </div>
                                             </div>
+                                            @error('password')
+                                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                                    <small style="margin-top:-5px;color:red">&emsp;*
+                                                        {{ $message }}</small>
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
@@ -165,10 +200,18 @@
                                                         <span class="input-group-text"><i class="fa fa-unlock-alt"
                                                                 aria-hidden="true"></i></span>
                                                     </div>
-                                                    <input type="password" class="form-control" id="exampleInputName1"
-                                                        name="password_confirmation" placeholder="" name="title">
+                                                    <input type="password"
+                                                        class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                        id="exampleInputName1" name="password_confirmation" placeholder=""
+                                                        name="title">
                                                 </div>
                                             </div>
+                                            @error('password_confirmation')
+                                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                                    <small style="margin-top:-5px;color:red">&emsp;*
+                                                        {{ $message }}</small>
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
@@ -206,7 +249,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @error('avatar')
+                                            <div style="margin-top: -10px; margin-bottom: 5px;">
+                                                <small style="margin-top:-5px;color:red">&emsp;*
+                                                    {{ $message }}</small>
+                                            </div>
+                                        @enderror
                                     </div>
+
                                 </div>
                             </div>
 

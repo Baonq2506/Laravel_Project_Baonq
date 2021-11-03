@@ -40,6 +40,9 @@ class RolePermissionsTableSeeder extends Seeder
                     'created_at'=>now(),
                 ]);
         }
+
+
+
         DB::table('roles')->insert([
             [
                 'name' => 'Admin',
@@ -58,6 +61,24 @@ class RolePermissionsTableSeeder extends Seeder
                 'slug' => 'user'
             ]
         ]);
+
+        $roleAdmin=Role::where('slug','admin')->first();
+        $roleAdmod=Role::where('slug','admod')->first();
+        $roleWriter=Role::where('slug','writer')->first();
+        $roleUser=Role::where('slug','user')->first();
+        foreach($perArr as $key=>$value){
+            $perAction=Permission::where('id',$key)->first();
+            $roleAdmin->permissions()->attach($perAction);
+            if($key>=5){
+                $roleAdmod->permissions()->attach($perAction);
+            }
+            if($key>=15){
+                $roleWriter->permissions()->attach($perAction);
+            }
+            if($key>17){
+                $roleUser->permissions()->attach($perAction);
+            }
+        }
 
 
     }

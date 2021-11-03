@@ -14,16 +14,17 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next,...$roles)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
 
-
-        foreach ($roles as $role){
-            if($request->user()->roles[0]->slug == $role)
-                {
+        foreach (auth()->user()->roles as $r) {
+            foreach ($roles as $role) {
+                if ($r->slug == $role) {
                     return $next($request);
                 }
             }
-                return abort(403);
+            return abort(403);
+        }
     }
+
 }

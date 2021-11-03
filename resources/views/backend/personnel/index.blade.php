@@ -33,40 +33,61 @@
                             <td><img src="{{ $person->image_url_full }}"
                                     style="width:70px;height:70px;border:1px solid white;border-radius:50%" alt=""></td>
 
-                            <td>{{ $person->name }}</td>
+                            <td><a
+                                    href="{{ route('backend.personnel.show', ['personnel_id' => $person->id]) }}"><strong>{{ $person->name }}</strong></a>
+                            </td>
                             <td>{{ $person->gender_text }}</td>
                             <td>{{ $person->date_format }}</td>
                             <td>{{ $person->role_text }}</td>
                             <td>
                                 <a class="btn btn-info"
-                                    href="{{ route('backend.personnel.show', [
-    'personnel_id' => $person->id,
-]) }}"
+                                    href="{{ route('backend.personnel.show', ['personnel_id' => $person->id]) }}"
                                     data-toggle="tooltip" data-placement="top" title="View">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </a> &emsp;
                                 <a class="btn btn-success"
-                                    href="{{ route('backend.personnel.edit', [
-    'personnel_id' => $person->id,
-]) }}"
+                                    href="{{ route('backend.personnel.edit', ['personnel_id' => $person->id]) }}"
                                     data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                 </a>
-                                <form style="float: left"
-                                    action="{{ route('backend.personnel.destroy', [
-    'personnel_id' => $person->id,
-]) }}"
-                                    method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Trash">
-                                        <i class="fas fa-trash"></i>
-                                    </button> &emsp;
-                                </form>
+
+                                <button data-toggle="tooltip" data-placement="top" title="Trash" style="margin-left:15px"
+                                    type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    <i style="color:white" class="fas fa-trash"></i>
+                                </button>
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 style="color: red;"><i class="fas fa-exclamation-triangle"></i> Warning!
+                                                </h5>
+                                                <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                                                    <i class="fas fa-times fa-lg"></i></button>
+                                            </div>
+                                            <Strong style="text-align:center">Are you OK?</Strong>
+                                            <form
+                                                action="{{ route('backend.personnel.destroy', ['personnel_id' => $person->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('delete')
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button class="btn btn-danger" type="submit">
+                                                        Delete
+                                                    </button> &emsp;
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <form style="float: left" method="POST"
-                                    action="{{ route('backend.personnel.signWithUser', [
-    'personnel_id' => $person->id,
-]) }}">
+                                    action="{{ route('backend.personnel.signWithUser', ['personnel_id' => $person->id]) }}">
                                     @csrf
                                     <button data-toggle="tooltip" data-placement="top" title="Login"
                                         class="btn btn-outline-danger">

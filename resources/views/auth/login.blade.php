@@ -12,7 +12,7 @@
     <link rel=" stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="/frontend/css/style.css">
-
+    @toastr_css
 </head>
 
 <body class="img js-fullheight" style="background-image: url(/images/LOL/Header/freljord-vaults.jpg);">
@@ -31,13 +31,14 @@
                                     up</a></span></h3>
                         <form action="{{ route('auth.login') }}" method="post">
                             @csrf
+
                             <div class="form-group">
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"
                                     placeholder="Email" name='email'>
                             </div>
                             @error('email')
                                 <div style="margin-top: -10px;
-                                                    margin-bottom: 5px;">
+                                                                        margin-bottom: 5px;">
                                     <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
                                 </div>
                             @enderror
@@ -51,7 +52,7 @@
                             </div>
                             @error('password')
                                 <div style="margin-top: -10px;
-                                    margin-bottom: 5px;">
+                                                        margin-bottom: 5px;">
                                     <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
                                 </div>
                             @enderror
@@ -96,3 +97,5 @@
 <script src="/frontend/js/popper.js"></script>
 <script src="/frontend/js/bootstrap.min.js"></script>
 <script src="/frontend/js/main.js"></script>
+@toastr_js
+@toastr_render

@@ -32,12 +32,13 @@
                                 <label for="exampleInputName1">Name</label>
                                 <input type="text" class="form-control" id="exampleInputName1" placeholder="Enter Name"
                                     name='name' class="@error('name') is-invalid @enderror">
-                                @error('name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
 
                             </div>
-
+                            @error('name')
+                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                    <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                </div>
+                            @enderror
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">

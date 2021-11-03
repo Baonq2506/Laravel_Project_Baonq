@@ -1,4 +1,4 @@
-<textarea id="summernote" style="display: none;" name='{{ $name }}'
+<textarea id="summernote" class="form-control {{ $class }}" style="display: none;" name='{{ $name }}'
     placeholder="Content"> {{ $description }}</textarea>
 @push('stack_js')
     <script>

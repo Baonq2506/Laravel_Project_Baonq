@@ -64,6 +64,12 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['a
 
     route::get('user/signWithUser/{user_id}', 'UserController@signWithUser')->name('user.signWithID');
 
+    route::get('banned', 'UserController@userBanned')->name('user.banned');
+
+    route::get('Unbanned/{user_id}', 'UserController@userUnban')->name('user.unbanned');
+
+    route::get('indexbanned', 'UserController@indexBan')->name('user.indexBan');
+
     //Category
     Route::resource('category', 'CategoryController')->parameters([
         'category' => 'category_id',

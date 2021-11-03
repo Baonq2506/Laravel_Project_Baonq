@@ -8,11 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
-
-class User extends Authenticatable
+use Cog\Contracts\Ban\Bannable as BannableContract;
+use Cog\Laravel\Ban\Traits\Bannable;
+class User extends Authenticatable implements BannableContract
 {
     use HasApiTokens, HasFactory, Notifiable;
     use SoftDeletes;
+    use Bannable;
 
     /**
      * The attributes that are mass assignable.
@@ -159,5 +161,10 @@ class User extends Authenticatable
     public function getIsAdminAttribute()
     {
         return $this->roles()->where('id', 1)->exists();
+    }
+
+    public function shouldApplyBannedAtScope()
+    {
+        return true;
     }
 }

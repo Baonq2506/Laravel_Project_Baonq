@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+
 class PostController extends Controller
 {
     /**
@@ -18,22 +20,8 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::simplePaginate(9);
+        $posts = Post::all();
         $categories = Category::all();
-        $status = $request->get('status_search');
-        $category = $request->get('category_search');
-        $name = $request->get('title_search');
-
-        if (!empty($name)) {
-            $posts = Post::where('title', 'like', "%" . $name . "%")->paginate(6);
-        }
-        if ($category != null) {
-            $posts = Post::where('category_id', $category)->paginate(6);
-        }
-        if ($status != null) {
-            $posts = Post::where('status', $status)->paginate(6);
-        }
-
         return view('backend.posts.index', [
             'posts' => $posts,
             'categories' => $categories,
@@ -48,6 +36,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+
         $tags = Tag::all();
         return view('backend.posts.create', [
             'categories' => $categories,
@@ -61,7 +50,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         $data = $request->all();
 
@@ -82,7 +71,11 @@ class PostController extends Controller
         $post->updated_at = date("Y-m-d H:i:s");
         $post->save();
         $post->tag()->attach($data['tags']);
-
+        if ($post->save()) {
+            toastr()->success('You create a new post successfully!');
+        } else {
+            toastr()->error('You create a new post failed!');
+        }
         return redirect()->route('backend.post.index');
     }
 
@@ -132,7 +125,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, $id)
     {
         $data = $request->all();
 
@@ -152,8 +145,13 @@ class PostController extends Controller
         $post->status = $data['status'];
         $post->updated_at = date("Y-m-d H:i:s");
         $post->save();
-        $tags=$post->boolTagsInput($data['tags']);
+        $tags = $post->boolTagsInput($data['tags']);
         $post->tag()->sync($tags);
+        if ($post->save()) {
+            toastr()->success('You update a post successfully!');
+        } else {
+            toastr()->error('You update a post failed!');
+        }
         return redirect()->route('backend.post.index');
     }
 
@@ -167,6 +165,11 @@ class PostController extends Controller
     {
 
         Post::destroy($id);
+        if(Post::destroy($id)==0){
+            toastr()->success('You destroy a post successfully!');
+        } else {
+            toastr()->error('You destroy a post failed!');
+        }
         return redirect()->route('backend.post.index');
     }
 
@@ -180,13 +183,24 @@ class PostController extends Controller
 
     public function restore($id)
     {
-        Post::withTrashed()->where('id', $id)->restore();
+        $boolPost=Post::withTrashed()->where('id', $id)->restore();
+
+        if( $boolPost==1){
+            toastr()->success('You restore post successfully!');
+        } else {
+            toastr()->error('You restore post failed!');
+        }
         return redirect('backend/post');
     }
 
     public function forceDelete($id)
     {
-        Post::where('id', $id)->delete();
+        $kt=Post::where('id', $id)->delete();
+        if( $kt==1){
+            toastr()->success('You delete post successfully!');
+        } else {
+            toastr()->error('You delete new post failed!');
+        }
         return redirect()->route('backend.post.softDelete');
     }
 
@@ -195,7 +209,11 @@ class PostController extends Controller
         $post = Post::find($post_id);
         $post->status = $id;
         $post->save();
-
+        if( $post->save()==true){
+            toastr()->success( ' Status change successfully!');
+        } else {
+            toastr()->error('Status change failed!');
+        }
         return redirect()->route('backend.post.index');
     }
 

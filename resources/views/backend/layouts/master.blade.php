@@ -9,6 +9,8 @@
     @include('backend.includes.style_base')
     @stack('stack_css')
     @yield('css')
+
+
 </head>
 <style>
     .img-style {
@@ -19,6 +21,10 @@
     .label-info {
         background-color: #17a2b8;
 
+    }
+
+    .bootstrap-tagsinput {
+        width: 100%;
     }
 
     .bootstrap-tagsinput {
@@ -84,6 +90,7 @@
     @include('backend.includes.script_base')
     @yield('scripts')
     @stack('stack_js')
+
 </body>
 
 </html>

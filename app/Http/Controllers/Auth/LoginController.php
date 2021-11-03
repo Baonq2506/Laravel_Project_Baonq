@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 use Laravel\Socialite\Facades\Socialite;
-
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,9 +15,9 @@ class loginController extends Controller
         return view('auth.login');
     }
 
+
     public function authentication(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'email'=>['required','string','email:rfc,dns','max:255','ends_with:@gmail.com'],
             'password'=>['required','max:15','min:8'],
@@ -44,10 +42,12 @@ class loginController extends Controller
             $remember=false;
         }
         $validated = $validator->validated();
+
         if (Auth::attempt($validated,$remember)) {
             $request->session()->regenerate();
             return redirect()->route('frontend.home');
         }
+        toastr()->error('Fails username or password')->warning('If you enter incorrectly more than 5 times, your account will be locked');
         return back();
 
     }

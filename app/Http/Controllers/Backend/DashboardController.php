@@ -14,6 +14,7 @@ class DashboardController extends Controller
 
         $user=User::all();
         $blogs=Post::all();
+
         return view('backend.dashboard',[
             'user'=>$user,
             'blogs'=>$blogs,

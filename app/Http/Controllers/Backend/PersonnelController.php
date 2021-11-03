@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEmployeeRequest;
+use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -11,7 +13,7 @@ use App\Models\UserLink;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Str;
 class PersonnelController extends Controller
 {
     /**
@@ -57,11 +59,17 @@ class PersonnelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request)
     {
         $data = $request->all();
-        dd($data);
+
         $user = new User();
+        if ($request->hasFile('avatar')) {
+            $disk = 'avatars';
+            $path = $request->file('avatar')->store('Employee', $disk);
+            $user->disk = $disk;
+            $user->avatar = $path;
+        }
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->status = '1';
@@ -69,7 +77,11 @@ class PersonnelController extends Controller
         $user->roles()->attach($data['role']);
         $user->userInfo()->create($data);
         $user->userLink()->create($data);
-
+        if ($user->save()) {
+            toastr()->success('You created a new user successfully!');
+        } else {
+            toastr()->error('You created a new user failed!');
+        }
         return redirect('backend/personnel');
 
     }
@@ -116,14 +128,20 @@ class PersonnelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEmployeeRequest $request, $id)
     {
         $data = $request->all();
+
         $user = User::find($id);
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->updated_at = now();
-
+        if ($request->hasFile('avatar')) {
+            $disk = 'avatars';
+            $path = $request->file('avatar')->store('Employee', $disk);
+            $user->disk = $disk;
+            $user->avatar = $path;
+        }
         UserInfo::where('user_id', $id)->update([
             'address' => $data['address'],
             'city' => $data['city'],
@@ -134,15 +152,21 @@ class PersonnelController extends Controller
             'description' => $data['description'],
             'updated_at' => now(),
         ]);
-
-        UserLink::where('user_id', $id)->update([
-            'fb_url' => $data['fb_url'],
-            'gg_url' => $data['gg_url'],
-            'switter_url' => $data['switter_url'],
-            'linked_url' => $data['linked_url'],
-        ]);
         $user->save();
+
+        $roles = Role::all();
+        foreach($roles as $role){
+            if(Str::slug($data['role'])==$role->slug){
+                $data['role'] = $role->id;
+                break;
+            }
+        }
         $user->roles()->sync($data['role']);
+        if ($user->save()) {
+            toastr()->success('You Update a new Employee successfully!');
+        } else {
+            toastr()->error('You Update a new Employee failed!');
+        }
         return redirect('backend/personnel');
     }
 
@@ -158,6 +182,11 @@ class PersonnelController extends Controller
         UserInfo::where('user_id', $id)->delete();
         UserLink::where('user_id', $id)->delete();
         User::destroy($id);
+        if (User::destroy($id)==0) {
+            toastr()->success('You Delete a  user successfully!');
+        } else {
+            toastr()->error('You Delete a user failed!');
+        }
 
         return redirect('backend/personnel');
     }

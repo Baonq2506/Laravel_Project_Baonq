@@ -35,9 +35,10 @@
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     id="exampleInputName1" placeholder="Name" name='name' value="{{ $category->name }}">
                             </div>
-
                             @error('name')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                    <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                </div>
                             @enderror
                         </div>
                         <!-- /.card-body -->

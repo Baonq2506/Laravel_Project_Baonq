@@ -31,17 +31,18 @@
                             <div class="form-group">
                                 <label for="exampleInputName1">Name</label>
                                 <input type="text" class="form-control" id="exampleInputName1" placeholder="Enter Name"
-                                    name='name' class="@error('name') is-invalid @enderror">
-                                @error('name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-
+                                    name='name' class="@error('name') is-invalid @enderror" value="{{ old('name') }}">
                             </div>
-
+                            @error('name')
+                                <div style="margin-top: -10px; margin-bottom: 5px;">
+                                    <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
+                                </div>
+                            @enderror
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <a type="submit" href="{{ route('backend.category.index') }}" class="btn btn-danger">Cancel</a>
+                            <a type="submit" href="{{ route('backend.category.index') }}"
+                                class="btn btn-danger">Cancel</a>
                             <button type="submit" class="btn btn-primary float-right">Create</button>
 
                         </div>

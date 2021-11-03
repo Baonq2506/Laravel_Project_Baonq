@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateRoleRequest;
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
-use App\Models\Permission;
+use Illuminate\Support\Str;
 
 class RoleController extends Controller
 {
@@ -16,18 +18,22 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles=Role::all();
-        return view('backend.roles.index',[
-            'roles' =>$roles
+        $roles = Role::all();
+        $permissions = new Permission();
+        $perArr = $permissions->permissionsArr();
+        return view('backend.roles.index', [
+            'roles' => $roles,
+            'perArr' => $perArr,
         ]);
     }
 
-    public function indexPermissions(){
-        $permission=new Permission();
-        $perArr=$permission->permissionsArr();
+    public function indexPermissions()
+    {
+        $permission = new Permission();
+        $perArr = $permission->permissionsArr();
 
-        return view('backend.roles.indexPer',[
-            'permissions'=>$perArr,
+        return view('backend.roles.indexPer', [
+            'permissions' => $perArr,
         ]);
 
     }
@@ -38,11 +44,12 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $roles=Role::all();
-        $permissions=Permission::all();
-        return view('backend.roles.create',[
-            'roles' =>$roles,
-            'permissions'=>$permissions,
+        $roles = Role::all();
+        $permission = new Permission();
+        $permissions = $permission->permissionsArr();
+        return view('backend.roles.create', [
+            'roles' => $roles,
+            'permissions' => $permissions,
         ]);
     }
 
@@ -52,9 +59,22 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRoleRequest $request)
     {
-        //
+        $data = $request->all();
+        $role = new Role();
+        $role->name = $data['name'];
+        $role->slug = Str::slug($data['name']);
+        $role->created_at = now();
+        $role->save();
+
+        $role->permissions()->attach($data['permissions']);
+        if ($role->save()) {
+            toastr()->success('You creates a new  successfully!');
+        } else {
+            toastr()->error('You creates a new failed!');
+        }
+        return redirect()->route('backend.role.index');
     }
 
     /**
@@ -76,13 +96,13 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role=Role::find($id);
-        $permission=new Permission();
-        $perArr=$permission->permissionsArr();
+        $role = Role::find($id);
+        $permission = new Permission();
+        $perArr = $permission->permissionsArr();
 
-        return view('backend.roles.edit',[
-            'role'=>$role,
-            'permissions' =>$perArr,
+        return view('backend.roles.edit', [
+            'role' => $role,
+            'permissions' => $perArr,
         ]);
     }
 
@@ -95,7 +115,19 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $role = Role::find($id);
+        $role->name = $data['name'];
+        $role->slug = Str::slug($data['name']);
+        $role->updated_at = now();
+        $role->save();
+        $role->permissions()->sync($data['permissions']);
+        if ($role->save()) {
+            toastr()->success('You Update a role successfully!');
+        } else {
+            toastr()->error('You Update a role failed!');
+        }
+        return redirect()->route('backend.role.index');
     }
 
     /**
@@ -107,7 +139,8 @@ class RoleController extends Controller
     public function destroy($id)
     {
         Role::find($id)->permissions()->detach();
-        Role::where('id',$id)->delete();
+        Role::where('id', $id)->delete();
+
         return redirect('backend/role');
     }
 }

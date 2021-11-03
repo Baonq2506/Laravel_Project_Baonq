@@ -17,9 +17,11 @@
             </div>
         </div>
     </div><!-- /.container-fluid -->
+    <a href="{{ route('backend.personnel.index') }}"><i class="fas fa-chevron-circle-left fa-lg"></i></a>
 @endsection
 
 @section('main')
+
     <div class="row">
         <div class="col-md-3">
 
