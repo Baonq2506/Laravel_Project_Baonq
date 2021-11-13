@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -116,8 +117,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-
+        $posts=Post::where('category_id',$id)->get();
+        foreach($posts as $post){
+            $post->destroy($post->id);
+        }
         Category::destroy($id);
+
         if( Category::destroy($id) == 0){
             toastr()->success('You delete a  category successfully!');
         } else {

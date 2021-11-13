@@ -38,81 +38,71 @@
             <div class="row">
                 <div class="col-sm-6 mb-sm-40">
                     <div class="tab-content">
-                        <div id="home" class="tab-pane fade in active">
-                            <img src="/images/LOL/SieuPham/9HiuxjR.jpg" alt="" />
-                        </div>
-                        <div id="menu1" class="tab-pane fade">
-                            <img src="/images/LOL/SieuPham/579dad36b1811-1068x601.png" alt="" />
-                        </div>
-                        <div id="menu2" class="tab-pane fade">
-                            <img src="/images/LOL/SieuPham/Hinh-anh-Zed-dep-sieu-net-1.jpg" alt="" />
-                        </div>
-                        <div id="menu3" class="tab-pane fade">
-                            <img src="/images/LOL/SieuPham/hinhnenlienminhhuyenthoai4k75e7ec3be848bd_5e2a45e30cae51ff12f0abf668801669.jpg"
-                                alt="" />
-                        </div>
+                        @foreach ($images as $key => $image)
+                            <div id="menu-{{ $image->id }}"
+                                class="tab-pane fade in @if ($key == 0)
+                                active
+                            @endif">
+                                <img src="{{ $image->image_url_full }}" alt="" />
+                            </div>
+                        @endforeach
+
                     </div>
-                    <div class="owl-carousel text-center" data-items="5" data-pagination="false" data-navigation="false">
-                        <div class="owl-item">
-                            <div class="col-sm-12">
-                                <div class="ex-product">
-                                    <a class="active" data-toggle="pill" href="#home"> <img height="80px"
-                                            src="/images/LOL/SieuPham/9HiuxjR.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="owl-item">
-                            <div class="col-sm-12">
-                                <div class="ex-product">
-                                    <a class="active" data-toggle="pill" href="#menu1"><img height="80px"
-                                            src="/images/LOL/SieuPham/579dad36b1811-1068x601.png" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="owl-item">
-                            <div class="col-sm-12">
-                                <div class="ex-product">
-                                    <a class="active" data-toggle="pill" href="#menu2"> <img height="80px"
-                                            src="/images/LOL/SieuPham/Hinh-anh-Zed-dep-sieu-net-1.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="owl-item">
-                            <div class="col-sm-12">
-                                <div class="ex-product">
-                                    <a class="active" data-toggle="pill" href="#menu3"> <img height="80px"
-                                            src="/images/LOL/SieuPham/hinhnenlienminhhuyenthoai4k75e7ec3be848bd_5e2a45e30cae51ff12f0abf668801669.jpg"
+                    <div class="owl-carousel text-center" data-items="
+
+
+                                                                @if (count($images) < 5)
+                        {{ count($images) }}
+                    @else
+                        5
+                        @endif" data-pagination="false"
+                        data-navigation="false">
+                        @foreach ($images as $key => $image)
+                            <div class="owl-item">
+                                <div class="col-sm-12">
+                                    <div class="ex-product">
+                                        <a class="active" data-toggle="pill" href="#menu-{{ $image->id }}"> <img
+                                                style="
+
+
+                                                @if (count($images) < 5)
+                                            height: 67px !important;width:100px
+                                            @endif " src="{{ $image->image_url_full }}"
                                             alt="" /></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
+
+
                     </div>
 
                 </div>
                 <div class="col-sm-6">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h1 class="product-title font-alt">Accessories Pack</h1>
+                            <h1 class="product-title font-alt">{{ $product->name }}</h1>
                         </div>
                     </div>
                     <div class="row mb-20">
                         <div class="col-sm-12"><span><i class="fa fa-star star"></i></span><span><i
                                     class="fa fa-star star"></i></span><span><i class="fa fa-star star"></i></span><span><i
                                     class="fa fa-star star"></i></span><span><i class="fa fa-star star-off"></i></span><a
-                                class="open-tab section-scroll" href="#reviews">-2customer reviews</a>
+                                class="open-tab section-scroll"
+                                href="#reviews">&ensp;{{ number_format($product->review_count) }}</a>
                         </div>
                     </div>
                     <div class="row mb-20">
                         <div class="col-sm-12">
-                            <div class="price font-alt"><span class="amount">£20.00</span></div>
+                            <div class="price font-alt"><span
+                                    class="amount">{{ number_format($product->sale_price) }} USD</span>
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-20">
                         <div class="col-sm-12">
                             <div class="description">
-                                <p>The European languages are members of the same family. Their separate existence is a
-                                    myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages
-                                    only differ in their grammar, their pronunciation and their most common words.</p>
+                                <p>{{ $product->content }}</p>
                             </div>
                         </div>
                     </div>
@@ -122,7 +112,8 @@
                                 required="required" />
                         </div>
                         <div class="col-sm-6"><a style="border-radius: 20px"
-                                class="btn btn-lg btn-block btn-round btn-b" href="#">Add To
+                                class="btn btn-lg btn-block btn-round btn-b"
+                                href="{{ route('frontend.cart.add', ['product_id' => $product->id]) }}">Add To
                                 Cart</a>
                         </div>
                         <div class="col-sm-4">
@@ -139,8 +130,9 @@
                     </div>
                     <div class="row mb-20">
                         <div class="col-sm-12">
-                            <div class="product_meta">Categories:<a href="#"> Man, </a><a href="#">Clothing, </a><a
-                                    href="#">T-shirts</a>
+                            <div class="product_meta">Categories:
+                                <a href="#">{{ $product->prodCategories->name }}</a>
+
                             </div>
                         </div>
                     </div>
@@ -167,19 +159,17 @@
                     <ul class="nav nav-tabs font-alt" role="tablist">
                         <li class="active"><a href="#description" data-toggle="tab"><span
                                     class="icon-tools-2"></span>Description</a></li>
-                        <li><a href="#data-sheet" data-toggle="tab"><span class="icon-tools-2"></span>Data sheet</a></li>
-                        <li><a href="#reviews" data-toggle="tab"><span class="icon-tools-2"></span>Reviews (2)</a></li>
+                        <li><a href="#data-sheet" data-toggle="tab"><span
+                                    class="icon-tools-2"></span>Comments({{ number_format($comments->count()) }})</a>
+                        </li>
+                        <li><a href="#reviews" data-toggle="tab"><span class="icon-tools-2"></span>Reviews
+                                ({{ number_format($reviews->count()) }})</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="description">
-                            <p>Everyone realizes why a new common language would be desirable: one could refuse to pay
-                                expensive translators. To achieve this, it would be necessary to have uniform grammar,
-                                pronunciation and more common words. If several languages coalesce, the grammar of the
-                                resulting language is more simple and regular than that of the individual languages.</p>
-                            <p>The European languages are members of the same family. Their separate existence is a myth.
-                                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                                in their grammar, their pronunciation and their most common words.</p>
+                            <p>{{ $product->option }}</p>
                         </div>
+                        {{-- COMMENT --}}
                         <div class="tab-pane" id="data-sheet">
                             <table class="table table-striped ds-table table-responsive">
                                 <tbody>
@@ -206,67 +196,132 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane" id="reviews">
-                            <div class="comments reviews">
+                        {{-- REVIEWS --}}
+                        <div class="tab-pane" id="reviews" style="height:600px;width:100%;overflow:scroll">
+                            @foreach ($reviews as $review)
                                 <div class="comment clearfix">
-                                    <div class="comment-avatar"><img src="" alt="avatar" /></div>
-                                    <div class="comment-content clearfix">
-                                        <div class="comment-author font-alt"><a href="#">John Doe</a></div>
-                                        <div class="comment-body">
-                                            <p>The European languages are members of the same family. Their separate
-                                                existence is a myth. For science, music, sport, etc, Europe uses the same
-                                                vocabulary. The European languages are members of the same family. Their
-                                                separate existence is a myth.</p>
+                                    <div class="row">
+                                        <div class="col-lg-1">
+                                            <div class="comment-avatar"><img
+                                                    style="border:1px solid white;height:60px;width:60px;border-radius:50%"
+                                                    src="{{ $review->users->image_url_full }}" alt="avatar"></div>
                                         </div>
-                                        <div class="comment-meta font-alt">Today, 14:55 -<span><i
-                                                    class="fa fa-star star"></i></span><span><i
-                                                    class="fa fa-star star"></i></span><span><i
-                                                    class="fa fa-star star"></i></span><span><i
-                                                    class="fa fa-star star"></i></span><span><i
-                                                    class="fa fa-star star-off"></i></span>
+                                        <div class="col-lg-11" style="margin-left: -70px;">
+                                            <div class="comment-content clearfix">
+                                                <div class="comment-author font-alt"><a
+                                                        href="{{ route('backend.user.show', ['user_id' => $review->user_id]) }}">{{ $review->users->name }}</a>
+                                                </div>
+                                                <div class="comment-body">
+                                                    <p>{{ $review->content }}</p>
+                                                </div>
+                                                <div class="comment-meta font-alt">
+                                                    {{ $review->created_at->format('M d , H:i') }} -<span>
+                                                        @php
+                                                            $i = 0;
+                                                            while ($review->star > 0) {
+                                                                echo '<i class="fa fa-star star"></i>';
+                                                                $i++;
+                                                                $review->star--;
+                                                            }
+                                                            if ($i < 5) {
+                                                                for ($j = 1; $j <= 5 - $i; $j++) {
+                                                                    echo '<i class="fa fa-star star-off"></i>';
+                                                                }
+                                                            }
+
+                                                        @endphp
+                                                    </span>-<span>
+                                                        <i style="color:red" class="fas fa-heart">
+                                                            {{ $review->favories }}</i>
+                                                    </span>-
+                                                    <span>
+                                                        <i style="color:blue;" class="fas fa-reply">
+                                                            <span data-bs-toggle="collapse"
+                                                                href="#collapseExample-{{ $review->user_id }}"
+                                                                role="button" aria-expanded="false"
+                                                                aria-controls="collapseExample"
+                                                                style="text-decoration-line: underline;text-decoration-style:double">reply</span></i>
+                                                    </span>
+                                                    @if (!empty($replyReviews))
+                                                        @foreach ($replyReviews as $reply)
+                                                            @if ($reply->parent_id == $review->user_id)
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-lg-1">
+                                                                        <div class="comment-avatar"><img
+                                                                                style="border:1px solid white;height:60px;width:60px;border-radius:50%"
+                                                                                src="{{ $reply->users->image_url_full }}"
+                                                                                alt="avatar"></div>
+                                                                    </div>
+                                                                    <div class="col-lg-11" style="margin-left: -70px;">
+                                                                        <div class="comment-content clearfix">
+                                                                            <div class="comment-author font-alt"><a
+                                                                                    href="{{ route('backend.user.show', ['user_id' => $reply->user_id]) }}">{{ $reply->users->name }}</a>&ensp;<span>
+                                                                                    {{ $reply->created_at->format('M d , H:i') }}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="comment-body">
+                                                                                </p><span><a href="#">
+                                                                                        @
+                                                                                        {{ $review->users->name }}</a></span>
+                                                                                {{ $reply->content }}
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                    <div class="collapse"
+                                                        id="collapseExample-{{ $review->user_id }}">
+                                                        <form
+                                                            action="{{ route('backend.product.reply', [
+                                                                'user_id' => $review->user_id,
+                                                            ]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('get')
+                                                            <div class="card card-body">
+                                                                <input type="hidden" name="product_id"
+                                                                    value="{{ $review->product_id }}">
+                                                                <textarea name="replyReviews" id="" rows="5"></textarea>
+                                                                <button type="submit" class="btn btn-primary">Send</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="comment clearfix">
-                                    <div class="comment-avatar"><img src="" alt="avatar" /></div>
-                                    <div class="comment-content clearfix">
-                                        <div class="comment-author font-alt"><a href="#">Mark Stone</a></div>
-                                        <div class="comment-body">
-                                            <p>Europe uses the same vocabulary. The European languages are members of the
-                                                same family. Their separate existence is a myth.</p>
-                                        </div>
-                                        <div class="comment-meta font-alt">Today, 14:59 -<span><i
-                                                    class="fa fa-star star"></i></span><span><i
-                                                    class="fa fa-star star"></i></span><span><i
-                                                    class="fa fa-star star"></i></span><span><i
-                                                    class="fa fa-star star-off"></i></span><span><i
-                                                    class="fa fa-star star-off"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+
                             <div class="comment-form mt-30">
                                 <h4 class="comment-form-title font-alt">Add review</h4>
-                                <form method="post">
+                                <form method="post" action="{{ route('backend.review.store') }}">
+                                    @csrf
+                                    @method('post')
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="sr-only" for="name">Name</label>
                                                 <input class="form-control" id="name" type="text" name="name"
-                                                    placeholder="Name" />
+                                                    value="{{ auth()->user()->name }}" placeholder="Name" disabled />
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="sr-only" for="email">Name</label>
                                                 <input class="form-control" id="email" type="text" name="email"
-                                                    placeholder="E-mail" />
+                                                    value="{{ auth()->user()->email }}" placeholder="E-mail" disabled />
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <select class="form-control">
-                                                    <option selected="true" disabled="">Rating</option>
+                                                <select name="star" class="form-control">
+                                                    <option selected="true">Rating</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -277,7 +332,7 @@
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <textarea class="form-control" id="" name="" rows="4"
+                                                <textarea class="form-control" id="" name="content" rows="4"
                                                     placeholder="Review"></textarea>
                                             </div>
                                         </div>
@@ -302,47 +357,28 @@
                 </div>
             </div>
             <div class="row multi-columns-row">
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-11.jpg"
-                                alt="Accessories Pack" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add
-                                        To Cart</span></a></div>
+                @foreach ($relatedProducts as $rp)
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="shop-item">
+                            <div class="shop-item-image"><img style="width:100%;height:160px"
+                                    src="{{ Storage::disk('products')->url(json_decode($rp->info)[0]->path) }}"
+                                    alt="Accessories Pack" />
+                                <div class="shop-item-detail"><a class="btn btn-round btn-b"><span
+                                            class="icon-basket">Add
+                                            To Cart</span></a></div>
+                            </div>
+                            <h4 class="shop-item-title font-alt p-style"><a
+                                    href="{{ route('frontend.shop.detail', ['product_id' => $rp->id]) }}">{{ $rp->name }}</a>
+                            </h4>
+                            {{ number_format($rp->sale_price) }} USD
                         </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Accessories Pack</a></h4>£9.00
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-12.jpg"
-                                alt="Men’s Casual Pack" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add
-                                        To Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Casual Pack</a></h4>£12.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-13.jpg"
-                                alt="Men’s Garb" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add
-                                        To Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Garb</a></h4>£6.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-14.jpg"
-                                alt="Cold Garb" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add
-                                        To Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Cold Garb</a></h4>£14.00
-                    </div>
-                </div>
+                @endforeach
             </div>
+            <div style="display:flex;justify-content:center;"><a class="btn btn-info"
+                    href="{{ route('frontend.shop.getCategoryId', ['category_id' => $product->category_id]) }}">All See
+                    Related
+                    Products</a></div>
         </div>
     </section>
     <hr class="divider-w">
@@ -357,54 +393,21 @@
             </div>
             <div class="row">
                 <div class="owl-carousel text-center" data-items="5" data-pagination="false" data-navigation="false">
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-1.jpg"
-                                        alt="Leather belt" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£12.00
+                    @foreach ($exclusiveProducts as $ep)
+                        <div class="owl-item">
+                            <div class="col-sm-12">
+                                <div class="ex-product"><a href="#"><img
+                                            src="{{ Storage::disk('products')->url(json_decode($ep->info)[0]->path) }}"
+                                            alt="Leather belt" /></a>
+                                    <h4 class="shop-item-title font-alt p-style"><a
+                                            href="{{ route('frontend.shop.detail', ['product_id' => $ep->id]) }}">{{ $ep->name }}</a>
+                                    </h4>
+                                    {{ number_format($ep->sale_price) }} USD
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-3.jpg"
-                                        alt="Derby shoes" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Derby shoes</a></h4>£54.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-2.jpg"
-                                        alt="Leather belt" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£19.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-4.jpg"
-                                        alt="Leather belt" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£14.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-5.jpg"
-                                        alt="Chelsea boots" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Chelsea boots</a></h4>£44.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-6.jpg"
-                                        alt="Leather belt" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£19.00
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>

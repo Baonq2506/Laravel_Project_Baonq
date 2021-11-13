@@ -21,7 +21,6 @@ class BlogController extends Controller
     public function show($lub_cate,$slug,$id){
 
         $post= Post::find($id);
-        // dd($post->category->name);
         $count=Post::all()->countBy('category_id');
         $categories= Category::all();
         $tags=Tag::all();

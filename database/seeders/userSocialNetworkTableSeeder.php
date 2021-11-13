@@ -16,7 +16,7 @@ class userSocialNetworkTableSeeder extends Seeder
     {
 
         DB::table('user_sn_links')->truncate();
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 23; $i++) {
             DB::table('user_sn_links')->insert([
                 'user_id' => $i,
                 'fb_url' => 'https://www.facebook.com/',

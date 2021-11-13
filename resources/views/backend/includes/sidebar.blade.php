@@ -6,9 +6,10 @@
         </div>
         <div class="info">
             <a href="#" class="d-block">
-
                 {{ Auth::user()->name }}
+                <br>
                 <span class="badge badge-primary"> {{ Auth::user()->roles[0]->name }}</span>
+                <span>{!! Auth::user()->status_text !!}</span>
             </a>
 
 
@@ -17,14 +18,6 @@
     </div>
 
     <!-- SidebarSearch Form -->
-    <div class="form-inline" style="display: flex;
-
-    justify-content: center;">
-        <a href="{{ url('/log-viewer') }} " ata-toggle="tooltip" data-placement="top" title="View Logs">
-            <i style="color:white" class="fab fa-drupal fa-2x"></i>
-        </a>
-    </div>
-
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar nav-flat flex-column" data-widget="treeview" role="menu"
@@ -44,6 +37,45 @@
                     </p>
                 </a>
             </li>
+            <li style="font-weight:bold;color:rgb(22, 190, 241)" class="nav-header">
+                <h5>
+                    Product & Order</h5>
+            </li>
+            {{-- Product --}}
+            <li class="nav-item @if (request()->routeIs('backend.product.*'))
+                menu-open @endif ">
+                <a href="#"
+                    class="nav-link @if (request()->routeIs('backend.product.*'))
+                active @endif ">
+                    <i class="fab fa-product-hunt"></i>
+                    <p>
+                        Product
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('backend.product.create') }}" class="nav-link  @if (request()->routeIs('backend.product.create')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.product.create')) color:red  @endif" class="fa fa-plus" aria-hidden="true"></i>
+                            <p>Create Product</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.product.index') }}" class="nav-link  @if (request()->routeIs('backend.product.index')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.product.index')) color:red  @endif" class="fa fa-list" aria-hidden="true"></i>
+                            <p>List Products</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.product.order') }}" class="nav-link  @if (request()->routeIs('backend.product.order')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.product.order')) color:red  @endif" class="fa fa-list" aria-hidden="true"></i>
+                            <p>List Orders</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {{-- Order --}}
+
             <li style="font-weight:bold;color:rgb(22, 190, 241)" class="nav-header">
                 <h5>
                     Blog</h5>
@@ -265,6 +297,61 @@
                             <p>List Employee Rights</p>
                         </a>
                     </li> --}}
+                </ul>
+            </li>
+
+            <li style="font-weight:bold;color:rgb(22, 190, 241)" class="nav-header">
+                <h5>Notification & Log</h5>
+            </li>
+            {{-- Notification --}}
+            <li class="nav-item @if (request()->routeIs('backend.notification.*'))
+                menu-open @endif ">
+                <a href="#"
+                    class="nav-link @if (request()->routeIs('backend.notification.*'))
+                active @endif ">
+                    <i class="fas fa-bell"></i>
+                    <p>
+                        Notification
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('backend.notification.create') }}"
+                            class="nav-link  @if (request()->routeIs('backend.notification.create')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.notification.create')) color:red  @endif" class="fa fa-plus" aria-hidden="true"></i>
+                            <p>Create Notification</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.notification.index') }}"
+                            class="nav-link  @if (request()->routeIs('backend.notification.index')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.notification.index')) color:red  @endif" class="fa fa-list" aria-hidden="true"></i>
+                            <p>List Notifications</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {{-- Logs --}}
+            <li class="nav-item @if (request()->routeIs('backend.viewLog.Log'))
+                menu-open @endif ">
+                <a href="#"
+                    class="nav-link @if (request()->routeIs('backend.viewLog.Log'))
+                active @endif ">
+                    <i class="fas fa-bug"></i>
+                    <p>
+                        Log
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('backend.viewLog.Log') }}" class="nav-link  @if (request()->routeIs('backend.viewLog.Log')) active @endif">
+                            <i style=" @if (request()->routeIs('backend.viewLog.Log')) color:red  @endif" class="fa fa-list" aria-hidden="true"></i>
+                            <p>List Logs</p>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
         </ul>

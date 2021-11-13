@@ -56,7 +56,7 @@
                                     <td>{{ $user->userInfo->city }}</td>
                                     <td>
                                         @foreach ($userBans as $userBan)
-                                            @if ($user->id == $userBan->bannable_id)
+                                            @if ($user->id == $userBan->bannable_id && $userBan->deleted_at == null)
                                                 {{ $userBan->dateFormat($userBan->expired_at) }}
 
                                             @endif
@@ -74,7 +74,7 @@
                                             data-toggle="tooltip" data-placement="top" title="Edit">
                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                         </a>
-                                        <form style="float: left"
+                                        {{-- <form style="float: left"
                                             action="{{ route('backend.user.destroy', ['user_id' => $user->id]) }}"
                                             method="post">
                                             @csrf
@@ -83,7 +83,7 @@
                                                 title="Trash">
                                                 <i class="fas fa-trash"></i>
                                             </button> &emsp;
-                                        </form>
+                                        </form> --}}
                                         <form style="float: left" method="POST"
                                             action="{{ route('backend.user.signWithID', ['user_id' => $user->id]) }}">
                                             @csrf
@@ -93,9 +93,9 @@
                                             </button> &emsp;
                                         </form>
                                         <button data-toggle="tooltip" data-placement="top" title="Unban"
-                                            style="margin-left:15px" type="button" class="btn btn-danger"
+                                            style="margin-left:15px" type="button" class="btn btn-info"
                                             data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="fas fa-ban"></i></i>
+                                            <i class="fas fa-unlock-alt"></i>
                                         </button>
 
                                         <div class="modal fade" id="exampleModal" tabindex="-1"

@@ -65,13 +65,13 @@
                                             data-toggle="tooltip" data-placement="top" title="Edit">
                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                         </a>
-                                        <a class="btn btn-danger"
+                                        {{-- <a class="btn btn-danger"
                                             href="{{ route('backend.post.forceDelete', [
     'post_id' => $post->id,
 ]) }}"
-                                            data-toggle="tooltip" data-placement="top" title="trash">
+                                            data-toggle="tooltip" data-placement="top" title="Trash">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </a>
+                                        </a> --}}
                                     </td>
                                 </tr>
                             @endforeach

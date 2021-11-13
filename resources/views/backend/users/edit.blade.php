@@ -236,7 +236,8 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="">Avatar</label> <br>
-                                    <img src="{{ $user->image_url_full }}" width="300px" height="300px" alt="">
+                                    <img src="{{ $user->image_url_full }} " style="border-radius:5px" width="300px"
+                                        height="300px" alt="">
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">

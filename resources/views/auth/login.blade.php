@@ -29,16 +29,22 @@
                         <h3 class="mb-4 text-center">Have an account?<span><a style="color:white;text-decoration: none"
                                     href="{{ route('auth.register') }}"> Sign
                                     up</a></span></h3>
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <div style="text-align: center;margin-bottom: 5px;">
+                                    <strong style="margin-top:-5px;color:red">&emsp;* {{ $error }}</strong>
+                                </div>
+                            @endforeach
+                        @endif
+
                         <form action="{{ route('auth.login') }}" method="post">
                             @csrf
-
                             <div class="form-group">
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"
                                     placeholder="Email" name='email'>
                             </div>
                             @error('email')
-                                <div style="margin-top: -10px;
-                                                                        margin-bottom: 5px;">
+                                <div style="margin-top: -10px;margin-bottom: 5px;">
                                     <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
                                 </div>
                             @enderror
@@ -51,8 +57,9 @@
                                     class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                             @error('password')
-                                <div style="margin-top: -10px;
-                                                        margin-bottom: 5px;">
+                                <div
+                                    style="margin-top: -10px;
+                                                                                                                                                                            margin-bottom: 5px;">
                                     <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
                                 </div>
                             @enderror

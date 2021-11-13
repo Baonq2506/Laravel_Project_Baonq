@@ -1,170 +1,162 @@
 @extends('backend.layouts.master')
 @section('title')
-    Products
+    Product
 @endsection
 @section('main')
-    <div class="product-status mg-b-15">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="product-status-wrap">
-                        <h4>Library List</h4>
-                        @include('backend.comporment.btn',[
-                        'name'=>'Create Product',
-                        'color'=>'success',
-                        'icon'=>'plus',
-                        'link'=>'backend.product.create',
-                        ])
-                        <br> <br>
-                        <div class="asset-inner">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Image</th>
-                                        <th>Name of Asset</th>
-                                        <th>Status</th>
-                                        <th>Subject</th>
-                                        <th>Department</th>
-                                        <th>Type</th>
-                                        <th>Price</th>
-                                        <th>Setting</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><img src="img/product/book-1.jpg" alt=""></td>
-                                        <td>Web Development Book</td>
-                                        <td>
-                                            <button class="pd-setting">Active</button>
-                                        </td>
-                                        <td>Html, Css</td>
-                                        <td>CSE</td>
-                                        <td>Book</td>
-                                        <td>$1500</td>
-                                        <td>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Edit"><i class="fa fa-pencil-square-o"
-                                                    aria-hidden="true"></i></button>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Trash"><i class="fa fa-trash-o"
-                                                    aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td><img src="img/product/book-2.jpg" alt=""></td>
-                                        <td>Quality Bol pen</td>
-                                        <td>
-                                            <button class="ps-setting">Paused</button>
-                                        </td>
-                                        <td>PHP</td>
-                                        <td>CSE</td>
-                                        <td>CD</td>
-                                        <td>$1700</td>
-                                        <td>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Edit"><i class="fa fa-pencil-square-o"
-                                                    aria-hidden="true"></i></button>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Trash"><i class="fa fa-trash-o"
-                                                    aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td><img src="img/product/book-3.jpg" alt=""></td>
-                                        <td>Box of pendrive</td>
-                                        <td>
-                                            <button class="ds-setting">Disabled</button>
-                                        </td>
-                                        <td>Java</td>
-                                        <td>CSE</td>
-                                        <td>Book</td>
-                                        <td>$1500</td>
-                                        <td>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Edit"><i class="fa fa-pencil-square-o"
-                                                    aria-hidden="true"></i></button>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Trash"><i class="fa fa-trash-o"
-                                                    aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td><img src="img/product/book-4.jpg" alt=""></td>
-                                        <td>Quality Bol pen</td>
-                                        <td>
-                                            <button class="pd-setting">Active</button>
-                                        </td>
-                                        <td>PHP</td>
-                                        <td>CSE</td>
-                                        <td>CD</td>
-                                        <td>$1200</td>
-                                        <td>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Edit"><i class="fa fa-pencil-square-o"
-                                                    aria-hidden="true"></i></button>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Trash"><i class="fa fa-trash-o"
-                                                    aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td><img src="img/product/book-1.jpg" alt=""></td>
-                                        <td>Web Development Book</td>
-                                        <td>
-                                            <button class="pd-setting">Active</button>
-                                        </td>
-                                        <td>Wordpress</td>
-                                        <td>CSE</td>
-                                        <td>Book</td>
-                                        <td>$1800</td>
-                                        <td>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Edit"><i class="fa fa-pencil-square-o"
-                                                    aria-hidden="true"></i></button>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Trash"><i class="fa fa-trash-o"
-                                                    aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td><img src="img/product/book-2.jpg" alt=""></td>
-                                        <td>Quality Bol pen</td>
-                                        <td>
-                                            <button class="ps-setting">Paused</button>
-                                        </td>
-                                        <td>Java</td>
-                                        <td>CSE</td>
-                                        <td>CD</td>
-                                        <td>$1000</td>
-                                        <td>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Edit"><i class="fa fa-pencil-square-o"
-                                                    aria-hidden="true"></i></button>
-                                            <button data-toggle="tooltip" title="" class="pd-setting-ed"
-                                                data-original-title="Trash"><i class="fa fa-trash-o"
-                                                    aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="custom-pagination">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="card">
+        <div class="card-header">
+            @include('backend.comporment.btn',[
+            'color'=>'info',
+            'link'=>'backend.product.create',
+            'icon'=>'plus',
+            'name'=>'Create Product'
+            ])
         </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th style="width:100px">Name</th>
+                        <th>Category</th>
+                        <th>Origin Price</th>
+                        <th>Sale Price</th>
+                        <th>Brand</th>
+                        <th>Status</th>
+                        <th>Sale Count</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td><a style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;"
+                                    href="{{ route('backend.product.show', ['product_id' => $product->id]) }}"><strong>{{ $product->name }}</strong></a>
+                            </td>
+                            <td>{{ $product->prodCategories->name }}</td>
+                            <td>{{ $product->origin_price }}</td>
+                            <td>{{ $product->sale_price }}</td>
+                            <td>{{ $product->brands->name }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {!! $product->status_text !!}
+                                    </a>
+                                </div>
+                            </td>
+                            <td>{{ $product->sale_count }}</td>
+
+                            <td>
+
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#modal-danger-{{ $product->id }}" data-toggle="tooltip"
+                                    data-placement="top" title="Trash">
+                                    <i style="color:white" class="fas fa-trash"></i>
+                                </button>
+
+
+                                <a class="btn btn-info"
+                                    href="{{ route('backend.product.show', ['product_id' => $product->id]) }}"
+                                    data-toggle="tooltip" data-placement="top" title="View">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </a> &emsp;
+                                <a class="btn btn-success" style="position: relative;float: right;margin-top: -37px;"
+                                    href="{{ route('backend.product.edit', ['product_id' => $product->id]) }}"
+                                    data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                </a>
+
+                                <div class="modal fade" id="modal-danger-{{ $product->id }}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-danger">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title"><i class="fas fa-exclamation-triangle"></i>
+                                                    Warning!
+                                                </h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body ">
+                                                <p>Are you delete ?</p>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-outline-light"
+                                                    data-dismiss="modal">Close</button>
+                                                <form
+                                                    action="{{ route('backend.product.destroy', ['product_id' => $product->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-outline-light" type="submit">
+                                                        Delete
+                                                    </button> &emsp;
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
     </div>
+
+@endsection
+@section('scripts')
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "searching": true,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+
+    <script src="/backend/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/backend/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/backend/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/backend/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/backend/plugins/jszip/jszip.min.js"></script>
+    <script src="/backend/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/backend/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/backend/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/backend/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/backend/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+@endsection
+@section('css')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <style>
+        .dropdown-menu {
+            min-width: auto !important;
+        }
+
+    </style>
 @endsection

@@ -31,7 +31,7 @@ route::prefix('auth')->name('auth.')->namespace('Auth')->group(function () {
 
 });
 
-//Backend
+//--------------------------BACKEND---------------------------//
 route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['auth', 'role:admin,admod,writer'])->group(function () {
 
     //Roles_permissions
@@ -49,7 +49,6 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['a
     ]);
 
     Route::get('historyEmployee', 'PersonnelController@perSoftDelete')->name('personnel.perSoftDelete');
-
     route::get('personnel/signWithUser/{personnel_id}', 'PersonnelController@signWithUser')->name('personnel.signWithUser');
 
     //User
@@ -57,17 +56,11 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['a
         'user' => 'user_id',
     ]);
     Route::get('ForceDelete/{user_id}', 'UserController@forceDelete')->name('user.forceDelete');
-
     Route::get('UserDelete', 'UserController@userSoftDelete')->name('user.softDelete');
-
     Route::get('RestoreDelete/{user_id}', 'UserController@restore')->name('user.restore');
-
     route::get('user/signWithUser/{user_id}', 'UserController@signWithUser')->name('user.signWithID');
-
-    route::get('banned', 'UserController@userBanned')->name('user.banned');
-
+    route::get('banned/{user_id}', 'UserController@userBanned')->name('user.banned');
     route::get('Unbanned/{user_id}', 'UserController@userUnban')->name('user.unbanned');
-
     route::get('indexbanned', 'UserController@indexBan')->name('user.indexBan');
 
     //Category
@@ -82,11 +75,8 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['a
         'post' => 'post_id',
     ]);
     Route::get('approvedAction/{post_id}/{id}', 'PostController@approvedAction')->name('post.approvedAction');
-
     route::get('history', 'PostController@historyDelete')->name('post.historyDelete');
-
     Route::get('PostRestoreDelete/{post_id}', 'PostController@restore')->name('post.restore');
-
     Route::get('PostForceDelete/{post_id}', 'PostController@forceDelete')->name('post.forceDelete');
 
     //Product
@@ -94,23 +84,47 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['a
     Route::resource('product', 'ProductController')->parameters([
         'product' => 'product_id',
     ]);
+    route::get('order', 'ProductController@order')->name('product.order');
+    route::get('showOrder/{order_id}', 'ProductController@showOrder')->name('product.showOrder');
+    route::get('replyReview/{user_id}','ProductController@replyReview')->name('product.reply');
+    route::get('replyComment/{user_id}','ProductController@replyComment')->name('product.replyComment');
     //Tag
 
     Route::resource('tag', 'TagController')->parameters([
         'tag' => 'tag_id',
     ]);
+
+    //Notifications
+
+    Route::resource('notification', 'NotificationController')->parameters([
+        'notification' => 'notification_id',
+    ]);
+    //Log
+    Route::get('log', 'LogController@index')->name('viewLog.Log');
+
+    //comments
+
+    Route::get('delete/{product_id}/{comment_id}', 'CommentController@destroy')->name('comment.destroy');
+    Route::get('deleteReply/{product_id}/{comment_id}', 'CommentController@destroyReply')->name('comment.destroyReply');
+
+    //Review
+    Route::resource('review', 'ReviewController')->parameters([
+        'review' => 'review_id',
+    ]);
+
 });
-//Frontend
-route::prefix('/')->name('frontend.')->namespace('Frontend')->middleware(['auth', 'role:user,admin'])->group(function () {
+
+//---------------------FRONTEND-------------------------//
+route::prefix('/')->name('frontend.')->namespace('Frontend')->group(function () {
     //Home page
-    Route::get('home', function () {
-        return view('frontend.home');
-    })->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
+
     //About page
     route::prefix('about')->name('about.')->group(function () {
         Route::get('/', 'AboutController@index')->name('index');
         route::get('contact', 'AboutController@contact')->name('contact');
     });
+
     //Blog page
     route::prefix('blog')->name('blog.')->group(function () {
         Route::get('/', 'BlogController@index')->name('index');
@@ -118,16 +132,28 @@ route::prefix('/')->name('frontend.')->namespace('Frontend')->middleware(['auth'
         Route::get('{slug}', 'BlogController@showCategory')->name('showCategory');
 
     });
+
     //Header page
     route::prefix('header')->name('header.')->group(function () {
         Route::get('/', 'HeaderController@index')->name('index');
 
     });
+
     //Shop page
     route::prefix('shop')->name('shop.')->group(function () {
         Route::get('/', 'ShopController@index')->name('index');
-        Route::get('detail', 'ShopController@detailProduct')->name('detail');
+        Route::get('detail/{product_id}', 'ShopController@detailProduct')->name('detail');
         Route::get('checkout', 'ShopController@checkoutCart')->name('checkout');
         Route::get('cart', 'ShopController@cart')->name('cart');
+        route::get('getCategory','ShopController@getCategory')->name('getCategory');
+        route::get('getCategoryId/{category_id}','ShopController@getCategoryId')->name('getCategoryId');
     });
+
+    //Cart
+    route::prefix('cart')->name('cart.')->group(function () {
+        Route::get('index', 'CartController@index')->name('index');
+        Route::get('cart/{product_id}', 'CartController@add')->name('add');
+
+    });
+
 });

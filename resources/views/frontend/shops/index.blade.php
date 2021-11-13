@@ -21,7 +21,9 @@
 @section('main')
     <section class="module-small">
         <div class="container">
-            <form class="row">
+            <form class="row" action="{{ route('frontend.shop.getCategory') }}" method="post">
+                @csrf
+                @method('get')
                 <div class="col-sm-4 mb-sm-20">
                     <select class="form-control">
                         <option selected="selected">Default Sorting</option>
@@ -34,23 +36,24 @@
                 </div>
                 <div class="col-sm-2 mb-sm-20">
                     <select class="form-control">
-                        <option selected="selected">Woman</option>
+                        <option selected="selected">All</option>
+                        <option>Woman</option>
                         <option>Man</option>
                     </select>
                 </div>
                 <div class="col-sm-3 mb-sm-20">
-                    <select class="form-control">
-                        <option selected="selected">All</option>
-                        <option>Coats</option>
-                        <option>Jackets</option>
-                        <option>Dresses</option>
-                        <option>Jumpsuits</option>
-                        <option>Tops</option>
-                        <option>Trousers</option>
+                    <select class="form-control" name="categorySearch">
+                        <option selected="selected" value='0'>Select Category</option>
+                        @foreach ($prodCate as $cate)
+                            <option @if (!empty(request()->get('categorySearch')) && request()->get('categorySearch') == $cate->id)
+                                selected="selected"
+                                @endif value="{{ $cate->id }}">{{ $cate->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-block btn-round btn-g" type="submit">Apply</button>
+                    <button class="btn btn-success" type="submit">Apply</button>
+                    <a class="btn btn-primary" href="{{ route('frontend.shop.index') }}">All</a>
                 </div>
             </form>
         </div>
@@ -59,92 +62,31 @@
     <section class="module-small">
         <div class="container">
             <div class="row multi-columns-row">
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-7.jpg"
-                                alt="Accessories Pack" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
+                @foreach ($products as $product)
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="shop-item">
+                            <div class="shop-item-image"><img style="border-radius:5px;width:auto;height:150px"
+                                    src="{{ Storage::disk('products')->url(json_decode($product->info)[0]->path) }}"
+                                    alt="Accessories Pack" />
+                                <div class="shop-item-detail"><a class="btn btn-round btn-b"><span
+                                            class="icon-basket">Add To
+                                            Cart</span></a></div>
+                            </div>
+                            <h4 class="shop-item-title font-alt p-style"><a
+                                    href="{{ route('frontend.shop.detail', [
+                                        'product_id' => $product->id,
+                                    ]) }}"><strong>{{ $product->name }}</strong></a>
+                            </h4>
+                            {{ number_format($product->sale_price / 22660) }} USD
                         </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Accessories Pack</a></h4>£9.00
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-8.jpg"
-                                alt="Men’s Casual Pack" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Casual Pack</a></h4>£12.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-9.jpg"
-                                alt="Men’s Garb" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Garb</a></h4>£6.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-10.jpg"
-                                alt="Cold Garb" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Cold Garb</a></h4>£14.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-11.jpg"
-                                alt="Accessories Pack" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Accessories Pack</a></h4>£9.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-12.jpg"
-                                alt="Men’s Casual Pack" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Casual Pack</a></h4>£12.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-13.jpg"
-                                alt="Men’s Garb" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Garb</a></h4>£6.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-14.jpg"
-                                alt="Cold Garb" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Cold Garb</a></h4>£14.00
-                    </div>
-                </div>
+                @endforeach
+
+
             </div>
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a
-                            class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a
-                            href="#"><i class="fa fa-angle-right"></i></a></div>
+                <div class="col-sm-12" style="display: flex;justify-content:center">
+                    {{ $products->links('frontend.comporment.paginate') }}
                 </div>
             </div>
         </div>

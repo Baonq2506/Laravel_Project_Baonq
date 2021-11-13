@@ -54,6 +54,10 @@
                                     <td>
                                         <img style="margin-top: -10px;width:50px;height:50px;border:1px solid white;border-radius:50%"
                                             src="{{ $user->image_url_full }}" alt="">
+                                        @if ($user->banned_at !== null)
+                                            <i style="color:red;position: absolute;margin-top: -10px;margin-left: -9px;"
+                                                class="fas fa-lock"></i>
+                                        @endif
                                     </td>
                                     <td> {{ $user->name }}</td>
                                     <td>{{ $user->gender_text }}</td>
@@ -92,11 +96,11 @@
 
                                         <button data-toggle="tooltip" data-placement="top" title="Ban"
                                             style="margin-left:15px" type="button" class="btn btn-danger"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="fas fa-ban"></i>
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $user->id }}">
+                                            <i class="fas fa-user-lock"></i>
                                         </button>
 
-                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        <div class="modal fade" id="exampleModal-{{ $user->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -107,10 +111,12 @@
                                                         <button type="button" data-bs-dismiss="modal" aria-label="Close">
                                                             <i class="fas fa-times fa-lg"></i></button>
                                                     </div>
-                                                    <form action="{{ route('backend.user.banned') }}" method="post">
+                                                    <form
+                                                        action="{{ route('backend.user.banned', ['user_id' => $user->id]) }}"
+                                                        method="post">
                                                         @csrf
                                                         @method('get')
-                                                        <input type="text" value="{{ $user->id }}">
+
                                                         <div class="form-group">
                                                             <label for=""> &ensp;Time Expired</label>
                                                             <input type="date" class="form-control" name="time_expires"

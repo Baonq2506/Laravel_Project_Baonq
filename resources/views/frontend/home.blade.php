@@ -24,7 +24,7 @@
                     data-thumb-alt="">
                     <div class="titan-caption">
                         <div class="caption-content" style="opacity: 1;">
-                            <div class="font-alt mb-30 titan-title-size-1">Welcome to theatre of Dreams</div>
+                            <div class="font-alt mb-30 titan-title-size-1">Welcome to Belgorod</div>
                             <div class="font-alt mb-40 titan-title-size-4">Exclusive products</div><a
                                 class="section-scroll btn btn-border-w btn-round" href="#latest">Learn More</a>
                         </div>
@@ -52,93 +52,30 @@
                 </div>
             </div>
             <div class="row multi-columns-row">
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-7.jpg"
-                                alt="Accessories Pack" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
+                @foreach ($products as $product)
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="shop-item">
+                            <div class="shop-item-image"><img
+                                    src="{{ Storage::disk('products')->url(json_decode($product->info)[0]->path) }}"
+                                    alt="Accessories Pack" />
+                                <div class="shop-item-detail"><a class="btn btn-round btn-b"><span
+                                            class="icon-basket">Add To
+                                            Cart</span></a></div>
+                            </div>
+                            <h4 class="shop-item-title font-alt p-style"><a href="#">{{ $product->name }}</a></h4>
+                            {{ number_format($product->sale_price / 22660) }} USD
                         </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Accessories Pack</a></h4>£9.00
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-8.jpg"
-                                alt="Men’s Casual Pack" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Casual Pack</a></h4>£12.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-9.jpg"
-                                alt="Men’s Garb" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Garb</a></h4>£6.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-10.jpg"
-                                alt="Cold Garb" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Cold Garb</a></h4>£14.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-11.jpg"
-                                alt="Accessories Pack" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Accessories Pack</a></h4>£9.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-12.jpg"
-                                alt="Men’s Casual Pack" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Casual Pack</a></h4>£12.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-13.jpg"
-                                alt="Men’s Garb" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Garb</a></h4>£6.00
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="shop-item">
-                        <div class="shop-item-image"><img src="/frontend/assets/images/shop/product-14.jpg"
-                                alt="Cold Garb" />
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To
-                                        Cart</span></a></div>
-                        </div>
-                        <h4 class="shop-item-title font-alt"><a href="#">Cold Garb</a></h4>£14.00
-                    </div>
-                </div>
+                @endforeach
+
             </div>
             <div class="row mt-30">
-                <div class="col-sm-12 align-center"><a class="btn btn-b btn-round" href="#">See all products</a></div>
+                <div class="col-sm-12 align-center"><a class="btn btn-b btn-round"
+                        href="{{ route('frontend.shop.index') }}">See all products</a></div>
             </div>
         </div>
     </section>
-    <section class="module module-video bg-dark-30" data-background="">
+    <section class="module module-video bg-dark-30" data-background="/images/LOL/Header/pexels-photo-1647962.jpeg">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
@@ -162,54 +99,21 @@
             </div>
             <div class="row">
                 <div class="owl-carousel text-center" data-items="5" data-pagination="false" data-navigation="false">
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-1.jpg"
-                                        alt="Leather belt" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£12.00
+                    @foreach ($news as $product)
+                        <div class="owl-item">
+                            <div class="col-sm-12">
+                                <div class="ex-product"><a href="#"><img style="width:250px ;height:130px"
+                                            src="{{ Storage::disk('products')->url(json_decode($product->info)[0]->path) }}"
+                                            alt="Leather belt" /></a>
+                                    <h4 class="shop-item-title font-alt p-style"><a
+                                            href="#"><strong>{{ $product->name }}</strong></a></h4>
+                                    {{ number_format($product->sale_price / 22660) }} USD
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-2.jpg"
-                                        alt="Derby shoes" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Derby shoes</a></h4>£54.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-3.jpg"
-                                        alt="Leather belt" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£19.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-4.jpg"
-                                        alt="Leather belt" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£14.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-5.jpg"
-                                        alt="Chelsea boots" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Chelsea boots</a></h4>£44.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="col-sm-12">
-                            <div class="ex-product"><a href="#"><img src="/frontend/assets/images/shop/product-6.jpg"
-                                        alt="Leather belt" /></a>
-                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£19.00
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
+
                 </div>
             </div>
         </div>
@@ -223,78 +127,26 @@
                 </div>
             </div>
             <div class="row multi-columns-row post-columns wo-border">
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="post mb-40">
-                        <div class="post-header font-alt">
-                            <h2 class="post-title"><a href="#">Receipt of the new collection</a></h2>
+                @foreach ($blogs as $blog)
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+                        <div class="post mb-40">
+                            <div class="post-header font-alt">
+                                <h2 class="post-title"><a href="#">{{ $blog->title }}</a></h2>
+                            </div>
+                            <div class="post-entry blog-style">
+                                <p>{{ $blog->content }}</p>
+                            </div>
+                            <div class="post-more"><a class="more-link"
+                                    href="{{ route('frontend.blog.singerBlog', [
+                                        'blog_id' => $blog->id,
+                                        'slug' => $blog->slug,
+                                        'slug_cate' => $blog->category->slug,
+                                    ]) }}"><strong>Read
+                                        more</strong></a></div>
                         </div>
-                        <div class="post-entry">
-                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
-                                spring which I enjoy with my whole heart.</p>
-                        </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="post mb-40">
-                        <div class="post-header font-alt">
-                            <h2 class="post-title"><a href="#">Sale of summer season</a></h2>
-                        </div>
-                        <div class="post-entry">
-                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
-                                spring which I enjoy with my whole heart.</p>
-                        </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="post mb-40">
-                        <div class="post-header font-alt">
-                            <h2 class="post-title"><a href="#">New lookbook</a></h2>
-                        </div>
-                        <div class="post-entry">
-                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
-                                spring which I enjoy with my whole heart.</p>
-                        </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="post mb-40">
-                        <div class="post-header font-alt">
-                            <h2 class="post-title"><a href="#">Receipt of the new collection</a></h2>
-                        </div>
-                        <div class="post-entry">
-                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
-                                spring which I enjoy with my whole heart.</p>
-                        </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="post mb-40">
-                        <div class="post-header font-alt">
-                            <h2 class="post-title"><a href="#">Sale of summer season</a></h2>
-                        </div>
-                        <div class="post-entry">
-                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
-                                spring which I enjoy with my whole heart.</p>
-                        </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="post mb-40">
-                        <div class="post-header font-alt">
-                            <h2 class="post-title"><a href="#">New lookbook</a></h2>
-                        </div>
-                        <div class="post-entry">
-                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
-                                spring which I enjoy with my whole heart.</p>
-                        </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>

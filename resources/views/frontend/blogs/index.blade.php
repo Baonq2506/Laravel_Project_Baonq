@@ -44,8 +44,8 @@
                         <div class="ex-product" style="border:1px solid purple;border-radius:10px">
                             <a
                                 href="{{ route('frontend.blog.showCategory', [
-    'slug' => $cate->slug,
-]) }}">{{ $cate->name }}</a>
+                                    'slug' => $cate->slug,
+                                ]) }}">{{ $cate->name }}</a>
                         </div>
                     @endforeach
                 </div>
@@ -65,10 +65,10 @@
                             <div class="post-header font-alt">
                                 <h3 class="post-title"><a
                                         href="{{ route('frontend.blog.singerBlog', [
-    'blog_id' => $post->id,
-    'slug' => $post->slug,
-    'slug_cate' => $post->category->slug,
-]) }}">
+                                            'blog_id' => $post->id,
+                                            'slug' => $post->slug,
+                                            'slug_cate' => $post->category->slug,
+                                        ]) }}">
                                         <p class="p-style">
                                             {{ $post->title }}</p>
                                     </a>
@@ -90,7 +90,7 @@
                     </div>
                 @endforeach
             </div>
-            <div style="margin: 0 auto;"> {{ $posts->links('frontend.comporment.simple') }}</div>
+            <div style="display: flex;justify-content:center"> {{ $posts->links('frontend.comporment.simple') }}</div>
         </div>
     </section>
 @endsection

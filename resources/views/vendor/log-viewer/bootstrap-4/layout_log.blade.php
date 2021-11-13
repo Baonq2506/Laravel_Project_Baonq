@@ -1,5 +1,6 @@
 @extends('backend.layouts.master');
 @push('stack_css')
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -38,8 +39,8 @@
         }
 
         /*
-                     * Navbar
-                     */
+                                     * Navbar
+                                     */
 
         .navbar-brand {
             padding: .75rem 1rem;
@@ -52,8 +53,8 @@
         }
 
         /*
-                     * Boxes
-                     */
+                                     * Boxes
+                                     */
 
         .box {
             display: block;
@@ -112,8 +113,8 @@
         }
 
         /*
-                     * Log Menu
-                     */
+                                     * Log Menu
+                                     */
 
         .log-menu .list-group-item.disabled {
             cursor: not-allowed;
@@ -124,8 +125,8 @@
         }
 
         /*
-                     * Log Entry
-                     */
+                                     * Log Entry
+                                     */
 
         .stack-content {
             color: #AE0E0E;
@@ -135,8 +136,8 @@
         }
 
         /*
-                     * Colors: Badge & Infobox
-                     */
+                                     * Colors: Badge & Infobox
+                                     */
 
         .badge.badge-env,
         .badge.badge-level-all,
@@ -225,4 +226,17 @@
 
     @yield('modals')
     @yield('scripts')
+    <script>
+        $(function() {
+            new Chart(document.getElementById("stats-doughnut-chart"), {
+                type: 'doughnut',
+                data: {!! $chartData !!},
+                options: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            });
+        });
+    </script>
 @endpush

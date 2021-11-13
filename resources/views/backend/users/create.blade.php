@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('backend.home') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a>Home</a></li>
                     <li class="breadcrumb-item active">Create User</li>
                 </ol>
             </div>
@@ -28,7 +28,6 @@
                 <div class="card card-primary">
                     <form action="{{ route('backend.user.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-8">
@@ -259,13 +258,10 @@
 
                                 </div>
                             </div>
-
-                            <div class="card-footer">
-                                <a type="submit" href="{{ route('backend.user.index') }}"
-                                    class="btn btn-danger">Cancel</a>
-                                <button type="submit" class="btn btn-primary float-right">Create</button>
-
-                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ route('backend.user.index') }}" class="btn btn-danger">Cancel</a>
+                            <button type="submit" class="btn btn-primary float-right">Create</button>
                         </div>
                     </form>
                 </div>

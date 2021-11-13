@@ -76,15 +76,48 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <form
-                                                        action="{{ route('backend.category.destroy', ['category_id' => $category->id]) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button class="btn btn-danger" data-toggle="tooltip"
-                                                            data-placement="top" title="Trash">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                        data-target="#modal-danger-{{ $category->id }}"
+                                                        data-toggle="tooltip" data-placement="top" title="Trash"
+                                                        style="margin-left:15px">
+                                                        <i style="color:white" class="fas fa-trash"></i>
+                                                    </button>
+                                                    <div class="modal fade" id="modal-danger-{{ $category->id }}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content bg-danger">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title"><i
+                                                                            class="fas fa-exclamation-triangle"></i>
+                                                                        Warning!
+                                                                    </h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body ">
+                                                                    <p>Are you delete ? You will delete all posts in this
+                                                                        category.</p>
+                                                                </div>
+                                                                <div class="modal-footer justify-content-between">
+                                                                    <button type="button" class="btn btn-outline-light"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <form
+                                                                        action="{{ route('backend.category.destroy', ['category_id' => $category->id]) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('delete')
+                                                                        <button class="btn btn-outline-light" type="submit">
+                                                                            Delete
+                                                                        </button> &emsp;
+
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.modal-content -->
+                                                        </div>
+                                                        <!-- /.modal-dialog -->
+                                                    </div>
                                                     </form>
                                                 </div>
                                             </div>

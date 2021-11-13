@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Ban;
-use Illuminate\Http\Request;
+use App\Models\Notification;
 use App\Models\User;
-use App\Notifications\NotificationUser;
-use Illuminate\Database\Eloquent\Builder;
 use App\Models\UserInfo;
 use App\Models\UserLink;
+use App\Notifications\NotificationUser;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 
 class UserController extends Controller
 {
@@ -25,20 +25,21 @@ class UserController extends Controller
     public function index()
     {
 
-        $users=User::whereHas('roles',function(Builder $query){
-            $query->where('id',4);
-        })->orderBy('id','DESC')->paginate(5);
-        return view('backend.users.index',[
-            'users'=>$users,
+        $users = User::whereHas('roles', function (Builder $query) {
+            $query->where('id', 4);
+        })->orderBy('id', 'DESC')->paginate(5);
+        return view('backend.users.index', [
+            'users' => $users,
         ]);
     }
 
-    public function userSoftDelete(){
+    public function userSoftDelete()
+    {
 
         $users = User::onlyTrashed()->get();
 
-        return view('backend.users.softDelete',[
-            'users'=>$users,
+        return view('backend.users.softDelete', [
+            'users' => $users,
         ]);
     }
     /**
@@ -60,17 +61,19 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->all();
-        $user= new User();
+
+        $user = new User();
         if ($request->hasFile('avatar')) {
             $disk = 'avatars';
             $path = $request->file('avatar')->store('users', $disk);
             $user->disk = $disk;
             $user->avatar = $path;
         }
-        $user->name=$data['name'];
-        $user->email=$data['email'];
-        $user->status='2';
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->status = '2';
         $user->save();
+        $user->password=bcrypt($data['password']);
         $user->roles()->attach(4);
         $user->userInfo()->create($data);
         $user->userLink()->create($data);
@@ -78,6 +81,14 @@ class UserController extends Controller
             toastr()->success('You created a new  user successfully!');
         } else {
             toastr()->error('You created a new user failed!');
+        }
+
+        $users = User::whereHas('roles', function (Builder $query) {
+            $query->where('id', 1);
+        })->get();
+        $data = $request->all();
+        foreach ($users as $user) {
+            $user->notify(new NotificationUser(auth()->user(), $data));
         }
         return redirect('backend/user');
     }
@@ -90,9 +101,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user=User::find($id);
-        return view('backend.users.profileUser',[
-            'user'=>$user
+        $user = User::find($id);
+        return view('backend.users.profileUser', [
+            'user' => $user,
         ]);
     }
 
@@ -104,9 +115,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user=User::find($id);
-        return view('backend.users.edit',[
-            'user'=>$user,
+        $user = User::find($id);
+        return view('backend.users.edit', [
+            'user' => $user,
         ]);
     }
 
@@ -119,35 +130,34 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
-        $data=$request->all();
+        $data = $request->all();
 
-        $user=User::find($id);
+        $user = User::find($id);
         if ($request->hasFile('avatar')) {
             $disk = 'avatars';
             $path = $request->file('avatar')->store('users', $disk);
             $user->disk = $disk;
             $user->avatar = $path;
         }
-        $user->name=$data['name'];
-        $user->email=$data['email'];
-        if(!$data['password']){
-            $user->password=$data['password'];
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        if (!$data['password']) {
+            $user->password = $data['password'];
         }
-        $user->updated_at=now();
+        $user->updated_at = now();
 
-
-        UserInfo::where('user_id',$id)->update([
-            'address'=>$data['address'],
-            'city'=>$data['city'],
-            'country'=>$data['country'],
-            'date'=>$data['date'],
-            'phone'=>$data['phone'],
-            'gender'=>$data['gender'],
-            'updated_at'=>now(),
+        UserInfo::where('user_id', $id)->update([
+            'address' => $data['address'],
+            'city' => $data['city'],
+            'country' => $data['country'],
+            'date' => $data['date'],
+            'phone' => $data['phone'],
+            'gender' => $data['gender'],
+            'updated_at' => now(),
         ]);
-        UserLink::where('user_id',$id)->update([
-            'fb_url'=>$data['fb_url'],
-            'gg_url'=>$data['gg_url'],
+        UserLink::where('user_id', $id)->update([
+            'fb_url' => $data['fb_url'],
+            'gg_url' => $data['gg_url'],
         ]);
 
         $user->save();
@@ -157,7 +167,6 @@ class UserController extends Controller
             toastr()->error('You update a user failed!');
         }
         $user->roles()->sync(4);
-
 
         return redirect('backend/user');
     }
@@ -171,7 +180,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        if (User::destroy($id)==0) {
+        if (User::destroy($id) == 0) {
             toastr()->success('You Delete a  user successfully!');
         } else {
             toastr()->error('You Delete a user failed!');
@@ -179,8 +188,9 @@ class UserController extends Controller
         return redirect('backend/user');
     }
 
-    public function restore($id){
-       User::withTrashed()->where('id', $id)->restore();
+    public function restore($id)
+    {
+        User::withTrashed()->where('id', $id)->restore();
         return redirect('backend/user');
     }
 
@@ -190,15 +200,17 @@ class UserController extends Controller
         return redirect()->route('backend.user.softDelete');
     }
 
-    public function signWithUser($id){
+    public function signWithUser($id)
+    {
         Auth::loginUsingId($id, $remember = true);
         return redirect('backend/home');
     }
 
-    public function userBanned(Request $request,$id){
+    public function userBanned(Request $request, $id)
+    {
         $data = $request->all();
-        dd($id);
-        $user=User::find($id);
+
+        $user = User::find($id);
         $user->ban([
             'expired_at' => $data['time_expires'],
             'comment' => $data['comments'],
@@ -208,24 +220,25 @@ class UserController extends Controller
         return redirect()->route('backend.user.index');
     }
 
-    public function indexBan(){
+    public function indexBan()
+    {
 
         $users = User::onlyBanned()->paginate(5);
-        $userBans= Ban::all();
-        return view('backend.users.banned',[
-            'users' =>$users,
-            'userBans' =>$userBans,
+        $userBans = Ban::all();
+        return view('backend.users.banned', [
+            'users' => $users,
+            'userBans' => $userBans,
         ]);
     }
 
-    public function userUnban($id){
+    public function userUnban($id)
+    {
 
         $users = User::withBanned()->get();
 
-        foreach ($users as $user){
+        foreach ($users as $user) {
 
-            if($user->id == $id)
-            {
+            if ($user->id == $id) {
                 $user->unban();
                 toastr()->success('Unban successfull !');
             }

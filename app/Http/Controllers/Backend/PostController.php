@@ -10,7 +10,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str;
 class PostController extends Controller
 {
     /**
@@ -20,7 +20,8 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->get();
+
         $categories = Category::all();
         return view('backend.posts.index', [
             'posts' => $posts,
@@ -55,6 +56,7 @@ class PostController extends Controller
         $data = $request->all();
 
         $post = new Post();
+
         if ($request->hasFile('image_url')) {
             $disk = 'public';
             $path = $request->file('image_url')->store('Blogs', $disk);
@@ -62,6 +64,7 @@ class PostController extends Controller
             $post->image_url = $path;
         }
         $post->title = $data['title'];
+        $post->slug=Str::slug($data['title']);
         $post->content = $data['content'];
         $post->category_id = $data['category_id'];
         $post->user_created_id = rand(1, 10);
@@ -195,13 +198,16 @@ class PostController extends Controller
 
     public function forceDelete($id)
     {
-        $kt=Post::where('id', $id)->delete();
-        if( $kt==1){
+
+       Post::withTrashed()->where('id', $id)->restore();
+       $status=Post::where('id', $id)->delete();
+
+        if( $status==true ){
             toastr()->success('You delete post successfully!');
         } else {
             toastr()->error('You delete new post failed!');
         }
-        return redirect()->route('backend.post.softDelete');
+        return redirect()->route('backend.post.historyDelete');
     }
 
     public function approvedAction($post_id, $id)
