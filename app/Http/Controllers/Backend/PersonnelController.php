@@ -33,10 +33,6 @@ class PersonnelController extends Controller
         ]);
     }
 
-    // public function historyEm()
-    // {
-    //    return view('backend.personnel.perSoftDelete');
-    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -45,11 +41,11 @@ class PersonnelController extends Controller
     public function create()
     {
         $roles = Role::all();
-        $permissions = new Permission();
-        $perArr = $permissions->permissionsArr();
+        $permissions = Permission::where('parent_id', 0)->get();
+
         return view('backend.personnel.create', [
             'roles' => $roles,
-            'perArr' => $perArr,
+            'perArr' =>  $permissions,
         ]);
     }
 

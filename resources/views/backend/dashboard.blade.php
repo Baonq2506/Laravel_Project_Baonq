@@ -45,7 +45,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Products</span>
-                        <span class="info-box-number">41,410</span>
+                        <span class="info-box-number">{{ number_format($products->count()) }}</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -61,8 +61,8 @@
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Sales</span>
-                        <span class="info-box-number">760</span>
+                        <span class="info-box-text">Revenue</span>
+                        <span class="info-box-number">{{ number_format($orders->sum('money_total')) }} USD</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -115,307 +115,285 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-8">
-                                <p class="text-center">
-                                    <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
-                                </p>
-
-                                <div class="chart">
-                                    <!-- Sales Chart Canvas -->
-                                    <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
-                                </div>
-                                <!-- /.chart-responsive -->
+                            <div style="width:100%;">
+                                {!! $lineChart->render() !!}
                             </div>
-                            <!-- /.col -->
-                            <div class="col-md-4">
-                                <p class="text-center">
-                                    <strong>Goal Completion</strong>
-                                </p>
-
-                                <div class="progress-group">
-                                    Add Products to Cart
-                                    <span class="float-right"><b>160</b>/200</span>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar bg-primary" style="width: 80%"></div>
-                                    </div>
-                                </div>
-                                <!-- /.progress-group -->
-
-                                <div class="progress-group">
-                                    Complete Purchase
-                                    <span class="float-right"><b>310</b>/400</span>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar bg-danger" style="width: 75%"></div>
-                                    </div>
-                                </div>
-
-                                <!-- /.progress-group -->
-                                <div class="progress-group">
-                                    <span class="progress-text">Visit Premium Page</span>
-                                    <span class="float-right"><b>480</b>/800</span>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar bg-success" style="width: 60%"></div>
-                                    </div>
-                                </div>
-
-                                <!-- /.progress-group -->
-                                <div class="progress-group">
-                                    Send Inquiries
-                                    <span class="float-right"><b>250</b>/500</span>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar bg-warning" style="width: 50%"></div>
-                                    </div>
-                                </div>
-                                <!-- /.progress-group -->
-                            </div>
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- ./card-body -->
-                    <div class="card-footer">
+                        <hr>
+                        <div class="row" style="margin-left: 50%;">
+                            <p>
+                                <button class="btn btn-success" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#multiCollapseExample1" aria-expanded="true"
+                                    aria-controls="multiCollapseExample1">
+                                    Revenue Order
+                                </button>
+                                <button class="btn btn-primary collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#multiCollapseExample2" aria-expanded="false"
+                                    aria-controls="multiCollapseExample2">
+                                    Revenue Money
+                                </button>
+                                <button class="btn btn-danger" type="button" data-bs-toggle="collapse"
+                                    data-bs-target=".multi-collapse" aria-expanded="false"
+                                    aria-controls="multiCollapseExample1 multiCollapseExample2"> Revenue Order <i
+                                        class="fas fa-exchange-alt"></i> Revenue
+                                    Money</button>
+                            </p>
+                        </div>
                         <div class="row">
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block border-right">
-                                    <span class="description-percentage text-success"><i class="fas fa-caret-up"></i>
-                                        17%</span>
-                                    <h5 class="description-header">$35,210.43</h5>
-                                    <span class="description-text">TOTAL REVENUE</span>
+                            <div class="col-md-12">
+                                <div class="collapse multi-collapse show" id="multiCollapseExample1">
+                                    <div style="width:100%;">
+                                        {!! $barChart1->render() !!}
+                                    </div>
                                 </div>
-                                <!-- /.description-block -->
                             </div>
-                            <!-- /.col -->
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block border-right">
-                                    <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i>
-                                        0%</span>
-                                    <h5 class="description-header">$10,390.90</h5>
-                                    <span class="description-text">TOTAL COST</span>
+                            <div class="col-md-12">
+                                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                    <div style="width:100%;">
+                                        {!! $barChart2->render() !!}
+                                    </div>
                                 </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block border-right">
-                                    <span class="description-percentage text-success"><i class="fas fa-caret-up"></i>
-                                        20%</span>
-                                    <h5 class="description-header">$24,813.53</h5>
-                                    <span class="description-text">TOTAL PROFIT</span>
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block">
-                                    <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i>
-                                        18%</span>
-                                    <h5 class="description-header">1200</h5>
-                                    <span class="description-text">GOAL COMPLETIONS</span>
-                                </div>
-                                <!-- /.description-block -->
                             </div>
                         </div>
-                        <!-- /.row -->
                     </div>
-                    <!-- /.card-footer -->
-                </div>
-                <!-- /.card -->
-            </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
-        <!-- Main row -->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- USERS LIST -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Latest Members</h3>
-
-                        <div class="card-tools">
-                            <span class="badge badge-danger">8 New Members</span>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-6" style="border-right: 1px solid black;">
+                            <strong style="display: flex;
+                                                            justify-content: center;
+                                                            background: aqua;
+                                                            padding: 14px;">Revenue Gender User</strong>
+                            <br>
+                            <div>
+                                {!! $pieGenderChart->render() !!}
+                            </div>
+                            <br>
+                        </div>
+                        <br>
+                        <div class="col-lg-6">
+                            <strong style="display: flex;
+                                                justify-content: center;
+                                                background: rgb(22, 115, 236);
+                                                color:white;
+                                                padding: 14px;">Revenue Order </strong>
+                            <br>
+                            <div>
+                                {!! $pieOrderChart->render() !!}
+                            </div>
+                            <br>
                         </div>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <ul class="users-list clearfix">
-                            <li>
-                                <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Alexander Pierce</a>
-                                <span class="users-list-date">Today</span>
-                            </li>
-                            <li>
-                                <img src="dist/img/user8-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Norman</a>
-                                <span class="users-list-date">Yesterday</span>
-                            </li>
-                            <li>
-                                <img src="dist/img/user7-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Jane</a>
-                                <span class="users-list-date">12 Jan</span>
-                            </li>
-                            <li>
-                                <img src="dist/img/user6-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">John</a>
-                                <span class="users-list-date">12 Jan</span>
-                            </li>
-                            <li>
-                                <img src="dist/img/user2-160x160.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Alexander</a>
-                                <span class="users-list-date">13 Jan</span>
-                            </li>
-                            <li>
-                                <img src="dist/img/user5-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Sarah</a>
-                                <span class="users-list-date">14 Jan</span>
-                            </li>
-                            <li>
-                                <img src="dist/img/user4-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Nora</a>
-                                <span class="users-list-date">15 Jan</span>
-                            </li>
-                            <li>
-                                <img src="dist/img/user3-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Nadia</a>
-                                <span class="users-list-date">15 Jan</span>
-                            </li>
-                        </ul>
-                        <!-- /.users-list -->
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer text-center">
-                        <a href="javascript:">View All Users</a>
-                    </div>
-                    <!-- /.card-footer -->
+                    <!-- /.row -->
                 </div>
-                <!--/.card -->
+                <!-- ./card-body -->
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-sm-3 col-6">
+                            <div class="description-block border-right">
+                                <span class="description-percentage text-success"><i class="fas fa-caret-up"></i>
+                                    17%</span>
+                                <h5 class="description-header">$ {{ number_format($orders->sum('money_total')) }}
+                                </h5>
+                                <span class="description-text">TOTAL REVENUE</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 col-6">
+                            <div class="description-block border-right">
+                                <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i>
+                                    0%</span>
+                                <h5 class="description-header">$ {{ number_format($products->sum('origin_price')) }}
+                                </h5>
+                                <span class="description-text">TOTAL COST</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 col-6">
+                            <div class="description-block border-right">
+                                <span class="description-percentage text-success"><i class="fas fa-caret-up"></i>
+                                    20%</span>
+                                <h5 class="description-header">
+                                    $
+                                    {{ number_format($orders->sum('money_total') - $products->sum('origin_price')) }}
+                                </h5>
+                                <span class="description-text">TOTAL PROFIT</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 col-6">
+                            <div class="description-block">
+                                <span class="description-percentage ">
+                                    @if (number_format($orders->sum('money_total') - $products->sum('origin_price') / 100000000) > 1)
+
+                                        <i class="fas fa-caret-up text-success"></i>
+                                        {{ number_format((($orders->sum('money_total') - $products->sum('origin_price')) / 100000000.0) * 100) }}%
+                                    @else
+                                        <i class="fas fa-caret-down text-danger"></i>
+                                        {{ number_format((($orders->sum('money_total') - $products->sum('origin_price')) / 100000000.0) * 100) }}%
+                                    @endif
+                                </span>
+                                <h5 class="description-header">{{ number_format(100000000) }}</h5>
+                                <span class="description-text">GOAL COMPLETIONS</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.card-footer -->
             </div>
+            <!-- /.card -->
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-success">
-                    <div class="card-body">
-                        <div class="row">
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Main row -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- USERS LIST -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Latest Members</h3>
+
+                    <div class="card-tools">
+                        <span class="badge badge-danger">{{ $userNews->count() }} New Members</span>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <ul class="users-list clearfix">
+                        @foreach ($userNews as $un)
+                            <li>
+                                <img style="width:128px;height:128px;object-fit: cover" src="{{ $un->image_url_full }}"
+                                    alt="User Image">
+                                <a class="users-list-name" href="#">{{ $un->name }}</a>
+                                <span class="users-list-date">{{ now()->diffForHumans($un->created_at) }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <!-- /.users-list -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer text-center">
+                    <a href="{{ route('backend.user.index') }}">View All Users</a>
+                </div>
+                <!-- /.card-footer -->
+            </div>
+            <!--/.card -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-success">
+                <div class="card-body">
+                    <div class="row">
+                        @foreach ($postNews as $pn)
+
                             <div class="col-md-12 col-lg-6 col-xl-4">
                                 <div class="card mb-2 bg-gradient-dark">
-                                    <img class="card-img-top" src="/backend/dist/img/photo1.png" alt="Dist Photo 1">
+                                    <img style="width:100%;height:200px" class="card-img-top"
+                                        src="{{ $pn->image_url_full }}" alt="Dist Photo 1">
                                     <div class="card-img-overlay d-flex flex-column justify-content-end">
-                                        <h5 class="card-title text-primary text-white">Card Title</h5>
-                                        <p class="card-text text-white pb-2 pt-1">Lorem ipsum dolor sit amet, consectetur
-                                            adipisicing elit sed do eiusmod tempor.</p>
-                                        <a href="#" class="text-white">Last update 2 mins ago</a>
+
+                                        <a style="cursor: pointer;"
+                                            href="{{ route('backend.post.show', [
+                                                'post_id' => $pn->id,
+                                            ]) }}">
+                                            <h2 class="card-title text-primary text-blue">{{ $pn->title }}</h2>
+                                        </a>
+                                        <p class="card-text text-white pt-1 c-style">{{ $pn->content }}</p>
+                                        <a href="#"
+                                            class="text-white">{{ now()->diffForHumans($pn->created_at) }}</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-lg-6 col-xl-4">
-                                <div class="card mb-2">
-                                    <img class="card-img-top" src="/backend/dist/img/photo2.png" alt="Dist Photo 2">
-                                    <div class="card-img-overlay d-flex flex-column justify-content-center">
-                                        <h5 class="card-title text-white mt-5 pt-2">Card Title</h5>
-                                        <p class="card-text pb-2 pt-1 text-white">
-                                            Lorem ipsum dolor sit amet, <br>
-                                            consectetur adipisicing elit <br>
-                                            sed do eiusmod tempor.
-                                        </p>
-                                        <a href="#" class="text-white">Last update 15 hours ago</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-lg-6 col-xl-4">
-                                <div class="card mb-2">
-                                    <img class="card-img-top" src="/backend/dist/img/photo3.jpg" alt="Dist Photo 3">
-                                    <div class="card-img-overlay">
-                                        <h5 class="card-title text-primary">Card Title</h5>
-                                        <p class="card-text pb-1 pt-1 text-white">
-                                            Lorem ipsum dolor <br>
-                                            sit amet, consectetur <br>
-                                            adipisicing elit sed <br>
-                                            do eiusmod tempor. </p>
-                                        <a href="#" class="text-primary">Last update 3 days ago</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /.row -->
-        {{-- Calender --}}
-        <div class="row">
-            <div class="col-md-3">
-                <div class="sticky-top mb-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Draggable Events</h4>
-                        </div>
-                        <div class="card-body">
-                            <!-- the events -->
-                            <div id="external-events">
-                                <div class="external-event bg-success">Lunch</div>
-                                <div class="external-event bg-warning">Go home</div>
-                                <div class="external-event bg-info">Do homework</div>
-                                <div class="external-event bg-primary">Work on UI design</div>
-                                <div class="external-event bg-danger">Sleep tight</div>
-                                <div class="checkbox">
-                                    <label for="drop-remove">
-                                        <input type="checkbox" id="drop-remove">
-                                        remove after drop
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
+    </div>
+    <!-- /.row -->
+    {{-- Calender --}}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sticky-top mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Draggable Events</h4>
                     </div>
-                    <!-- /.card -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Create Event</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                                <ul class="fc-color-picker" id="color-chooser">
-                                    <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
-                                    <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
-                                    <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
-                                    <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
-                                    <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
-                                </ul>
+                    <div class="card-body">
+                        <!-- the events -->
+                        <div id="external-events">
+                            <div class="external-event bg-success">Lunch</div>
+                            <div class="external-event bg-warning">Go home</div>
+                            <div class="external-event bg-info">Do homework</div>
+                            <div class="external-event bg-primary">Work on UI design</div>
+                            <div class="external-event bg-danger">Sleep tight</div>
+                            <div class="checkbox">
+                                <label for="drop-remove">
+                                    <input type="checkbox" id="drop-remove">
+                                    remove after drop
+                                </label>
                             </div>
-                            <!-- /btn-group -->
-                            <div class="input-group">
-                                <input id="new-event" type="text" class="form-control" placeholder="Event Title">
-
-                                <div class="input-group-append">
-                                    <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
-                                </div>
-                                <!-- /btn-group -->
-                            </div>
-                            <!-- /input-group -->
                         </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.col -->
-            <div class="col-md-9">
-                <div class="card card-primary">
-                    <div class="card-body p-0">
-                        <!-- THE CALENDAR -->
-                        <div id="calendar"></div>
                     </div>
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Create Event</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                            <ul class="fc-color-picker" id="color-chooser">
+                                <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
+                                <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
+                                <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
+                                <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
+                                <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- /btn-group -->
+                        <div class="input-group">
+                            <input id="new-event" type="text" class="form-control" placeholder="Event Title">
+
+                            <div class="input-group-append">
+                                <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
+                            </div>
+                            <!-- /btn-group -->
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                </div>
             </div>
-            <!-- /.col -->
         </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="card card-primary">
+                <div class="card-body p-0">
+                    <!-- THE CALENDAR -->
+                    <div id="calendar"></div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
     </div>
 @endsection
 @section('scripts')
@@ -587,4 +565,6 @@
             })
         })
     </script>
+
+
 @endsection

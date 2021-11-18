@@ -30,10 +30,16 @@ class RoleController extends Controller
     public function indexPermissions()
     {
         $permission = new Permission();
+        $permissions = Permission::where('parent_id', 0)->get();
+
+        $allPermissions = Permission::pluck('name','id')->all();
+
         $perArr = $permission->permissionsArr();
 
         return view('backend.roles.indexPer', [
             'permissions' => $perArr,
+            'parentPermissions'=>$permissions,
+            'allPermissions'=>$allPermissions,
         ]);
 
     }

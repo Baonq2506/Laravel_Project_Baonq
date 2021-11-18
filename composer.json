@@ -11,6 +11,7 @@
         "cybercog/laravel-ban": "^4.6",
         "fakerphp/faker": "^1.16",
         "fruitcake/laravel-cors": "^2.0",
+        "fx3costa/laravelchartjs": "^2.8",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",

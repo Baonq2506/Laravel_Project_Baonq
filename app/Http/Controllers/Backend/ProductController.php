@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Comment;
 use App\Models\Image;
@@ -115,22 +116,22 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $imageArr = Image::where('product_id', $id)->paginate(4);
-        $imagesCount= Image::where('product_id', $id)->get();
+        $imagesCount = Image::where('product_id', $id)->get();
 
         //Review
         $reviews = Review::where('product_id', $id)->whereNull('parent_id')->get();
-        $replys=Review::where('product_id',$id)->get();
+        $replys = Review::where('product_id', $id)->get();
         //Comment
-        $comments= Comment::where('product_id',$id)->whereNull('parent_id')->get();
-        $replyComments=Comment::where('product_id',$id)->get();
+        $comments = Comment::where('product_id', $id)->whereNull('parent_id')->get();
+        $replyComments = Comment::where('product_id', $id)->get();
         return view('backend.products.show', [
             'product' => $product,
             'images' => $imageArr,
             'reviews' => $reviews,
-            'replys'=>$replys,
-            'comments'=>$comments,
-            'replyComments'=> $replyComments,
-            'imagesCount'=>$imagesCount,
+            'replys' => $replys,
+            'comments' => $comments,
+            'replyComments' => $replyComments,
+            'imagesCount' => $imagesCount,
         ]);
     }
 
@@ -142,7 +143,16 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $prodCategories = ProdCategory::all();
+        $brands = Brand::all();
+        $statusArr = $product->getStatus();
+        return view('backend.products.edit', [
+            'product' => $product,
+            'prodCategories' => $prodCategories,
+            'brands' => $brands,
+            'status' => $statusArr,
+        ]);
     }
 
     /**
@@ -152,9 +162,55 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $product = Product::find($id);
+        $product->name = $data['name'];
+        $product->content = $data['content'];
+        $product->category_id = $data['category_id'];
+        $product->brand_id = $data['brand_id'];
+        $product->status = $data['status'];
+        $product->sale_price = $data['sale'];
+        $product->origin_price = $data['origin'];
+        $product->view_count = 0;
+        $product->review_count = 0;
+        $product->sale_count = 0;
+        $product->created_at = now();
+        $product->user_created_id = auth()->user()->id;
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $file) {
+                $fileName = $file->getClientOriginalName();
+                $disk = 'products';
+                $path = $request->file('images')[$key]->storeAs('prods', $fileName, $disk);
+
+                $imagesArr[] = $path;
+
+            }
+
+            $product->info = json_encode($imagesArr);
+
+        }
+        $product->save();
+        $insertedId = $product->id;
+        if (!empty($imagesArr)) {
+            for ($i = 0; $i < count($imagesArr); $i++) {
+                $images = new Image();
+                $images->name = $imagesArr[$i];
+                $images->path = $imagesArr[$i];
+                $images->product_id = $insertedId;
+                $images->created_at = now();
+                $images->save();
+            }
+        }
+
+        if ($product->save()) {
+            toastr()->success('You update a  product successfully!');
+        } else {
+            toastr()->error('You update a  product failed!');
+        }
+        return redirect()->route('backend.product.index');
     }
 
     /**
@@ -205,23 +261,25 @@ class ProductController extends Controller
         ]);
     }
 
-    public function replyReview(Request $request,$id){
-        $data= $request->all();
-        $review= new Review();
-        $review->user_id=auth()->user()->id;
-        $review->product_id=$data['product_id'];
-        $review->parent_id=$id;
+    public function replyReview(Request $request, $id)
+    {
+        $data = $request->all();
+        $review = new Review();
+        $review->user_id = auth()->user()->id;
+        $review->product_id = $data['product_id'];
+        $review->parent_id = $id;
         $review->content = $data['replyReviews'];
         $review->save();
         return back();
     }
 
-    public function replyComment(Request $request,$id){
-        $data= $request->all();
-        $comment= new Comment();
-        $comment->user_id=auth()->user()->id;
-        $comment->product_id=$data['product_id'];
-        $comment->parent_id=$id;
+    public function replyComment(Request $request, $id)
+    {
+        $data = $request->all();
+        $comment = new Comment();
+        $comment->user_id = auth()->user()->id;
+        $comment->product_id = $data['product_id'];
+        $comment->parent_id = $id;
         $comment->content = $data['replyComments'];
         $comment->save();
         return back();

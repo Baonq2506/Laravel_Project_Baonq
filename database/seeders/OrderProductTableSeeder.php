@@ -17,12 +17,12 @@ class OrderProductTableSeeder extends Seeder
     {
           DB::table('order_product')->truncate();
 
-          for($i=1;$i<=30;$i++){
+          for($i=1;$i<=300;$i++){
             $sale_price =rand(1,50).'00000';
             $prod_count= rand(5,20);
             $discount_value = 20000;
             DB::table('order_product')->insert( [
-                'order_id' =>rand(1,40),
+                'order_id' =>rand(1,130),
                 'product_id' =>rand(1,40),
                 'prod_count'=>$prod_count,
                 'discount_value' =>$discount_value,

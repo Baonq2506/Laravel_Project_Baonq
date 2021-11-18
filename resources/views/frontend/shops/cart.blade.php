@@ -11,55 +11,51 @@
                     <h1 class="module-title font-alt">Checkout</h1>
                 </div>
             </div>
+            <a href="{{ route('frontend.shop.index') }}"><i style="color:blue" class="fas fa-exchange-alt fa-lg"> Return to
+                    shop</i></a><br>
             <hr class="divider-w pt-20">
             <div class="row">
                 <div class="col-sm-12">
+
                     <table class="table table-striped table-border checkout-table">
                         <tbody>
                             <tr>
                                 <th class="hidden-xs">Item</th>
                                 <th>Description</th>
-                                <th class="hidden-xs">Price</th>
+                                <th class="hidden-xs">Price(USD)</th>
                                 <th>Quantity</th>
-                                <th>Total</th>
+                                <th>Total(USD)</th>
                                 <th>Remove</th>
                             </tr>
-                            <tr>
-                                <td class="hidden-xs"><a href="#"><img src="assets/images/shop/product-14.jpg"
-                                            alt="Accessories Pack"></a></td>
-                                <td>
-                                    <h5 class="product-title font-alt">Accessories Pack</h5>
-                                </td>
-                                <td class="hidden-xs">
-                                    <h5 class="product-title font-alt">£20.00</h5>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="number" name="" value="1" max="50" min="1">
-                                </td>
-                                <td>
-                                    <h5 class="product-title font-alt">£20.00</h5>
-                                </td>
-                                <td class="pr-remove"><a href="#" title="Remove"><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="hidden-xs"><a href="#"><img src="assets/images/shop/product-13.jpg"
-                                            alt="Men’s Casual Pack"></a></td>
-                                <td>
-                                    <h5 class="product-title font-alt">Men’s Casual Pack</h5>
-                                </td>
-                                <td class="hidden-xs">
-                                    <h5 class="product-title font-alt">£20.00</h5>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="number" name="" value="1" max="50" min="1">
-                                </td>
-                                <td>
-                                    <h5 class="product-title font-alt">£20.00</h5>
-                                </td>
-                                <td class="pr-remove"><a href="#" title="Remove"><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td class="hidden-xs"><a href="#">
+                                            @if ($product->options->has('image'))
+                                                <img src="{{ Storage::disk('products')->url($product->options->image) }}"
+                                                    alt="Accessories Pack">
+                                            @endif
+                                        </a></td>
+                                    <td>
+                                        <h5 class="product-title font-alt">{{ $product->name }}</h5>
+                                    </td>
+                                    <td class="hidden-xs">
+                                        <h5 class="product-title font-alt">{{ number_format($product->price) }}</h5>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="number" name="" value="{{ $product->qty }}"
+                                            max="50" min="1">
+                                    </td>
+                                    <td>
+                                        <h5 class="product-title font-alt">
+                                            {{ number_format($product->price * $product->qty) }}</h5>
+                                    </td>
+                                    <td class="pr-remove"><a
+                                            href="{{ route('frontend.cart.remove', ['row_id' => $product->rowId]) }}"
+                                            title="Remove"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -90,7 +86,7 @@
                             <tbody>
                                 <tr>
                                     <th>Cart Subtotal :</th>
-                                    <td>£40.00</td>
+                                    <td>{{ \Gloudemans\Shoppingcart\Facades\Cart::total() }}</td>
                                 </tr>
                                 <tr>
                                     <th>Shipping Total :</th>
@@ -98,7 +94,7 @@
                                 </tr>
                                 <tr class="shop-Cart-totalprice">
                                     <th>Total :</th>
-                                    <td>£42.00</td>
+                                    <td>{{ \Gloudemans\Shoppingcart\Facades\Cart::total() }}</td>
                                 </tr>
                             </tbody>
                         </table>

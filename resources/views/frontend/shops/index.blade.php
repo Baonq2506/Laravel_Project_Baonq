@@ -77,7 +77,7 @@
                                         'product_id' => $product->id,
                                     ]) }}"><strong>{{ $product->name }}</strong></a>
                             </h4>
-                            {{ number_format($product->sale_price / 22660) }} USD
+                            {{ number_format($product->sale_price) }} USD
                         </div>
                     </div>
                 @endforeach

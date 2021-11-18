@@ -144,7 +144,6 @@ route::prefix('/')->name('frontend.')->namespace('Frontend')->group(function () 
         Route::get('/', 'ShopController@index')->name('index');
         Route::get('detail/{product_id}', 'ShopController@detailProduct')->name('detail');
         Route::get('checkout', 'ShopController@checkoutCart')->name('checkout');
-        Route::get('cart', 'ShopController@cart')->name('cart');
         route::get('getCategory','ShopController@getCategory')->name('getCategory');
         route::get('getCategoryId/{category_id}','ShopController@getCategoryId')->name('getCategoryId');
     });
@@ -153,6 +152,7 @@ route::prefix('/')->name('frontend.')->namespace('Frontend')->group(function () 
     route::prefix('cart')->name('cart.')->group(function () {
         Route::get('index', 'CartController@index')->name('index');
         Route::get('cart/{product_id}', 'CartController@add')->name('add');
+        Route::get('remove/{row_id}', 'CartController@remove')->name('remove');
 
     });
 

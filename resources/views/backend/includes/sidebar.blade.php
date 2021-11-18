@@ -4,7 +4,7 @@
         <div class="image">
             <img src="{{ Auth::user()->image_url_full }}" class="img-circle elevation-2 img-style" alt="User Image">
         </div>
-        <div class="info">
+        <div class="info" style="margin-top: -10px;">
             <a href="#" class="d-block">
                 {{ Auth::user()->name }}
                 <br>

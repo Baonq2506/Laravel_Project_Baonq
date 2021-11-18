@@ -18,6 +18,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Image</th>
                         <th style="width:100px">Name</th>
                         <th>Category</th>
                         <th>Origin Price</th>
@@ -32,6 +33,10 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>{{ $product->id }}</td>
+                            <td>
+                                <img src="{{ Storage::disk('products')->url(json_decode($product->info)[0]->path) }}"
+                                    alt="" style="width:100px">
+                            </td>
                             <td><a style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;"
                                     href="{{ route('backend.product.show', ['product_id' => $product->id]) }}"><strong>{{ $product->name }}</strong></a>
                             </td>

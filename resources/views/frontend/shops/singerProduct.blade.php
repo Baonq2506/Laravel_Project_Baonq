@@ -51,7 +51,8 @@
                     <div class="owl-carousel text-center" data-items="
 
 
-                                                                @if (count($images) < 5)
+                                                                          @if (count($images)
+                        < 5)
                         {{ count($images) }}
                     @else
                         5
@@ -63,9 +64,7 @@
                                     <div class="ex-product">
                                         <a class="active" data-toggle="pill" href="#menu-{{ $image->id }}"> <img
                                                 style="
-
-
-                                                @if (count($images) < 5)
+                                                          @if (count($images) < 5)
                                             height: 67px !important;width:100px
                                             @endif " src="{{ $image->image_url_full }}"
                                             alt="" /></a>

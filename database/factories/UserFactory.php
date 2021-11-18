@@ -35,6 +35,7 @@ class UserFactory extends Factory
             'avatar'=>$paths[rand(0,23)],
             'email' => $this->faker->unique()->freeEmail(),
             'password' => bcrypt('123456789'),
+            'created_at' => $this->faker->datetime()->format('Y-m-d H:i:s'),
         ];
     }
 

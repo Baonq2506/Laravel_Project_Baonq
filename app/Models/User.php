@@ -29,6 +29,7 @@ class User extends Authenticatable implements BannableContract
         'google_id',
         'password',
         'status',
+        'created_at'
     ];
 
     /**

@@ -38,7 +38,7 @@ class ProductTableSeeder extends Seeder
                     'user_created_id'=>rand(1,23),
                     'category_id' =>$randomDicArr,
                     'brand_id' =>rand(1,5),
-                    'status' =>rand(1,3),
+                    'status' =>rand(1,4),
                     'option' =>$faker->text($maxNbChars = 100),
                     'view_count'=>rand(100,500),
                     'sale_count'=>rand(500,1000),

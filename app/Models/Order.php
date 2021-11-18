@@ -28,6 +28,9 @@ class Order extends Model
         1=>'success',
         2=>'info'
     ];
+    public function statusAll(){
+        return $this->statusArr;
+    }
     public function getStatusTextAttribute(){
         return '<span class="badge badge-' . $this->statusColor[$this->status] . '">' . $this->statusArr[$this->status] . '</span>';
     }

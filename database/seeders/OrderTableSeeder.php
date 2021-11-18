@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use Faker\Factory as Faker;
 class OrderTableSeeder extends Seeder
 {
     /**
@@ -15,9 +15,10 @@ class OrderTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
         DB::table('orders')->truncate();
-        for ($i = 1; $i < 40; $i++) {
-            $randomUserID = rand(1, 23);
+        for ($i = 1; $i < 130; $i++) {
+            $randomUserID = rand(1, 130);
             $userArr = User::find($randomUserID);
             $user_info = json_encode($userArr);
             $orders = DB::table('order_product')->where('order_id', $i)->get();
@@ -26,10 +27,10 @@ class OrderTableSeeder extends Seeder
                 'user_id' => $randomUserID,
                 'user_info' => $user_info,
                 'money_total' => $money_total,
-                'status' => rand(1, 3),
+                'status' => rand(1, 4),
                 'payment_method' => rand(1, 2),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'created_at'=> $faker->dateTimeBetween($startDate = '- 10 months', $endDate = 'now + 1 months'),
+                'updated_at'=> $faker->dateTimeBetween($startDate = '- 11 months', $endDate = 'now'),
             ]);
         }
     }

@@ -37,7 +37,7 @@ class PostFactory extends Factory
             'disk' => 'public',
             'image_url' =>$paths[rand(1,30)],
             'content' => $this->faker->text($maxNbChars = 1000),
-            'user_created_id' => rand(1, 10),
+            'user_created_id' => rand(1, 50),
             'user_updated_id' => rand(1, 10),
             'category_id' => rand(1, 4),
             'status' => rand(1, 3),
