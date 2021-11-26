@@ -19,7 +19,6 @@ class PostTableSeeder extends Seeder
     {
         $faker = Faker::create();
         DB::table('posts')->truncate();
-        Post::factory()->count(303)->create();
         for($i=0;$i<30;$i++){
         $fake = $faker->sentence(3);
         $files = Storage::files('public/Blogs');
