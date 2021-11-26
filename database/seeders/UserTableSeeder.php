@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
         ]);
         for ($i = 0; $i < 30; $i++) {
             DB::table('users')->insert([
-                'name' => $faker->name(),
+                'name' => $faker->name,
                 'status' => rand(1, 2),
                 'disk' => 'avatars',
                 'avatar' => 'default.jpeg',
