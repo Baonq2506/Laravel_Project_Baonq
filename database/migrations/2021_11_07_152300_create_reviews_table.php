@@ -20,7 +20,7 @@ class CreateReviewsTable extends Migration
             $table->string('favories')->nullable();
             $table->string('star')->nullable();
             $table->text('content');
-            $table->integer('parent_id');
+            $table->integer('parent_id')->nullable();
             $table->string('images')->nullable();
             $table->timestamps();
         });

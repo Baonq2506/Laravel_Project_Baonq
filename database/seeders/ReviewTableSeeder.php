@@ -15,7 +15,7 @@ class ReviewTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        //DB::table('reviews')->truncate();
+        DB::table('reviews')->truncate();
         for($i=1;$i<=40;$i++){
             $prod= rand(1,40);
             DB::table('reviews')->insert([

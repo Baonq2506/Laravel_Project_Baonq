@@ -14,6 +14,7 @@ class PostTagsTableSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('post_tags')->truncate();
         for( $i=1;$i<=32;$i++){
             DB::table('post_tags')->insert([

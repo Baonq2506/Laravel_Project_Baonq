@@ -37,8 +37,9 @@ class ImageTableSeeder extends Seeder
 
             }
             $randomFile = rand(0,10 );
+
             $path=$paths[$randomFile];
-            if( $path==""){
+            if(!empty($path)){
                 $path=$paths[2];
             }
             DB::table('images')->insert([
