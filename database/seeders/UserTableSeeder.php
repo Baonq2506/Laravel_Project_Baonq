@@ -30,7 +30,7 @@ class UserTableSeeder extends Seeder
             'created_at' => $faker->datetime()->format('Y-m-d H:i:s'),
         ]);
         for ($i = 0; $i < 30; $i++) {
-            User::create([
+            DB::table('users')->insert([
                 'name' => $faker->name(),
                 'status' => rand(1, 2),
                 'disk' => 'avatars',
