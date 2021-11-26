@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->integer('product_id');
             $table->integer('status');
             $table->integer('parent_id');
+            $table->text('content');
             $table->timestamps();
         });
     }
