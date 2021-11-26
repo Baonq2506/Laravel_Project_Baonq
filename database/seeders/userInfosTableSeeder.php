@@ -20,7 +20,7 @@ class userInfosTableSeeder extends Seeder
         DB::table('user_infos')->truncate();
         $faker = Faker::create();
         DB::table('user_infos')->truncate();
-        for ($i = 1; $i <= 23; $i++) {
+        for ($i = 1; $i <= 190; $i++) {
             DB::table('user_infos')->insert([
                 'user_id' => $i,
                 'address' => $faker->address,

@@ -20,6 +20,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/backend/plugins/fontawesome-free/css/all.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
     .p-style {
         display: -webkit-box;
@@ -40,3 +43,4 @@
     }
 
 </style>
+@toastr_css

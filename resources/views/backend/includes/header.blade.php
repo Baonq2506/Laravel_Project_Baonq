@@ -5,7 +5,8 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('frontend.home') }}" class="nav-link">Out the user page</a>
+            <a data-toggle="tooltip" data-placement="top" title="Go Frontend"
+                href="{{ route('frontend.home.index') }}" class="nav-link"><i class="fas fa-bold"></i></a>
         </li>
     </ul>
 
@@ -17,28 +18,42 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">{{ Auth::user()->notifications->count() }}</span>
+                <span class="badge badge-warning navbar-badge">{{ Auth::user()->unreadNotifications->count() }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span
-                    class="dropdown-item dropdown-header">{{ Auth::user()->notifications->count() }}&ensp;Notifications</span>
+                <span class="dropdown-item dropdown-header">{{ Auth::user()->unreadNotifications->count() }}&ensp;New
+                    Notifications</span>
                 <div class="dropdown-divider"></div>
 
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-pager"></i> New posts
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-
-                @foreach (Auth::user()->unreadNotifications as $notification)
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-users mr-2"></i> {{ $notification->data['user_id'] ?? '' }}
+                @if (auth()->user()->CountNotificationsUser() > 0)
+                    <a href="{{ route('backend.notification.index') }}" class="dropdown-item">
+                        <i class="fas fa-user"></i> You have notification from Manager
                         <span
-                            class="float-right text-muted text-sm">{{ now()->diffForHumans($notification->created_at) }}</span>
+                            class="float-right text-muted text-sm">{{ auth()->user()->CountNotificationsUser() }}</span>
                     </a>
-                @endforeach
+                @endif
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                @if (auth()->user()->CountNotificationsPost() > 0)
+                    <a href="{{ route('backend.notification.index') }}" class="dropdown-item">
+                        <i class="fas fa-newspaper"></i> You have posts need confirm
+                        <span
+                            class="float-right text-muted text-sm">{{ auth()->user()->CountNotificationsPost() }}</span>
+                    </a>
+                @endif
+
+                <div class="dropdown-divider"></div>
+                @if (auth()->user()->CountNotificationsProduct() > 0)
+                    <a href="{{ route('backend.notification.index') }}" class="dropdown-item">
+                        <i class="fas fa-cart-plus"></i> You have new Order (
+                        {{ auth()->user()->CountNotificationsProduct() }})
+
+                        {{-- <span
+                            class="float-right text-muted text-sm">{{ now()->diffForHumans($notification->created_at) }}</span> --}}
+                    </a>
+                @endif
+                <div class="dropdown-divider"></div>
+                <a href="{{ route('backend.notification.index') }}" class="dropdown-item dropdown-footer">See All
+                    Notifications</a>
             </div>
         </li>
         <li class="nav-item">

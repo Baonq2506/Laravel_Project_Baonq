@@ -22,10 +22,10 @@ class ProductTableSeeder extends Seeder
         DB::table('products')->truncate();
         for($i = 1; $i <= 40; $i++){
             $name = $faker->sentence($nbWords = 3);
-            $randomDicArr = rand(1,7);
-            $imageProd=Image::where('product_id',$i)->get();
+            $randomDicArr = rand(1,5);
+            $imageProd=Image::where('product_id',$i)->get('path');
             if(is_null($imageProd)){
-                $imageProd=Image::where('product_id',5)->get();
+                $imageProd=Image::where('product_id',5)->get('path');
             }
             $info=json_encode($imageProd);
 
@@ -39,7 +39,7 @@ class ProductTableSeeder extends Seeder
                     'category_id' =>$randomDicArr,
                     'brand_id' =>rand(1,5),
                     'status' =>rand(1,4),
-                    'option' =>$faker->text($maxNbChars = 100),
+                    'option' =>$faker->text($maxNbChars = 1000),
                     'view_count'=>rand(100,500),
                     'sale_count'=>rand(500,1000),
                     'review_count' =>rand(1,200),

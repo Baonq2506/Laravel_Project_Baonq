@@ -56,14 +56,17 @@
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="shop-item">
                             <div class="shop-item-image"><img
-                                    src="{{ Storage::disk('products')->url(json_decode($product->info)[0]->path) }}"
+                                    style="width:100% !important;height:250px !important;object-fit:cover"
+                                    src="{{ Storage::disk('products')->url($product->product_image[0]->path) }}"
                                     alt="Accessories Pack" />
                                 <div class="shop-item-detail"><a class="btn btn-round btn-b"><span
                                             class="icon-basket">Add To
                                             Cart</span></a></div>
                             </div>
-                            <h4 class="shop-item-title font-alt p-style"><a href="#">{{ $product->name }}</a></h4>
-                            {{ number_format($product->sale_price / 22660) }} USD
+                            <h4 class="shop-item-title font-alt p-style"><a
+                                    href="{{ route('frontend.shop.detail', ['slug' => $product->slug, 'product_id' => $product->id]) }}">{{ $product->name }}</a>
+                            </h4>
+                            {{ number_format($product->sale_price) }} USD
                         </div>
                     </div>
                 @endforeach
@@ -102,12 +105,13 @@
                     @foreach ($news as $product)
                         <div class="owl-item">
                             <div class="col-sm-12">
-                                <div class="ex-product"><a href="#"><img style="width:250px ;height:130px"
+                                <div class="ex-product"><a href="#"><img
+                                            style="width:250px !important;height:130px !important;object-fit:cover"
                                             src="{{ Storage::disk('products')->url(json_decode($product->info)[0]->path) }}"
                                             alt="Leather belt" /></a>
                                     <h4 class="shop-item-title font-alt p-style"><a
                                             href="#"><strong>{{ $product->name }}</strong></a></h4>
-                                    {{ number_format($product->sale_price / 22660) }} USD
+                                    {{ number_format($product->sale_price) }} USD
                                 </div>
                             </div>
                         </div>

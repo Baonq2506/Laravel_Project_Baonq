@@ -89,6 +89,7 @@
                                 <form style="float: left" method="POST"
                                     action="{{ route('backend.personnel.signWithUser', ['personnel_id' => $person->id]) }}">
                                     @csrf
+                                    @method('get')
                                     <button data-toggle="tooltip" data-placement="top" title="Login"
                                         class="btn btn-outline-danger">
                                         <i class="fas fa-user"></i>

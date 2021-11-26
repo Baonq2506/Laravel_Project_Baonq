@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
 class Product extends Model
 {
     use HasFactory;
@@ -20,7 +22,7 @@ class Product extends Model
         1 => 'success',
         2 => 'danger',
         3 => 'info',
-        4=>'warning',
+        4 => 'warning',
     ];
 
     public function setNameAttribute($name)
@@ -36,6 +38,27 @@ class Product extends Model
     public function getStatusTextAttribute()
     {
         return '<span class="badge badge-' . $this->statusColor[$this->status] . '">' . $this->statusArr[$this->status] . '<span>';
+    }
+
+    public function getProductImageAttribute()
+    {
+        return Image::where('product_id', $this->id)->get();
+
+    }
+
+    public function getProductImageFullAttribute(){
+        $images = Image::where('product_id', $this->id)->first();
+        if(!empty($images)){
+           if(Storage::disk('products')->exists($images->path)){
+            return Storage::disk('products')->url($images->path);
+           }
+           else{
+            return Storage::disk('products')->url('product_default.jpg');
+           }
+        }
+        else{
+            return Storage::disk('products')->url('product_default.jpg');
+        }
     }
 
     public function orders()

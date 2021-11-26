@@ -15,7 +15,7 @@ class ReviewTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        DB::table('reviews')->truncate();
+        //DB::table('reviews')->truncate();
         for($i=1;$i<=40;$i++){
             $prod= rand(1,40);
             DB::table('reviews')->insert([
@@ -24,7 +24,7 @@ class ReviewTableSeeder extends Seeder
                 'favories' =>rand(1,1000),
                 'star' =>rand(1,5),
                 'content'=>$faker->text($maxNbChars = 500),
-                'parent_id' =>$prod,
+                'parent_id' =>null,
                 'created_at'=> $faker->datetime()->format('Y-m-d H:i:s'),
             ]);
         }

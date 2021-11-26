@@ -20,9 +20,9 @@ class CommentTableSeeder extends Seeder
             $idUser= rand(1,23);
             DB::table('comments')->insert([
                 'user_id'=>$idUser,
-                'product_id'=>rand(1,40),
+                'product_id'=>rand(1,190),
                 'content'=>$faker->text($maxNbChars = 500),
-                'parent_id' =>rand(1,20),
+                'parent_id' =>rand(1,190),
                 'status'=>rand(1, 2),
                 'created_at'=> $faker->datetime()->format('Y-m-d H:i:s'),
             ]);

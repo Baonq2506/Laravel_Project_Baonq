@@ -18,31 +18,27 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Image</th>
                         <th style="width:100px">Name</th>
                         <th>Category</th>
-                        <th>Origin Price</th>
-                        <th>Sale Price</th>
+                        <th>Origin Price (USD)</th>
+                        <th>Sale Price (USD)</th>
                         <th>Brand</th>
                         <th>Status</th>
                         <th>Sale Count</th>
                         <th>Action</th>
+                        <th>Image</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
                         <tr>
                             <td>{{ $product->id }}</td>
-                            <td>
-                                <img src="{{ Storage::disk('products')->url(json_decode($product->info)[0]->path) }}"
-                                    alt="" style="width:100px">
-                            </td>
                             <td><a style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;"
                                     href="{{ route('backend.product.show', ['product_id' => $product->id]) }}"><strong>{{ $product->name }}</strong></a>
                             </td>
                             <td>{{ $product->prodCategories->name }}</td>
-                            <td>{{ $product->origin_price }}</td>
-                            <td>{{ $product->sale_price }}</td>
+                            <td>{{ number_format($product->origin_price) }}</td>
+                            <td>{{ number_format($product->sale_price) }}</td>
                             <td>{{ $product->brands->name }}</td>
                             <td>
                                 <div class="dropdown">
@@ -51,27 +47,27 @@
                                     </a>
                                 </div>
                             </td>
-                            <td>{{ $product->sale_count }}</td>
-
+                            <td>{{ number_format($product->sale_count) }}</td>
                             <td>
+                                <div style="display: flex">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#modal-danger-{{ $product->id }}" data-toggle="tooltip"
+                                        data-placement="top" title="Trash">
+                                        <i style="color:white" class="fas fa-trash"></i>
+                                    </button>
 
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#modal-danger-{{ $product->id }}" data-toggle="tooltip"
-                                    data-placement="top" title="Trash">
-                                    <i style="color:white" class="fas fa-trash"></i>
-                                </button>
-
-
-                                <a class="btn btn-info"
-                                    href="{{ route('backend.product.show', ['product_id' => $product->id]) }}"
-                                    data-toggle="tooltip" data-placement="top" title="View">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </a> &emsp;
-                                <a class="btn btn-success" style="position: relative;float: right;margin-top: -37px;"
-                                    href="{{ route('backend.product.edit', ['product_id' => $product->id]) }}"
-                                    data-toggle="tooltip" data-placement="top" title="Edit">
-                                    <i class="fa fa-edit" aria-hidden="true"></i>
-                                </a>
+                                    &emsp;
+                                    <a class="btn btn-info"
+                                        href="{{ route('backend.product.show', ['product_id' => $product->id]) }}"
+                                        data-toggle="tooltip" data-placement="top" title="View">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </a> &emsp;
+                                    <a class="btn btn-success"
+                                        href="{{ route('backend.product.edit', ['product_id' => $product->id]) }}"
+                                        data-toggle="tooltip" data-placement="top" title="Edit">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </a>
+                                </div>
 
                                 <div class="modal fade" id="modal-danger-{{ $product->id }}">
                                     <div class="modal-dialog">
@@ -107,6 +103,16 @@
                                     </div>
                                     <!-- /.modal-dialog -->
                                 </div>
+
+                            </td>
+                            <td>
+                                @foreach ($product->product_image as $ppi)
+                                    <img src="{{ Storage::disk('products')->url($ppi->path) }}" alt=""
+                                        style="width:150px;height:100px;object-fit: cover;border:1px solid white;border-radius:5px">
+                                    <a href="{{ route('backend.image.destroy', ['image_id' => $ppi->id]) }}"
+                                        data-toggle="tooltip" data-placement="top" title="Trash"><i style="color:red"
+                                            class="fas fa-trash"></i></a>&ensp;
+                                @endforeach
 
                             </td>
                         </tr>

@@ -18,9 +18,11 @@
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
         "psr/log": "1.1",
+        "rtconner/laravel-likeable": "^3.2",
         "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
+        "rtconner/laravel-likeable": "^3.2",
         "facade/ignition": "^2.5",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",

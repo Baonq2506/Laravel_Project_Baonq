@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('money_total');
             $table->text('user_info');
             $table->integer('status');
-            $table->integer('payment method');
+            $table->integer('payment_method');
             $table->timestamps();
         });
     }

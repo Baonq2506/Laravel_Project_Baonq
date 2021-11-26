@@ -16,9 +16,11 @@ class NotificationProduct extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user,$orderId,$content)
     {
-        //
+        $this->user=$user;
+        $this->orderId=$orderId;
+        $this->content=$content;
     }
 
     /**
@@ -29,7 +31,7 @@ class NotificationProduct extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +57,9 @@ class NotificationProduct extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'user_id'=>$this->user->id,
+            'order_id'=>$this->orderId,
+            'title'=>$this->content,
         ];
     }
 }

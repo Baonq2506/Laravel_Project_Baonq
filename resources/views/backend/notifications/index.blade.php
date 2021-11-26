@@ -11,28 +11,31 @@
             'icon'=>'plus',
             'name'=>'Create Notification'
             ])
+            <span style="float:right"> <a data-toggle="tooltip" data-placement="top" title="Delete All Notifications"
+                    href="{{ route('backend.notification.destroyAll', ['user_id' => auth()->user()->id]) }}"><i
+                        style="color:red" class="fas fa-trash fa-2x"></i></a></span>
         </div>
+
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>User Create</th>
                         <th>Content</th>
                         <th>Status</th>
                         <th>Time Create</th>
-                        <th>Categoty</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (auth()->user()->notifications as $key => $notification)
                         <tr>
+
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ 1 }}
+                            <td>
+                                <p>{{ $notification->data['title'] }}</p>
                             </td>
-                            <td>{{ $notification->data['content'] }}</td>
                             <td> <span class="badge badge-info">
                                     @if ($notification->read_at == null)
                                         Unread
@@ -41,18 +44,19 @@
                                     @endif
                                 </span></td>
                             <td>{{ $notification->created_at->toFormattedDateString() }}</td>
-                            <td></td>
                             <td>
-                                <a class="btn btn-info" href="" data-toggle="tooltip" data-placement="top" title="View">
+                                <a class="btn btn-info"
+                                    href="{{ route('backend.notification.show', ['notification_id' => $notification->id]) }}"
+                                    data-toggle="tooltip" data-placement="top" title="View">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </a>
                                 <button data-toggle="tooltip" data-placement="top" title="Trash" style="margin-left:15px"
                                     type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
+                                    data-bs-target="#exampleModal-{{ $notification->id }}">
                                     <i style="color:white" class="fas fa-trash"></i>
                                 </button>
 
-                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                <div class="modal fade" id="exampleModal-{{ $notification->id }}" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -63,7 +67,11 @@
                                                     <i class="fas fa-times fa-lg"></i></button>
                                             </div>
                                             <Strong style="text-align:center">Are you OK?</Strong>
-                                            <form action="" method="post">
+                                            <form
+                                                action="{{ route('backend.notification.destroy', [
+                                                    'notification_id' => $notification->id,
+                                                ]) }}"
+                                                method="post">
                                                 @csrf
                                                 @method('delete')
 

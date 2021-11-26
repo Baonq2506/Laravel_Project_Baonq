@@ -17,15 +17,13 @@ class ProdCategoryTableSeeder extends Seeder
     {
         DB::table('prod_categories')->truncate();
         $ProdCateArr = [
-            1 => 'DacVuSieuLinh',
-            2 => 'DavBiet',
-            3 => 'HacTinh',
-            4 => 'SieuPham',
-            5 => 'ThanMa',
-            6 => 'TienHacAm',
-            7 => 'VuTru',
+            1 => 'Channel',
+            2 => 'Gucci',
+            3 => 'Lacoste',
+            4 => 'Hermes',
+            5 => 'LousiVuitton',
         ];
-        for ($i = 1; $i <= 7; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             DB::table('prod_categories')->insert([
                 'name' => $ProdCateArr[$i],
                 'slug' => Str::slug($ProdCateArr[$i]),

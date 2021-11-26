@@ -6,6 +6,9 @@
     <div class="blog-details-area mg-b-15">
         <div class="container-fluid">
             <div class="row">
+                &ensp;<a href="{{ route('backend.post.index') }}"><i class="fas fa-arrow-left"></i></a>
+                <br>
+                <hr>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="blog-details-inner">
                         <div class="row">
@@ -22,8 +25,8 @@
                                         <div class="blog-date">
                                             <h2><a
                                                     href="{{ route('backend.personnel.show', [
-    'personnel_id' => $post->user_created_id,
-]) }}">{{ $post->userCreated->name }}</a>
+                                                        'personnel_id' => $post->user_created_id,
+                                                    ]) }}">{{ $post->userCreated->name }}</a>
                                                 | <span><a href="#"><i class="fas fa-user-tag"></i></i> <b>:</b>
                                                         {{ $post->userCreated->roles[0]->name }}</a></span> | <span><a
                                                         href="#"><i class="fas fa-comments"></i><b>(</b><span

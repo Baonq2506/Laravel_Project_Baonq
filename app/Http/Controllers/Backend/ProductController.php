@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Comment;
@@ -14,7 +15,7 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     /**
@@ -55,22 +56,20 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         $data = $request->all();
-
         $product = new Product();
         $product->name = $data['name'];
         $product->content = $data['content'];
         $product->category_id = $data['category_id'];
         $product->brand_id = $data['brand_id'];
         $product->status = $data['status'];
-        $product->sale_price = $data['sale'];
-        $product->origin_price = $data['origin'];
+        $product->sale_price = Str::replace(',', '', $data['sale']);
+        $product->origin_price =Str::replace(',', '', $data['origin']);
         $product->view_count = 0;
         $product->review_count = 0;
         $product->sale_count = 0;
-        $product->created_at = now();
         $product->user_created_id = auth()->user()->id;
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $key => $file) {
@@ -78,7 +77,7 @@ class ProductController extends Controller
                 $disk = 'products';
                 $path = $request->file('images')[$key]->storeAs('prods', $fileName, $disk);
 
-                $imagesArr[] = $path;
+                $imagesArr['path'][] = $path;
 
             }
 
@@ -87,16 +86,13 @@ class ProductController extends Controller
         }
         $product->save();
         $insertedId = $product->id;
-
         for ($i = 0; $i < count($imagesArr); $i++) {
             $images = new Image();
-            $images->name = $imagesArr[$i];
-            $images->path = $imagesArr[$i];
+            $images->name = $imagesArr['path'][$i];
+            $images->path = $imagesArr['path'][$i];
             $images->product_id = $insertedId;
-            $images->created_at = now();
             $images->save();
         }
-
         if ($product->save()) {
             toastr()->success('You create a new product successfully!');
         } else {
@@ -174,23 +170,15 @@ class ProductController extends Controller
         $product->status = $data['status'];
         $product->sale_price = $data['sale'];
         $product->origin_price = $data['origin'];
-        $product->view_count = 0;
-        $product->review_count = 0;
-        $product->sale_count = 0;
-        $product->created_at = now();
         $product->user_created_id = auth()->user()->id;
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $key => $file) {
                 $fileName = $file->getClientOriginalName();
                 $disk = 'products';
                 $path = $request->file('images')[$key]->storeAs('prods', $fileName, $disk);
-
                 $imagesArr[] = $path;
-
             }
-
             $product->info = json_encode($imagesArr);
-
         }
         $product->save();
         $insertedId = $product->id;
@@ -280,6 +268,7 @@ class ProductController extends Controller
         $comment->user_id = auth()->user()->id;
         $comment->product_id = $data['product_id'];
         $comment->parent_id = $id;
+        $comment->status =1;
         $comment->content = $data['replyComments'];
         $comment->save();
         return back();

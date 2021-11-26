@@ -8,6 +8,8 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
+use App\Notifications\NotificationPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -148,6 +150,16 @@ class PostController extends Controller
         $post->status = $data['status'];
         $post->updated_at = date("Y-m-d H:i:s");
         $post->save();
+        if($data['status'] == 3){
+            $users = User::whereHas('roles', function ($query) {
+                $query->where('id', 1);
+            })->get();
+            $postId = $post->id;
+            $content= " You have new post need confirm";
+            foreach ($users as $user) {
+                $user->notify(new NotificationPost(auth()->user(), $postId,$content));
+            }
+        }
         $tags = $post->boolTagsInput($data['tags']);
         $post->tag()->sync($tags);
         if ($post->save()) {

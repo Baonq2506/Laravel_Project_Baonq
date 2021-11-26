@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                    <span class="info-box-icon bg-info elevation-1"><i class="fab fa-studiovinari"></i></span>
+                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-newspaper"></i></span>
 
                     <div class="info-box-content">
                         <span class="info-box-text">Blog</span>
@@ -41,7 +41,7 @@
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
-                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                    <span class="info-box-icon bg-danger elevation-1"><i class="fab fa-product-hunt"></i></span>
 
                     <div class="info-box-content">
                         <span class="info-box-text">Products</span>
@@ -120,23 +120,23 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row" style="margin-left: 50%;">
+                        <div class="row" style="margin-left: 49%;">
                             <p>
                                 <button class="btn btn-success" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#multiCollapseExample1" aria-expanded="true"
                                     aria-controls="multiCollapseExample1">
-                                    Revenue Order
+                                    Total Order/Delivered
                                 </button>
                                 <button class="btn btn-primary collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#multiCollapseExample2" aria-expanded="false"
                                     aria-controls="multiCollapseExample2">
-                                    Revenue Money
+                                    Revenue Money/Delivered
                                 </button>
                                 <button class="btn btn-danger" type="button" data-bs-toggle="collapse"
                                     data-bs-target=".multi-collapse" aria-expanded="false"
-                                    aria-controls="multiCollapseExample1 multiCollapseExample2"> Revenue Order <i
+                                    aria-controls="multiCollapseExample1 multiCollapseExample2"> Total <i
                                         class="fas fa-exchange-alt"></i> Revenue
-                                    Money</button>
+                                </button>
                             </p>
                         </div>
                         <div class="row">
@@ -160,9 +160,11 @@
                     <div class="row">
                         <div class="col-lg-6" style="border-right: 1px solid black;">
                             <strong style="display: flex;
-                                                            justify-content: center;
-                                                            background: aqua;
-                                                            padding: 14px;">Revenue Gender User</strong>
+                                                                                                justify-content: center;
+                                                                                                background: aqua;
+                                                                                                padding: 14px;">Revenue
+                                Gender
+                                User</strong>
                             <br>
                             <div>
                                 {!! $pieGenderChart->render() !!}
@@ -172,10 +174,10 @@
                         <br>
                         <div class="col-lg-6">
                             <strong style="display: flex;
-                                                justify-content: center;
-                                                background: rgb(22, 115, 236);
-                                                color:white;
-                                                padding: 14px;">Revenue Order </strong>
+                                                                                    justify-content: center;
+                                                                                    background: rgb(22, 115, 236);
+                                                                                    color:white;
+                                                                                    padding: 14px;">Revenue Order </strong>
                             <br>
                             <div>
                                 {!! $pieOrderChart->render() !!}

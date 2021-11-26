@@ -10,7 +10,7 @@
         </div>
         <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="{{ route('frontend.home') }}">Home</a>
+                <li class="dropdown"><a href="{{ route('frontend.home.index') }}">Home</a>
                 </li>
                 <li class="dropdown"><a href="{{ route('frontend.header.index') }}">Header</a>
                 </li>
@@ -29,9 +29,10 @@
                         <li>
                             <a data-toggle="tooltip" data-placement="bottom" title="Go Dashboard"
                                 href="{{ route('backend.user.signWithID', [
-    'user_id' => Auth::user()->id,
-]) }}">
-                                <span style="color:white" class="icon-layers"></span>
+                                    'user_id' => Auth::user()->id,
+                                ]) }}">
+                                <span style="color:white">
+                                    <i class="fas fa-tachometer-alt"></i></span>
                             </a>
                         </li>
                         <li><a> | </a></li>'

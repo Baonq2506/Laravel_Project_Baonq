@@ -70,80 +70,89 @@
             <div class="row">
                 <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
                     <div class="team-item">
-                        <div class="team-image"><img src="assets/images/team-1.jpg" alt="Member Photo" />
+                        <div class="team-image"><img style="width:260px;height:390px;object-fit:cover"
+                                src="/images/FEHeader/j.jpeg" alt="Member Photo" />
                             <div class="team-detail">
                                 <h5 class="font-alt">Hi all</h5>
-                                <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus,
-                                    a&amp;nbsp;iaculis diam.</p>
+                                <p class="font-serif">If you take competition seriously, you will have to wait until
+                                    your opponent makes a move.
+                                    If you take the customer first, you will be a pioneer.</p>
                                 <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
                                             class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a
-                                        href="#"><i class="fa fa-skype"></i></a></div>
+                                        href="#"><i class="fa fa-skype"></i></a>
+                                </div>
                             </div>
                         </div>
                         <div class="team-descr font-alt">
-                            <div class="team-name">Jim Stone</div>
-                            <div class="team-role">Art Director</div>
+                            <div class="team-name">Jeff Bezos</div>
+                            <div class="team-role">Co-Founder</div>
                         </div>
                     </div>
                 </div>
                 <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
                     <div class="team-item">
-                        <div class="team-image"><img src="assets/images/team-2.jpg" alt="Member Photo" />
+                        <div class="team-image"><img style="width:260px;height:390px;object-fit:cover"
+                                src="/images/FEHeader/m.jpg" alt="Member Photo" />
                             <div class="team-detail">
                                 <h5 class="font-alt">Good day</h5>
-                                <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus,
-                                    a&amp;nbsp;iaculis diam.</p>
+                                <p class="font-serif">Act faster and break things. Otherwise you won't be fast enough
+                                    to act.</p>
                                 <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
                                             class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a
-                                        href="#"><i class="fa fa-skype"></i></a></div>
+                                        href="#"><i class="fa fa-skype"></i></a>
+                                </div>
                             </div>
                         </div>
                         <div class="team-descr font-alt">
-                            <div class="team-name">Andy River</div>
-                            <div class="team-role">Creative director</div>
+                            <div class="team-name">Mark Zuckerberg</div>
+                            <div class="team-role">Co-Founder</div>
                         </div>
                     </div>
                 </div>
                 <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
                     <div class="team-item">
-                        <div class="team-image"><img src="assets/images/team-3.jpg" alt="Member Photo" />
+                        <div class="team-image"><img style="width:260px;height:390px;object-fit:cover"
+                                src="/images/FEHeader/R.jpg" alt="Member Photo" />
                             <div class="team-detail">
                                 <h5 class="font-alt">Hello</h5>
-                                <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus,
-                                    a&amp;nbsp;iaculis diam.</p>
+                                <p class="font-serif">If you wake up every morning thinking that tomorrow will be a
+                                    brighter day, that day will be a good day for you.</p>
                                 <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
                                             class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a
-                                        href="#"><i class="fa fa-skype"></i></a></div>
+                                        href="#"><i class="fa fa-skype"></i></a>
+                                </div>
                             </div>
                         </div>
                         <div class="team-descr font-alt">
-                            <div class="team-name">Adele Snow</div>
-                            <div class="team-role">Account manager</div>
+                            <div class="team-name">Elon Musk</div>
+                            <div class="team-role">Co-Founder</div>
                         </div>
                     </div>
                 </div>
                 <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
                     <div class="team-item">
-                        <div class="team-image"><img src="assets/images/team-4.jpg" alt="Member Photo" />
+                        <div class="team-image"><img style="width:260px;height:390px;object-fit:cover"
+                                src="/images/FEHeader/w.jpg" alt="Member Photo" />
                             <div class="team-detail">
-                                <h5 class="font-alt">Yes, it's me</h5>
-                                <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus,
-                                    a&amp;nbsp;iaculis diam.</p>
+                                <h5 class="font-alt">Hi, it's me</h5>
+                                <p class="font-serif">When you're on a damaged ship, it's often more effective to
+                                    switch to another ship than to try to patch the hole in the ship.</p>
                                 <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
                                             class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a
-                                        href="#"><i class="fa fa-skype"></i></a></div>
+                                        href="#"><i class="fa fa-skype"></i></a>
+                                </div>
                             </div>
                         </div>
                         <div class="team-descr font-alt">
-                            <div class="team-name">Dylan Woods</div>
-                            <div class="team-role">Developer</div>
+                            <div class="team-name">Warren Buffett</div>
+                            <div class="team-role">Co-Founder</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="module module-video bg-dark-30" data-background="assets/images/section-12.jpg">
+    <section class="module module-video bg-dark-30" data-background="/images/LOL/Header/pexels-photo-2724664.jpeg">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -185,8 +194,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
-                    <div class="alt-services-image align-center"><img src="assets/images/promo.png" alt="Feature Image">
+                <div style="margin-top:50px;" class="col-md-6 col-lg-6 hidden-xs hidden-sm">
+
+                    <div class="alt-services-image align-center"><img src="/images/LOL/Header/demacia-silvermere.jpg"
+                            alt="Feature Image">
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3 col-lg-3">

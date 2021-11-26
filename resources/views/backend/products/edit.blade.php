@@ -21,7 +21,7 @@
 @section('main')
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <a href="{{ route('backend.product.index') }}"><i style="color:blue" class="fas fa-arrow-left"> Back</i></a>
+        <a href="{{ route('backend.product.index') }}"><i style="color:blue" class="fas fa-arrow-left"> </i></a>
         <div class="row">
             <div class="col-md-12">
 
@@ -191,9 +191,9 @@
                                 <!-- /.col -->
                                 <div class="col-lg-12">
                                     <label for="">Image</label><br>
-                                    @foreach (json_decode($product->info) as $infoP)
+                                    @foreach ($product->product_image as $ppi)
                                         <img style="width:300px; height:200px"
-                                            src="{{ Storage::disk('products')->url($infoP->path) }}" alt="">
+                                            src="{{ Storage::disk('products')->url($ppi->path) }}" alt="">
                                     @endforeach
                                 </div>
                                 <br>

@@ -46,8 +46,6 @@ class CategoryController extends Controller
         $data = $request->all();
         $category = new Category();
         $category->name = $data['name'];
-        $category->created_at = now();
-        $category->updated_at = now();
         $category->save();
         if ($category->save()) {
             toastr()->success('You created a new category successfully!');
@@ -99,7 +97,6 @@ class CategoryController extends Controller
         $data = $request->all();
         $categories = Category::find($id);
         $categories->name = $data['name'];
-        $categories->updated_at = now();
         $categories->save();
         if ($categories->save()) {
             toastr()->success('You update a  category successfully!');
@@ -117,17 +114,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $posts=Post::where('category_id',$id)->get();
-        foreach($posts as $post){
+        $posts = Post::where('category_id', $id)->get();
+        foreach ($posts as $post) {
             $post->destroy($post->id);
+            $destroy = Category::destroy($id);
+            if ($destroy == 0) {
+                toastr()->success('You delete a  category successfully!');
+            } else {
+                toastr()->error('You delete a category failed!');
+            }
+            return redirect('backend/category');
         }
-        Category::destroy($id);
-
-        if( Category::destroy($id) == 0){
-            toastr()->success('You delete a  category successfully!');
-        } else {
-            toastr()->error('You delete a category failed!');
-        }
-        return redirect('backend/category');
     }
 }

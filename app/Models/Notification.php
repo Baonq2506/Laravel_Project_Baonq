@@ -14,5 +14,4 @@ class Notification extends Model
         2 => 'read',
     ];
 
-
 }

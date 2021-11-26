@@ -25,17 +25,14 @@
                 @csrf
                 @method('get')
                 <div class="col-sm-4 mb-sm-20">
-                    <select class="form-control">
+                    <select class="form-control" name="searchSort">
                         <option selected="selected">Default Sorting</option>
-                        <option>Popular</option>
-                        <option>Latest</option>
-                        <option>Average Price</option>
                         <option>High Price</option>
                         <option>Low Price</option>
                     </select>
                 </div>
                 <div class="col-sm-2 mb-sm-20">
-                    <select class="form-control">
+                    <select class="form-control" name="searchGender">
                         <option selected="selected">All</option>
                         <option>Woman</option>
                         <option>Man</option>
@@ -65,17 +62,16 @@
                 @foreach ($products as $product)
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="shop-item">
-                            <div class="shop-item-image"><img style="border-radius:5px;width:auto;height:150px"
-                                    src="{{ Storage::disk('products')->url(json_decode($product->info)[0]->path) }}"
-                                    alt="Accessories Pack" />
-                                <div class="shop-item-detail"><a class="btn btn-round btn-b"><span
+                            <div class="shop-item-image"><img
+                                    style="border-radius:5px;width:100%;object-fit:cover;height:250px"
+                                    src="{{ $product->product_image_full }}" alt="Accessories Pack" />
+                                <div class="shop-item-detail"><a class="btn btn-round btn-b"
+                                        href="{{ route('frontend.cart.add', ['product_id' => $product->id]) }}"><span
                                             class="icon-basket">Add To
                                             Cart</span></a></div>
                             </div>
                             <h4 class="shop-item-title font-alt p-style"><a
-                                    href="{{ route('frontend.shop.detail', [
-                                        'product_id' => $product->id,
-                                    ]) }}"><strong>{{ $product->name }}</strong></a>
+                                    href="{{ route('frontend.shop.detail', ['slug' => $product->slug, 'product_id' => $product->id]) }}"><strong>{{ $product->name }}</strong></a>
                             </h4>
                             {{ number_format($product->sale_price) }} USD
                         </div>

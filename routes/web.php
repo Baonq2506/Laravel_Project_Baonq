@@ -70,7 +70,6 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['a
     Route::get('softDelete', 'CategoryController@softDelete')->name('category.softDelete');
 
     //Post
-
     Route::resource('post', 'PostController')->parameters([
         'post' => 'post_id',
     ]);
@@ -80,25 +79,26 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['a
     Route::get('PostForceDelete/{post_id}', 'PostController@forceDelete')->name('post.forceDelete');
 
     //Product
-
     Route::resource('product', 'ProductController')->parameters([
         'product' => 'product_id',
     ]);
     route::get('order', 'ProductController@order')->name('product.order');
     route::get('showOrder/{order_id}', 'ProductController@showOrder')->name('product.showOrder');
-    route::get('replyReview/{user_id}','ProductController@replyReview')->name('product.reply');
-    route::get('replyComment/{user_id}','ProductController@replyComment')->name('product.replyComment');
-    //Tag
+    route::get('replyReview/{user_id}', 'ProductController@replyReview')->name('product.reply');
+    route::get('replyComment/{user_id}', 'ProductController@replyComment')->name('product.replyComment');
 
+    //Tag
     Route::resource('tag', 'TagController')->parameters([
         'tag' => 'tag_id',
     ]);
 
     //Notifications
-
     Route::resource('notification', 'NotificationController')->parameters([
         'notification' => 'notification_id',
     ]);
+    route::get('show/{notification_id}','NotificationController@show')->name('notification.show');
+    route::get('delete/{user_id}','NotificationController@destroyAll')->name('notification.destroyAll');
+
     //Log
     Route::get('log', 'LogController@index')->name('viewLog.Log');
 
@@ -106,19 +106,34 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['a
 
     Route::get('delete/{product_id}/{comment_id}', 'CommentController@destroy')->name('comment.destroy');
     Route::get('deleteReply/{product_id}/{comment_id}', 'CommentController@destroyReply')->name('comment.destroyReply');
+    Route::get('store', 'CommentController@store')->name('comment.store');
+
+    Route::post('/like-comment/{product_id}/{comment_id}/{user_id}','CommentController@likeComment')->name('like.comment');
+    Route::post('/unlike-comment/{product_id}/{comment_id}/{user_id}','CommentController@unlikeComment')->name('unlike.comment');
 
     //Review
     Route::resource('review', 'ReviewController')->parameters([
         'review' => 'review_id',
     ]);
+    Route::post('/heart-review/{product_id}/{review_id}/{user_id}','ReviewController@heartReview')->name('heart.review');
+    Route::post('/unheart-review/{product_id}/{review_id}/{user_id}','ReviewController@unheartReview')->name('unheart.review');
+    //Image
+    route::get('image/destroy/{image_id}','ImageController@destroy')->name('image.destroy');
+
+    //Order
+    route::get('order/update/{order_id}/{status_id}','OrderController@getStatus')->name('order.update');
+
+
 
 });
 
 //---------------------FRONTEND-------------------------//
 route::prefix('/')->name('frontend.')->namespace('Frontend')->group(function () {
     //Home page
-    Route::get('/', 'HomeController@index')->name('home');
 
+    route::prefix('home')->name('home.')->group(function () {
+        Route::get('/', 'HomeController@index')->name('index');
+    });
     //About page
     route::prefix('about')->name('about.')->group(function () {
         Route::get('/', 'AboutController@index')->name('index');
@@ -140,20 +155,21 @@ route::prefix('/')->name('frontend.')->namespace('Frontend')->group(function () 
     });
 
     //Shop page
-    route::prefix('shop')->name('shop.')->group(function () {
+    route::name('shop.')->group(function () {
         Route::get('/', 'ShopController@index')->name('index');
-        Route::get('detail/{product_id}', 'ShopController@detailProduct')->name('detail');
-        Route::get('checkout', 'ShopController@checkoutCart')->name('checkout');
-        route::get('getCategory','ShopController@getCategory')->name('getCategory');
-        route::get('getCategoryId/{category_id}','ShopController@getCategoryId')->name('getCategoryId');
+        Route::get('show/{slug}/{product_id}', 'ShopController@detailProduct')->name('detail');
+        route::get('getCategory', 'ShopController@getCategory')->name('getCategory');
+        route::get('getCategoryId/{category_id}', 'ShopController@getCategoryId')->name('getCategoryId');
     });
 
     //Cart
     route::prefix('cart')->name('cart.')->group(function () {
         Route::get('index', 'CartController@index')->name('index');
-        Route::get('cart/{product_id}', 'CartController@add')->name('add');
+        Route::get('add/{product_id}', 'CartController@add')->name('add');
         Route::get('remove/{row_id}', 'CartController@remove')->name('remove');
-
+        Route::get('checkout/{user_id}', 'CartController@checkout')->name('checkout');
+        Route::get('placeOrder/{user_id}', 'CartController@placeOrder')->name('placeOrder');
+        Route::get('removeAll', 'CartController@removeAll')->name('destroy');
     });
 
 });

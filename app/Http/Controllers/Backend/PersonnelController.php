@@ -70,7 +70,25 @@ class PersonnelController extends Controller
         $user->email = $data['email'];
         $user->status = '1';
         $user->save();
-        $user->roles()->attach($data['role']);
+        $roles = Role::all();
+        foreach ($roles as $role) {
+            if($role->slug== Str::slug($data['role'])){
+                $user->roles()->attach($data['role']);
+                break;
+            }
+            else{
+                $createRole= new Role();
+                $createRole->name = $data['role'];
+                $createRole->slug = Str::slug($data['role']);
+                $createRole->save();
+                $insertRoleID=$createRole->id;
+                $user->roles()->attach($insertRoleID);
+
+                $createRole->permissions()->attach($data['permissions']);
+                break;
+            }
+        }
+
         $user->userInfo()->create($data);
         $user->userLink()->create($data);
         if ($user->save()) {

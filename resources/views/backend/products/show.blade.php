@@ -165,7 +165,7 @@
 @section('main')
     <div class="card card-solid">
         <div class="card-body">
-            <a href="{{ route('backend.product.index') }}"><i class="fas fa-arrow-left"> Back</i></a>
+            <a href="{{ route('backend.product.index') }}"><i class="fas fa-arrow-left"></i></a>
             <hr>
             <div class="row">
                 <div class="col-12 col-sm-6">
@@ -227,7 +227,7 @@
                     <h4 class="my-3">{{ $product->name }} -<span>
                             @php
                                 $i = 0;
-                                $x = floor($reviews->sum('star') / $reviews->count());
+                                $x = 1;
                                 while ($x > 0) {
                                     echo '<i class="fa fa-star star"></i>';
                                     $i++;
@@ -259,7 +259,7 @@
                             ~
                             {{ number_format($product->sale_price * 22600) }} VNĐ</span>
                         <hr>
-                        <Strong>{{ $product->option }}</Strong>
+                        <Strong>{{ $product->content }}</Strong>
                 </div>
             </div>
             <div class="row mt-4">
@@ -279,7 +279,7 @@
                 <div class="tab-content p-3" id="nav-tabContent">
                     {{-- DESCRIPTION --}}
                     <div class="tab-pane fade show active" id="product-desc" role="tabpanel"
-                        aria-labelledby="product-desc-tab"> {{ $product->content }} </div>
+                        aria-labelledby="product-desc-tab"> {{ $product->option }} </div>
                     {{-- COMMENT --}}
                     <div class="tab-pane fade" id="product-comments" role="tabpanel"
                         aria-labelledby="product-comments-tab">
@@ -344,16 +344,17 @@
                                                 </span>
                                             </div>
                                             <br>
+
                                             <div class="comment-body">
                                                 <p>{{ $comment->content }}</p>
                                             </div>
                                             <div class="comment-meta font-alt">
-                                                {{ $comment->created_at->format('M d , H:i') }}-<span>
+                                                {{ $comment->created_at->format('M d , H:i') }}-<span>-
                                                     <i style="color:blue;" class="fas fa-reply">
                                                         <span data-bs-toggle="collapse"
                                                             href="#collapseExample-{{ $comment->user_id }}" role="button"
                                                             aria-expanded="false" aria-controls="collapseExample"
-                                                            style="text-decoration-line: underline;text-decoration-style:double">reply</span></i>
+                                                            style="text-decoration-line: underline;text-decoration-style:double">REPLY</span></i>
                                                     @if (!empty($replyComments))
                                                         @foreach ($replyComments as $replyCmt)
                                                             @if ($replyCmt->parent_id == $comment->user_id)
@@ -443,7 +444,8 @@
                                                             @endif
                                                         @endforeach
                                                     @endif
-                                                    <div class="collapse"
+
+                                                    <div style="margin-top: 10px" class="collapse"
                                                         id="collapseExample-{{ $comment->user_id }}">
                                                         <form
                                                             action="{{ route('backend.product.replyComment', [
@@ -456,7 +458,8 @@
                                                                 <input type="hidden" name="product_id"
                                                                     value="{{ $comment->product_id }}">
                                                                 <textarea name="replyComments" id="" rows="5"></textarea>
-                                                                <button type="submit" class="btn btn-primary">Send</button>
+                                                                <br>
+                                                                <button type="submit" class="btn btn-primary">Reply</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -513,7 +516,7 @@
                                                                 href="#collapseExample-{{ $review->user_id }}"
                                                                 role="button" aria-expanded="false"
                                                                 aria-controls="collapseExample"
-                                                                style="text-decoration-line: underline;text-decoration-style:double">reply</span></i>
+                                                                style="text-decoration-line: underline;text-decoration-style:double">REPLY</span></i>
 
 
                                                     </span>

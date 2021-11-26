@@ -97,4 +97,28 @@ class ReviewController extends Controller
     {
         //
     }
+
+    public function heartReview($prodID, $rvID, $userID)
+    {
+
+        $review = Review::where('product_id', $prodID)->where('id', $rvID)->get();
+
+        $likeCount = $review[0]->favories;
+        $review[0]->like($userID);
+        $review[0]->favories = $likeCount+ 1;
+        $review[0]->save();
+
+        return redirect()->back();
+    }
+
+    public function unheartReview($prodID, $rvID, $userID)
+    {
+        $review = Review::where('product_id', $prodID)->where('id', $rvID)->get();
+        $likeCount = $review[0]->favories;
+        $review[0]->unlike($userID);
+        $review[0]->favories = $likeCount-1;
+        $review[0]->save();
+
+        return redirect()->back();
+    }
 }

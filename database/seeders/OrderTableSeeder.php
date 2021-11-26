@@ -27,7 +27,7 @@ class OrderTableSeeder extends Seeder
                 'user_id' => $randomUserID,
                 'user_info' => $user_info,
                 'money_total' => $money_total,
-                'status' => rand(1, 4),
+                'status' => rand(1, 5),
                 'payment_method' => rand(1, 2),
                 'created_at'=> $faker->dateTimeBetween($startDate = '- 10 months', $endDate = 'now + 1 months'),
                 'updated_at'=> $faker->dateTimeBetween($startDate = '- 11 months', $endDate = 'now'),

@@ -182,5 +182,17 @@ class User extends Authenticatable implements BannableContract
         return false;
     }
 
+    public function CountNotificationsProduct(){
+        $count= Notification::where('notifiable_id',auth()->user()->id)->where('type','like','%NotificationProduct')->where('read_at',null)->get()->count();
+       return $count;
+    }
+    public function CountNotificationsPost(){
+        $count= Notification::where('notifiable_id',auth()->user()->id)->where('type','like','%NotificationPost')->where('read_at',null)->get()->count();
+       return $count;
+    }
+    public function CountNotificationsUser(){
+        $count= Notification::where('notifiable_id',auth()->user()->id)->where('type','like','%NotificationUser')->where('read_at',null)->get()->count();
+       return $count;
+    }
 
 }

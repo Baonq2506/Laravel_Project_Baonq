@@ -27,7 +27,7 @@ class UserController extends Controller
 
         $users = User::whereHas('roles', function (Builder $query) {
             $query->where('id', 4);
-        })->orderBy('id', 'DESC')->paginate(5);
+        })->orderBy('id', 'DESC')->paginate(12);
         return view('backend.users.index', [
             'users' => $users,
         ]);
@@ -81,14 +81,6 @@ class UserController extends Controller
             toastr()->success('You created a new  user successfully!');
         } else {
             toastr()->error('You created a new user failed!');
-        }
-
-        $users = User::whereHas('roles', function (Builder $query) {
-            $query->where('id', 1);
-        })->get();
-        $data = $request->all();
-        foreach ($users as $user) {
-            $user->notify(new NotificationUser(auth()->user(), $data));
         }
         return redirect('backend/user');
     }

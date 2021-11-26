@@ -7,23 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-
 class NotificationUser extends Notification
 {
     use Queueable;
-    protected $notifiable_user_id;
-
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($user,$data)
+    public function __construct($user,$content,$title)
     {
         $this->user=$user;
-        $this->data=$data;
-
+        $this->content=$content;
+        $this->title=$title;
     }
 
     /**
@@ -48,7 +45,6 @@ class NotificationUser extends Notification
         return (new MailMessage)
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
-                    ->line('hello mn')
                     ->line('Thank you for using our application!');
     }
 
@@ -62,9 +58,8 @@ class NotificationUser extends Notification
     {
         return [
             'user_id'=>$this->user->id,
-            'description'=>$this->data,
+            'content'=>$this->content,
+            'title'=>$this->title,
         ];
     }
-
-
 }

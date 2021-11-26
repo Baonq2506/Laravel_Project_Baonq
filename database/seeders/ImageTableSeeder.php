@@ -18,17 +18,16 @@ class ImageTableSeeder extends Seeder
     {
         DB::table('images')->truncate();
         $dicArr = [
-            1 => 'DacVuSieuLinh',
-            2 => 'DavBiet',
-            3 => 'HacTinh',
-            4 => 'SieuPham',
-            5 => 'ThanMa',
-            6 => 'TienHacAm',
-            7 => 'VuTru',
+            1 => 'Channel',
+            2 => 'Gucci',
+            3 => 'Lacoste',
+            4 => 'Hermes',
+            5 => 'LousiVuitton',
+
         ];
         $test=array();
         for ($i = 1; $i <= 40; $i++) {
-            $randomDicArr = rand(1, 7);
+            $randomDicArr = rand(1, 5);
             $disk = 'products/LOL/' . $dicArr[$randomDicArr];
             $files = Storage::files($disk);
             $paths[] = '';

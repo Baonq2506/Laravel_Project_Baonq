@@ -13,7 +13,7 @@
 @endsection
 @section('header')
     <section class="home-section home-parallax home-fade bg-dark-30" id="home"
-        data-background="/images/LOL/Header/ionia1.jpg">
+        data-background="/images/LOL/Header/pexels-photo-2724664.jpeg">
         <div class="titan-caption">
             <div class="caption-content" style="opacity: 0.647496;">
                 <div class="font-alt mb-30 titan-title-size-1">Hello &amp; welcome</div>
@@ -25,11 +25,12 @@
     </section>
 @endsection
 @section('main')
-    <section class="module" id="about">
+    <br>
+    <section id="about">
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
-                    <h2 class="module-title font-alt">Welcome to Dark Legend</h2>
+                    <h2 class="module-title font-alt">Welcome to Belgorod</h2>
                     <div class="module-subtitle font-serif large-text">We’re an award winning London based digital agency,
                         lovingly curating pixels for maximum impact. We don’t have a style — we have standards.</div>
                 </div>
@@ -120,34 +121,17 @@
             </div>
         </div>
     </section>
-    <section class="module bg-dark-60" data-background="assets/images/section-6.jpg">
+    <section class="module bg-dark-60" data-background="/images/LOL/Header/pexels-photo-2724664.jpeg">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="video-box">
-                        <div class="video-box-icon"><a class="video-pop-up"
-                                href="https://www.youtube.com/watch?v=TTxZj3DZiIM"><span class="icon-video"></span></a>
+                        <div class="video-box-icon"><a class="video-pop-up" href="https://youtu.be/RlVMtdQcawE"><span
+                                    class="icon-video"></span></a>
                         </div>
                         <div class="video-title font-alt">Presentation</div>
                         <div class="video-subtitle font-alt">Watch the video about our new products</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="module-small bg-dark">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-8 col-lg-6 col-lg-offset-2">
-                    <div class="callout-text font-alt">
-                        <h3 class="callout-title">Want to see more works?</h3>
-                        <p>We are always open to interesting projects.</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-2">
-                    <div class="callout-btn-box"><a class="btn btn-w btn-round"
-                            href="portfolio_boxed_gutter_col_3.html">Lets view portfolio</a></div>
                 </div>
             </div>
         </div>
@@ -185,7 +169,8 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
-                    <div class="alt-services-image align-center"><img src="assets/images/promo.png" alt="Feature Image">
+                    <div class="alt-services-image align-center"><img style="height:650px;object-fit:cover"
+                            src="/images/LOL/Header/pexels-photo-3222686.jpeg" alt="Feature Image">
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3 col-lg-3">
@@ -226,11 +211,13 @@
             <div class="row">
                 <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
                     <div class="team-item">
-                        <div class="team-image"><img src="assets/images/team-1.jpg" alt="Member Photo" />
+                        <div class="team-image"><img style="width:260px;height:390px;object-fit:cover"
+                                src="/images/FEHeader/j.jpeg" alt="Member Photo" />
                             <div class="team-detail">
                                 <h5 class="font-alt">Hi all</h5>
-                                <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus,
-                                    a&amp;nbsp;iaculis diam.</p>
+                                <p class="font-serif">If you take competition seriously, you will have to wait until
+                                    your opponent makes a move.
+                                    If you take the customer first, you will be a pioneer.</p>
                                 <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
                                             class="fa fa-twitter"></i></a><a href="#"><i
                                             class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
@@ -238,18 +225,19 @@
                             </div>
                         </div>
                         <div class="team-descr font-alt">
-                            <div class="team-name">Jim Stone</div>
-                            <div class="team-role">Art Director</div>
+                            <div class="team-name">Jeff Bezos</div>
+                            <div class="team-role">Co-Founder</div>
                         </div>
                     </div>
                 </div>
                 <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
                     <div class="team-item">
-                        <div class="team-image"><img src="assets/images/team-2.jpg" alt="Member Photo" />
+                        <div class="team-image"><img style="width:260px;height:390px;object-fit:cover"
+                                src="/images/FEHeader/m.jpg" alt="Member Photo" />
                             <div class="team-detail">
                                 <h5 class="font-alt">Good day</h5>
-                                <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus,
-                                    a&amp;nbsp;iaculis diam.</p>
+                                <p class="font-serif">Act faster and break things. Otherwise you won't be fast enough
+                                    to act.</p>
                                 <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
                                             class="fa fa-twitter"></i></a><a href="#"><i
                                             class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
@@ -257,18 +245,19 @@
                             </div>
                         </div>
                         <div class="team-descr font-alt">
-                            <div class="team-name">Andy River</div>
-                            <div class="team-role">Creative director</div>
+                            <div class="team-name">Mark Zuckerberg</div>
+                            <div class="team-role">Co-Founder</div>
                         </div>
                     </div>
                 </div>
                 <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
                     <div class="team-item">
-                        <div class="team-image"><img src="assets/images/team-3.jpg" alt="Member Photo" />
+                        <div class="team-image"><img style="width:260px;height:390px;object-fit:cover"
+                                src="/images/FEHeader/R.jpg" alt="Member Photo" />
                             <div class="team-detail">
                                 <h5 class="font-alt">Hello</h5>
-                                <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus,
-                                    a&amp;nbsp;iaculis diam.</p>
+                                <p class="font-serif">If you wake up every morning thinking that tomorrow will be a
+                                    brighter day, that day will be a good day for you.</p>
                                 <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
                                             class="fa fa-twitter"></i></a><a href="#"><i
                                             class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
@@ -276,18 +265,19 @@
                             </div>
                         </div>
                         <div class="team-descr font-alt">
-                            <div class="team-name">Adele Snow</div>
-                            <div class="team-role">Account manager</div>
+                            <div class="team-name">Elon Musk</div>
+                            <div class="team-role">Co-Founder</div>
                         </div>
                     </div>
                 </div>
                 <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
                     <div class="team-item">
-                        <div class="team-image"><img src="assets/images/team-4.jpg" alt="Member Photo" />
+                        <div class="team-image"><img style="width:260px;height:390px;object-fit:cover"
+                                src="/images/FEHeader/w.jpg" alt="Member Photo" />
                             <div class="team-detail">
-                                <h5 class="font-alt">Yes, it's me</h5>
-                                <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus,
-                                    a&amp;nbsp;iaculis diam.</p>
+                                <h5 class="font-alt">Hi, it's me</h5>
+                                <p class="font-serif">When you're on a damaged ship, it's often more effective to
+                                    switch to another ship than to try to patch the hole in the ship.</p>
                                 <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
                                             class="fa fa-twitter"></i></a><a href="#"><i
                                             class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
@@ -295,8 +285,8 @@
                             </div>
                         </div>
                         <div class="team-descr font-alt">
-                            <div class="team-name">Dylan Woods</div>
-                            <div class="team-role">Developer</div>
+                            <div class="team-name">Warren Buffett</div>
+                            <div class="team-role">Co-Founder</div>
                         </div>
                     </div>
                 </div>
@@ -304,7 +294,7 @@
         </div>
     </section>
     <section class="module bg-dark-60 pt-0 pb-0 parallax-bg testimonial"
-        data-background="assets/images/testimonial_bg.jpg">
+        data-background="/images/LOL/Header/pexels-photo-1647962.jpeg">
         <div class="testimonials-slider pt-140 pb-140">
             <ul class="slides">
                 <li>
@@ -316,16 +306,18 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-8 col-sm-offset-2">
-                                <blockquote class="testimonial-text font-alt">I am alone, and feel the charm of existence
-                                    in this spot, which was created for the bliss of souls like mine.</blockquote>
+                                <blockquote class="testimonial-text font-alt">No one can know what will happen in the
+                                    future, the game can be reversed at any time. That's why you should keep faith in the
+                                    unlimited potential of the future and keep trying. Explore for yourself to find true
+                                    happiness in the future.</blockquote>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-4 col-sm-offset-4">
                                 <div class="testimonial-author">
                                     <div class="testimonial-caption font-alt">
-                                        <div class="testimonial-title">Jack Woods</div>
-                                        <div class="testimonial-descr">SomeCompany INC, CEO</div>
+                                        <div class="testimonial-title">NguyenBao</div>
+                                        <div class="testimonial-descr">Founder, CEO</div>
                                     </div>
                                 </div>
                             </div>
@@ -341,8 +333,8 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-8 col-sm-offset-2">
-                                <blockquote class="testimonial-text font-alt">I should be incapable of drawing a single
-                                    stroke at the present moment; and yet I feel that I never was a greater artist than now.
+                                <blockquote class="testimonial-text font-alt">The question is not "What do we want to know
+                                    about people" but "What do we want to say about ourselves?"
                                 </blockquote>
                             </div>
                         </div>
@@ -350,7 +342,7 @@
                             <div class="col-sm-4 col-sm-offset-4">
                                 <div class="testimonial-author">
                                     <div class="testimonial-caption font-alt">
-                                        <div class="testimonial-title">Jim Stone</div>
+                                        <div class="testimonial-title">Mark Zuckerberg</div>
                                         <div class="testimonial-descr">SomeCompany INC, CEO</div>
                                     </div>
                                 </div>
@@ -367,15 +359,15 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-8 col-sm-offset-2">
-                                <blockquote class="testimonial-text font-alt">I am so happy, my dear friend, so absorbed in
-                                    the exquisite sense of mere tranquil existence, that I neglect my talents.</blockquote>
+                                <blockquote class="testimonial-text font-alt">In the end we manifest ourselves through our
+                                    own choices. Let's build a great life for yourself.</blockquote>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-4 col-sm-offset-4">
                                 <div class="testimonial-author">
                                     <div class="testimonial-caption font-alt">
-                                        <div class="testimonial-title">Adele Snow</div>
+                                        <div class="testimonial-title">Jeff Bezos</div>
                                         <div class="testimonial-descr">SomeCompany INC, CEO</div>
                                     </div>
                                 </div>
@@ -384,132 +376,6 @@
                     </div>
                 </li>
             </ul>
-        </div>
-    </section>
-    <section class="module" id="news">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <h2 class="module-title font-alt">Latest blog posts</h2>
-                    <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul,
-                        like these sweet mornings of spring which I enjoy with my whole heart.</div>
-                </div>
-            </div>
-            <div class="row multi-columns-row post-columns">
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="post mb-20">
-                        <div class="post-thumbnail"><a href="#"><img src="assets/images/post-1.jpg"
-                                    alt="Blog-post Thumbnail" /></a></div>
-                        <div class="post-header font-alt">
-                            <h2 class="post-title"><a href="#">Our trip to the Alps</a></h2>
-                            <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>&nbsp;| 23 November | 3 Comments
-                            </div>
-                        </div>
-                        <div class="post-entry">
-                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
-                                spring which I enjoy with my whole heart.</p>
-                        </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="post mb-20">
-                        <div class="post-thumbnail"><a href="#"><img src="assets/images/post-2.jpg"
-                                    alt="Blog-post Thumbnail" /></a></div>
-                        <div class="post-header font-alt">
-                            <h2 class="post-title"><a href="#">Shore after the tide</a></h2>
-                            <div class="post-meta">By&nbsp;<a href="#">Andy River</a>&nbsp;| 11 November | 4 Comments
-                            </div>
-                        </div>
-                        <div class="post-entry">
-                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
-                                spring which I enjoy with my whole heart.</p>
-                        </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="post mb-20">
-                        <div class="post-thumbnail"><a href="#"><img src="assets/images/post-3.jpg"
-                                    alt="Blog-post Thumbnail" /></a></div>
-                        <div class="post-header font-alt">
-                            <h2 class="post-title"><a href="#">We in New Zealand</a></h2>
-                            <div class="post-meta">By&nbsp;<a href="#">Dylan Woods</a>&nbsp;| 5 November | 15 Comments
-                            </div>
-                        </div>
-                        <div class="post-entry">
-                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of
-                                spring which I enjoy with my whole heart.</p>
-                        </div>
-                        <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="module-small bg-dark">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
-                    <div class="callout-text font-alt">
-                        <h3 class="callout-title">Subscribe now</h3>
-                        <p>We will not spam your email.</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4">
-                    <div class="callout-btn-box">
-                        <form id="subscription-form" role="form" method="post" action="php/subscribe.php">
-                            <div class="input-group">
-                                <input class="form-control" type="email" id="semail" name="semail"
-                                    placeholder="Your Email"
-                                    data-validation-required-message="Please enter your email address."
-                                    required="required" /><span class="input-group-btn">
-                                    <button class="btn btn-g btn-round" id="subscription-form-submit"
-                                        type="submit">Submit</button></span>
-                            </div>
-                        </form>
-                        <div class="text-center" id="subscription-response"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <section class="module" id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <h2 class="module-title font-alt">Get in touch</h2>
-                    <div class="module-subtitle font-serif"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <form id="contactForm" role="form" method="post" action="php/contact.php">
-                        <div class="form-group">
-                            <label class="sr-only" for="name">Name</label>
-                            <input class="form-control" type="text" id="name" name="name" placeholder="Your Name*"
-                                required="required" data-validation-required-message="Please enter your name." />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="email" placeholder="Your Email*"
-                                required="required" data-validation-required-message="Please enter your email address." />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" rows="7" id="message" name="message"
-                                placeholder="Your Message*" required="required"
-                                data-validation-required-message="Please enter your message."></textarea>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="text-center">
-                            <button class="btn btn-block btn-round btn-d" id="cfsubmit" type="submit">Submit</button>
-                        </div>
-                    </form>
-                    <div class="ajax-response font-alt" id="contactFormResponse"></div>
-                </div>
-            </div>
         </div>
     </section>
 

@@ -9,9 +9,17 @@
             <a href="{{ route('backend.product.order') }}"><i class="fas fa-arrow-left"></i></a>
             <br>
             <h4>Order ID: {{ $orders->id }}@if ($orders->status == 1)
-                    <span style="float:right"><a href="" class="btn btn-primary">Order
-                            confirmation</a>
-                        <a href="" class="btn btn-danger">Cancel order</a></span>
+                    <span style="float:right"><a
+                            href="{{ route('backend.order.update', ['order_id' => $orders->id, 'status_id' => 5]) }}"
+                            class="btn btn-primary">Order
+                            confirm</a>
+                        <a href="{{ route('backend.order.update', ['order_id' => $orders->id, 'status_id' => 3]) }}"
+                            class="btn btn-danger">Cancel order</a></span>
+                @elseif ($orders->status == 5)
+                    <span style="float:right"><a
+                            href="{{ route('backend.order.update', ['order_id' => $orders->id, 'status_id' => 2]) }}"
+                            class="btn btn-primary">Shipped</a>
+                    </span>
                 @endif
             </h4>
             <br>
@@ -33,7 +41,7 @@
                         @foreach ($order_prods as $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td><img src="                                  @foreach ($images as $image)
+                                <td><img src="          @foreach ($images as $image)
                                     @if ($order->product_id == $image[0]->product_id)
                                         {{ $image[0]->image_url_full }}
                                     @endif
@@ -52,7 +60,7 @@
                                 <td>{{ number_format($order->discount_value) }}</td>
                                 <td>{{ number_format($order->sale_price) }}</td>
                                 <td>{{ number_format($order->money_total) }}</td>
-                                <td>{{ $order->created_at }}</td>
+                                <td>{{ $orders->date_format }}</td>
                             </tr>
                         @endforeach
                     </tbody>

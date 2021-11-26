@@ -61,19 +61,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3">
+                <div style="float:right" class="col-sm-3 col-sm-offset-3">
                     <div class="form-group">
-                        <input class="form-control" type="text" id="" name="" placeholder="Coupon code">
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <button class="btn btn-round btn-g" type="submit">Apply</button>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-sm-offset-3">
-                    <div class="form-group">
-                        <button class="btn btn-block btn-round btn-d pull-right" type="submit">Update Cart</button>
+                        <a href="{{ route('frontend.cart.destroy') }}" class="btn btn-block btn-round btn-d pull-right"
+                            type="submit">Remove Order</a>
                     </div>
                 </div>
             </div>
@@ -86,7 +77,7 @@
                             <tbody>
                                 <tr>
                                     <th>Cart Subtotal :</th>
-                                    <td>{{ \Gloudemans\Shoppingcart\Facades\Cart::total() }}</td>
+                                    <td>{{ \Gloudemans\Shoppingcart\Facades\Cart::total() }}&ensp;(USD)</td>
                                 </tr>
                                 <tr>
                                     <th>Shipping Total :</th>
@@ -94,11 +85,12 @@
                                 </tr>
                                 <tr class="shop-Cart-totalprice">
                                     <th>Total :</th>
-                                    <td>{{ \Gloudemans\Shoppingcart\Facades\Cart::total() }}</td>
+                                    <td>{{ \Gloudemans\Shoppingcart\Facades\Cart::total() }}&ensp;(USD)</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-lg btn-block btn-round btn-d" type="submit">Proceed to Checkout</button>
+                        <a href="{{ route('frontend.cart.checkout', ['user_id' => auth()->user()->id]) }}"
+                            class="btn btn-lg btn-block btn-round btn-d" type="submit">Proceed to Checkout</a>
                     </div>
                 </div>
             </div>

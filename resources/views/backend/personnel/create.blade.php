@@ -272,16 +272,15 @@
                                     <div class="form-group">
                                         <label>Permission*(<small>You can next. If select Decentralization
                                                 Basic</small>)</label> <br>
-
-
                                     </div>
+
                                     <ul id="tree1">
                                         @foreach ($perArr as $per)
                                             <li>
                                                 <i class="fas fa-plus"></i>
                                                 {{ $per->name }}
                                                 @if ($per->children)
-                                                    @include('backend.roles.manageChild',['childs' =>
+                                                    @include('backend.personnel.manageChild',['childs' =>
                                                     $per->children])
                                                 @endif
                                             </li>
@@ -391,7 +390,14 @@
         });
         /* Initialization of treeviews */
         $('#tree1').treed();
+        /*Select All */
+        // $(document).ready(function() {
+        //     $('#selectAll').click(function() {
+        //         $('input[type="checkbox"]').prop('checked', this.checked);
+        //     })
+        // });
     </script>
+
 @endsection
 @section('css')
     <style>

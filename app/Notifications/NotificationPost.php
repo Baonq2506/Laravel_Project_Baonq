@@ -16,10 +16,11 @@ class NotificationPost extends Notification
      *
      * @return void
      */
-    public function __construct($user,$content)
+    public function __construct($user,$postId,$title)
     {
         $this->user=$user;
-        $this->content=$content;
+        $this->postId=$postId;
+        $this->title=$title;
     }
 
     /**
@@ -56,10 +57,9 @@ class NotificationPost extends Notification
     public function toArray($notifiable)
     {
         return [
-            'send_id'=>$this->user->id,
-            'name'=>$this->user->name,
-            'email'=>$this->user->email,
-            'content'=>$this->content,
+            'user_id'=>$this->user->id,
+            'postId'=>$this->postId,
+            'title'=>$this->title,
         ];
     }
 }
