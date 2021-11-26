@@ -18,7 +18,35 @@ class UserTableSeeder extends Seeder
 
     public function run()
     {
-        // DB::table('users')->truncate();
-        User::factory()->count(130)->create();
+        $faker = Faker::create();
+        DB::table('users')->truncate();
+        $files = Storage::files('avatars/users');
+        $paths[] = '';
+        foreach ($files as $key => $file) {
+            $file = str_replace("avatars/", "", $file);
+            $paths[$key] = $file;
+        }
+
+        DB::table('users')->insert([
+            'name' => $faker->name(),
+            'status' => rand(1, 2),
+            'disk' => 'avatars',
+            'avatar' => $paths[rand(0, 23)],
+            'email' => 'baonguyen@gmail.com',
+            'password' => bcrypt('123456789'),
+            'created_at' => $faker->datetime()->format('Y-m-d H:i:s'),
+        ]);
+        for ($i = 0; $i < 100; $i++) {
+            User::create([
+                'name' => $faker->name(),
+                'status' => rand(1, 2),
+                'disk' => 'avatars',
+                'avatar' => $paths[rand(0, 23)],
+                'email' => $faker->unique()->freeEmail(),
+                'password' => bcrypt('123456789'),
+                'created_at' => $faker->datetime()->format('Y-m-d H:i:s'),
+            ]);
+        }
+
     }
 }

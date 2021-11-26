@@ -28,6 +28,7 @@ class UserFactory extends Factory
             $file = str_replace("avatars/", "", $file);
             $paths[$key] = $file;
         }
+        dd($paths);
         return [
             'name' => $this->faker->name(),
             'status'=>rand(1,2),
