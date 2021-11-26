@@ -31,17 +31,17 @@ class UserTableSeeder extends Seeder
             'name' => $faker->name(),
             'status' => rand(1, 2),
             'disk' => 'avatars',
-            'avatar' => $paths[rand(0, 23)],
+            'avatar' => $paths[1],
             'email' => 'baonguyen@gmail.com',
             'password' => bcrypt('123456789'),
             'created_at' => $faker->datetime()->format('Y-m-d H:i:s'),
         ]);
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             User::create([
                 'name' => $faker->name(),
                 'status' => rand(1, 2),
                 'disk' => 'avatars',
-                'avatar' => $paths[rand(0, 23)],
+                'avatar' => $paths[$i],
                 'email' => $faker->unique()->freeEmail(),
                 'password' => bcrypt('123456789'),
                 'created_at' => $faker->datetime()->format('Y-m-d H:i:s'),
