@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Image;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -17,6 +18,7 @@ class ImageTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        Image::truncate();
         $dicArr = [
             1 => 'Channel',
             2 => 'Gucci',
@@ -25,7 +27,7 @@ class ImageTableSeeder extends Seeder
             5 => 'LouisVuitton',
         ];
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 4; $i++) {
             $randomDicArr = rand(1, 5);
             $disk = 'products/LOL/' . $dicArr[$randomDicArr];
             $files = Storage::files($disk);

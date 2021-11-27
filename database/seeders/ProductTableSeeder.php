@@ -22,12 +22,13 @@ class ProductTableSeeder extends Seeder
         for ($i = 1; $i <= 20; $i++) {
             $name = $faker->sentence($nbWords = 3);
             $randomDicArr = rand(1, 5);
-            $imageProd = Image::where('product_id', $i)->get('path');
-            if (is_null($imageProd)) {
-                $imageProd = Image::where('product_id', 5)->get('path');
-            }
-            $info = json_encode($imageProd);
+            $imageProds = Image::where('product_id', $i)->get('path');
 
+            if (is_null($imageProds)) {
+                $imageProds = Image::where('product_id', 5)->get('path');
+            }
+            $info = json_encode($imageProds);
+            dd($info);
             DB::table('products')->insert([
                 'name' => $name,
                 'slug' => Str::slug($name),
