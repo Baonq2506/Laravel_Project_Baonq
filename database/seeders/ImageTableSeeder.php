@@ -34,9 +34,10 @@ class ImageTableSeeder extends Seeder
                 $file = str_replace("products/", "", $file);
                 $paths[$key] = $file;
             }
+
             DB::table('images')->insert([
                 'name' => $faker->name,
-                'path' => $paths[$i],
+                'path' => $paths[rand(1, 5)],
                 'product_id' => $i,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
