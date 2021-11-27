@@ -21,7 +21,7 @@ class PostTableSeeder extends Seeder
         DB::table('posts')->truncate();
         $files = Storage::files('images/Blogs');
         for ($i = 0; $i < 20; $i++) {
-            $paths = array();
+            $paths[] = '';
             $fake = $faker->sentence(3);
             foreach ($files as $key => $file) {
                 $file = str_replace("images/", "", $file);
@@ -31,7 +31,7 @@ class PostTableSeeder extends Seeder
                 'title' => $fake,
                 'slug' => Str::slug($fake),
                 'disk' => 'public',
-                'image_url' => $paths[$i],
+                'image_url' => 'default.jpg',
                 'content' => $faker->text($maxNbChars = 500),
                 'user_created_id' => rand(1, 50),
                 'user_updated_id' => rand(1, 10),
