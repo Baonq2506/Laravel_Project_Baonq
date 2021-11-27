@@ -28,7 +28,7 @@ class ProductTableSeeder extends Seeder
                 $imageProds = Image::where('product_id', 5)->get('path');
             }
             $info = json_encode($imageProds);
-            dd($info);
+
             DB::table('products')->insert([
                 'name' => $name,
                 'slug' => Str::slug($name),

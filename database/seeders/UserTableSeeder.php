@@ -20,6 +20,7 @@ class UserTableSeeder extends Seeder
     {
         $faker = Faker::create();
         DB::table('users')->truncate();
+        DB::table('images')->truncate();
         DB::table('users')->insert([
             'name' => $faker->name(),
             'status' => rand(1, 2),

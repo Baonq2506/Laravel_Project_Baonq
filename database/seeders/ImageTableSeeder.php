@@ -18,7 +18,7 @@ class ImageTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        Image::truncate();
+
         $dicArr = [
             1 => 'Channel',
             2 => 'Gucci',
