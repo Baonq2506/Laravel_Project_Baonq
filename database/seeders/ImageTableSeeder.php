@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Image;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -19,6 +20,16 @@ class ImageTableSeeder extends Seeder
     {
 
         DB::table('images')->truncate();
-
+        for($i = 1; $i <= 20;$i++){
+            $prodInfo=Product::where('id',$i)->get();
+            for($j = 0; $j <  count(json_decode($prodInfo[0]->info));$j++ )
+           {
+               $image= new Image();
+               $image->name=json_decode($prodInfo[0]->info)[$j];
+               $image->path=json_decode($prodInfo[0]->info)[$j];
+               $image->product_id=$i;
+               $image->save();
+           }
+        }
     }
 }
