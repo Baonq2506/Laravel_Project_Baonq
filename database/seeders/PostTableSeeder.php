@@ -19,21 +19,19 @@ class PostTableSeeder extends Seeder
     {
         $faker = Faker::create();
         DB::table('posts')->truncate();
-
-        for ($i = 0; $i < 30; $i++) {
-            $files = Storage::files('images/Blogs');
+        $files = Storage::files('images/Blogs');
+        for ($i = 0; $i < 20; $i++) {
             $paths = array();
             $fake = $faker->sentence(3);
             foreach ($files as $key => $file) {
                 $file = str_replace("images/", "", $file);
                 $paths[$key] = $file;
             }
-
             DB::table('posts')->insert([
                 'title' => $fake,
                 'slug' => Str::slug($fake),
                 'disk' => 'public',
-                'image_url' => $paths[rand(1,20)],
+                'image_url' => $paths[$i],
                 'content' => $faker->text($maxNbChars = 500),
                 'user_created_id' => rand(1, 50),
                 'user_updated_id' => rand(1, 10),
