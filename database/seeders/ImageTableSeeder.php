@@ -15,7 +15,7 @@ class ImageTableSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('images')->truncate();
+
         $dicArr = [
             1 => 'Channel',
             2 => 'Gucci',
@@ -24,10 +24,10 @@ class ImageTableSeeder extends Seeder
             5 => 'LousiVuitton',
 
         ];
-        $test = array();
+        DB::table('images')->truncate();
         for ($i = 1; $i <= 40; $i++) {
             $randomDicArr = rand(1, 5);
-            $disk = 'products/LOL/' . $dicArr[$randomDicArr];
+            $disk = 'products/LOL/' . $dicArr[ rand(1, 5)];
             $files = Storage::files($disk);
             $paths[] = '';
             foreach ($files as $key => $file) {
