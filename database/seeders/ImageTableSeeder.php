@@ -15,7 +15,7 @@ class ImageTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('images')->truncate();
+        // DB::table('images')->truncate();
         $dicArr = [
             1 => 'Channel',
             2 => 'Gucci',
