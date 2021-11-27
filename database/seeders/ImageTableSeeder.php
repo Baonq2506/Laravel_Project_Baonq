@@ -18,7 +18,7 @@ class ImageTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-
+        // DB::table('images')->truncate();
         $dicArr = [
             1 => 'Channel',
             2 => 'Gucci',
@@ -31,11 +31,9 @@ class ImageTableSeeder extends Seeder
             $randomDicArr = rand(1, 5);
             $disk = 'products/LOL/' . $dicArr[$randomDicArr];
             $files = Storage::files($disk);
-
             $paths[] = '';
             foreach ($files as $key => $file) {
                 $file = str_replace("products/", "", $file);
-                // $paths[$key] = $file;
                 DB::table('images')->insert([
                     'name' => $faker->name,
                     'path' => $file,

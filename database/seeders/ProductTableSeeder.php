@@ -23,7 +23,6 @@ class ProductTableSeeder extends Seeder
             $name = $faker->sentence($nbWords = 3);
             $randomDicArr = rand(1, 5);
             $imageProds = Image::where('product_id', $i)->get('path');
-
             if (is_null($imageProds)) {
                 $imageProds = Image::where('product_id', 5)->get('path');
             }
