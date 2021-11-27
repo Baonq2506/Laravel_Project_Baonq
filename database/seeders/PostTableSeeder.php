@@ -27,12 +27,13 @@ class PostTableSeeder extends Seeder
             $file = str_replace("public/", "", $file);
             $paths[$key] =  $file;
         }
-        $pathID=rand(1,20);
+        // $pathID=rand(1,20);
+        // dd($paths[10]);
         DB::table('posts')->insert([
             'title' => $fake,
             'slug' => Str::slug($fake),
             'disk' => 'public',
-            'image_url' =>$paths[$pathID],
+            'image_url' =>'default.jpg',
             'content' => $faker->text($maxNbChars = 500),
             'user_created_id' => rand(1, 50),
             'user_updated_id' => rand(1, 10),
