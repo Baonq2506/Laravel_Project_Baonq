@@ -6,6 +6,7 @@ use App\Models\Image;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductTableSeeder extends Seeder
@@ -17,17 +18,43 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
+        $dicArr = [
+            1 => 'Channel',
+            2 => 'Gucci',
+            3 => 'Lacoste',
+            4 => 'Hermes',
+            5 => 'LouisVuitton',
+        ];
         $faker = Faker::create();
         DB::table('products')->truncate();
+        DB::table('images')->truncate();
         for ($i = 1; $i <= 20; $i++) {
-            $name = $faker->sentence($nbWords = 3);
-            $randomDicArr = rand(1, 5);
+
+            for ($i = 1; $i <= 4; $i++) {
+                $randomDicArr = rand(1, 5);
+                $disk = 'products/LOL/' . $dicArr[$randomDicArr];
+                $files = Storage::files($disk);
+                $paths[] = '';
+                foreach ($files as $key => $file) {
+                    $file = str_replace("products/", "", $file);
+                    DB::table('images')->insert([
+                        'name' => $faker->name,
+                        'path' => $file,
+                        'product_id' => rand(1, 20),
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
+                }
+            }
             $imageProds = Image::where('product_id', $i)->get('path');
+
             if (is_null($imageProds)) {
                 $imageProds = Image::where('product_id', 5)->get('path');
             }
-            $info = json_encode($imageProds);
 
+            $info = json_encode($imageProds);
+            $randomDicArr = rand(1, 5);
+            $name = $faker->sentence($nbWords = 3);
             DB::table('products')->insert([
                 'name' => $name,
                 'slug' => Str::slug($name),
