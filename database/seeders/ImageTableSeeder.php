@@ -25,24 +25,18 @@ class ImageTableSeeder extends Seeder
 
         ];
 
-        for ($i = 1; $i <= 40; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $randomDicArr = rand(1, 5);
-            $disk = 'products/LOL/' . $dicArr[ rand(1, 5)];
+            $disk = 'products/LOL/' . $dicArr[rand(1, 5)];
             $files = Storage::files($disk);
             $paths[] = '';
             foreach ($files as $key => $file) {
                 $file = str_replace("products/", "", $file);
                 $paths[$key] = $file;
             }
-            $randomFile = rand(0, 10);
-
-            $path = $paths[$randomFile];
-            if (!empty($path)) {
-                $path = $paths[2];
-            }
             DB::table('images')->insert([
                 'name' => $file,
-                'path' => $path,
+                'path' => $paths[$i],
                 'product_id' => $i,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),

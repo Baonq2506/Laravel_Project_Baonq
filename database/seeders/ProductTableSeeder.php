@@ -19,7 +19,7 @@ class ProductTableSeeder extends Seeder
     {
         $faker = Faker::create();
         DB::table('products')->truncate();
-        for ($i = 1; $i <= 40; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $name = $faker->sentence($nbWords = 3);
             $randomDicArr = rand(1, 5);
             $imageProd = Image::where('product_id', $i)->get('path');
