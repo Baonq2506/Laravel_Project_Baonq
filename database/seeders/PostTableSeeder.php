@@ -27,8 +27,6 @@ class PostTableSeeder extends Seeder
             $file = str_replace("public/", "", $file);
             $paths[$key] =  $file;
         }
-        // $pathID=rand(1,20);
-        // dd($paths[10]);
         DB::table('posts')->insert([
             'title' => $fake,
             'slug' => Str::slug($fake),

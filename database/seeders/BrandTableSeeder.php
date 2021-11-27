@@ -25,15 +25,14 @@ class BrandTableSeeder extends Seeder
             5 => 'Louis Vuitton',
 
         ];
-        $disk='products/brand/';
-        $files = Storage::files($disk);
-        $paths[] = '';
-        foreach ($files as $key => $file) {
-            $file = str_replace("avatars/", "", $file);
-            $paths[$key] = $file;
-        }
-
         for ($i = 0; $i < 5; $i++) {
+            $disk='products/brand/';
+            $files = Storage::files($disk);
+            $paths[] = '';
+            foreach ($files as $key => $file) {
+                $file = str_replace("avatars/", "", $file);
+                $paths[$key] = $file;
+            }
             DB::table('brands')->insert([
                 'name' => $brandArr[$i+1],
                 'image' => $paths[$i],
