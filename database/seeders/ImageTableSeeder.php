@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 class ImageTableSeeder extends Seeder
 {
     /**
@@ -15,7 +16,7 @@ class ImageTableSeeder extends Seeder
      */
     public function run()
     {
-
+        $faker = Faker::create();
         $dicArr = [
             1 => 'Channel',
             2 => 'Gucci',
@@ -34,7 +35,7 @@ class ImageTableSeeder extends Seeder
                 $paths[$key] = $file;
             }
             DB::table('images')->insert([
-                'name' => $file,
+                'name' => $faker->name,
                 'path' => $paths[$i],
                 'product_id' => $i,
                 'created_at' => date('Y-m-d H:i:s'),
