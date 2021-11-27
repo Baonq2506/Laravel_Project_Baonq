@@ -23,7 +23,6 @@ class BrandTableSeeder extends Seeder
             3 => 'Hermes',
             4 => 'Lacoste',
             5 => 'Louis Vuitton',
-
         ];
         for ($i = 0; $i < 5; $i++) {
             $disk='products/brand/';

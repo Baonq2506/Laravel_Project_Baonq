@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str;
 class ImageTableSeeder extends Seeder
 {
     /**
@@ -21,13 +21,12 @@ class ImageTableSeeder extends Seeder
             2 => 'Gucci',
             3 => 'Lacoste',
             4 => 'Hermes',
-            5 => 'LousiVuitton',
-
+            5 => 'LouisVuitton',
         ];
 
         for ($i = 1; $i <= 20; $i++) {
             $randomDicArr = rand(1, 5);
-            $disk = 'products/LOL/' . $dicArr[rand(1, 5)];
+            $disk = 'products/LOL/' . $dicArr[$randomDicArr];
             $files = Storage::files($disk);
             $paths[] = '';
             foreach ($files as $key => $file) {
