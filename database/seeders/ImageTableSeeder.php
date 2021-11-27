@@ -25,22 +25,25 @@ class ImageTableSeeder extends Seeder
             5 => 'LouisVuitton',
         ];
 
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
             $randomDicArr = rand(1, 5);
             $disk = 'products/LOL/' . $dicArr[$randomDicArr];
             $files = Storage::files($disk);
+
             $paths[] = '';
             foreach ($files as $key => $file) {
                 $file = str_replace("products/", "", $file);
-                $paths[$key] = $file;
+                // $paths[$key] = $file;
+                DB::table('images')->insert([
+                    'name' => $faker->name,
+                    'path' => $file,
+                    'product_id' => rand(1,20),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ]);
             }
-            DB::table('images')->insert([
-                'name' => $faker->name,
-                'path' => $paths[rand(1, 5)],
-                'product_id' => rand(1,20),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ]);
+
+
         }
     }
 }
