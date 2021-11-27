@@ -22,7 +22,7 @@ class PostTableSeeder extends Seeder
         for($i=0;$i<30;$i++){
         $fake = $faker->sentence(3);
         $files = Storage::files('public/Blogs');
-        $paths[] = '';
+        $paths = array();
         foreach ($files as $key => $file) {
             $file = str_replace("public/", "", $file);
             $paths[$key] =  $file;
@@ -32,7 +32,7 @@ class PostTableSeeder extends Seeder
             'title' => $fake,
             'slug' => Str::slug($fake),
             'disk' => 'public',
-            'image_url' =>'default.jpg',
+            'image_url' =>$paths[$pathID],
             'content' => $faker->text($maxNbChars = 500),
             'user_created_id' => rand(1, 50),
             'user_updated_id' => rand(1, 10),
