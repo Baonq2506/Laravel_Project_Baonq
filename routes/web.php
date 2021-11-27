@@ -133,7 +133,7 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['a
 route::prefix('/')->name('frontend.')->namespace('Frontend')->group(function () {
     //Home page
 
-    route::prefix('home')->name('home.')->group(function () {
+    route::name('home.')->group(function () {
         Route::get('/', 'HomeController@index')->name('index');
     });
     //About page
@@ -158,7 +158,7 @@ route::prefix('/')->name('frontend.')->namespace('Frontend')->group(function () 
 
     //Shop page
     route::name('shop.')->group(function () {
-        Route::get('/', 'ShopController@index')->name('index');
+        Route::get('product', 'ShopController@index')->name('index');
         Route::get('show/{slug}/{product_id}', 'ShopController@detailProduct')->name('detail');
         route::get('getCategory', 'ShopController@getCategory')->name('getCategory');
         route::get('getCategoryId/{category_id}', 'ShopController@getCategoryId')->name('getCategoryId');

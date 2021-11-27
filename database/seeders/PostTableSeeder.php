@@ -32,7 +32,7 @@ class PostTableSeeder extends Seeder
             'title' => $fake,
             'slug' => Str::slug($fake),
             'disk' => 'public',
-            'image_url' =>$paths[$pathID],
+            'image_url' =>'default.jpg',
             'content' => $faker->text($maxNbChars = 500),
             'user_created_id' => rand(1, 50),
             'user_updated_id' => rand(1, 10),
