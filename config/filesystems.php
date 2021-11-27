@@ -63,6 +63,8 @@ return [
             'visibility' => 'public',
         ],
 
+
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -92,6 +94,7 @@ return [
         public_path('images') => storage_path('app/images'),
         public_path('avatars') => storage_path('app/avatars'),
         public_path('products') => storage_path('app/products'),
+
     ],
 
 ];
