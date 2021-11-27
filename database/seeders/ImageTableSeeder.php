@@ -24,7 +24,7 @@ class ImageTableSeeder extends Seeder
             5 => 'LousiVuitton',
 
         ];
-        DB::table('images')->truncate();
+
         for ($i = 1; $i <= 40; $i++) {
             $randomDicArr = rand(1, 5);
             $disk = 'products/LOL/' . $dicArr[ rand(1, 5)];
