@@ -20,7 +20,7 @@ class ImageTableSeeder extends Seeder
     {
 
         DB::table('images')->truncate();
-        for($i = 1; $i <= 20;$i++){
+        for($i = 1; $i <= 200;$i++){
             $prodInfo=Product::where('id',$i)->get();
             for($j = 0; $j <  count(json_decode($prodInfo[0]->info));$j++ )
            {

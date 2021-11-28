@@ -103,7 +103,7 @@ class Post extends Model
                 ]);
             }
         }
-
+        $tagAll = Tag::all();
         $keyArrData = array();
         foreach ($tagData as $key => $value) {
             foreach ($tagAll as $tag) {

@@ -48,8 +48,10 @@
                                 </div>
                             </td>
                             <td>{{ number_format($product->sale_count) }}</td>
+
                             <td>
                                 <div style="display: flex">
+
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
                                         data-target="#modal-danger-{{ $product->id }}" data-toggle="tooltip"
                                         data-placement="top" title="Trash">
@@ -62,11 +64,13 @@
                                         data-toggle="tooltip" data-placement="top" title="View">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </a> &emsp;
+
                                     <a class="btn btn-success"
                                         href="{{ route('backend.product.edit', ['product_id' => $product->id]) }}"
                                         data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="fa fa-edit" aria-hidden="true"></i>
                                     </a>
+
                                 </div>
 
                                 <div class="modal fade" id="modal-danger-{{ $product->id }}">

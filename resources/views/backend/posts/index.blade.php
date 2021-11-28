@@ -66,18 +66,21 @@
                                     data-toggle="tooltip" data-placement="top" title="View">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </a> &emsp;
-                                <a class="btn btn-success"
-                                    href="{{ route('backend.post.edit', ['post_id' => $post->id]) }}"
-                                    data-toggle="tooltip" data-placement="top" title="Edit">
-                                    <i class="fa fa-edit" aria-hidden="true"></i>
-                                </a>
+                                @can('update', $post)
+                                    <a class="btn btn-success"
+                                        href="{{ route('backend.post.edit', ['post_id' => $post->id]) }}"
+                                        data-toggle="tooltip" data-placement="top" title="Edit">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </a>
+                                @endcan
 
-
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#modal-danger-{{ $post->id }}" data-toggle="tooltip"
-                                    data-placement="top" title="Trash" style="margin-left:15px">
-                                    <i style="color:white" class="fas fa-trash"></i>
-                                </button>
+                                @can('delete', $post)
+                                    <button on type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#modal-danger-{{ $post->id }}" data-toggle="tooltip"
+                                        data-placement="top" title="Trash" style="margin-left:15px">
+                                        <i style="color:white" class="fas fa-trash"></i>
+                                    </button>
+                                @endcan
                                 <div class="modal fade" id="modal-danger-{{ $post->id }}">
                                     <div class="modal-dialog">
                                         <div class="modal-content bg-danger">

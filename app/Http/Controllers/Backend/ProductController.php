@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
 class ProductController extends Controller
 {
     /**
@@ -23,6 +24,8 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $products = Product::orderBy('id', 'desc')->get();
@@ -66,7 +69,7 @@ class ProductController extends Controller
         $product->brand_id = $data['brand_id'];
         $product->status = $data['status'];
         $product->sale_price = Str::replace(',', '', $data['sale']);
-        $product->origin_price =Str::replace(',', '', $data['origin']);
+        $product->origin_price = Str::replace(',', '', $data['origin']);
         $product->view_count = 0;
         $product->review_count = 0;
         $product->sale_count = 0;
@@ -234,11 +237,13 @@ class ProductController extends Controller
     public function showOrder($id)
     {
         $order = Order::find($id);
+
         $order_prod = DB::table('order_product')->where('order_id', $id)->get();
         $products = $order->products;
+
         $images = array();
         foreach ($products as $product) {
-            $images[] = Image::where('product_id', $product->id)->get();
+            $images[]= Image::where('product_id', $product->id)->get();
         }
 
         return view('backend.products.showOrder', [
@@ -268,7 +273,7 @@ class ProductController extends Controller
         $comment->user_id = auth()->user()->id;
         $comment->product_id = $data['product_id'];
         $comment->parent_id = $id;
-        $comment->status =1;
+        $comment->status = 1;
         $comment->content = $data['replyComments'];
         $comment->save();
         return back();

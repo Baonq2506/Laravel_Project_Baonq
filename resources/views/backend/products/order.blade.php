@@ -28,7 +28,9 @@
                             <td><a style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;"
                                     href="{{ route('backend.product.showOrder', ['order_id' => $order->id]) }}"><strong>{{ json_decode($order->user_info)->name }}</strong></a>
                             </td>
-                            <td>{{ number_format($order->money_total) }}</td>
+                            <td>
+                                {{ $order->money_total }}
+                            </td>
                             <td>{!! $order->status_text !!}</td>
                             <td>{!! $order->payment_text !!}</td>
                             <td>{{ $order->created_at->toFormattedDateString() }}</td>

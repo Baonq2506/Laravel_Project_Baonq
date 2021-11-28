@@ -23,6 +23,7 @@ class Product extends Model
         2 => 'danger',
         3 => 'info',
         4 => 'warning',
+        5=>'Warning',
     ];
 
     public function setNameAttribute($name)

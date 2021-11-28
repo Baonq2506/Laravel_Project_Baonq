@@ -107,7 +107,7 @@
                             <div class="col-sm-12">
                                 <div class="ex-product"><a href="#"><img
                                             style="width:250px !important;height:130px !important;object-fit:cover"
-                                            src="{{ Storage::disk('products')->url(json_decode($product->info)[0]->path) }}"
+                                            src="{{ Storage::disk('products')->url(json_decode($product->info)[0]) }}"
                                             alt="Leather belt" /></a>
                                     <h4 class="shop-item-title font-alt p-style"><a
                                             href="#"><strong>{{ $product->name }}</strong></a></h4>
@@ -135,7 +135,7 @@
                     <div class="col-sm-6 col-md-4 col-lg-4">
                         <div class="post mb-40">
                             <div class="post-header font-alt">
-                                <h2 class="post-title"><a href="#">{{ $blog->title }}</a></h2>
+                                <h2 class="post-title p-style"><a href="#">{{ $blog->title }}</a></h2>
                             </div>
                             <div class="post-entry blog-style">
                                 <p>{{ $blog->content }}</p>

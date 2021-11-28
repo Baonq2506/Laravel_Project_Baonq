@@ -72,39 +72,20 @@
                     <div class="card card-small mb-4 pt-3">
                         <div class="card-header border-bottom text-center">
                             <div class="img-profile">
-                                <img class="rounded-circle"
-                                    src="/images/LOL/SieuPham/hinhnenlienminhhuyenthoai4k75e7ec3be848bd_5e2a45e30cae51ff12f0abf668801669.jpg"
-                                    alt="User Avatar" width="110">
+                                <img class="rounded-circle" src="{{ $user->image_url_full }}" alt="User Avatar"
+                                    width="110">
                             </div>
-                            <h4 class="mb-0">Sierra Brooks</h4>
-                            <br>
+                            <h4 class="mb-0">{{ $user->name }}</h4>
                             <div class="row">
-                                <div class="col-sm-12">
-
-                                    <a style="margin-right: 15px" href="#"><i style="color:rgb(37, 104, 190)"
-                                            class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
-                                    <a style="margin-right: 15px" href="#"><i style="color:rgb(28,160,242)"
-                                            class=" fa fa-twitter fa-2x" aria-hidden="true"></i></a>
-                                    <a style="margin-right: 15px" href="#"><i style="color:red"
-                                            class=" fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
-                                    <a style="margin-right: 15px" href="#"><i style="color:rgb(37, 104, 190)"
-                                            class=" fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
-                                    <a style="margin-right: 15px" href="#"><i style="color:orange" class=" fa fa-rss fa-2x "
-                                            aria-hidden="true"></i></a>
+                                <div>
+                                    <a class="btn btn-info"
+                                        href="{{ route('frontend.cart.order', ['user_id' => auth()->user()->id]) }}">My
+                                        Order</a>
                                 </div>
                             </div>
-                            <br>
                         </div>
-                        <ul class="list-group list-group-flush">
 
-                            <li class="list-group-item p-4">
-                                <strong class="text-muted d-block mb-2">Description</strong><br>
-                                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi
-                                    soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda
-                                    eligendi
-                                    cumque?</span>
-                            </li>
-                        </ul>
+
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -116,72 +97,108 @@
                             <li class="list-group-item p-3">
                                 <div class="row">
                                     <div class="col">
-                                        <form>
+                                        <form
+                                            action="{{ route('frontend.account.update', ['account_id' => auth()->user()->id]) }}"
+                                            method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('get')
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="feFirstName"> Name</label>
-                                                    <input type="text" class="form-control" id="feFirstName"
-                                                        placeholder="First Name" value="Sierra">
+                                                    <input type="text" class="form-control" required id="feFirstName"
+                                                        name="name" placeholder="First Name" value="{{ $user->name }}">
+                                                    @error('name')
+                                                        <div style="margin-top: -5px; margin-bottom: 5px;">
+                                                            <small style="margin-top:-5px;color:red">&emsp;*
+                                                                {{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="feLastName">Gender</label>
-                                                    <input type="text" class="form-control" id="feLastName"
-                                                        placeholder="Last Name" value="Male">
+                                                    <select class='form-control' name="gender" id="">
+                                                        <option @if ($user->userInfo->gender == 1)
+                                                            selected
+                                                            @endif value="1">Male</option>
+                                                        <option @if ($user->userInfo->gender == 2)
+                                                            selected
+                                                            @endif value="2">Female</option>
+                                                        <option @if ($user->userInfo->gender == 3)
+                                                            selected
+                                                            @endif value="3">Other</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="feEmailAddress">Email</label>
-                                                    <input type="email" class="form-control" id="feEmailAddress"
-                                                        placeholder="Email" value="sierra@example.com">
+                                                    <input type="email" class="form-control" name="email"
+                                                        id="feEmailAddress" placeholder="Email" required
+                                                        value="{{ $user->email }}">
+                                                    @error('email')
+                                                        <div style="margin-top: -5px; margin-bottom: 5px;">
+                                                            <small style="margin-top:-5px;color:red">&emsp;*
+                                                                {{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="feInputAddress">Address</label>
                                                     <input type="text" class="form-control" id="feInputAddress"
-                                                        placeholder="1234 Main St">
+                                                        name="address" required placeholder=""
+                                                        value="{{ $user->userInfo->address ?? '' }}">
+                                                    @error('address')
+                                                        <div style="margin-top: -5px; margin-bottom: 5px;">
+                                                            <small style="margin-top:-5px;color:red">&emsp;*
+                                                                {{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
 
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
-                                                    <label for="fePassword">Old Password</label>
-                                                    <input type="password" class="form-control" id="fePassword"
-                                                        placeholder="Password">
+                                                    <label for="fePassword">Date</label>
+                                                    <input type="text" class="form-control" id="fePassword" name="date"
+                                                        required value="{{ $user->date_format ?? '' }}">
                                                 </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="fePassword">New Password</label>
-                                                    <input type="password" class="form-control" id="fePassword"
-                                                        placeholder="Password">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="fePassword">Confrim Password</label>
-                                                    <input type="password" class="form-control" id="fePassword"
-                                                        placeholder="Password">
-                                                </div>
-
                                             </div>
-
                                             <div class="form-row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-4">
                                                     <label for="feInputCity">City</label>
-                                                    <input type="text" class="form-control" id="feInputCity">
+                                                    <input type="text" required class="form-control" id="feInputCity"
+                                                        name="city" value="{{ $user->userInfo->city ?? '' }}">
                                                 </div>
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-4">
                                                     <label for="feInputState">Phone</label>
 
-                                                    <input type="text" class="form-control" id="feInput">
+                                                    <input required type="text" class="form-control" id="feInput"
+                                                        name="phone" value="{{ $user->userInfo->phone ?? '' }}">
 
                                                     </select>
+                                                    @error('phone')
+                                                        <div style="margin-top: -5px; margin-bottom: 5px;">
+                                                            <small style="margin-top:-5px;color:red">&emsp;*
+                                                                {{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
 
                                             </div>
+
                                             <div class="form-row">
-                                                <div class="form-group col-md-12">
-                                                    <label for="feDescription">Description</label>
-                                                    <textarea class="form-control" name="feDescription"
-                                                        rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea>
+                                                &ensp;&ensp;<label for="feDescription">Avatar</label>
+                                                <div class="custom-file form-group">
+                                                    <input type="file" class="custom-file-input form-control" name="avatar">
                                                 </div>
+                                                @error('avatar')
+                                                    <div style="margin-top: -5px; margin-bottom: 5px;">
+                                                        <small style="margin-top:-5px;color:red">&emsp;*
+                                                            {{ $message }}</small>
+                                                    </div>
+                                                @enderror
                                             </div>
+
                                             <div>
                                                 <button style="margin-left:37%" type="submit" class="btn btn-accent">Update
                                                     Account</button>

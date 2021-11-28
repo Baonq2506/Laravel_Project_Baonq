@@ -24,55 +24,70 @@
             <h2> <a href="{{ route('frontend.shop.index') }}"><i style="color:blue" class="fas fa-arrow-left"></i></a></h2>
             <div class="row">
                 <div class="col-lg-6 col-12">
-                    <form action="#">
+                    <form action="{{ route('frontend.cart.placeOrder', ['user_id' => auth()->user()->id]) }}"
+                        method="post">
+                        @csrf
+                        @method('get')
                         <div class="checkbox-form">
                             <h3>Billing Details</h3>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label> Name <span class="required">*</span></label>
-                                        <input placeholder="" type="text" value="{{ auth()->user()->name ?? '' }}">
+                                        <input placeholder="" name='name' type="text"
+                                            value="{{ auth()->user()->name ?? '' }}">
                                     </div>
+                                    @error('name')
+                                        <div style="margin-top: -30px; margin-bottom: 5px;">
+                                            <small style="margin-top:-5px;color:red">&emsp;*
+                                                {{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label>Address <span class="required">*</span></label>
-                                        <input placeholder="" type="text"
+                                        <input placeholder="" type="text" name="address"
                                             value="{{ auth()->user()->userInfo->address ?? '' }}">
                                     </div>
+                                    @error('address')
+                                        <div style="margin-top: -30px; margin-bottom: 5px;">
+                                            <small style="margin-top:-5px;color:red">&emsp;*
+                                                {{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Email<span class="required">*</span></label>
-                                        <input placeholder="" type="email" value="{{ auth()->user()->email ?? '' }}">
+                                        <input placeholder="" type="email" name="email"
+                                            value="{{ auth()->user()->email ?? '' }}">
                                     </div>
+                                    @error('email')
+                                        <div style="margin-top: -30px; margin-bottom: 5px;">
+                                            <small style="margin-top:-5px;color:red">&emsp;*
+                                                {{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Phone <span class="required">*</span></label>
-                                        <input type="text" value="{{ auth()->user()->phoneNumber() ?? '' }}">
+                                        <input type="text" name="phone" value="{{ auth()->user()->phoneNumber() ?? '' }}">
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-
-                                    <div id="cbox-info" class="checkout-form-list create-account">
-                                        <p>Create an account by entering the information below. If you are a returning
-                                            customer please login at the top of the page.</p>
-                                        <label>Account password <span class="required">*</span></label>
-                                        <input placeholder="password" type="password">
-                                    </div>
+                                    @error('phone')
+                                        <div style="margin-top: -30px; margin-bottom: 5px;">
+                                            <small style="margin-top:-5px;color:red">&emsp;*
+                                                {{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="different-address">
-
-                                <div class="order-notes">
-                                    <div class="checkout-form-list checkout-form-list-2">
-                                        <label>Order Notes</label>
-                                        <textarea id="checkout-mess" cols="30" rows="10"
-                                            placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="order-button-payment">
+                            <br>
+                            <button type="submit" style="width:100%" class="btn btn-primary" href="">PLACE
+                                ORDER</button>
                         </div>
                     </form>
                 </div>
@@ -129,12 +144,7 @@
                             <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
                             </label>
                         </div>
-                        <div class="order-button-payment">
-                            <br>
-                            <a style="width:100%" class="btn btn-primary"
-                                href="{{ route('frontend.cart.placeOrder', ['user_id' => auth()->user()->id]) }}">PLACE
-                                ORDER</a>
-                        </div>
+
                     </div>
                 </div>
             </div>

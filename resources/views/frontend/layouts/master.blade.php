@@ -17,7 +17,7 @@
     @media (min-width: 768px) {
         .navbar-nav {
             margin: 0;
-            margin-left: 11%;
+            margin-left: 8%;
         }
 
         .navbar-right {

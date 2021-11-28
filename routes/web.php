@@ -129,10 +129,9 @@ route::prefix('backend')->name('backend.')->namespace('Backend')->middleware(['a
 
 });
 
-//---------------------FRONTEND-------------------------//
+//--------------------------FRONTEND-------------------------//
 route::prefix('/')->name('frontend.')->namespace('Frontend')->group(function () {
     //Home page
-
     route::name('home.')->group(function () {
         Route::get('/', 'HomeController@index')->name('index');
     });
@@ -172,6 +171,15 @@ route::prefix('/')->name('frontend.')->namespace('Frontend')->group(function () 
         Route::get('checkout/{user_id}', 'CartController@checkout')->name('checkout');
         Route::get('placeOrder/{user_id}', 'CartController@placeOrder')->name('placeOrder');
         Route::get('removeAll', 'CartController@removeAll')->name('destroy');
+        Route::get('order/{user_id}', 'CartController@orderUser')->name('order');
+        Route::get('increase/{row_id}', 'CartController@increase')->name('increase');
+        Route::get('decrease/{row_id}', 'CartController@decrease')->name('decrease');
+    });
+
+    //Header page
+    route::prefix('account')->name('account.')->group(function () {
+        Route::get('/{account_id}', 'AccountController@index')->name('index');
+        Route::get('update/{account_id}', 'AccountController@update')->name('update');
     });
 
 });

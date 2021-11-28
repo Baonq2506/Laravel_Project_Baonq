@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreatePlaceOrderRequest;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -13,6 +14,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+
 class CartController extends Controller
 {
     public function index()
@@ -26,11 +29,16 @@ class CartController extends Controller
 
     public function add($id)
     {
-        $product = Product::find($id);
-        Cart::add($product->id, $product->name, 1, $product->sale_price, 0, [
-            'image' => json_decode($product->info)[0]->path,
-        ]);
-        return redirect()->route('frontend.cart.index');
+        if(auth()->check()){
+            $product = Product::find($id);
+            Cart::add($product->id, $product->name, 1, $product->sale_price, 0, [
+                'image' => $product->product_image_full,
+            ]);
+            return redirect()->route('frontend.cart.index');
+        }
+        toastr()->warning('You need login ');
+        return redirect()->back();
+
     }
 
     public function remove($rowId)
@@ -57,29 +65,44 @@ class CartController extends Controller
     public function decrease($rowId)
     {
         $product = Cart::get($rowId);
-        $qty = $product->qty + 1;
+        $qty = $product->qty - 1;
         Cart::update($rowId, $qty);
         return redirect()->route('frontend.cart.index');
     }
     public function checkout($id)
     {
-        $products = Cart::content();
-        if(Cart::count()== null){
-            toastr()->warning('You have no products in your shopping cart');
+        if(auth()->check()){
+
+            $products = Cart::content();
+            if(Cart::count()== null){
+                toastr()->warning('You have no products in your shopping cart');
+                return redirect()->back();
+            }
+            $userOrder = Order::where('user_id', $id)->where('status', 1)->get();
+            return view('frontend.shops.checkout', [
+                'products' => $products,
+            ]);
+        }
+        else{
+            toastr()->warning('You need Login to checkout');
             return redirect()->back();
         }
-        $userOrder = Order::where('user_id', $id)->where('status', 1)->get();
-        return view('frontend.shops.checkout', [
-            'products' => $products,
-        ]);
+
     }
-    public function placeOrder(Request $request,$id)
+    public function placeOrder(CreatePlaceOrderRequest $request,$id)
     {
+        $data = $request->all();
         $carts = Cart::content();
         $order = new Order();
         $order->user_id = $id;
         $order->money_total = Cart::total();
-        $order->user_info = json_encode(UserInfo::where('user_id', $id)->get());
+        $order->user_info = json_encode([
+            'id'=>auth()->user()->id,
+            'name'=>$data['name'],
+            'email'=>$data['email'],
+            'phone'=>$data['phone'],
+            'address'=>$data['address'],
+        ]);
         $order->status = 1;
         $order->payment_method = 1;
         $status = $order->save();
@@ -103,10 +126,17 @@ class CartController extends Controller
             $user->notify(new NotificationProduct(auth()->user(), $orderId,$contentNotification));
         }
         if ($status) {
+            Cookie::queue(Cookie::make($id, Cart::content(), 1500));
+            Cart::destroy();
             toastr()->success('You place order successfull.Please wait Confirmed, Thank you');
         } else {
             toastr()->success('You place order fail.Please checked order, Thank you');
         }
-        return back();
+        return redirect()->route('frontend.shop.index');
+    }
+    public function orderUser($id){
+        $orders = Cookie::get($id);
+        dd(Cookie::get('id'),json_decode($orders));
+        return view('frontend.shops.order',['orders' => $orders]);
     }
 }

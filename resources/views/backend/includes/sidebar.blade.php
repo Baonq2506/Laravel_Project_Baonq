@@ -9,7 +9,7 @@
                 {{ Auth::user()->name }}
                 <br>
                 <span class="badge badge-primary"> {{ Auth::user()->roles[0]->name }}</span>
-                <span>{!! Auth::user()->status_text !!}</span>
+
             </a>
 
 
@@ -37,43 +37,47 @@
                     </p>
                 </a>
             </li>
-            <li style="font-weight:bold;color:rgb(22, 190, 241)" class="nav-header">
-                <h5>
-                    Product & Order</h5>
-            </li>
+
             {{-- Product --}}
-            <li class="nav-item @if (request()->routeIs('backend.product.*'))
+            @can('viewAny', App\Models\Product::class)
+                <li style="font-weight:bold;color:rgb(22, 190, 241)" class="nav-header">
+                    <h5>
+                        Product & Order</h5>
+                </li>
+                <li class="nav-item @if (request()->routeIs('backend.product.*'))
                 menu-open @endif ">
-                <a href="#"
-                    class="nav-link @if (request()->routeIs('backend.product.*'))
+                    <a href="#"
+                        class="nav-link @if (request()->routeIs('backend.product.*'))
                 active @endif ">
-                    <i class="fab fa-product-hunt"></i>
-                    <p>
-                        Product
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('backend.product.create') }}" class="nav-link  @if (request()->routeIs('backend.product.create')) active @endif">
-                            <i style=" @if (request()->routeIs('backend.product.create')) color:red  @endif" class="fa fa-plus" aria-hidden="true"></i>
-                            <p>Create Product</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('backend.product.index') }}" class="nav-link  @if (request()->routeIs('backend.product.index')) active @endif">
-                            <i style=" @if (request()->routeIs('backend.product.index')) color:red  @endif" class="fa fa-list" aria-hidden="true"></i>
-                            <p>List Products</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('backend.product.order') }}" class="nav-link  @if (request()->routeIs('backend.product.order')) active @endif">
-                            <i style=" @if (request()->routeIs('backend.product.order')) color:red  @endif" class="fa fa-list" aria-hidden="true"></i>
-                            <p>List Orders</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                        <i class="fab fa-product-hunt"></i>
+                        <p>
+                            Product
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.product.create') }}" class="nav-link  @if (request()->routeIs('backend.product.create')) active @endif">
+                                <i style=" @if (request()->routeIs('backend.product.create')) color:red  @endif" class="fa fa-plus" aria-hidden="true"></i>
+                                <p>Create Product</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('backend.product.index') }}" class="nav-link  @if (request()->routeIs('backend.product.index')) active @endif">
+                                <i style=" @if (request()->routeIs('backend.product.index')) color:red  @endif" class="fa fa-list" aria-hidden="true"></i>
+                                <p>List Products</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('backend.product.order') }}" class="nav-link  @if (request()->routeIs('backend.product.order')) active @endif">
+                                <i style=" @if (request()->routeIs('backend.product.order')) color:red  @endif" class="fa fa-list" aria-hidden="true"></i>
+                                <p>List Orders</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+
             {{-- Order --}}
 
             <li style="font-weight:bold;color:rgb(22, 190, 241)" class="nav-header">

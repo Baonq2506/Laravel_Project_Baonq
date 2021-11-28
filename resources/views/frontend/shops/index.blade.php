@@ -31,14 +31,8 @@
                         <option>Low Price</option>
                     </select>
                 </div>
-                <div class="col-sm-2 mb-sm-20">
-                    <select class="form-control" name="searchGender">
-                        <option selected="selected">All</option>
-                        <option>Woman</option>
-                        <option>Man</option>
-                    </select>
-                </div>
-                <div class="col-sm-3 mb-sm-20">
+
+                <div class="col-sm-5 mb-sm-20">
                     <select class="form-control" name="categorySearch">
                         <option selected="selected" value='0'>Select Category</option>
                         @foreach ($prodCate as $cate)
@@ -48,7 +42,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-sm-3">
+                <div style="float: right" class="col-sm-3">
                     <button class="btn btn-success" type="submit">Apply</button>
                     <a class="btn btn-primary" href="{{ route('frontend.shop.index') }}">All</a>
                 </div>

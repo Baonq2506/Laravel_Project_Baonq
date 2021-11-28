@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Validator;
 
 class loginController extends Controller
@@ -45,7 +46,8 @@ class loginController extends Controller
 
         if (Auth::attempt($validated,$remember)) {
             $request->session()->regenerate();
-            return redirect()->route('frontend.home');
+            Cookie::queue('email', $request->get('email'));
+            return redirect()->route('frontend.home.index');
         }
         toastr()->error('Fails username or password')->warning('If you enter incorrectly more than 5 times, your account will be locked');
         return back();
@@ -61,6 +63,6 @@ class loginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('auth.login');
+        return redirect()->route('frontend.home.index');
     }
 }

@@ -36,12 +36,23 @@
                             </a>
                         </li>
                         <li><a> | </a></li>'
+                    @else
+                        <li>
+                            <a data-toggle="tooltip" data-placement="bottom" title="Account" style="color:white"
+                                href="{{ route('frontend.account.index', [
+                                    'account_id' => auth()->user()->id,
+                                ]) }}"><i
+                                    class="far fa-user-circle fa-1x"></i></a>
+                        </li>
+                        <li><a> | </a></li>'
+
 
                     @endif
-
-
                     <li class="dropdown" style="width: 120px;">
-                        <a href="" data-toggle="tooltip" data-placement="bottom" title="{{ auth()->user()->name }}">
+                        <a href="{{ route('frontend.account.index', [
+                            'account_id' => auth()->user()->id,
+                        ]) }}"
+                            data-toggle="tooltip" data-placement="bottom" title="{{ auth()->user()->name }}">
                             <p style="
                         white-space: nowrap;
                         overflow: hidden;
@@ -57,6 +68,14 @@
                     <li><a> | </a></li>
                     <li class="dropdown"><a href="{{ route('auth.login') }}">Login</a></li>
                 @endif
+                @if (Auth::check())
+                    <li class="dropdown">
+                        <a href="{{ route('frontend.cart.index') }}"><i
+                                class="fas fa-shopping-cart fa-2x">{{ Cart::count() }}</i></a>
+                    </li>
+
+                @endif
+
             </ul>
         </div>
 

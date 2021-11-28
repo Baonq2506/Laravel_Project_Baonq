@@ -27,12 +27,13 @@
                                 <th>Total(USD)</th>
                                 <th>Remove</th>
                             </tr>
-                            @foreach ($products as $product)
+
+                            @foreach ($orders as $product)
                                 <tr>
                                     <td class="hidden-xs"><a href="#">
-                                            @if ($product->options->has('image'))
+                                            {{-- @if ($product->options->has('image'))
                                                 <img src="{{ $product->options->image }}" alt="Accessories Pack">
-                                            @endif
+                                            @endif --}}
                                         </a></td>
                                     <td>
                                         <h5 class="product-title font-alt">{{ $product->name }}</h5>
@@ -40,14 +41,9 @@
                                     <td class="hidden-xs">
                                         <h5 class="product-title font-alt">{{ number_format($product->price) }}</h5>
                                     </td>
-                                    <td style="text-align:center">
-                                        <a href="{{ route('frontend.cart.decrease', ['row_id' => $product->rowId]) }}"><i
-                                                class="fas fa-minus-square fa-2x"></i></a>&ensp;&ensp;
-                                        <span> <strong
-                                                style="font-size:25px">{{ $product->qty }}</strong></span>&ensp;&ensp;
-                                        <a href="{{ route('frontend.cart.increase', ['row_id' => $product->rowId]) }}"><i
-                                                class="fas fa-plus-square fa-2x"></i></a>
-
+                                    <td>
+                                        <input class="form-control" type="number" name="" value="{{ $product->qty }}"
+                                            max="50" min="1">
                                     </td>
                                     <td>
                                         <h5 class="product-title font-alt">
@@ -64,7 +60,7 @@
                     </table>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div style="float:right" class="col-sm-3 col-sm-offset-3">
                     <div class="form-group">
                         <a href="{{ route('frontend.cart.destroy') }}" class="btn btn-block btn-round btn-d pull-right"
@@ -97,7 +93,7 @@
                             class="btn btn-lg btn-block btn-round btn-d" type="submit">Proceed to Checkout</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 @endsection

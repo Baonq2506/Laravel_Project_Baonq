@@ -15,14 +15,14 @@ class CommentTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        DB::table('comments')->truncate();
+        // DB::table('comments')->truncate();
         for($i=1;$i<=200;$i++){
-            $idUser= rand(1,23);
+            $idUser= rand(1,100);
             DB::table('comments')->insert([
                 'user_id'=>$idUser,
-                'product_id'=>rand(1,190),
+                'product_id'=>rand(1,200),
                 'content'=>$faker->text($maxNbChars = 500),
-                'parent_id' =>rand(1,190),
+                'parent_id' =>null,
                 'status'=>rand(1, 2),
                 'created_at'=> $faker->datetime()->format('Y-m-d H:i:s'),
             ]);

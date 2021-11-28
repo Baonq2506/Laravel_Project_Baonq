@@ -44,7 +44,7 @@
                                 <label for="exampleInputName1">Content</label>
                                 @include('backend.comporment.summernote',[
                                 'name'=>'content',
-                                'description' =>"{{ old('content') }}",
+                                'description' => old('content'),
                                 'class'=> "@error('content') is-invalid @enderror"
                                 ])
                             </div>
@@ -87,14 +87,15 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-7">
-                                    <div class="form-group">
-                                        <label>Tag</label>
-                                        <select class="select2  @error('tags') is-invalid @enderror" name="tags[]"
-                                            multiple="multiple" data-placeholder="Select a Tag" style="width: 100%;">
-                                            @foreach ($tags as $tag)
-                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="col-lg-12">
+                                        <div class="form-group" style="width: 100%;">
+                                            <label>Tag</label> <br>
+                                            <input name="tags[]" id="test2"
+                                                class="form-control @error('tags') is-invalid @enderror"
+                                                data-role="tagsinput" value="    @foreach ($tags as $tag)
+                                            {{ $tag->name . ',' }}
+                                            @endforeach">
+                                        </div>
                                     </div>
                                     @error('tags')
                                         <div style="margin-top: -10px; margin-bottom: 5px;">

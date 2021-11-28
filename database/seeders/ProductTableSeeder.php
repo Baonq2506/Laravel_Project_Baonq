@@ -27,15 +27,16 @@ class ProductTableSeeder extends Seeder
         ];
         $faker = Faker::create();
         DB::table('products')->truncate();
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 200; $i++) {
             $randomDicArr = rand(1, 5);
             $disk = 'products/LOL/' . $dicArr[$randomDicArr];
             $files = Storage::files($disk);
-            $paths[] = '';
+            $paths = array();
             foreach ($files as $key => $file) {
                 $file = str_replace("products/", "", $file);
                 $paths[$key] = $file;
             }
+
             $imageProds=[$paths[rand(1, 9)],$paths[rand(1, 9)]] ;
             $infos = json_encode($imageProds);
             $name = $faker->sentence($nbWords = 3);

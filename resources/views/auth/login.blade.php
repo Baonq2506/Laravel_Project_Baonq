@@ -41,7 +41,8 @@
                             @csrf
                             <div class="form-group">
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                    placeholder="Email" name='email'>
+                                    placeholder="Email" name='email'
+                                    value="{{ Illuminate\Support\Facades\Cookie::get('email') }}">
                             </div>
                             @error('email')
                                 <div style="margin-top: -10px;margin-bottom: 5px;">
@@ -59,7 +60,7 @@
                             @error('password')
                                 <div
                                     style="margin-top: -10px;
-                                                                                                                                                                            margin-bottom: 5px;">
+                                                                                                                                                                                margin-bottom: 5px;">
                                     <small style="margin-top:-5px;color:red">&emsp;* {{ $message }}</small>
                                 </div>
                             @enderror

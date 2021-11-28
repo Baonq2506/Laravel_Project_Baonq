@@ -49,7 +49,7 @@ class ReviewController extends Controller
         else{
             toastr()->error('You review failed');
         }
-        return redirect()->route('frontend.shop.detail',['product_id'=>$data['product_id']]);
+        return redirect()->route('frontend.shop.detail',['product_id'=>$data['product_id'],'slug'=>'abc']);
 
     }
 

@@ -48,7 +48,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="owl-carousel text-center" data-items="  @if (count($images) <
+                    <div class="owl-carousel text-center" data-items="    @if (count($images) <
                         5)
                         {{ count($images) }}
                     @else
@@ -60,7 +60,7 @@
                                 <div class="col-sm-12">
                                     <div class="ex-product">
                                         <a class="active" data-toggle="pill" href="#menu-{{ $image->id }}"> <img
-                                                style="                                  @if (count($images) < 5)
+                                                style="                                    @if (count($images) < 5)
                                             height: 67px !important;width:100px;object-fit:cover
                                             @endif " src="{{ $image->image_url_full }}"
                                             alt="" /></a>
@@ -214,7 +214,8 @@
 
 
 
-                                                                                   @if ($comment->liked(auth()->user()->id))
+
+                                                                    @if ($comment->liked(auth()->user()->id))
                                                                     blue
                                                                     @endif"
                                                                     type="submit">
@@ -240,7 +241,7 @@
                                                             @endif
 
                                                         </span>-
-                                                        <i style="color:blue;margin-left:  @if ($comment->liked(auth()->user()->id))
+                                                        <i style="color:blue;margin-left:    @if ($comment->liked(auth()->user()->id))
                                                             80px
                                                         @else
                                                             30px
@@ -397,7 +398,8 @@
 
                                                             <button type="submit"
                                                                 style="background:white;border:1px solid white"><i style="color:
-                                                                                        @if ($review->liked(auth()->user()->id))
+
+                                                                         @if ($review->liked(auth()->user()->id))
                                                                     red
                                                                 @else
                                                                     black
@@ -509,7 +511,7 @@
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="shop-item">
                             <div class="shop-item-image"><img style="width:100%;height:250px;object-fit:cover"
-                                    src="{{ Storage::disk('products')->url(json_decode($rp->info)[0]->path) }}"
+                                    src="{{ Storage::disk('products')->url(json_decode($rp->info)[0]) }}"
                                     alt="Accessories Pack" />
                                 <div class="shop-item-detail"><a class="btn btn-round btn-b"><span
                                             class="icon-basket">Add
@@ -546,7 +548,7 @@
                             <div class="col-sm-12">
                                 <div class="ex-product"><a href="#"><img
                                             style="width:100%;height:250px;object-fit:cover"
-                                            src="{{ Storage::disk('products')->url(json_decode($ep->info)[0]->path) }}"
+                                            src="{{ Storage::disk('products')->url(json_decode($ep->info)[0]) }}"
                                             alt="Leather belt" /></a>
                                     <h4 class="shop-item-title font-alt p-style"><a
                                             href="{{ route('frontend.shop.detail', ['slug' => $product->slug, 'product_id' => $ep->id]) }}"><strong>{{ $ep->name }}</strong></a>

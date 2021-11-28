@@ -17,8 +17,8 @@ class OrderTableSeeder extends Seeder
     {
         $faker = Faker::create();
         DB::table('orders')->truncate();
-        for ($i = 1; $i < 130; $i++) {
-            $randomUserID = rand(1, 130);
+        for ($i = 1; $i < 100; $i++) {
+            $randomUserID = rand(1, 100);
             $userArr = User::find($randomUserID);
             $user_info = json_encode($userArr);
             $orders = DB::table('order_product')->where('order_id', $i)->get();

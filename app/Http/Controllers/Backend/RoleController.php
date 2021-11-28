@@ -53,9 +53,10 @@ class RoleController extends Controller
         $roles = Role::all();
         $permission = new Permission();
         $permissions = $permission->permissionsArr();
+        $permissions = Permission::where('parent_id', 0)->get();
         return view('backend.roles.create', [
             'roles' => $roles,
-            'permissions' => $permissions,
+            'perArr' => $permissions,
         ]);
     }
 

@@ -41,9 +41,10 @@
                         @foreach ($order_prods as $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td><img src="          @foreach ($images as $image)
+                                <td><img src="                      @foreach ($images as
+                                        $image)
                                     @if ($order->product_id == $image[0]->product_id)
-                                        {{ $image[0]->image_url_full }}
+                                        {{ Storage::disk('products')->url($image[0]->path) }}
                                     @endif
                                     @endforeach" width="100px" alt="">
                                 </td>

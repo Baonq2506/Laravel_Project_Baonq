@@ -16,7 +16,7 @@ class PostTagsTableSeeder extends Seeder
     {
 
         DB::table('post_tags')->truncate();
-        for( $i=1;$i<=32;$i++){
+        for( $i=1;$i<=20;$i++){
             DB::table('post_tags')->insert([
                 'post_id'=> $i,
                 'tag_id' =>rand(1,7),

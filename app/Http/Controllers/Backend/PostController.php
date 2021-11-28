@@ -13,6 +13,7 @@ use App\Notifications\NotificationPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
 class PostController extends Controller
 {
     /**
@@ -20,8 +21,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class, 'post');
+    }
+
     public function index(Request $request)
     {
+
         $posts = Post::orderBy('id', 'desc')->get();
 
         $categories = Category::all();
@@ -66,7 +73,7 @@ class PostController extends Controller
             $post->image_url = $path;
         }
         $post->title = $data['title'];
-        $post->slug=Str::slug($data['title']);
+        $post->slug = Str::slug($data['title']);
         $post->content = $data['content'];
         $post->category_id = $data['category_id'];
         $post->user_created_id = rand(1, 10);
@@ -75,7 +82,10 @@ class PostController extends Controller
         $post->created_at = date("Y-m-d H:i:s");
         $post->updated_at = date("Y-m-d H:i:s");
         $post->save();
-        $post->tag()->attach($data['tags']);
+        $tags = $post->boolTagsInput($data['tags']);
+
+        $post->tag()->attach($tags);
+
         if ($post->save()) {
             toastr()->success('You create a new post successfully!');
         } else {
@@ -132,42 +142,43 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, $id)
     {
-        $data = $request->all();
 
-        if (empty($post)) {
-            $post = Post::onlyTrashed()->where('id', $id)->get();
-            $post = $post[0];
-        }
-        if ($request->hasFile('image_url')) {
-            $disk = 'public';
-            $path = $request->file('image_url')->store('Blogs', $disk);
-            $post->disk = $disk;
-            $post->image_url = $path;
-        }
-        $post->title = $data['title'];
-        $post->content = $data['content'];
-        $post->user_updated_id = $data['id_updated'];
-        $post->status = $data['status'];
-        $post->updated_at = date("Y-m-d H:i:s");
-        $post->save();
-        if($data['status'] == 3){
-            $users = User::whereHas('roles', function ($query) {
-                $query->where('id', 1);
-            })->get();
-            $postId = $post->id;
-            $content= " You have new post need confirm";
-            foreach ($users as $user) {
-                $user->notify(new NotificationPost(auth()->user(), $postId,$content));
+            $data = $request->all();
+            if (empty($post)) {
+                $post = Post::onlyTrashed()->where('id', $id)->get();
+                $post = $post[0];
             }
-        }
-        $tags = $post->boolTagsInput($data['tags']);
-        $post->tag()->sync($tags);
-        if ($post->save()) {
-            toastr()->success('You update a post successfully!');
-        } else {
-            toastr()->error('You update a post failed!');
-        }
-        return redirect()->route('backend.post.index');
+            if ($request->hasFile('image_url')) {
+                $disk = 'public';
+                $path = $request->file('image_url')->store('Blogs', $disk);
+                $post->disk = $disk;
+                $post->image_url = $path;
+            }
+            $post->title = $data['title'];
+            $post->content = $data['content'];
+            $post->user_updated_id = $data['id_updated'];
+            $post->status = $data['status'];
+            $post->updated_at = date("Y-m-d H:i:s");
+            $post->save();
+            if ($data['status'] == 3) {
+                $users = User::whereHas('roles', function ($query) {
+                    $query->where('id', 1);
+                })->get();
+                $postId = $post->id;
+                $content = " You have new post need confirm";
+                foreach ($users as $user) {
+                    $user->notify(new NotificationPost(auth()->user(), $postId, $content));
+                }
+            }
+            $tags = $post->boolTagsInput($data['tags']);
+            $post->tag()->sync($tags);
+            if ($post->save()) {
+                toastr()->success('You update a post successfully!');
+            } else {
+                toastr()->error('You update a post failed!');
+            }
+            return redirect()->route('backend.post.index');
+
     }
 
     /**
@@ -180,7 +191,7 @@ class PostController extends Controller
     {
 
         Post::destroy($id);
-        if(Post::destroy($id)==0){
+        if (Post::destroy($id) == 0) {
             toastr()->success('You destroy a post successfully!');
         } else {
             toastr()->error('You destroy a post failed!');
@@ -198,9 +209,9 @@ class PostController extends Controller
 
     public function restore($id)
     {
-        $boolPost=Post::withTrashed()->where('id', $id)->restore();
+        $boolPost = Post::withTrashed()->where('id', $id)->restore();
 
-        if( $boolPost==1){
+        if ($boolPost == 1) {
             toastr()->success('You restore post successfully!');
         } else {
             toastr()->error('You restore post failed!');
@@ -211,10 +222,10 @@ class PostController extends Controller
     public function forceDelete($id)
     {
 
-       Post::withTrashed()->where('id', $id)->restore();
-       $status=Post::where('id', $id)->delete();
+        Post::withTrashed()->where('id', $id)->restore();
+        $status = Post::where('id', $id)->delete();
 
-        if( $status==true ){
+        if ($status == true) {
             toastr()->success('You delete post successfully!');
         } else {
             toastr()->error('You delete new post failed!');
@@ -227,8 +238,8 @@ class PostController extends Controller
         $post = Post::find($post_id);
         $post->status = $id;
         $post->save();
-        if( $post->save()==true){
-            toastr()->success( ' Status change successfully!');
+        if ($post->save() == true) {
+            toastr()->success(' Status change successfully!');
         } else {
             toastr()->error('Status change failed!');
         }
